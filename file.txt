@@ -1,0 +1,12 @@
+..
+../streamlit
+../streamlit/foo.py
+../pandas_play
+../pandas_play/space.csv
+../jenkins_play
+../jenkins_play/jenkins1_home
+../jenkins_play/jenkins1_home/hudson.model.UpdateCenter.xml
+../jenkins_play/jenkins1_home/updates
+../jenkins_play/jenkins1_home/updates/hudson.tasks.Maven.MavenInstaller
+../jenkins_play/jenkins1_home/updates/default.json
+../jenkins_play/jenkins1_home/updates/hudson.tools.JDKInstaller
