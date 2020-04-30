@@ -1,59 +1,64 @@
 package main
-
+//
+// Usage:  cat file.txt | go run frangipanni.go
+//
 import (
-    "bufio"
-    "fmt"
-    "log"
+	"bufio"
+	"fmt"
+	"log"
 	"os"
 	"strings"
 )
-type Node struct {
-	prefix string
-	children []Node
+
+type node struct {
+	prefix   string
+	children []*node
 }
 
-func add(tree Node, tok []string) {
-	fmt.Printf("node " + tree.prefix + " : %s\n", tok)
-	if( tree.prefix == "/") {
-		return 
+func ptree(t *node, d int) {
+	for i := 0; i < d; i++ {
+		fmt.Printf("  ")
 	}
-	if len(tok) == 1 && tok[0] == tree.prefix {
-		// Duplicate
-		fmt.Println("duplicate")
+	fmt.Printf("%s:\n", t.prefix)
+	for _, c := range t.children {
+		ptree(c, d+1)
+	}
+}
+func add(tree *node, tok []string, depth int) {
+	//fmt.Printf("add %d node %s %s\n", depth, tree.prefix, tok)
+	if len(tok) < 1 {
 		return
-	} else {
-		for _, c := range (tree.children) {
-			fmt.Println("node " + tree.prefix + "child " + c.prefix)
-			if tok[0] == c.prefix {
-				add(c, tok[1:])
-				return
-			}
+	}
+	for _, c := range tree.children {
+		//fmt.Printf("children %d node %s child %d %s\n", depth, tree.prefix, i, c.prefix)
+		if tok[0] == c.prefix {
+			add(c, tok[1:], depth+1)
+			return
 		}
 	}
-	x := Node{tok[0], nil}
-	if len(tok) > 1 {
-		add(x, tok[1:])
-	}
-	tree.children = append(tree.children, x)
+	// So not a match to the children. It's a new child.
+	x := node{tok[0], []*node{}}
+	tree.children = append(tree.children, &x)
+	add(&x, tok[1:], depth+1)
+	//fmt.Printf("newchild %d %s\n", depth, tree)
 }
 
 func main() {
-    file, err := os.Open("./file.txt")
-    if err != nil {
-        log.Fatal(err)
-    }
-    defer file.Close()
+	file := os.Stdin
+	defer file.Close()
+	fs := "/"
 
-	root := Node{"/", nil}
-    scanner := bufio.NewScanner(file)
-    for scanner.Scan() {
+	root := node{".", nil}
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
 		l := scanner.Text()
-		t := strings.Split(l, "/")
-        fmt.Println(t)
-		add(root, t)
-    }
-	fmt.Println(root)
-    if err := scanner.Err(); err != nil {
-        log.Fatal(err)
-    }
+		t := strings.Split(l, fs)
+		//fmt.Printf("read %s\n", t)
+		add(&root, t, 0)
+		//ptree(&root, 0)
+	}
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
+	}
+	ptree(&root, -1)
 }
