@@ -1,8 +1,10 @@
 ..
 DE/FG
-../streamlit/foo.py
+../stream-lit/foo.py
 AB/CD
 AB/
-../streamlit
+AB/streamlit
+AB/Foo
 DE
 AB/CD/HI/JK
+
