@@ -1,10 +1,52 @@
-..
+yy
+yy/stream-lit/foo.py
+yy_stream-lit/foo.py
 DE/FG
-../stream-lit/foo.py
-AB/CD
+AB-CD
 AB/
 AB/streamlit
 AB/Foo
 DE
-AB/CD/HI/JK
+AB-CD_HI/JK-LM*NO#PQ/RS/TU/VW/XY
+environ:
+environ:  COLORFGBG: 15;0
+environ:  D
+environ: DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user/1000/bus
+/proc/22468/io
+/proc/22468/uid_map
+/proc/22468/gid_map
+/proc/22468/projid_map
+/proc/22468/setgroups
+/proc/22468/timers
+/proc/22468/timerslack_ns
+/.oldroot
+/boot
+/boot/vmlinuz-4.9.0-11-amd64
+/boot/vmlinuz-4.9.0-8-amd64
+/boot/vmlinuz-4.9.0-12-amd64
+/boot/initrd.img-4.9.0-12-amd64
+/boot/System.map-4.9.0-8-amd64
+/boot/config-4.9.0-12-amd64
+/boot/System.map-4.9.0-11-amd64
+/boot/initrd.img-4.9.0-8-amd64
+/boot/config-4.9.0-11-amd64
+/boot/config-4.9.0-8-amd64
+/boot/System.map-4.9.0-12-amd64
+/boot/initrd.img-4.9.0-11-amd64
+/boot/grub
+/boot/grub/grub.cfg
+/boot/grub/unicode.pf2
+/boot/grub/locale
+/boot/grub/grubenv
+/boot/grub/fonts
+/boot/grub/device.map
+/boot/grub/i386-pc
+/srv
+/usr/local/go/test/fixedbugs/bug028.go
+/usr/local/go/test2/fixedbugs1/bug205.go
+/usr/local/go/test2/fixedbugs1/bug206.go
+/usr/local/go/test2/fixedbugs2/bug481.go
+/usr/local/go/test2/fixedbugs2/bug482.go
+/usr/local/go/test3/fixedbugs/bug196.go
+/usr/local/go/test4/fixedbugs/issue19667.go
 
