@@ -41,9 +41,9 @@ func add(lineNumber int, tree *node, tok []string, sep []string, max int, depth 
 	//fmt.Printf("newchild %d %s\n", depth, tree)
 }
 
-func ptree(t *node, d int, orderBy string) {
+func ptree(t *node, depth int, orderBy string) {
 
-	for i := 0; i < d; i++ { // Indentation
+	for i := 0; i < depth; i++ { // Indentation
 		fmt.Printf("  ")
 	}
 
@@ -55,6 +55,7 @@ func ptree(t *node, d int, orderBy string) {
 	}
 	fmt.Printf("%s%s\n", t.sep, t.prefix)
 
+	// Convert map to list for sorting
 	nodes := make([]*node, 0, len(t.children)) // list of nodes
 	for n := range t.children {
 		nodes = append(nodes, t.children[n])
@@ -75,8 +76,7 @@ func ptree(t *node, d int, orderBy string) {
 	}
 
 	for _, kc := range nodes {
-		// fmt.Printf("%d %s", kc.lineNumber, kc.prefix)
-		ptree(kc, d+1, orderBy)
+		ptree(kc, depth+1, orderBy) // print the children in order
 	}
 }
 
@@ -133,13 +133,13 @@ func main() {
 			copy(seps[1:], seps)    // shift right
 			seps[0] = ""            // inject fake at the front
 		}
-		seps = append(seps, "$")
+		// seps = append(seps, "$")
 		add(nr, &root, t, seps, max, 0)
 	}
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
-	ptree(&root, -1, orderBy)
+	ptree(&root, 0, orderBy)
 }
 
 func helpText(out io.Writer, doOrNotDo bool) {
