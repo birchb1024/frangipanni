@@ -1,0 +1,9 @@
+/var
+/boot/vmlinuz-4.9.0-11-amd64
+/boot/vmlinuz-4.9.0-8-amd64
+/boot/vmlinuz-4.9.0-12-amd64
+/boot/initrd.img-4.9.0-12-amd64
+/boot/System.map-4.9.0-8-amd64
+/boot/config-4.9.0-12-amd64
+/boot/System.map-4.9.0-11-amd64
+/boot/initrd.img-4.9.0-8-amd64
