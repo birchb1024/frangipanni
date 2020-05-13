@@ -82,6 +82,51 @@ func fprintTree(out io.Writer, t *node, depth int, orderBy string) {
 	}
 }
 
+func fprintTreeJSON(out io.Writer, t *node, depth int, orderBy string) {
+
+	if t.lineNumber < 0 { // root node
+		fmt.Fprint(out, "{")
+	}
+	if len(t.children) == 0 {
+		fmt.Fprint(out, "\""+t.sep+t.prefix+"\": null")
+		return
+	}
+	fmt.Fprint(out, "\""+t.sep+t.prefix+"\" : ")
+
+	// Convert map to list for sorting
+	nodes := make([]*node, 0, len(t.children)) // list of nodes
+	for n := range t.children {
+		nodes = append(nodes, t.children[n])
+	}
+	switch orderBy {
+	case "input":
+		sort.Slice(nodes, func(i, j int) bool {
+			return nodes[i].lineNumber < nodes[j].lineNumber
+		})
+
+	case "alphabetic":
+		sort.Slice(nodes, func(i, j int) bool {
+			return nodes[i].prefix < nodes[j].prefix
+		})
+
+	default:
+		log.Fatalf("Error: unknown order option '%v'", orderBy)
+	}
+
+	fmt.Fprint(out, "{")
+	for i, kc := range nodes {
+		fprintTreeJSON(out, kc, depth+1, orderBy) // print the children in order
+		if i < len(nodes)-1 {
+			fmt.Fprint(out, ",")
+		}
+	}
+	fmt.Fprint(out, "}")
+	if t.lineNumber < 0 { // root node
+		fmt.Fprint(out, "}")
+	}
+
+}
+
 func makeBooleanFlag(flagVar *bool, switchName string, desc string) {
 	flag.BoolVar(flagVar, switchName, false, desc)
 	flag.BoolVar(flagVar, string(switchName[0]), false, desc)
@@ -95,6 +140,7 @@ func main() {
 
 	var help bool
 	var orderBy string
+	var format string
 
 	var stdoutBuffered *bufio.Writer
 	stdoutBuffered = bufio.NewWriter(os.Stdout)
@@ -104,10 +150,19 @@ func main() {
 		switchString string
 		defaul       string
 		description  string
-	}{"order", "input", "Sort order: input|alphabetic"}
+	}{"order", "input", "Sort order/' //: input|alphabetic"}
 
 	flag.StringVar(&orderBy, string(odf.switchString[0]), odf.defaul, odf.description)
 	flag.StringVar(&orderBy, odf.switchString, odf.defaul, odf.description)
+
+	outformat := struct {
+		switchString string
+		defaul       string
+		description  string
+	}{"format", "indent", "Format of output: indent|json"}
+
+	flag.StringVar(&format, string(outformat.switchString[0]), outformat.defaul, outformat.description)
+	flag.StringVar(&format, outformat.switchString, outformat.defaul, outformat.description)
 
 	makeBooleanFlag(&help, "help", "Print helpful text.")
 
@@ -137,7 +192,7 @@ func main() {
 		return !isSep(c)
 	}
 
-	root := node{-1, "", "", map[string]*node{}}
+	root := node{-1, "stdin", "", map[string]*node{}}
 	scanner := bufio.NewScanner(file)
 	nr := 0
 	for scanner.Scan() {
@@ -160,7 +215,17 @@ func main() {
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
-	fprintTree(stdoutBuffered, &root, 0, orderBy)
+	switch format {
+	case "indent":
+		fprintTree(stdoutBuffered, &root, 0, orderBy)
+
+	case "json":
+		fprintTreeJSON(stdoutBuffered, &root, 0, orderBy)
+
+	default:
+		log.Fatalf("Error: unknown format option '%v'", format)
+	}
+
 	/* 	if *memprofile != "" {
 	   		f, err := os.Create(*memprofile)
 	   		if err != nil {
