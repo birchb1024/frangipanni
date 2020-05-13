@@ -10,6 +10,8 @@ import (
 	"io"
 	"log"
 	"os"
+	//	"runtime"
+	//	"runtime/pprof"
 	"sort"
 	"strings"
 	"unicode"
@@ -41,19 +43,19 @@ func add(lineNumber int, tree *node, tok []string, sep []string, max int, depth 
 	//fmt.Printf("newchild %d %s\n", depth, tree)
 }
 
-func ptree(t *node, depth int, orderBy string) {
+func fprintTree(out io.Writer, t *node, depth int, orderBy string) {
 
 	for i := 0; i < depth; i++ { // Indentation
-		fmt.Printf("  ")
+		fmt.Fprint(out, "  ")
 	}
 
 	for len(t.children) == 1 { // Print singletons on the same line
-		fmt.Printf("%s%s", t.sep, t.prefix)
+		fmt.Fprint(out, t.sep+t.prefix)
 		for k := range t.children { // Loops once because len() always == 1 ;-)
 			t = t.children[k]
 		}
 	}
-	fmt.Printf("%s%s\n", t.sep, t.prefix)
+	fmt.Fprintln(out, t.sep+t.prefix)
 
 	// Convert map to list for sorting
 	nodes := make([]*node, 0, len(t.children)) // list of nodes
@@ -76,7 +78,7 @@ func ptree(t *node, depth int, orderBy string) {
 	}
 
 	for _, kc := range nodes {
-		ptree(kc, depth+1, orderBy) // print the children in order
+		fprintTree(out, kc, depth+1, orderBy) // print the children in order
 	}
 }
 
@@ -85,11 +87,18 @@ func makeBooleanFlag(flagVar *bool, switchName string, desc string) {
 	flag.BoolVar(flagVar, string(switchName[0]), false, desc)
 }
 
+//var cpuprofile = flag.String("cpuprofile", "", "write cpu profile to `file`")
+//var memprofile = flag.String("memprofile", "", "write memory profile to `file`")
+
 func main() {
 	max := 2
 
 	var help bool
 	var orderBy string
+
+	var stdoutBuffered *bufio.Writer
+	stdoutBuffered = bufio.NewWriter(os.Stdout)
+	defer stdoutBuffered.Flush()
 
 	odf := struct {
 		switchString string
@@ -103,6 +112,18 @@ func main() {
 	makeBooleanFlag(&help, "help", "Print helpful text.")
 
 	flag.Parse()
+	/* 	if *cpuprofile != "" {
+	   		f, err := os.Create(*cpuprofile)
+	   		if err != nil {
+	   			log.Fatal("could not create CPU profile: ", err)
+	   		}
+	   		defer f.Close() // error handling omitted for example
+	   		if err := pprof.StartCPUProfile(f); err != nil {
+	   			log.Fatal("could not start CPU profile: ", err)
+	   		}
+	   		defer pprof.StopCPUProfile()
+	   	}
+	*/
 	helpText(os.Stderr, help)
 
 	file := os.Stdin
@@ -139,7 +160,19 @@ func main() {
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
-	ptree(&root, 0, orderBy)
+	fprintTree(stdoutBuffered, &root, 0, orderBy)
+	/* 	if *memprofile != "" {
+	   		f, err := os.Create(*memprofile)
+	   		if err != nil {
+	   			log.Fatal("could not create memory profile: ", err)
+	   		}
+	   		defer f.Close() // error handling omitted for example
+	   		runtime.GC()    // get up-to-date statistics
+	   		if err := pprof.WriteHeapProfile(f); err != nil {
+	   			log.Fatal("could not write memory profile: ", err)
+	   		}
+	   	}
+	*/
 }
 
 func helpText(out io.Writer, doOrNotDo bool) {
