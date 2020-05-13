@@ -5,7 +5,9 @@ package main
 //
 import (
 	"bufio"
+	"flag"
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"sort"
@@ -14,37 +16,13 @@ import (
 )
 
 type node struct {
-	prefix   string
-	sep      string
-	children map[string]*node
+	lineNumber int
+	prefix     string
+	sep        string
+	children   map[string]*node
 }
 
-func ptree(t *node, d int) {
-	// Indentation
-	for i := 0; i < d; i++ {
-		fmt.Printf("  ")
-	}
-	// Print singletons on the same line
-	for len(t.children) == 1 {
-		fmt.Printf("%s%s", t.sep, t.prefix)
-		for k := range t.children {
-			// Loops once because len() always == 1 ;-)
-			t = t.children[k]
-		}
-	}
-	fmt.Printf("%s%s\n", t.sep, t.prefix)
-	// print in sorted order
-	keys := make([]string, 0, len(t.children)) // list of keys
-	for k := range t.children {
-		keys = append(keys, k)
-	}
-	sort.Strings(keys)
-
-	for _, kc := range keys {
-		ptree(t.children[kc], d+1)
-	}
-}
-func add(tree *node, tok []string, sep []string, max int, depth int) {
+func add(lineNumber int, tree *node, tok []string, sep []string, max int, depth int) {
 	//fmt.Printf("add %d node (%s) <= %s %s\n", depth, tree.prefix, tok, sep)
 	if len(tok) < 1 {
 		return
@@ -52,25 +30,84 @@ func add(tree *node, tok []string, sep []string, max int, depth int) {
 	for _, c := range tree.children {
 		//fmt.Printf("children %d node %s child %d %s\n", depth, tree.prefix, i, c.prefix)
 		if tok[0] == c.prefix {
-			//if c.sep == "" {
-			//	c.sep = sep[0]
-			//}
-			add(c, tok[1:], sep[1:], max, depth+1)
+			add(lineNumber, c, tok[1:], sep[1:], max, depth+1)
 			return
 		}
 	}
 	// So not a match to the children. It's a new child.
-	x := node{tok[0], sep[0], map[string]*node{}}
+	x := node{lineNumber, tok[0], sep[0], map[string]*node{}}
 	tree.children[tok[0]] = &x
-	add(&x, tok[1:], sep[1:], max, depth+1)
+	add(lineNumber, &x, tok[1:], sep[1:], max, depth+1)
 	//fmt.Printf("newchild %d %s\n", depth, tree)
+}
+
+func ptree(t *node, d int, orderBy string) {
+
+	for i := 0; i < d; i++ { // Indentation
+		fmt.Printf("  ")
+	}
+
+	for len(t.children) == 1 { // Print singletons on the same line
+		fmt.Printf("%s%s", t.sep, t.prefix)
+		for k := range t.children { // Loops once because len() always == 1 ;-)
+			t = t.children[k]
+		}
+	}
+	fmt.Printf("%s%s\n", t.sep, t.prefix)
+
+	nodes := make([]*node, 0, len(t.children)) // list of nodes
+	for n := range t.children {
+		nodes = append(nodes, t.children[n])
+	}
+	switch orderBy {
+	case "input":
+		sort.Slice(nodes, func(i, j int) bool {
+			return nodes[i].lineNumber < nodes[j].lineNumber
+		})
+
+	case "alphabetic":
+		sort.Slice(nodes, func(i, j int) bool {
+			return nodes[i].prefix < nodes[j].prefix
+		})
+
+	default:
+		log.Fatalf("Error: unknown order option '%v'", orderBy)
+	}
+
+	for _, kc := range nodes {
+		// fmt.Printf("%d %s", kc.lineNumber, kc.prefix)
+		ptree(kc, d+1, orderBy)
+	}
+}
+
+func makeBooleanFlag(flagVar *bool, switchName string, desc string) {
+	flag.BoolVar(flagVar, switchName, false, desc)
+	flag.BoolVar(flagVar, string(switchName[0]), false, desc)
 }
 
 func main() {
 	max := 2
+
+	var help bool
+	var orderBy string
+
+	odf := struct {
+		switchString string
+		defaul       string
+		description  string
+	}{"order", "input", "Sort order: input|alphabetic"}
+
+	flag.StringVar(&orderBy, string(odf.switchString[0]), odf.defaul, odf.description)
+	flag.StringVar(&orderBy, odf.switchString, odf.defaul, odf.description)
+
+	makeBooleanFlag(&help, "help", "Print helpful text.")
+
+	flag.Parse()
+	helpText(os.Stderr, help)
+
 	file := os.Stdin
 	defer file.Close()
-	//	fs := " "
+
 	isSep := func(c rune) bool {
 		return !unicode.IsLetter(c) && !unicode.IsNumber(c)
 	}
@@ -79,10 +116,12 @@ func main() {
 		return !isSep(c)
 	}
 
-	root := node{"", "", map[string]*node{}}
+	root := node{-1, "", "", map[string]*node{}}
 	scanner := bufio.NewScanner(file)
+	nr := 0
 	for scanner.Scan() {
 		line := scanner.Text()
+		nr++
 		if len(line) == 0 {
 			continue // skip empty lines
 		}
@@ -95,13 +134,26 @@ func main() {
 			seps[0] = ""            // inject fake at the front
 		}
 		seps = append(seps, "$")
-		// t := strings.Split(l, fs)
-		//fmt.Printf("read %s\n", t)
-		add(&root, t, seps, max, 0)
-		//ptree(&root, 0)
+		add(nr, &root, t, seps, max, 0)
 	}
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
-	ptree(&root, -1)
+	ptree(&root, -1, orderBy)
+}
+
+func helpText(out io.Writer, doOrNotDo bool) {
+	if !doOrNotDo {
+		return
+	}
+	usage := `
+USAGE:
+
+ $ frangipanni [-h|-help] [-o|-order input|alphabetic]
+
+	-o -order :    Sort the nodes either in input order or via character ordering
+	-h -help  :    Prints this text.
+`
+	fmt.Fprintln(out, usage)
+	os.Exit(0)
 }
