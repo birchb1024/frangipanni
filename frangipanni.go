@@ -15,6 +15,7 @@ import (
 	"sort"
 	"strings"
 	"unicode"
+	"math"
 )
 
 type node struct {
@@ -55,8 +56,8 @@ func fprintTree(out io.Writer, t *node, depth int, orderBy string) {
 	for i := 0; i < depth; i++ { // Indentation
 		fmt.Fprint(out, "  ")
 	}
-	x := t                     // temp pointer
-	for len(x.children) == 1 { // Print singletons on the same line
+	x := t                                // temp pointer
+	for len(x.children) == 1 && !noFold { // Print singletons on the same line
 		if !printSeparators && x == t { // First one
 			fmt.Fprint(out, x.prefix)
 		} else {
@@ -146,9 +147,11 @@ func fprintTreeJSON(out io.Writer, t *node, depth int, orderBy string) {
 
 // Nasty Globals for options ;-)
 var printSeparators bool
-var fieldSeparators string 	// List of characters to split line on, e.g. "/:" 
+var noFold bool
+var fieldSeparators string // List of characters to split line on, e.g. "/:"
 var orderBy string
 var format string
+var maxLevel int
 
 func main() {
 	max := 2
@@ -161,7 +164,12 @@ func main() {
 	flag.StringVar(&orderBy, "order", "input", "Sort order input|alphabetic. Sort the nodes either in input order or via character ordering")
 	flag.StringVar(&format, "format", "indent", "Format of output: indent|json")
 	flag.StringVar(&fieldSeparators, "breaks", "", "Characters to separate lines with.")
+	flag.BoolVar(&noFold, "no-fold", false, "Don't fold into one line.")
+	flag.IntVar(&maxLevel, "level", math.MaxInt32, "Analyse down to this level (positive integer).")
 	flag.Parse()
+	if maxLevel < 0 {
+		log.Fatalf("Error: %d is negative.\n", maxLevel)
+	}
 
 	/* 	if *cpuprofile != "" {
 	   		f, err := os.Create(*cpuprofile)
@@ -208,8 +216,21 @@ func main() {
 			copy(seps[1:], seps)    // shift right
 			seps[0] = ""            // inject fake at the front
 		}
-		// seps = append(seps, "$")
-		add(nr, &root, t, seps, max, 0)
+		if len(t) <= maxLevel {
+			add(nr, &root, t, seps, max, 0)
+		} else {
+			// Don't use the tokens beyond maxLevel - concatenate the remainder into one
+			nodes := make([]string, maxLevel+1)
+			separators := make([]string, maxLevel+1)
+			for i := 0; i < maxLevel && i < len(t); i++ {
+				nodes[i] = t[i]
+				separators[i] = seps[i]
+			}
+			for i := maxLevel; i < len(t) && i < len(seps); i++ {
+				nodes[maxLevel] = nodes[maxLevel] + seps[i] + t[i]
+			}
+			add(nr, &root, nodes, separators, max, 0)
+		}
 	}
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
