@@ -29,17 +29,24 @@ func add(lineNumber int, tree *node, tok []string, sep []string, max int, depth 
 	if len(tok) < 1 {
 		return
 	}
+	firstSep := ""
+	restSeps := []string{}
+	if len(sep) > 0 {
+		firstSep = sep[0]
+		restSeps = sep[1:]
+	}
 	for _, c := range tree.children {
 		//fmt.Printf("children %d node %s child %d %s\n", depth, tree.prefix, i, c.prefix)
 		if tok[0] == c.prefix {
-			add(lineNumber, c, tok[1:], sep[1:], max, depth+1)
+			add(lineNumber, c, tok[1:], restSeps, max, depth+1)
 			return
 		}
 	}
 	// So not a match to the children. It's a new child.
-	x := node{lineNumber, tok[0], sep[0], map[string]*node{}}
+
+	x := node{lineNumber, tok[0], firstSep, map[string]*node{}}
 	tree.children[tok[0]] = &x
-	add(lineNumber, &x, tok[1:], sep[1:], max, depth+1)
+	add(lineNumber, &x, tok[1:], restSeps, max, depth+1)
 	//fmt.Printf("newchild %d %s\n", depth, tree)
 }
 
@@ -48,19 +55,26 @@ func fprintTree(out io.Writer, t *node, depth int, orderBy string) {
 	for i := 0; i < depth; i++ { // Indentation
 		fmt.Fprint(out, "  ")
 	}
-
-	for len(t.children) == 1 { // Print singletons on the same line
-		fmt.Fprint(out, t.sep+t.prefix)
-		for k := range t.children { // Loops once because len() always == 1 ;-)
-			t = t.children[k]
+	x := t // temp pointer
+	for len(x.children) == 1 { // Print singletons on the same line
+		if noSeparators && x == t { // First one
+			fmt.Fprint(out, x.prefix)
+		} else {
+			fmt.Fprint(out, x.sep+x.prefix)
+		}
+		for k := range x.children { // Get first and only child, loops once.
+			x = x.children[k]
 		}
 	}
-	fmt.Fprintln(out, t.sep+t.prefix)
-
+	if noSeparators && x == t { // First one
+		fmt.Fprintln(out, x.prefix)
+	} else {
+		fmt.Fprintln(out, x.sep+x.prefix)
+	}
 	// Convert map to list for sorting
-	nodes := make([]*node, 0, len(t.children)) // list of nodes
-	for n := range t.children {
-		nodes = append(nodes, t.children[n])
+	nodes := make([]*node, 0, len(x.children)) // list of nodes
+	for n := range x.children {
+		nodes = append(nodes, x.children[n])
 	}
 	switch orderBy {
 	case "input":
@@ -127,46 +141,26 @@ func fprintTreeJSON(out io.Writer, t *node, depth int, orderBy string) {
 
 }
 
-func makeBooleanFlag(flagVar *bool, switchName string, desc string) {
-	flag.BoolVar(flagVar, switchName, false, desc)
-	flag.BoolVar(flagVar, string(switchName[0]), false, desc)
-}
-
 //var cpuprofile = flag.String("cpuprofile", "", "write cpu profile to `file`")
 //var memprofile = flag.String("memprofile", "", "write memory profile to `file`")
 
+// Nasty Globals for options ;-)
+var noSeparators bool
+var orderBy string
+var format string
+
 func main() {
 	max := 2
-
-	var help bool
-	var orderBy string
-	var format string
 
 	var stdoutBuffered *bufio.Writer
 	stdoutBuffered = bufio.NewWriter(os.Stdout)
 	defer stdoutBuffered.Flush()
 
-	odf := struct {
-		switchString string
-		defaul       string
-		description  string
-	}{"order", "input", "Sort order/' //: input|alphabetic"}
-
-	flag.StringVar(&orderBy, string(odf.switchString[0]), odf.defaul, odf.description)
-	flag.StringVar(&orderBy, odf.switchString, odf.defaul, odf.description)
-
-	outformat := struct {
-		switchString string
-		defaul       string
-		description  string
-	}{"format", "indent", "Format of output: indent|json"}
-
-	flag.StringVar(&format, string(outformat.switchString[0]), outformat.defaul, outformat.description)
-	flag.StringVar(&format, outformat.switchString, outformat.defaul, outformat.description)
-
-	makeBooleanFlag(&help, "help", "Print helpful text.")
-
+	flag.BoolVar(&noSeparators, "no-separators", false, "Remove separators on output.")
+	flag.StringVar(&orderBy, "order", "input", "Sort order input|alphabetic. Sort the nodes either in input order or via character ordering")
+	flag.StringVar(&format, "format", "indent", "Format of output: indent|json")
 	flag.Parse()
+
 	/* 	if *cpuprofile != "" {
 	   		f, err := os.Create(*cpuprofile)
 	   		if err != nil {
@@ -179,7 +173,6 @@ func main() {
 	   		defer pprof.StopCPUProfile()
 	   	}
 	*/
-	helpText(os.Stderr, help)
 
 	file := os.Stdin
 	defer file.Close()
@@ -202,7 +195,8 @@ func main() {
 			continue // skip empty lines
 		}
 		t := strings.FieldsFunc(line, isSep)
-		seps := strings.FieldsFunc(line, isNotSep)
+		seps := []string{}
+		seps = strings.FieldsFunc(line, isNotSep)
 		if isNotSep(rune(line[0])) {
 			// line didn't start with a seperator, so insert a fake one
 			seps = append(seps, "") // add space at the end
@@ -238,20 +232,4 @@ func main() {
 	   		}
 	   	}
 	*/
-}
-
-func helpText(out io.Writer, doOrNotDo bool) {
-	if !doOrNotDo {
-		return
-	}
-	usage := `
-USAGE:
-
- $ frangipanni [-h|-help] [-o|-order input|alphabetic]
-
-	-o -order :    Sort the nodes either in input order or via character ordering
-	-h -help  :    Prints this text.
-`
-	fmt.Fprintln(out, usage)
-	os.Exit(0)
 }
