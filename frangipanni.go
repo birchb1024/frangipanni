@@ -57,7 +57,7 @@ func fprintTree(out io.Writer, t *node, depth int, orderBy string) {
 	}
 	x := t // temp pointer
 	for len(x.children) == 1 { // Print singletons on the same line
-		if noSeparators && x == t { // First one
+		if !printSeparators && x == t { // First one
 			fmt.Fprint(out, x.prefix)
 		} else {
 			fmt.Fprint(out, x.sep+x.prefix)
@@ -66,7 +66,7 @@ func fprintTree(out io.Writer, t *node, depth int, orderBy string) {
 			x = x.children[k]
 		}
 	}
-	if noSeparators && x == t { // First one
+	if !printSeparators && x == t { // First one
 		fmt.Fprintln(out, x.prefix)
 	} else {
 		fmt.Fprintln(out, x.sep+x.prefix)
@@ -145,7 +145,8 @@ func fprintTreeJSON(out io.Writer, t *node, depth int, orderBy string) {
 //var memprofile = flag.String("memprofile", "", "write memory profile to `file`")
 
 // Nasty Globals for options ;-)
-var noSeparators bool
+var printSeparators bool
+var fieldSeparators string
 var orderBy string
 var format string
 
@@ -156,7 +157,7 @@ func main() {
 	stdoutBuffered = bufio.NewWriter(os.Stdout)
 	defer stdoutBuffered.Flush()
 
-	flag.BoolVar(&noSeparators, "no-separators", false, "Remove separators on output.")
+	flag.BoolVar(&printSeparators, "separators", false, "Print leading separators.")
 	flag.StringVar(&orderBy, "order", "input", "Sort order input|alphabetic. Sort the nodes either in input order or via character ordering")
 	flag.StringVar(&format, "format", "indent", "Format of output: indent|json")
 	flag.Parse()
