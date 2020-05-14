@@ -55,7 +55,7 @@ func fprintTree(out io.Writer, t *node, depth int, orderBy string) {
 	for i := 0; i < depth; i++ { // Indentation
 		fmt.Fprint(out, "  ")
 	}
-	x := t // temp pointer
+	x := t                     // temp pointer
 	for len(x.children) == 1 { // Print singletons on the same line
 		if !printSeparators && x == t { // First one
 			fmt.Fprint(out, x.prefix)
@@ -146,7 +146,7 @@ func fprintTreeJSON(out io.Writer, t *node, depth int, orderBy string) {
 
 // Nasty Globals for options ;-)
 var printSeparators bool
-var fieldSeparators string
+var fieldSeparators string 	// List of characters to split line on, e.g. "/:" 
 var orderBy string
 var format string
 
@@ -160,6 +160,7 @@ func main() {
 	flag.BoolVar(&printSeparators, "separators", false, "Print leading separators.")
 	flag.StringVar(&orderBy, "order", "input", "Sort order input|alphabetic. Sort the nodes either in input order or via character ordering")
 	flag.StringVar(&format, "format", "indent", "Format of output: indent|json")
+	flag.StringVar(&fieldSeparators, "breaks", "", "Characters to separate lines with.")
 	flag.Parse()
 
 	/* 	if *cpuprofile != "" {
@@ -179,7 +180,10 @@ func main() {
 	defer file.Close()
 
 	isSep := func(c rune) bool {
-		return !unicode.IsLetter(c) && !unicode.IsNumber(c)
+		if fieldSeparators == "" {
+			return !unicode.IsLetter(c) && !unicode.IsNumber(c)
+		}
+		return strings.ContainsRune(fieldSeparators, c)
 	}
 
 	isNotSep := func(c rune) bool {
