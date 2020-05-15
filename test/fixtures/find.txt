@@ -1,17 +1,3 @@
-yy
-yy/stream-lit/foo.py
-yy_stream-lit/foo.py
-DE/FG
-AB-CD
-AB/
-AB/streamlit
-AB/Foo
-DE
-AB-CD_HI/JK-LM*NO#PQ/RS/TU/VW/XY
-environ:
-environ:  COLORFGBG: 15;0
-environ:  D
-environ: DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user/1000/bus
 /proc/22468/io
 /proc/22468/uid_map
 /proc/22468/gid_map
@@ -20,7 +6,7 @@ environ: DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user/1000/bus
 /proc/22468/timers
 /proc/22468/timerslack_ns
 /.oldroot
-/boot/grub
+/boot/grub/
 /boot/grub/grub.cfg
 /boot/grub/unicode.pf2
 /boot/grub/locale
@@ -36,7 +22,6 @@ environ: DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user/1000/bus
 /usr/local/go/test2/fixedbugs2/bug482.go
 /usr/local/go/test3/fixedbugs/bug196.go
 /usr/local/go/test4/fixedbugs/issue19667.go
-
 /boot
 /boot/vmlinuz-4.9.0-11-amd64
 /boot/vmlinuz-4.9.0-8-amd64
@@ -57,4 +42,3 @@ environ: DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user/1000/bus
 /boot/grub/grubenv
 /boot/grub/fonts
 /boot/grub/device.map
-/boot/grub/i386-pc
