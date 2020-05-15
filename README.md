@@ -1,7 +1,8 @@
 # frangipanni
-Program to convert lines of text into a tree structure.
+Program to convert lines of text into a pretty tree structure.
 
 <img src="frangipanni.jpg" alt="A Tree" width="200">
+  
 
 # Usage
 
