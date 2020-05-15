@@ -12,10 +12,11 @@ import (
 	"os"
 	//	"runtime"
 	//	"runtime/pprof"
+	"math"
 	"sort"
+	"strconv"
 	"strings"
 	"unicode"
-	"math"
 )
 
 type node struct {
@@ -23,10 +24,11 @@ type node struct {
 	prefix     string
 	sep        string
 	children   map[string]*node
+	numMatched int // The number of matches of prefix
 }
 
-func add(lineNumber int, tree *node, tok []string, sep []string, max int, depth int) {
-	//fmt.Printf("add %d node (%s) <= %s %s\n", depth, tree.prefix, tok, sep)
+func add(lineNumber int, tree *node, tok []string, sep []string, depth int) {
+	//fmt.Printf("add %d %d node (%s) <= %s %s\n", lineNumber, depth, tree.prefix, tok, sep)
 	if len(tok) < 1 {
 		return
 	}
@@ -39,44 +41,21 @@ func add(lineNumber int, tree *node, tok []string, sep []string, max int, depth 
 	for _, c := range tree.children {
 		//fmt.Printf("children %d node %s child %d %s\n", depth, tree.prefix, i, c.prefix)
 		if tok[0] == c.prefix {
-			add(lineNumber, c, tok[1:], restSeps, max, depth+1)
+			c.numMatched++
+			add(lineNumber, c, tok[1:], restSeps, depth+1)
 			return
 		}
 	}
 	// So not a match to the children. It's a new child.
 
-	x := node{lineNumber, tok[0], firstSep, map[string]*node{}}
+	x := node{lineNumber, tok[0], firstSep, map[string]*node{}, 1}
 	tree.children[tok[0]] = &x
-	add(lineNumber, &x, tok[1:], restSeps, max, depth+1)
+	add(lineNumber, &x, tok[1:], restSeps, depth+1)
 	//fmt.Printf("newchild %d %s\n", depth, tree)
 }
 
-func fprintTree(out io.Writer, t *node, depth int, orderBy string) {
+func fprintNodeSlice(out io.Writer, nodes []*node, depth int, orderBy string) {
 
-	for i := 0; i < depth; i++ { // Indentation
-		fmt.Fprint(out, "  ")
-	}
-	x := t                                // temp pointer
-	for len(x.children) == 1 && !noFold { // Print singletons on the same line
-		if !printSeparators && x == t { // First one
-			fmt.Fprint(out, x.prefix)
-		} else {
-			fmt.Fprint(out, x.sep+x.prefix)
-		}
-		for k := range x.children { // Get first and only child, loops once.
-			x = x.children[k]
-		}
-	}
-	if !printSeparators && x == t { // First one
-		fmt.Fprintln(out, x.prefix)
-	} else {
-		fmt.Fprintln(out, x.sep+x.prefix)
-	}
-	// Convert map to list for sorting
-	nodes := make([]*node, 0, len(x.children)) // list of nodes
-	for n := range x.children {
-		nodes = append(nodes, x.children[n])
-	}
 	switch orderBy {
 	case "input":
 		sort.Slice(nodes, func(i, j int) bool {
@@ -97,13 +76,52 @@ func fprintTree(out io.Writer, t *node, depth int, orderBy string) {
 	}
 }
 
+func nodeGetChildrenSlice(x *node) []*node {
+	// Convert map to list for sorting
+	nodes := make([]*node, 0, len(x.children)) // list of nodes
+	for n := range x.children {
+		nodes = append(nodes, x.children[n])
+	}
+	return nodes
+}
+
+func fprintTree(out io.Writer, t *node, depth int, orderBy string) {
+
+	for i := 0; i < depth; i++ { // Indentation
+		fmt.Fprint(out, "  ")
+	}
+	x := t                                // temp pointer
+	for len(x.children) == 1 && !noFold { // Print singletons on the same line
+		if !printSeparators && x == t { // First one
+			fmt.Fprint(out, x.prefix)
+		} else {
+			fmt.Fprint(out, x.sep+x.prefix)
+		}
+		for k := range x.children { // Get first and only child, loops once.
+			x = x.children[k]
+		}
+	}
+	count := ""
+	if printCounts {
+		count = ": " + strconv.Itoa(x.numMatched)
+	}
+	if !printSeparators && x == t { // First one
+		fmt.Fprintln(out, x.prefix+count)
+	} else {
+		fmt.Fprintln(out, x.sep+x.prefix+count)
+	}
+
+	nodes := nodeGetChildrenSlice(x)
+	fprintNodeSlice(out, nodes, depth, orderBy)
+}
+
 func fprintTreeJSON(out io.Writer, t *node, depth int, orderBy string) {
 
 	if t.lineNumber < 0 { // root node
 		fmt.Fprint(out, "{")
 	}
 	if len(t.children) == 0 {
-		fmt.Fprint(out, "\""+t.sep+t.prefix+"\": null")
+		fmt.Fprint(out, "\""+t.sep+t.prefix+"\": "+strconv.Itoa(t.numMatched))
 		return
 	}
 	fmt.Fprint(out, "\""+t.sep+t.prefix+"\" : ")
@@ -152,9 +170,10 @@ var fieldSeparators string // List of characters to split line on, e.g. "/:"
 var orderBy string
 var format string
 var maxLevel int
+var splitOnCharacters bool
+var printCounts bool
 
 func main() {
-	max := 2
 
 	var stdoutBuffered *bufio.Writer
 	stdoutBuffered = bufio.NewWriter(os.Stdout)
@@ -163,13 +182,20 @@ func main() {
 	flag.BoolVar(&printSeparators, "separators", false, "Print leading separators.")
 	flag.StringVar(&orderBy, "order", "input", "Sort order input|alphabetic. Sort the nodes either in input order or via character ordering")
 	flag.StringVar(&format, "format", "indent", "Format of output: indent|json")
-	flag.StringVar(&fieldSeparators, "breaks", "", "Characters to separate lines with.")
+	flag.StringVar(&fieldSeparators, "breaks", "", "Characters to slice lines with.")
 	flag.BoolVar(&noFold, "no-fold", false, "Don't fold into one line.")
 	flag.IntVar(&maxLevel, "level", math.MaxInt32, "Analyse down to this level (positive integer).")
+	flag.BoolVar(&splitOnCharacters, "chars", false, "Slice line after each character.")
+	flag.BoolVar(&printCounts, "counts", false, "Print number of matches at the end of the line.")
+
 	flag.Parse()
 	if maxLevel < 0 {
 		log.Fatalf("Error: %d is negative.\n", maxLevel)
 	}
+	if fieldSeparators != "" && splitOnCharacters {
+		log.Fatalln("Breaks option incompatible with chars option.")
+	}
+	printSeparators = printSeparators || splitOnCharacters
 
 	/* 	if *cpuprofile != "" {
 	   		f, err := os.Create(*cpuprofile)
@@ -198,26 +224,35 @@ func main() {
 		return !isSep(c)
 	}
 
-	root := node{-1, "stdin", "", map[string]*node{}}
+	root := node{-1, "stdin", "", map[string]*node{}, 1}
 	scanner := bufio.NewScanner(file)
 	nr := 0
+	t := make([]string, 1024)
+	seps := make([]string, 1024)
 	for scanner.Scan() {
 		line := scanner.Text()
 		nr++
 		if len(line) == 0 {
 			continue // skip empty lines
 		}
-		t := strings.FieldsFunc(line, isSep)
-		seps := []string{}
-		seps = strings.FieldsFunc(line, isNotSep)
-		if isNotSep(rune(line[0])) {
-			// line didn't start with a seperator, so insert a fake one
-			seps = append(seps, "") // add space at the end
-			copy(seps[1:], seps)    // shift right
-			seps[0] = ""            // inject fake at the front
+		if splitOnCharacters {
+			t = strings.Split(line, "")
+			for i := 0; i < len(t); i++ {
+				seps[i] = ""
+			}
+
+		} else {
+			t = strings.FieldsFunc(line, isSep)
+			seps = strings.FieldsFunc(line, isNotSep)
+			if isNotSep(rune(line[0])) {
+				// line didn't start with a seperator, so insert a fake one
+				seps = append(seps, "") // add space at the end
+				copy(seps[1:], seps)    // shift right
+				seps[0] = ""            // inject fake at the front
+			}
 		}
 		if len(t) <= maxLevel {
-			add(nr, &root, t, seps, max, 0)
+			add(nr, &root, t, seps, 0)
 		} else {
 			// Don't use the tokens beyond maxLevel - concatenate the remainder into one
 			nodes := make([]string, maxLevel+1)
@@ -229,7 +264,7 @@ func main() {
 			for i := maxLevel; i < len(t) && i < len(seps); i++ {
 				nodes[maxLevel] = nodes[maxLevel] + seps[i] + t[i]
 			}
-			add(nr, &root, nodes, separators, max, 0)
+			add(nr, &root, nodes, separators, 0)
 		}
 	}
 	if err := scanner.Err(); err != nil {
@@ -237,7 +272,8 @@ func main() {
 	}
 	switch format {
 	case "indent":
-		fprintTree(stdoutBuffered, &root, 0, orderBy)
+		nodes := nodeGetChildrenSlice(&root)
+		fprintNodeSlice(stdoutBuffered, nodes, -1, orderBy)
 
 	case "json":
 		fprintTreeJSON(stdoutBuffered, &root, 0, orderBy)
