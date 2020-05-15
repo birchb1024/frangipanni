@@ -87,6 +87,9 @@ func nodeGetChildrenSlice(x *node) []*node {
 
 func fprintTree(out io.Writer, t *node, depth int, orderBy string) {
 
+	if depth+1 > printDepth {
+		return
+	}
 	for i := 0; i < depth; i++ { // Indentation
 		fmt.Fprint(out, "  ")
 	}
@@ -172,6 +175,7 @@ var format string
 var maxLevel int
 var splitOnCharacters bool
 var printCounts bool
+var printDepth int
 
 func main() {
 
@@ -187,6 +191,7 @@ func main() {
 	flag.IntVar(&maxLevel, "level", math.MaxInt32, "Analyse down to this level (positive integer).")
 	flag.BoolVar(&splitOnCharacters, "chars", false, "Slice line after each character.")
 	flag.BoolVar(&printCounts, "counts", false, "Print number of matches at the end of the line.")
+	flag.IntVar(&printDepth, "depth", math.MaxInt32, "Maximum tree depth to print.")
 
 	flag.Parse()
 	if maxLevel < 0 {
