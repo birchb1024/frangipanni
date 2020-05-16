@@ -191,47 +191,66 @@ func escapeJSON(s string) string {
 
 func indent(out io.Writer, depth int) {
 	for i := 0; i < depth; i++ {
-		out.Write([]byte(" "))
+		for ts := 0; ts < indentWidth; ts++ {
+			out.Write([]byte(" "))
+		}
 	}
 }
 func fprintNodeChildrenListJSON(out io.Writer, childs []*node, depth int) {
 
+	if depth+1 > printDepth {
+		//fmt.Fprint(out, "null")
+		return
+	}
 	if len(childs) == 0 {
 		return
 	}
 	if len(childs) == 1 {
-		fprintNodeJSON(out, childs[0], depth+1)
+		fprintNodeJSON(out, childs[0], depth)
 		return
 	}
 	fmt.Fprint(out, "[")
 	for i, c := range childs {
-		fprintNodeJSON(out, c, depth+1)
+		fprintNodeJSON(out, c, depth)
 		if i < len(childs)-1 {
 			fmt.Fprint(out, ",\n")
 		}
 	}
-	fmt.Fprint(out, "]")
+	fmt.Fprint(out, "]\n")
 
 }
 
 func fprintNodeChildrenMapJSON(out io.Writer, childs []*node, depth int, parent *node) {
 
+	if depth+1 > printDepth {
+		fmt.Fprint(out, "null")
+		return
+	}
 	if len(childs) == 0 {
 		return
 	}
 	fmt.Fprint(out, "{")
 	for i, c := range childs {
-		fmt.Fprint(out, escapeJSON(c.text)+" : ")
+		ctext := escapeJSON(c.text)
+		if printSeparators {
+			ctext = escapeJSON(c.sep + c.text)
+		}
+
+		fmt.Fprint(out, ctext+" : ")
 		fprintNodeChildrenJSON(out, c.children, depth+1, c)
 		if i < len(childs)-1 {
 			fmt.Fprint(out, ",\n")
 		}
 	}
-	fmt.Fprint(out, "}")
+	fmt.Fprint(out, "}\n")
 }
 
 func fprintNodeChildrenJSON(out io.Writer, nodemap map[string]*node, depth int, parent *node) {
 
+	if depth+1 > printDepth {
+		fmt.Fprint(out, "null")
+		return
+	}
 	if len(nodemap) == 0 {
 		return
 	}
@@ -244,21 +263,27 @@ func fprintNodeChildrenJSON(out io.Writer, nodemap map[string]*node, depth int, 
 }
 
 func fprintNodeJSON(out io.Writer, n *node, depth int) {
+	if depth+1 > printDepth {
+		fmt.Fprint(out, "null")
+		return
+	}
 	ntext := escapeJSON(n.text)
 	if printSeparators {
 		ntext = escapeJSON(n.sep + n.text)
 	}
 	if len(n.children) == 0 { // No children, it's a leaf
-		if number, err := strconv.Atoi(n.text); err == nil {
-			fmt.Fprint(out, number)
-			return
+		if !printSeparators {
+			if number, err := strconv.Atoi(n.text); err == nil {
+				fmt.Fprint(out, number)
+				return
+			}
 		}
 		fmt.Fprint(out, ntext)
 		return
 	}
 	fmt.Fprint(out, "{"+ntext+" : ")
-	fprintNodeChildrenJSON(out, n.children, depth, n)
-	fmt.Fprint(out, "}")
+	fprintNodeChildrenJSON(out, n.children, depth+1, n)
+	fmt.Fprint(out, "}\n")
 }
 
 func fakeCounts(n *node) {
@@ -298,6 +323,7 @@ var maxLevel int
 var splitOnCharacters bool
 var printCounts bool
 var printDepth int
+var indentWidth int
 
 func main() {
 
@@ -314,10 +340,14 @@ func main() {
 	flag.BoolVar(&splitOnCharacters, "chars", false, "Slice line after each character.")
 	flag.BoolVar(&printCounts, "counts", false, "Print number of matches at the end of the line.")
 	flag.IntVar(&printDepth, "depth", math.MaxInt32, "Maximum tree depth to print.")
+	flag.IntVar(&indentWidth, "indent", 4, "Number of spaces to indent per level.")
 
 	flag.Parse()
 	if maxLevel < 0 {
 		log.Fatalf("Error: %d is negative.\n", maxLevel)
+	}
+	if indentWidth < 0 {
+		log.Fatalf("Error: %d is negative.\n", indentWidth)
 	}
 	if fieldSeparators != "" && splitOnCharacters {
 		log.Fatalln("Breaks option incompatible with chars option.")
@@ -396,9 +426,6 @@ func main() {
 	}
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
-	}
-	if printCounts {
-		fakeCounts(&root)
 	}
 	switch format {
 	case "indent":
