@@ -79,47 +79,13 @@ func add(lineNumber int, tree *node, tok []string, sep []string, depth int) {
 	//fmt.Printf("newchild %d %s\n", depth, tree)
 }
 
-func fprintchildslice(out io.Writer, childs []*node, depth int, orderBy string) {
+func fprintchildslice(out io.Writer, childs []*node, depth int, orderBy string, parent *node) {
 
-	switch orderBy {
-	case "input":
-		sort.Slice(childs, func(i, j int) bool {
-			return childs[i].lineNumber < childs[j].lineNumber
-		})
-
-	case "alpha":
-		sort.Slice(childs, func(i, j int) bool {
-			return childs[i].text < childs[j].text
-		})
-
-	default:
-		log.Fatalf("Error: unknown order option '%v'", orderBy)
-	}
+	childs = nodeGetChildrenSliceSorted(parent)
 
 	for _, kc := range childs {
 		fprintTree(out, kc, depth+1, orderBy) // print the children in order
 	}
-}
-func sortedMap2Slice(m map[string]*node) []*node {
-	childs := make([]*node, 0, len(m))
-	for n := range m {
-		childs = append(childs, m[n])
-	}
-	switch orderBy {
-	case "input":
-		sort.Slice(childs, func(i, j int) bool {
-			return childs[i].lineNumber < childs[j].lineNumber
-		})
-
-	case "alpha":
-		sort.Slice(childs, func(i, j int) bool {
-			return childs[i].text < childs[j].text
-		})
-
-	default:
-		log.Fatalf("Error: unknown order option '%v'", orderBy)
-	}
-	return childs
 }
 
 func nodeGetChildrenSlice(x *node) []*node {
@@ -178,7 +144,7 @@ func fprintTree(out io.Writer, t *node, depth int, orderBy string) {
 	}
 
 	childs := nodeGetChildrenSlice(x)
-	fprintchildslice(out, childs, depth, orderBy)
+	fprintchildslice(out, childs, depth, orderBy, x)
 }
 
 func escapeJSON(s string) string {
@@ -254,7 +220,9 @@ func fprintNodeChildrenJSON(out io.Writer, nodemap map[string]*node, depth int, 
 	if len(nodemap) == 0 {
 		return
 	}
-	childs := sortedMap2Slice(nodemap)
+
+	childs := nodeGetChildrenSlice(parent)
+
 	if sliceHasLeaves(childs) {
 		fprintNodeChildrenListJSON(out, childs, depth)
 		return
@@ -430,7 +398,7 @@ func main() {
 	switch format {
 	case "indent":
 		childs := nodeGetChildrenSlice(&root)
-		fprintchildslice(stdoutBuffered, childs, -1, orderBy)
+		fprintchildslice(stdoutBuffered, childs, -1, orderBy, &root)
 
 	case "json":
 		if printCounts {
