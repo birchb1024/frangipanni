@@ -81,8 +81,6 @@ func add(lineNumber int, tree *node, tok []string, sep []string, depth int) {
 
 func fprintchildslice(out io.Writer, childs []*node, depth int, orderBy string, parent *node) {
 
-	childs = nodeGetChildrenSliceSorted(parent)
-
 	for _, kc := range childs {
 		fprintTree(out, kc, depth+1, orderBy) // print the children in order
 	}
@@ -143,7 +141,7 @@ func fprintTree(out io.Writer, t *node, depth int, orderBy string) {
 		fmt.Fprintln(out, x.sep+x.text+count)
 	}
 
-	childs := nodeGetChildrenSlice(x)
+	childs := nodeGetChildrenSliceSorted(x)
 	fprintchildslice(out, childs, depth, orderBy, x)
 }
 
@@ -221,7 +219,7 @@ func fprintNodeChildrenJSON(out io.Writer, nodemap map[string]*node, depth int, 
 		return
 	}
 
-	childs := nodeGetChildrenSlice(parent)
+	childs := nodeGetChildrenSliceSorted(parent)
 
 	if sliceHasLeaves(childs) {
 		fprintNodeChildrenListJSON(out, childs, depth)
@@ -397,7 +395,7 @@ func main() {
 	}
 	switch format {
 	case "indent":
-		childs := nodeGetChildrenSlice(&root)
+		childs := nodeGetChildrenSliceSorted(&root)
 		fprintchildslice(stdoutBuffered, childs, -1, orderBy, &root)
 
 	case "json":
