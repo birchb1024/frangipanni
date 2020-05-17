@@ -48,7 +48,7 @@ The program reads each line and splits them into tokens on the forward-slash cha
 
 The default behaviour is to fold tree branches with no sub-branches into a single line of output. e.g. `fish/completions/task.fish` For this explanation we turn off folding by specifying the `-no-fold` option. 
 
-Having restructured the data into a tree format we can output in other formats. We can ask for JSON by adding the `-format json` option. When passed through a formatter (`jq '.'`) we get this output:
+Having restructured the data into a tree format we can output in other formats. We can ask for JSON by adding the `-format json` option. We get this output:
 
 ```json
 {"etc" : 
