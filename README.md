@@ -67,6 +67,7 @@ Having restructured the data into a tree format we can output in other format. W
   }
 }
 ```
+By default, `frangipanni` breaks lines into tokens on any no-alphanumeric character. 
 
 # Usage
 
@@ -283,3 +284,5 @@ Produces
              13: 28
              14: 8
 ```
+
+We can see alice has run 42 sudo commands, 28 of whuch were `cat`ing files from /var.
