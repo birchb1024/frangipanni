@@ -48,7 +48,7 @@ The program reads each line and splits them into tokens on the forward-slash cha
 
 The default behaviour is to fold tree branches with no sub-branches into a single line of output. e.g. `fish/completions/task.fish` For this explanation we turn off folding by specifying the `-no-fold` option. 
 
-Having restructured the data into a tree format we can output in other format. We can ask for JSON by adding the `-format json` option. When passed through a formatter (`jq '.'`) we get this output:
+Having restructured the data into a tree format we can output in other formats. We can ask for JSON by adding the `-format json` option. When passed through a formatter (`jq '.'`) we get this output:
 
 ```json
 {
@@ -67,7 +67,7 @@ Having restructured the data into a tree format we can output in other format. W
   }
 }
 ```
-By default, `frangipanni` breaks lines into tokens on any no-alphanumeric character. 
+By default, `frangipanni` breaks lines into tokens on any non-alphanumeric character. 
 
 # Usage
 
@@ -121,7 +121,7 @@ May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630704513+1
 May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075}"
 ```
 
-Output is:
+default output is:
 
 ```
 May 10
@@ -207,12 +207,7 @@ $ echo $PATH | tr ':' '\n' | ./frangipanni -separators
 ```
 
 ## Query a CSV triplestore -> JSON
-```
-$ cat test/fixtures/triples.csv | \
-  awk -F, '{print $2,$1,$3; print $1, $2, $3; print $3, $2, $1}' | \
-  ./frangipanni  -breaks ' ' -order alpha -no-fold -format json | \
-  jq '."jupiter"'
-```
+
 A CSV tiplestore is a simple way of recording a database of facts about objects. Each line has a Subject, Object, Predicate structure. 
 
 ```
@@ -227,6 +222,15 @@ john1@jupiter,hasPassword,felicity-pw-8
 Production,was_hostname,jupiter
 alice1@jupiter,rdf:type,UnixAccount
 alice1@jupiter,hasPassword,alice-pw-2
+```
+
+In this example we want the data about the `jupiter` machine. We permute the input records with awk and filter the JSON output with `jq`.
+
+```
+$ cat test/fixtures/triples.csv | \
+  awk -F, '{print $2,$1,$3; print $1, $2, $3; print $3, $2, $1}' | \
+  ./frangipanni  -breaks ' ' -order alpha -format json | \
+  jq '."jupiter"'
 ```
 
 ```
@@ -255,7 +259,7 @@ May 17 00:36:15 localhost sudo: pam_unix(sudo:session): session opened for user 
 May 17 00:36:15 localhost sudo: pam_unix(sudo:session): session closed for user root
 ```
 
-By skipping the date/time component of the lines, and specifying `-counts` we can see a breakdown of the `sudo` commands used and how many occurred. By placing the date/time data at the end of the input lines we alse get a breakdown of the commands by time of day.
+By skipping the date/time component of the lines, and specifying `-counts` we can see a breakdown of the `sudo` commands used and how many occurred. By placing the date/time data at the end of the input lines we alse get a breakdown of the commands by hour of day.
 
 ```
 $ sudo cat /var/log/auth.log | grep sudo | \
