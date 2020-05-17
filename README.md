@@ -143,10 +143,25 @@ May 10
 
 ## Data from environment variables
 
+Give this input, from `env | egrep '^XDG'`:
+```
+XDG_VTNR=2
+XDG_SESSION_ID=5
+XDG_SESSION_TYPE=x11
+XDG_DATA_DIRS=/usr/share:/usr/share:/usr/local/share
+XDG_SESSION_DESKTOP=plasma
+XDG_CURRENT_DESKTOP=KDE
+XDG_SEAT=seat0
+XDG_RUNTIME_DIR=/run/user/1000
+XDG_SESSION_COOKIE=fe37f2ef4-158904.727668-469753
+```
 
+And run with 
 ```
-$ env | egrep '^XDG' | ./frangipanni -breaks '_=' -order alpha -no-fold -format json | jq '.'
+$ env | egrep '^XDG' | ./frangipanni -breaks '_=' -order alpha -format json | jq '.'
 ```
+we get 
+
 ```json
 {
   "XDG": {
