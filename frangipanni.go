@@ -163,7 +163,6 @@ func indent(out io.Writer, depth int) {
 func fprintNodeChildrenListJSON(out io.Writer, childs []*node, depth int) {
 
 	if depth+1 > printDepth {
-		//fmt.Fprint(out, "null")
 		return
 	}
 	if len(childs) == 0 {
@@ -173,14 +172,22 @@ func fprintNodeChildrenListJSON(out io.Writer, childs []*node, depth int) {
 		fprintNodeJSON(out, childs[0], depth)
 		return
 	}
+	if depth >= 0 {
+		fmt.Fprint(out, "\n")
+	}
+	indent(out, depth+1)
 	fmt.Fprint(out, "[")
 	for i, c := range childs {
+		if i > 0 {
+			fmt.Fprint(out, "\n")
+			indent(out, depth+1)
+		}
 		fprintNodeJSON(out, c, depth)
 		if i < len(childs)-1 {
-			fmt.Fprint(out, ",\n")
+			fmt.Fprint(out, ",")
 		}
 	}
-	fmt.Fprint(out, "]\n")
+	fmt.Fprint(out, "]")
 
 }
 
@@ -193,6 +200,10 @@ func fprintNodeChildrenMapJSON(out io.Writer, childs []*node, depth int, parent 
 	if len(childs) == 0 {
 		return
 	}
+	if depth >= 0 {
+		fmt.Fprint(out, "\n")
+	}
+	indent(out, depth+1)
 	fmt.Fprint(out, "{")
 	for i, c := range childs {
 		ctext := escapeJSON(c.text)
@@ -200,13 +211,17 @@ func fprintNodeChildrenMapJSON(out io.Writer, childs []*node, depth int, parent 
 			ctext = escapeJSON(c.sep + c.text)
 		}
 
+		if i > 0 {
+			fmt.Fprint(out, "\n")
+			indent(out, depth+1)
+		}
 		fmt.Fprint(out, ctext+" : ")
 		fprintNodeChildrenJSON(out, c.children, depth+1, c)
 		if i < len(childs)-1 {
-			fmt.Fprint(out, ",\n")
+			fmt.Fprint(out, ",")
 		}
 	}
-	fmt.Fprint(out, "}\n")
+	fmt.Fprint(out, "}")
 }
 
 func fprintNodeChildrenJSON(out io.Writer, nodemap map[string]*node, depth int, parent *node) {
@@ -249,7 +264,7 @@ func fprintNodeJSON(out io.Writer, n *node, depth int) {
 	}
 	fmt.Fprint(out, "{"+ntext+" : ")
 	fprintNodeChildrenJSON(out, n.children, depth+1, n)
-	fmt.Fprint(out, "}\n")
+	fmt.Fprint(out, "}")
 }
 
 func fakeCounts(n *node) {
@@ -402,7 +417,8 @@ func main() {
 		if printCounts {
 			fakeCounts(&root)
 		}
-		fprintNodeChildrenJSON(stdoutBuffered, root.children, 0, &root)
+		fprintNodeChildrenJSON(stdoutBuffered, root.children, -1, &root)
+		fmt.Fprintln(stdoutBuffered)
 
 	default:
 		log.Fatalf("Error: unknown format option '%v'", format)

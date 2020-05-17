@@ -51,21 +51,16 @@ The default behaviour is to fold tree branches with no sub-branches into a singl
 Having restructured the data into a tree format we can output in other formats. We can ask for JSON by adding the `-format json` option. When passed through a formatter (`jq '.'`) we get this output:
 
 ```json
-{
-  "etc": {
-    "bluetooth": [
-      "rfcomm.conf.dpkg-remove",
-      "serial.conf.dpkg-remove",
-      "input.conf",
-      "audio.conf.dpkg-remove",
-      "network.conf",
-      "main.conf"
-    ],
-    "fish": {
-      "completions": "task.fish"
-    }
-  }
-}
+{"etc" : 
+    {"bluetooth" : 
+        ["rfcomm.conf.dpkg-remove",
+        "serial.conf.dpkg-remove",
+        "input.conf",
+        "audio.conf.dpkg-remove",
+        "network.conf",
+        "main.conf"],
+    "fish" : 
+        {"completions" : "task.fish"}}}
 ```
 By default, `frangipanni` breaks lines into tokens on any non-alphanumeric character. 
 
@@ -158,32 +153,25 @@ XDG_SESSION_COOKIE=fe37f2ef4-158904.727668-469753
 
 And run with 
 ```
-$ env | egrep '^XDG' | ./frangipanni -breaks '_=' -order alpha -format json | jq '.'
+$ env | egrep '^XDG' | ./frangipanni -breaks '_=' -order alpha -format json
 ```
 we get 
 
 ```json
-{
-  "XDG": {
-    "CURRENT": {
-      "DESKTOP": "KDE"
-    },
-    "DATA": {
-      "DIRS": "/usr/share:/usr/share:/usr/local/share"
-    },
-    "RUNTIME": {
-      "DIR": "/run/user/1000"
-    },
-    "SEAT": "seat0",
-    "SESSION": {
-      "COOKIE": "fe37f2ef4-158904.727668-469753",
-      "DESKTOP": "plasma",
-      "ID": 5,
-      "TYPE": "x11"
-    },
-    "VTNR": 2
-  }
-}
+{"XDG" : 
+    {"CURRENT" : 
+        {"DESKTOP" : "KDE"},
+    "DATA" : 
+        {"DIRS" : "/usr/share:/usr/share:/usr/local/share"},
+    "RUNTIME" : 
+        {"DIR" : "/run/user/1000"},
+    "SEAT" : "seat0",
+    "SESSION" : 
+        {"COOKIE" : "fe3c308cda1ed18ad0deaaba527f2ef4-1589682304.727668-469721653",
+        "DESKTOP" : "plasma",
+        "ID" : 5,
+        "TYPE" : "x11"},
+    "VTNR" : 2}}
 ```
 ## Split the PATH
 
@@ -248,7 +236,7 @@ $ cat test/fixtures/triples.csv | \
   jq '."jupiter"'
 ```
 
-```
+```json
 {
   "defaultAccount": "alice1",
   "hasUser": [
