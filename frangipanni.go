@@ -101,12 +101,12 @@ func nodeGetChildrenSliceSorted(x *node) []*node {
 	childs := nodeGetChildrenSlice(x)
 	switch orderBy {
 	case "input":
-		sort.Slice(childs, func(i, j int) bool {
+		sort.SliceStable(childs, func(i, j int) bool {
 			return childs[i].lineNumber < childs[j].lineNumber
 		})
 
 	case "alpha":
-		sort.Slice(childs, func(i, j int) bool {
+		sort.SliceStable(childs, func(i, j int) bool {
 			return childs[i].text < childs[j].text
 		})
 
