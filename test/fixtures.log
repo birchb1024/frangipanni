@@ -1,4 +1,4 @@
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/find.txt-------------------------------------------------------------------------------------------------------
+fixtures/find.txt-------------------------------------------------------------------------------------------------------
 proc/22468
     io
     uid_map
@@ -45,7 +45,7 @@ usr/local/go
             bug482.go
     test3/fixedbugs/bug196.go
     test4/fixedbugs/issue19667.go
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/find.txt----chars----------------------------------------------------------------------------------------------------
+fixtures/find.txt----chars----------------------------------------------------------------------------------------------------
 /
     proc/22468/
         io
@@ -97,7 +97,7 @@ usr/local/go
                 2.go
         3/fixedbugs/bug196.go
         4/fixedbugs/issue19667.go
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/find.txt----breaks /----------------------------------------------------------------------------------------------------
+fixtures/find.txt----breaks /----------------------------------------------------------------------------------------------------
 proc/22468
     io
     uid_map
@@ -140,7 +140,7 @@ usr/local/go
             bug482.go
     test3/fixedbugs/bug196.go
     test4/fixedbugs/issue19667.go
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/find.txt----separators----------------------------------------------------------------------------------------------------
+fixtures/find.txt----separators----------------------------------------------------------------------------------------------------
 /proc/22468
     /io
     /uid_map
@@ -187,7 +187,7 @@ usr/local/go
             /bug482.go
     /test3/fixedbugs/bug196.go
     /test4/fixedbugs/issue19667.go
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/find.txt----counts----------------------------------------------------------------------------------------------------
+fixtures/find.txt----counts----------------------------------------------------------------------------------------------------
 proc/22468: 7
     io: 1
     uid_map: 1
@@ -234,7 +234,7 @@ usr/local/go: 7
             bug482.go: 1
     test3/fixedbugs/bug196.go: 1
     test4/fixedbugs/issue19667.go: 1
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/find.txt----level 2----------------------------------------------------------------------------------------------------
+fixtures/find.txt----level 2----------------------------------------------------------------------------------------------------
 proc/22468
     /io
     /uid_map
@@ -278,7 +278,7 @@ usr/local
     /go/test2/fixedbugs2/bug482.go
     /go/test3/fixedbugs/bug196.go
     /go/test4/fixedbugs/issue19667.go
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/find.txt----depth 2----------------------------------------------------------------------------------------------------
+fixtures/find.txt----depth 2----------------------------------------------------------------------------------------------------
 proc/22468
     io
     uid_map
@@ -300,7 +300,7 @@ usr/local/go
     test2
     test3/fixedbugs/bug196.go
     test4/fixedbugs/issue19667.go
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/find.txt----format json----------------------------------------------------------------------------------------------------
+fixtures/find.txt----format json----------------------------------------------------------------------------------------------------
 [{"proc" : {"22468" : ["io",
 {"uid" : "map"}
 ,
@@ -381,7 +381,7 @@ usr/local/go
 }
 }
 ]
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/firewall.txt-------------------------------------------------------------------------------------------------------
+fixtures/firewall.txt-------------------------------------------------------------------------------------------------------
 WARNING
     ICMP type
         beyond-scope' is not supported by
@@ -413,7 +413,7 @@ WARNING
                     FORWARD
         D FORWARD -i docker0
 h' or 'iptables --help' for more information
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/firewall.txt----chars----------------------------------------------------------------------------------------------------
+fixtures/firewall.txt----chars----------------------------------------------------------------------------------------------------
 WARNING: 
     ICMP type '
         beyond-scope' is not supported by
@@ -450,7 +450,7 @@ WARNING:
                     FORWARD
         D FORWARD -i docker0
 -h' or 'iptables --help' for more information. 
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/firewall.txt----breaks /----------------------------------------------------------------------------------------------------
+fixtures/firewall.txt----breaks /----------------------------------------------------------------------------------------------------
 WARNING: ICMP type 'beyond-scope' is not supported by
 WARNING: beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring
 WARNING: ICMP type 'failed-policy' is not supported by
@@ -477,7 +477,7 @@ WARNING: COMMAND_FAILED: '/usr/sbin
     iptables -w2 -t nat -C PREROUTING
     iptables -w2 -t nat -C OUTPUT
 -h' or 'iptables --help' for more information. 
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/firewall.txt----separators----------------------------------------------------------------------------------------------------
+fixtures/firewall.txt----separators----------------------------------------------------------------------------------------------------
 WARNING
     : ICMP type
          'beyond-scope' is not supported by
@@ -509,7 +509,7 @@ WARNING
                      FORWARD
          -D FORWARD -i docker0
 -h' or 'iptables --help' for more information
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/firewall.txt----counts----------------------------------------------------------------------------------------------------
+fixtures/firewall.txt----counts----------------------------------------------------------------------------------------------------
 WARNING: 465
     ICMP type: 122
         beyond-scope' is not supported by: 40
@@ -541,7 +541,7 @@ WARNING: 465
                     FORWARD: 58
         D FORWARD -i docker0: 17
 h' or 'iptables --help' for more information: 10
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/firewall.txt----level 2----------------------------------------------------------------------------------------------------
+fixtures/firewall.txt----level 2----------------------------------------------------------------------------------------------------
 WARNING
     ICMP
          type 'beyond-scope' is not supported by
@@ -569,7 +569,7 @@ WARNING
         _FAILED: '/usr/sbin/iptables -w2 -t nat -C PREROUTING
         _FAILED: '/usr/sbin/iptables -w2 -t nat -C OUTPUT
 h' or 'iptables --help' for more information
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/firewall.txt----depth 2----------------------------------------------------------------------------------------------------
+fixtures/firewall.txt----depth 2----------------------------------------------------------------------------------------------------
 WARNING
     ICMP type
     beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring
@@ -577,7 +577,7 @@ WARNING
     reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring
     COMMAND_FAILED: '/usr/sbin/iptables -w2
 h' or 'iptables --help' for more information
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/firewall.txt----format json----------------------------------------------------------------------------------------------------
+fixtures/firewall.txt----format json----------------------------------------------------------------------------------------------------
 {"WARNING" : {"ICMP" : {"type" : {"beyond" : {"scope" : {"is" : {"not" : {"supported" : "by"}
 }
 }
@@ -658,7 +658,7 @@ h' or 'iptables --help' for more information
 }
 }
 }
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/log-file.txt-------------------------------------------------------------------------------------------------------
+fixtures/log-file.txt-------------------------------------------------------------------------------------------------------
 May 10
     03:17:06 localhost systemd
         Removed slice User Slice of root
@@ -674,7 +674,7 @@ May 10
             630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D
             630704513+10:00" level=debug msg="Unable to determine container for containers
             630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/log-file.txt----chars----------------------------------------------------------------------------------------------------
+fixtures/log-file.txt----chars----------------------------------------------------------------------------------------------------
 May 10 0
     3:17:06 localhost systemd: 
         Removed slice User Slice of root.
@@ -693,7 +693,7 @@ May 10 0
                 7
                     04513+10:00" level=debug msg="Unable to determine container for containers"
                     35545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075}"
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/log-file.txt----breaks /----------------------------------------------------------------------------------------------------
+fixtures/log-file.txt----breaks /----------------------------------------------------------------------------------------------------
 May 10 03:17:06 localhost systemd: Removed slice User Slice of root.
 May 10 03:17:06 localhost systemd: Stopping User Slice of root.
 May 10 04:00:00 localhost systemd: Starting Docker Cleanup...
@@ -704,7 +704,7 @@ May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630103455+1
 May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D"
 May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630704513+10:00" level=debug msg="Unable to determine container for containers"
 May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075}"
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/log-file.txt----separators----------------------------------------------------------------------------------------------------
+fixtures/log-file.txt----separators----------------------------------------------------------------------------------------------------
 May 10
      03:17:06 localhost systemd
         : Removed slice User Slice of root
@@ -720,7 +720,7 @@ May 10
             .630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D
             .630704513+10:00" level=debug msg="Unable to determine container for containers
             .630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/log-file.txt----counts----------------------------------------------------------------------------------------------------
+fixtures/log-file.txt----counts----------------------------------------------------------------------------------------------------
 May 10: 10
     03:17:06 localhost systemd: 2
         Removed slice User Slice of root: 1
@@ -736,7 +736,7 @@ May 10: 10
             630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D: 1
             630704513+10:00" level=debug msg="Unable to determine container for containers: 1
             630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075: 1
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/log-file.txt----level 2----------------------------------------------------------------------------------------------------
+fixtures/log-file.txt----level 2----------------------------------------------------------------------------------------------------
 May 10
      03:17:06 localhost systemd: Removed slice User Slice of root
      03:17:06 localhost systemd: Stopping User Slice of root
@@ -748,11 +748,11 @@ May 10
      04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D
      04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630704513+10:00" level=debug msg="Unable to determine container for containers
      04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/log-file.txt----depth 2----------------------------------------------------------------------------------------------------
+fixtures/log-file.txt----depth 2----------------------------------------------------------------------------------------------------
 May 10
     03:17:06 localhost systemd
     04:00:00 localhost
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/log-file.txt----format json----------------------------------------------------------------------------------------------------
+fixtures/log-file.txt----format json----------------------------------------------------------------------------------------------------
 {"May" : {"10" : {"03" : {"17" : {"06" : {"localhost" : {"systemd" : {"Removed" : {"slice" : {"User" : {"Slice" : {"of" : "root"}
 }
 }
@@ -861,7 +861,7 @@ May 10
 }
 }
 }
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/morse.txt-------------------------------------------------------------------------------------------------------
+fixtures/morse.txt-------------------------------------------------------------------------------------------------------
 A
 B
 C
@@ -875,7 +875,7 @@ J
 K
 L
 M
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/morse.txt----chars----------------------------------------------------------------------------------------------------
+fixtures/morse.txt----chars----------------------------------------------------------------------------------------------------
 .
     _
          A
@@ -897,7 +897,7 @@ _
     _
         . G
          M
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/morse.txt----breaks /----------------------------------------------------------------------------------------------------
+fixtures/morse.txt----breaks /----------------------------------------------------------------------------------------------------
 ._ A
 _... B
 _._. C
@@ -911,7 +911,7 @@ __. G
 _._ K
 ._.. L
 __ M
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/morse.txt----separators----------------------------------------------------------------------------------------------------
+fixtures/morse.txt----separators----------------------------------------------------------------------------------------------------
 ._ A
 _... B
 _._. C
@@ -925,7 +925,7 @@ __. G
 _._ K
 ._.. L
 __ M
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/morse.txt----counts----------------------------------------------------------------------------------------------------
+fixtures/morse.txt----counts----------------------------------------------------------------------------------------------------
 A: 1
 B: 1
 C: 1
@@ -939,7 +939,7 @@ J: 1
 K: 1
 L: 1
 M: 1
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/morse.txt----level 2----------------------------------------------------------------------------------------------------
+fixtures/morse.txt----level 2----------------------------------------------------------------------------------------------------
 A
 B
 C
@@ -953,7 +953,7 @@ J
 K
 L
 M
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/morse.txt----depth 2----------------------------------------------------------------------------------------------------
+fixtures/morse.txt----depth 2----------------------------------------------------------------------------------------------------
 A
 B
 C
@@ -967,7 +967,7 @@ J
 K
 L
 M
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/morse.txt----format json----------------------------------------------------------------------------------------------------
+fixtures/morse.txt----format json----------------------------------------------------------------------------------------------------
 ["A",
 "B",
 "C",
@@ -981,7 +981,7 @@ M
 "K",
 "L",
 "M"]
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/movies.csv-------------------------------------------------------------------------------------------------------
+fixtures/movies.csv-------------------------------------------------------------------------------------------------------
 guid
     9202a8c04000641f80000000056d973b,name,Kate Dickie
     9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco
@@ -2314,7 +2314,7 @@ authority
             name,Electric Shadows
             starring,/en/xia_yu
             directed_by,/guid/9202a8c04000641f8000000006f750d9
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/movies.csv----chars----------------------------------------------------------------------------------------------------
+fixtures/movies.csv----chars----------------------------------------------------------------------------------------------------
 /
     guid/9202a8c04000641f800000000
         5
@@ -3831,7 +3831,7 @@ authority
                         michael_madsen
                         kristy_swanson
                     directed_by,/guid/9202a8c04000641f80000000010db13f
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/movies.csv----breaks /----------------------------------------------------------------------------------------------------
+fixtures/movies.csv----breaks /----------------------------------------------------------------------------------------------------
 guid
     9202a8c04000641f80000000056d973b,name,Kate Dickie
     9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco
@@ -5018,7 +5018,7 @@ authority
         70043242,name,Electric Shadows
         70043242,starring,/en/xia_yu
         70043242,directed_by,/guid/9202a8c04000641f8000000006f750d9
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/movies.csv----separators----------------------------------------------------------------------------------------------------
+fixtures/movies.csv----separators----------------------------------------------------------------------------------------------------
 /guid
     /9202a8c04000641f80000000056d973b,name,Kate Dickie
     /9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco
@@ -6351,7 +6351,7 @@ authority
             ,name,Electric Shadows
             ,starring,/en/xia_yu
             ,directed_by,/guid/9202a8c04000641f8000000006f750d9
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/movies.csv----counts----------------------------------------------------------------------------------------------------
+fixtures/movies.csv----counts----------------------------------------------------------------------------------------------------
 guid: 236
     9202a8c04000641f80000000056d973b,name,Kate Dickie: 1
     9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco: 1
@@ -7684,7 +7684,7 @@ authority: 401
             name,Electric Shadows: 1
             starring,/en/xia_yu: 1
             directed_by,/guid/9202a8c04000641f8000000006f750d9: 1
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/movies.csv----level 2----------------------------------------------------------------------------------------------------
+fixtures/movies.csv----level 2----------------------------------------------------------------------------------------------------
 guid
     9202a8c04000641f80000000056d973b,name,Kate Dickie
     9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco
@@ -8748,7 +8748,7 @@ authority
         /movie/70043242,name,Electric Shadows
         /movie/70043242,starring,/en/xia_yu
         /movie/70043242,directed_by,/guid/9202a8c04000641f8000000006f750d9
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/movies.csv----depth 2----------------------------------------------------------------------------------------------------
+fixtures/movies.csv----depth 2----------------------------------------------------------------------------------------------------
 guid
     9202a8c04000641f80000000056d973b,name,Kate Dickie
     9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco
@@ -8978,7 +8978,7 @@ en
 authority
     imdb
     netflix/movie
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/movies.csv----format json----------------------------------------------------------------------------------------------------
+fixtures/movies.csv----format json----------------------------------------------------------------------------------------------------
 {"guid" : {"9202a8c04000641f80000000056d973b" : {"name" : {"Kate" : "Dickie"}
 }
 ,
@@ -11633,7 +11633,7 @@ authority
 }
 }
 }
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/random.txt-------------------------------------------------------------------------------------------------------
+fixtures/random.txt-------------------------------------------------------------------------------------------------------
 ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU
 3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy
 h4kd4u3TDLeWrqVIjwZ9WHach7zFToWN
@@ -11674,7 +11674,7 @@ WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7
 GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF
 GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0
 DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/random.txt----chars----------------------------------------------------------------------------------------------------
+fixtures/random.txt----chars----------------------------------------------------------------------------------------------------
 A
     RdqP2ilNNmDWZmLfZyIrondCYaO5GRU
     pwtzoSzcSasveDV2Geu8U3n5G7c4TtX
@@ -11723,7 +11723,7 @@ WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7
 G
     AzNsfmbMWGlCT2D0H2aRnTwVxE6YllF
     hJqMF1N98nuasRzDh8SSnAp6WZfSMH0
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/random.txt----breaks /----------------------------------------------------------------------------------------------------
+fixtures/random.txt----breaks /----------------------------------------------------------------------------------------------------
 ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU
 3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy
 h4kd4u3TDLeWrqVIjwZ9WHach7zFToWN
@@ -11764,7 +11764,7 @@ WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7
 GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF
 GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0
 DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/random.txt----separators----------------------------------------------------------------------------------------------------
+fixtures/random.txt----separators----------------------------------------------------------------------------------------------------
 ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU
 3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy
 h4kd4u3TDLeWrqVIjwZ9WHach7zFToWN
@@ -11805,7 +11805,7 @@ WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7
 GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF
 GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0
 DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/random.txt----counts----------------------------------------------------------------------------------------------------
+fixtures/random.txt----counts----------------------------------------------------------------------------------------------------
 ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU: 1
 3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy: 1
 h4kd4u3TDLeWrqVIjwZ9WHach7zFToWN: 1
@@ -11846,7 +11846,7 @@ WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7: 1
 GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF: 1
 GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0: 1
 DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7: 1
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/random.txt----level 2----------------------------------------------------------------------------------------------------
+fixtures/random.txt----level 2----------------------------------------------------------------------------------------------------
 ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU
 3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy
 h4kd4u3TDLeWrqVIjwZ9WHach7zFToWN
@@ -11887,7 +11887,7 @@ WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7
 GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF
 GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0
 DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/random.txt----depth 2----------------------------------------------------------------------------------------------------
+fixtures/random.txt----depth 2----------------------------------------------------------------------------------------------------
 ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU
 3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy
 h4kd4u3TDLeWrqVIjwZ9WHach7zFToWN
@@ -11928,7 +11928,7 @@ WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7
 GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF
 GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0
 DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/random.txt----format json----------------------------------------------------------------------------------------------------
+fixtures/random.txt----format json----------------------------------------------------------------------------------------------------
 ["ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU",
 "3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy",
 "h4kd4u3TDLeWrqVIjwZ9WHach7zFToWN",
@@ -11969,37 +11969,37 @@ DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7
 "GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF",
 "GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0",
 "DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7"]
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/simplechars.txt-------------------------------------------------------------------------------------------------------
+fixtures/simplechars.txt-------------------------------------------------------------------------------------------------------
 abcdefghik
 abc1234567
 abc123wxyz
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/simplechars.txt----chars----------------------------------------------------------------------------------------------------
+fixtures/simplechars.txt----chars----------------------------------------------------------------------------------------------------
 abc
     defghik
     123
         4567
         wxyz
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/simplechars.txt----breaks /----------------------------------------------------------------------------------------------------
+fixtures/simplechars.txt----breaks /----------------------------------------------------------------------------------------------------
 abcdefghik
 abc1234567
 abc123wxyz
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/simplechars.txt----separators----------------------------------------------------------------------------------------------------
+fixtures/simplechars.txt----separators----------------------------------------------------------------------------------------------------
 abcdefghik
 abc1234567
 abc123wxyz
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/simplechars.txt----counts----------------------------------------------------------------------------------------------------
+fixtures/simplechars.txt----counts----------------------------------------------------------------------------------------------------
 abcdefghik: 1
 abc1234567: 1
 abc123wxyz: 1
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/simplechars.txt----level 2----------------------------------------------------------------------------------------------------
+fixtures/simplechars.txt----level 2----------------------------------------------------------------------------------------------------
 abcdefghik
 abc1234567
 abc123wxyz
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/simplechars.txt----depth 2----------------------------------------------------------------------------------------------------
+fixtures/simplechars.txt----depth 2----------------------------------------------------------------------------------------------------
 abcdefghik
 abc1234567
 abc123wxyz
-/home/birchb/workspace/gopath/src/github.com/birchb1024/frangipanni/test/fixtures/simplechars.txt----format json----------------------------------------------------------------------------------------------------
+fixtures/simplechars.txt----format json----------------------------------------------------------------------------------------------------
 ["abcdefghik",
 "abc1234567",
 "abc123wxyz"]
