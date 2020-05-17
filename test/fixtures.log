@@ -12003,3 +12003,241 @@ fixtures/simplechars.txt----format json-----------------------------------------
 ["abcdefghik",
 "abc1234567",
 "abc123wxyz"]
+fixtures/triples.csv-------------------------------------------------------------------------------------------------------
+john1@jupiter
+    rdf:type,UnixAccount
+    hasPassword,felicity-pw-8
+joanna,hasAccount,alice1@jupiter
+jupiter
+    defaultAccount,alice1
+    hasUser
+        alice1
+        birchb1
+        john1
+    rdf:type
+        UnixMachine
+        WasDmgr
+alice2,hasAccount,evan1@jupiter
+felicity,hasAccount,john1@jupiter
+alice1@jupiter
+    rdf:type,UnixAccount
+    hasPassword
+        kalpana-pw-18
+        evan2-pw-15
+        joanna-pw-19
+kalpana,hasAccount,alice1@jupiter
+Production,was_hostname,jupiter
+birchb1@jupiter
+    rdf:type,UnixAccount
+    hasPassword,birchb-pw-2
+birchb,hasAccount,birchb1@jupiter
+fixtures/triples.csv----chars----------------------------------------------------------------------------------------------------
+j
+    o
+        hn1@jupiter,
+            rdf:type,UnixAccount
+            hasPassword,felicity-pw-8
+        anna,hasAccount,alice1@jupiter
+    upiter,
+        defaultAccount,alice1
+        hasUser,
+            alice1
+            birchb1
+            john1
+        rdf:type,
+            UnixMachine
+            WasDmgr
+alice
+    2,hasAccount,evan1@jupiter
+    1@jupiter,
+        rdf:type,UnixAccount
+        hasPassword,
+            kalpana-pw-18
+            evan2-pw-15
+            joanna-pw-19
+felicity,hasAccount,john1@jupiter
+kalpana,hasAccount,alice1@jupiter
+Production,was_hostname,jupiter
+birchb
+    1@jupiter,
+        rdf:type,UnixAccount
+        hasPassword,birchb-pw-2
+    ,hasAccount,birchb1@jupiter
+fixtures/triples.csv----breaks /----------------------------------------------------------------------------------------------------
+john1@jupiter,rdf:type,UnixAccount
+joanna,hasAccount,alice1@jupiter
+jupiter,defaultAccount,alice1
+alice2,hasAccount,evan1@jupiter
+felicity,hasAccount,john1@jupiter
+alice1@jupiter,rdf:type,UnixAccount
+kalpana,hasAccount,alice1@jupiter
+john1@jupiter,hasPassword,felicity-pw-8
+Production,was_hostname,jupiter
+birchb1@jupiter,rdf:type,UnixAccount
+birchb1@jupiter,hasPassword,birchb-pw-2
+jupiter,hasUser,alice1
+jupiter,hasUser,birchb1
+jupiter,hasUser,john1
+jupiter,rdf:type,UnixMachine
+jupiter,rdf:type,WasDmgr
+alice1@jupiter,hasPassword,kalpana-pw-18
+alice1@jupiter,hasPassword,evan2-pw-15
+alice1@jupiter,hasPassword,joanna-pw-19
+birchb,hasAccount,birchb1@jupiter
+fixtures/triples.csv----separators----------------------------------------------------------------------------------------------------
+john1@jupiter
+    ,rdf:type,UnixAccount
+    ,hasPassword,felicity-pw-8
+joanna,hasAccount,alice1@jupiter
+jupiter
+    ,defaultAccount,alice1
+    ,hasUser
+        ,alice1
+        ,birchb1
+        ,john1
+    ,rdf:type
+        ,UnixMachine
+        ,WasDmgr
+alice2,hasAccount,evan1@jupiter
+felicity,hasAccount,john1@jupiter
+alice1@jupiter
+    ,rdf:type,UnixAccount
+    ,hasPassword
+        ,kalpana-pw-18
+        ,evan2-pw-15
+        ,joanna-pw-19
+kalpana,hasAccount,alice1@jupiter
+Production,was_hostname,jupiter
+birchb1@jupiter
+    ,rdf:type,UnixAccount
+    ,hasPassword,birchb-pw-2
+birchb,hasAccount,birchb1@jupiter
+fixtures/triples.csv----counts----------------------------------------------------------------------------------------------------
+john1@jupiter: 2
+    rdf:type,UnixAccount: 1
+    hasPassword,felicity-pw-8: 1
+joanna,hasAccount,alice1@jupiter: 1
+jupiter: 6
+    defaultAccount,alice1: 1
+    hasUser: 3
+        alice1: 1
+        birchb1: 1
+        john1: 1
+    rdf:type: 2
+        UnixMachine: 1
+        WasDmgr: 1
+alice2,hasAccount,evan1@jupiter: 1
+felicity,hasAccount,john1@jupiter: 1
+alice1@jupiter: 4
+    rdf:type,UnixAccount: 1
+    hasPassword: 3
+        kalpana-pw-18: 1
+        evan2-pw-15: 1
+        joanna-pw-19: 1
+kalpana,hasAccount,alice1@jupiter: 1
+Production,was_hostname,jupiter: 1
+birchb1@jupiter: 2
+    rdf:type,UnixAccount: 1
+    hasPassword,birchb-pw-2: 1
+birchb,hasAccount,birchb1@jupiter: 1
+fixtures/triples.csv----level 2----------------------------------------------------------------------------------------------------
+john1@jupiter
+    ,rdf:type,UnixAccount
+    ,hasPassword,felicity-pw-8
+joanna,hasAccount,alice1@jupiter
+jupiter
+    defaultAccount,alice1
+    hasUser
+        ,alice1
+        ,birchb1
+        ,john1
+    rdf
+        :type,UnixMachine
+        :type,WasDmgr
+alice2,hasAccount,evan1@jupiter
+felicity,hasAccount,john1@jupiter
+alice1@jupiter
+    ,rdf:type,UnixAccount
+    ,hasPassword,kalpana-pw-18
+    ,hasPassword,evan2-pw-15
+    ,hasPassword,joanna-pw-19
+kalpana,hasAccount,alice1@jupiter
+Production,was_hostname,jupiter
+birchb1@jupiter
+    ,rdf:type,UnixAccount
+    ,hasPassword,birchb-pw-2
+birchb,hasAccount,birchb1@jupiter
+fixtures/triples.csv----depth 2----------------------------------------------------------------------------------------------------
+john1@jupiter
+    rdf:type,UnixAccount
+    hasPassword,felicity-pw-8
+joanna,hasAccount,alice1@jupiter
+jupiter
+    defaultAccount,alice1
+    hasUser
+    rdf:type
+alice2,hasAccount,evan1@jupiter
+felicity,hasAccount,john1@jupiter
+alice1@jupiter
+    rdf:type,UnixAccount
+    hasPassword
+kalpana,hasAccount,alice1@jupiter
+Production,was_hostname,jupiter
+birchb1@jupiter
+    rdf:type,UnixAccount
+    hasPassword,birchb-pw-2
+birchb,hasAccount,birchb1@jupiter
+fixtures/triples.csv----format json----------------------------------------------------------------------------------------------------
+{"john1" : {"jupiter" : {"rdf" : {"type" : "UnixAccount"}
+,
+"hasPassword" : {"felicity" : {"pw" : 8}
+}
+}
+}
+,
+"joanna" : {"hasAccount" : {"alice1" : "jupiter"}
+}
+,
+"jupiter" : {"defaultAccount" : "alice1",
+"hasUser" : ["alice1",
+"birchb1",
+"john1"]
+,
+"rdf" : {"type" : ["UnixMachine",
+"WasDmgr"]
+}
+}
+,
+"alice2" : {"hasAccount" : {"evan1" : "jupiter"}
+}
+,
+"felicity" : {"hasAccount" : {"john1" : "jupiter"}
+}
+,
+"alice1" : {"jupiter" : {"rdf" : {"type" : "UnixAccount"}
+,
+"hasPassword" : {"kalpana" : {"pw" : 18}
+,
+"evan2" : {"pw" : 15}
+,
+"joanna" : {"pw" : 19}
+}
+}
+}
+,
+"kalpana" : {"hasAccount" : {"alice1" : "jupiter"}
+}
+,
+"Production" : {"was" : {"hostname" : "jupiter"}
+}
+,
+"birchb1" : {"jupiter" : {"rdf" : {"type" : "UnixAccount"}
+,
+"hasPassword" : {"birchb" : {"pw" : 2}
+}
+}
+}
+,
+"birchb" : {"hasAccount" : {"birchb1" : "jupiter"}
+}
+}
