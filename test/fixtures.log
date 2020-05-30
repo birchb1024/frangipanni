@@ -399,6 +399,324 @@ usr/local/go
     test4/fixedbugs/issue19667.go
 fixtures/find.txt--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
 [{"boot" : 
+    {"System.map-4.9.0" : 
+        ["11-amd64",
+        "12-amd64",
+        "8-amd64"],
+    "config-4.9.0" : 
+        ["11-amd64",
+        "12-amd64",
+        "8-amd64"],
+    "grub" : 
+        ["device.map",
+        "fonts",
+        "grub.cfg",
+        "grubenv",
+        "i386-pc",
+        "locale",
+        "unicode.pf2"],
+    "initrd.img-4.9.0" : 
+        ["11-amd64",
+        "12-amd64",
+        "8-amd64"],
+    "vmlinuz-4.9.0" : 
+        ["11-amd64",
+        "12-amd64",
+        "8-amd64"]}},
+"oldroot",
+{"proc/22468" : 
+    ["gid_map",
+    "io",
+    "projid_map",
+    "setgroups",
+    "timers",
+    "timerslack_ns",
+    "uid_map"]},
+"srv",
+{"usr/local/go" : 
+    ["test/fixedbugs/bug028.go",
+    {"test2" : 
+        {"fixedbugs1" : 
+            ["bug205.go",
+            "bug206.go"],
+        "fixedbugs2" : 
+            ["bug481.go",
+            "bug482.go"]}},
+    "test3/fixedbugs/bug196.go",
+    "test4/fixedbugs/issue19667.go"]}]
+fixtures/find.txt--- -format json -order alpha -breaks / ----------------------------------------------------------------------------------------------------
+[".oldroot",
+{"boot" : 
+    ["System.map-4.9.0-11-amd64",
+    "System.map-4.9.0-12-amd64",
+    "System.map-4.9.0-8-amd64",
+    "config-4.9.0-11-amd64",
+    "config-4.9.0-12-amd64",
+    "config-4.9.0-8-amd64",
+    {"grub" : 
+        ["device.map",
+        "fonts",
+        "grub.cfg",
+        "grubenv",
+        "i386-pc",
+        "locale",
+        "unicode.pf2"]},
+    "initrd.img-4.9.0-11-amd64",
+    "initrd.img-4.9.0-12-amd64",
+    "initrd.img-4.9.0-8-amd64",
+    "vmlinuz-4.9.0-11-amd64",
+    "vmlinuz-4.9.0-12-amd64",
+    "vmlinuz-4.9.0-8-amd64"]},
+{"proc/22468" : 
+    ["gid_map",
+    "io",
+    "projid_map",
+    "setgroups",
+    "timers",
+    "timerslack_ns",
+    "uid_map"]},
+"srv",
+{"usr/local/go" : 
+    ["test/fixedbugs/bug028.go",
+    {"test2" : 
+        {"fixedbugs1" : 
+            ["bug205.go",
+            "bug206.go"],
+        "fixedbugs2" : 
+            ["bug481.go",
+            "bug482.go"]}},
+    "test3/fixedbugs/bug196.go",
+    "test4/fixedbugs/issue19667.go"]}]
+fixtures/find.txt--- -format json -order alpha -separators ----------------------------------------------------------------------------------------------------
+[{"/boot" : 
+    {"/System.map-4.9.0" : 
+        ["-11-amd64",
+        "-12-amd64",
+        "-8-amd64"],
+    "/config-4.9.0" : 
+        ["-11-amd64",
+        "-12-amd64",
+        "-8-amd64"],
+    "/grub" : 
+        ["/device.map",
+        "/fonts",
+        "/grub.cfg",
+        "/grubenv",
+        "/i386-pc",
+        "/locale",
+        "/unicode.pf2"],
+    "/initrd.img-4.9.0" : 
+        ["-11-amd64",
+        "-12-amd64",
+        "-8-amd64"],
+    "/vmlinuz-4.9.0" : 
+        ["-11-amd64",
+        "-12-amd64",
+        "-8-amd64"]}},
+"/.oldroot",
+{"/proc/22468" : 
+    ["/gid_map",
+    "/io",
+    "/projid_map",
+    "/setgroups",
+    "/timers",
+    "/timerslack_ns",
+    "/uid_map"]},
+"/srv",
+{"/usr/local/go" : 
+    ["/test/fixedbugs/bug028.go",
+    {"/test2" : 
+        {"/fixedbugs1" : 
+            ["/bug205.go",
+            "/bug206.go"],
+        "/fixedbugs2" : 
+            ["/bug481.go",
+            "/bug482.go"]}},
+    "/test3/fixedbugs/bug196.go",
+    "/test4/fixedbugs/issue19667.go"]}]
+fixtures/find.txt--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
+{"_count_" : 1,
+"boot" : 
+    {"System.map-4.9.0" : 
+        {"11-amd64" : 
+            {"_count_" : 1},
+        "12-amd64" : 
+            {"_count_" : 1},
+        "8-amd64" : 
+            {"_count_" : 1},
+        "_count_" : 3},
+    "_count_" : 28,
+    "config-4.9.0" : 
+        {"11-amd64" : 
+            {"_count_" : 1},
+        "12-amd64" : 
+            {"_count_" : 1},
+        "8-amd64" : 
+            {"_count_" : 1},
+        "_count_" : 3},
+    "grub" : 
+        {"_count_" : 15,
+        "device.map" : 
+            {"_count_" : 2},
+        "fonts" : 
+            {"_count_" : 2},
+        "grub.cfg" : 
+            {"_count_" : 2},
+        "grubenv" : 
+            {"_count_" : 2},
+        "i386-pc" : 
+            {"_count_" : 1},
+        "locale" : 
+            {"_count_" : 2},
+        "unicode.pf2" : 
+            {"_count_" : 2}},
+    "initrd.img-4.9.0" : 
+        {"11-amd64" : 
+            {"_count_" : 1},
+        "12-amd64" : 
+            {"_count_" : 1},
+        "8-amd64" : 
+            {"_count_" : 1},
+        "_count_" : 3},
+    "vmlinuz-4.9.0" : 
+        {"11-amd64" : 
+            {"_count_" : 1},
+        "12-amd64" : 
+            {"_count_" : 1},
+        "8-amd64" : 
+            {"_count_" : 1},
+        "_count_" : 3}},
+"oldroot" : 
+    {"_count_" : 1},
+"proc/22468" : 
+    {"_count_" : 7,
+    "gid_map" : 
+        {"_count_" : 1},
+    "io" : 
+        {"_count_" : 1},
+    "projid_map" : 
+        {"_count_" : 1},
+    "setgroups" : 
+        {"_count_" : 1},
+    "timers" : 
+        {"_count_" : 1},
+    "timerslack_ns" : 
+        {"_count_" : 1},
+    "uid_map" : 
+        {"_count_" : 1}},
+"srv" : 
+    {"_count_" : 1},
+"usr/local/go" : 
+    {"_count_" : 7,
+    "test/fixedbugs/bug028.go" : 
+        {"_count_" : 1},
+    "test2" : 
+        {"_count_" : 4,
+        "fixedbugs1" : 
+            {"_count_" : 2,
+            "bug205.go" : 
+                {"_count_" : 1},
+            "bug206.go" : 
+                {"_count_" : 1}},
+        "fixedbugs2" : 
+            {"_count_" : 2,
+            "bug481.go" : 
+                {"_count_" : 1},
+            "bug482.go" : 
+                {"_count_" : 1}}},
+    "test3/fixedbugs/bug196.go" : 
+        {"_count_" : 1},
+    "test4/fixedbugs/issue19667.go" : 
+        {"_count_" : 1}}}
+fixtures/find.txt--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
+[{"boot" : 
+    {"System" : 
+        [".map-4.9.0-11-amd64",
+        ".map-4.9.0-12-amd64",
+        ".map-4.9.0-8-amd64"],
+    "config" : 
+        ["-4.9.0-11-amd64",
+        "-4.9.0-12-amd64",
+        "-4.9.0-8-amd64"],
+    "grub" : 
+        ["/device.map",
+        "/fonts",
+        "/grub.cfg",
+        "/grubenv",
+        "/i386-pc",
+        "/locale",
+        "/unicode.pf2"],
+    "initrd" : 
+        [".img-4.9.0-11-amd64",
+        ".img-4.9.0-12-amd64",
+        ".img-4.9.0-8-amd64"],
+    "vmlinuz" : 
+        ["-4.9.0-11-amd64",
+        "-4.9.0-12-amd64",
+        "-4.9.0-8-amd64"]}},
+"oldroot",
+{"proc/22468" : 
+    ["/gid_map",
+    "/io",
+    "/projid_map",
+    "/setgroups",
+    "/timers",
+    "/timerslack_ns",
+    "/uid_map"]},
+"srv",
+{"usr/local" : 
+    ["/go/test/fixedbugs/bug028.go",
+    "/go/test2/fixedbugs1/bug205.go",
+    "/go/test2/fixedbugs1/bug206.go",
+    "/go/test2/fixedbugs2/bug481.go",
+    "/go/test2/fixedbugs2/bug482.go",
+    "/go/test3/fixedbugs/bug196.go",
+    "/go/test4/fixedbugs/issue19667.go"]}]
+fixtures/find.txt--- -format json -order alpha -depth 3 ----------------------------------------------------------------------------------------------------
+[{"boot" : 
+    {"System.map-4.9.0" : 
+        ["11-amd64",
+        "12-amd64",
+        "8-amd64"],
+    "config-4.9.0" : 
+        ["11-amd64",
+        "12-amd64",
+        "8-amd64"],
+    "grub" : 
+        ["device.map",
+        "fonts",
+        "grub.cfg",
+        "grubenv",
+        "i386-pc",
+        "locale",
+        "unicode.pf2"],
+    "initrd.img-4.9.0" : 
+        ["11-amd64",
+        "12-amd64",
+        "8-amd64"],
+    "vmlinuz-4.9.0" : 
+        ["11-amd64",
+        "12-amd64",
+        "8-amd64"]}},
+"oldroot",
+{"proc/22468" : 
+    ["gid_map",
+    "io",
+    "projid_map",
+    "setgroups",
+    "timers",
+    "timerslack_ns",
+    "uid_map"]},
+"srv",
+{"usr/local/go" : 
+    ["test/fixedbugs/bug028.go",
+    {"test2" : 
+        {"fixedbugs1" : null,
+        "fixedbugs2" : null}},
+    "test3/fixedbugs/bug196.go",
+    "test4/fixedbugs/issue19667.go"]}]
+fixtures/find.txt--- -format json -order alpha -no-fold ----------------------------------------------------------------------------------------------------
+[{"boot" : 
     {"System" : 
         {"map" : 
             {"4" : 
@@ -467,397 +785,6 @@ fixtures/find.txt--- -format json -order alpha  --------------------------------
             "test4" : 
                 {"fixedbugs" : 
                     {"issue19667" : "go"}}}}}}]
-fixtures/find.txt--- -format json -order alpha -breaks / ----------------------------------------------------------------------------------------------------
-[".oldroot",
-{"boot" : 
-    ["System.map-4.9.0-11-amd64",
-    "System.map-4.9.0-12-amd64",
-    "System.map-4.9.0-8-amd64",
-    "config-4.9.0-11-amd64",
-    "config-4.9.0-12-amd64",
-    "config-4.9.0-8-amd64",
-    {"grub" : 
-        ["device.map",
-        "fonts",
-        "grub.cfg",
-        "grubenv",
-        "i386-pc",
-        "locale",
-        "unicode.pf2"]},
-    "initrd.img-4.9.0-11-amd64",
-    "initrd.img-4.9.0-12-amd64",
-    "initrd.img-4.9.0-8-amd64",
-    "vmlinuz-4.9.0-11-amd64",
-    "vmlinuz-4.9.0-12-amd64",
-    "vmlinuz-4.9.0-8-amd64"]},
-{"proc" : 
-    {"22468" : 
-        ["gid_map",
-        "io",
-        "projid_map",
-        "setgroups",
-        "timers",
-        "timerslack_ns",
-        "uid_map"]}},
-"srv",
-{"usr" : 
-    {"local" : 
-        {"go" : 
-            {"test" : 
-                {"fixedbugs" : "bug028.go"},
-            "test2" : 
-                {"fixedbugs1" : 
-                    ["bug205.go",
-                    "bug206.go"],
-                "fixedbugs2" : 
-                    ["bug481.go",
-                    "bug482.go"]},
-            "test3" : 
-                {"fixedbugs" : "bug196.go"},
-            "test4" : 
-                {"fixedbugs" : "issue19667.go"}}}}}]
-fixtures/find.txt--- -format json -order alpha -separators ----------------------------------------------------------------------------------------------------
-[{"/boot" : 
-    {"/System" : 
-        {".map" : 
-            {"-4" : 
-                {".9" : 
-                    {".0" : 
-                        {"-11" : "-amd64",
-                        "-12" : "-amd64",
-                        "-8" : "-amd64"}}}}},
-    "/config" : 
-        {"-4" : 
-            {".9" : 
-                {".0" : 
-                    {"-11" : "-amd64",
-                    "-12" : "-amd64",
-                    "-8" : "-amd64"}}}},
-    "/grub" : 
-        [{"/device" : ".map"},
-        "/fonts",
-        {"/grub" : ".cfg"},
-        "/grubenv",
-        {"/i386" : "-pc"},
-        "/locale",
-        {"/unicode" : ".pf2"}],
-    "/initrd" : 
-        {".img" : 
-            {"-4" : 
-                {".9" : 
-                    {".0" : 
-                        {"-11" : "-amd64",
-                        "-12" : "-amd64",
-                        "-8" : "-amd64"}}}}},
-    "/vmlinuz" : 
-        {"-4" : 
-            {".9" : 
-                {".0" : 
-                    {"-11" : "-amd64",
-                    "-12" : "-amd64",
-                    "-8" : "-amd64"}}}}}},
-"/.oldroot",
-{"/proc" : 
-    {"/22468" : 
-        [{"/gid" : "_map"},
-        "/io",
-        {"/projid" : "_map"},
-        "/setgroups",
-        "/timers",
-        {"/timerslack" : "_ns"},
-        {"/uid" : "_map"}]}},
-"/srv",
-{"/usr" : 
-    {"/local" : 
-        {"/go" : 
-            {"/test" : 
-                {"/fixedbugs" : 
-                    {"/bug028" : ".go"}},
-            "/test2" : 
-                {"/fixedbugs1" : 
-                    {"/bug205" : ".go",
-                    "/bug206" : ".go"},
-                "/fixedbugs2" : 
-                    {"/bug481" : ".go",
-                    "/bug482" : ".go"}},
-            "/test3" : 
-                {"/fixedbugs" : 
-                    {"/bug196" : ".go"}},
-            "/test4" : 
-                {"/fixedbugs" : 
-                    {"/issue19667" : ".go"}}}}}}]
-fixtures/find.txt--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
-{"_count_" : 1,
-"boot" : 
-    {"System" : 
-        {"_count_" : 3,
-        "map" : 
-            {"4" : 
-                {"9" : 
-                    {"0" : 
-                        {"11" : 
-                            {"_count_" : 1,
-                            "amd64" : 
-                                {"_count_" : 1}},
-                        "12" : 
-                            {"_count_" : 1,
-                            "amd64" : 
-                                {"_count_" : 1}},
-                        "8" : 
-                            {"_count_" : 1,
-                            "amd64" : 
-                                {"_count_" : 1}},
-                        "_count_" : 3},
-                    "_count_" : 3},
-                "_count_" : 3},
-            "_count_" : 3}},
-    "_count_" : 28,
-    "config" : 
-        {"4" : 
-            {"9" : 
-                {"0" : 
-                    {"11" : 
-                        {"_count_" : 1,
-                        "amd64" : 
-                            {"_count_" : 1}},
-                    "12" : 
-                        {"_count_" : 1,
-                        "amd64" : 
-                            {"_count_" : 1}},
-                    "8" : 
-                        {"_count_" : 1,
-                        "amd64" : 
-                            {"_count_" : 1}},
-                    "_count_" : 3},
-                "_count_" : 3},
-            "_count_" : 3},
-        "_count_" : 3},
-    "grub" : 
-        {"_count_" : 15,
-        "device" : 
-            {"_count_" : 2,
-            "map" : 
-                {"_count_" : 2}},
-        "fonts" : 
-            {"_count_" : 2},
-        "grub" : 
-            {"_count_" : 2,
-            "cfg" : 
-                {"_count_" : 2}},
-        "grubenv" : 
-            {"_count_" : 2},
-        "i386" : 
-            {"_count_" : 1,
-            "pc" : 
-                {"_count_" : 1}},
-        "locale" : 
-            {"_count_" : 2},
-        "unicode" : 
-            {"_count_" : 2,
-            "pf2" : 
-                {"_count_" : 2}}},
-    "initrd" : 
-        {"_count_" : 3,
-        "img" : 
-            {"4" : 
-                {"9" : 
-                    {"0" : 
-                        {"11" : 
-                            {"_count_" : 1,
-                            "amd64" : 
-                                {"_count_" : 1}},
-                        "12" : 
-                            {"_count_" : 1,
-                            "amd64" : 
-                                {"_count_" : 1}},
-                        "8" : 
-                            {"_count_" : 1,
-                            "amd64" : 
-                                {"_count_" : 1}},
-                        "_count_" : 3},
-                    "_count_" : 3},
-                "_count_" : 3},
-            "_count_" : 3}},
-    "vmlinuz" : 
-        {"4" : 
-            {"9" : 
-                {"0" : 
-                    {"11" : 
-                        {"_count_" : 1,
-                        "amd64" : 
-                            {"_count_" : 1}},
-                    "12" : 
-                        {"_count_" : 1,
-                        "amd64" : 
-                            {"_count_" : 1}},
-                    "8" : 
-                        {"_count_" : 1,
-                        "amd64" : 
-                            {"_count_" : 1}},
-                    "_count_" : 3},
-                "_count_" : 3},
-            "_count_" : 3},
-        "_count_" : 3}},
-"oldroot" : 
-    {"_count_" : 1},
-"proc" : 
-    {"22468" : 
-        {"_count_" : 7,
-        "gid" : 
-            {"_count_" : 1,
-            "map" : 
-                {"_count_" : 1}},
-        "io" : 
-            {"_count_" : 1},
-        "projid" : 
-            {"_count_" : 1,
-            "map" : 
-                {"_count_" : 1}},
-        "setgroups" : 
-            {"_count_" : 1},
-        "timers" : 
-            {"_count_" : 1},
-        "timerslack" : 
-            {"_count_" : 1,
-            "ns" : 
-                {"_count_" : 1}},
-        "uid" : 
-            {"_count_" : 1,
-            "map" : 
-                {"_count_" : 1}}},
-    "_count_" : 7},
-"srv" : 
-    {"_count_" : 1},
-"usr" : 
-    {"_count_" : 7,
-    "local" : 
-        {"_count_" : 7,
-        "go" : 
-            {"_count_" : 7,
-            "test" : 
-                {"_count_" : 1,
-                "fixedbugs" : 
-                    {"_count_" : 1,
-                    "bug028" : 
-                        {"_count_" : 1,
-                        "go" : 
-                            {"_count_" : 1}}}},
-            "test2" : 
-                {"_count_" : 4,
-                "fixedbugs1" : 
-                    {"_count_" : 2,
-                    "bug205" : 
-                        {"_count_" : 1,
-                        "go" : 
-                            {"_count_" : 1}},
-                    "bug206" : 
-                        {"_count_" : 1,
-                        "go" : 
-                            {"_count_" : 1}}},
-                "fixedbugs2" : 
-                    {"_count_" : 2,
-                    "bug481" : 
-                        {"_count_" : 1,
-                        "go" : 
-                            {"_count_" : 1}},
-                    "bug482" : 
-                        {"_count_" : 1,
-                        "go" : 
-                            {"_count_" : 1}}}},
-            "test3" : 
-                {"_count_" : 1,
-                "fixedbugs" : 
-                    {"_count_" : 1,
-                    "bug196" : 
-                        {"_count_" : 1,
-                        "go" : 
-                            {"_count_" : 1}}}},
-            "test4" : 
-                {"_count_" : 1,
-                "fixedbugs" : 
-                    {"_count_" : 1,
-                    "issue19667" : 
-                        {"_count_" : 1,
-                        "go" : 
-                            {"_count_" : 1}}}}}}}}
-fixtures/find.txt--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
-[{"boot" : 
-    {"System" : 
-        [".map-4.9.0-11-amd64",
-        ".map-4.9.0-12-amd64",
-        ".map-4.9.0-8-amd64"],
-    "config" : 
-        ["-4.9.0-11-amd64",
-        "-4.9.0-12-amd64",
-        "-4.9.0-8-amd64"],
-    "grub" : 
-        ["/device.map",
-        "/fonts",
-        "/grub.cfg",
-        "/grubenv",
-        "/i386-pc",
-        "/locale",
-        "/unicode.pf2"],
-    "initrd" : 
-        [".img-4.9.0-11-amd64",
-        ".img-4.9.0-12-amd64",
-        ".img-4.9.0-8-amd64"],
-    "vmlinuz" : 
-        ["-4.9.0-11-amd64",
-        "-4.9.0-12-amd64",
-        "-4.9.0-8-amd64"]}},
-"oldroot",
-{"proc" : 
-    {"22468" : 
-        ["/gid_map",
-        "/io",
-        "/projid_map",
-        "/setgroups",
-        "/timers",
-        "/timerslack_ns",
-        "/uid_map"]}},
-"srv",
-{"usr" : 
-    {"local" : 
-        ["/go/test/fixedbugs/bug028.go",
-        "/go/test2/fixedbugs1/bug205.go",
-        "/go/test2/fixedbugs1/bug206.go",
-        "/go/test2/fixedbugs2/bug481.go",
-        "/go/test2/fixedbugs2/bug482.go",
-        "/go/test3/fixedbugs/bug196.go",
-        "/go/test4/fixedbugs/issue19667.go"]}}]
-fixtures/find.txt--- -format json -order alpha -depth 2 ----------------------------------------------------------------------------------------------------
-[{"boot" : 
-    {"System" : 
-        {"map" : null},
-    "config" : 
-        {"4" : null},
-    "grub" : 
-        [{"device" : null},
-        "fonts",
-        {"grub" : null},
-        "grubenv",
-        {"i386" : null},
-        "locale",
-        {"unicode" : null}],
-    "initrd" : 
-        {"img" : null},
-    "vmlinuz" : 
-        {"4" : null}}},
-"oldroot",
-{"proc" : 
-    {"22468" : 
-        [{"gid" : null},
-        "io",
-        {"projid" : null},
-        "setgroups",
-        "timers",
-        {"timerslack" : null},
-        {"uid" : null}]}},
-"srv",
-{"usr" : 
-    {"local" : 
-        {"go" : null}}}]
 fixtures/firewall.txt---  ----------------------------------------------------------------------------------------------------
 WARNING
     ICMP type
@@ -1010,8 +937,8 @@ WARNING: 196
                     PREROUTING: 3
                     OUTPUT: 3
             filter: 35
-                F DOCKER-ISOLATION: 2
-                X DOCKER-ISOLATION: 3
+                F DOCKER-ISOLATION: 4
+                X DOCKER-ISOLATION: 6
                 n -L: 4
                 C: 21
                     DOCKER-ISOLATION: 3
@@ -1151,6 +1078,67 @@ WARNING
 h' or 'iptables --help' for more information
 fixtures/firewall.txt--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
 {"WARNING" : 
+    [{"ICMP type" : 
+        ["beyond-scope' is not supported by",
+        "failed-policy' is not supported by",
+        "reject-route' is not supported by"]},
+    "beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
+    "failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
+    "reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring"]}
+fixtures/firewall.txt--- -format json -order alpha -breaks / ----------------------------------------------------------------------------------------------------
+["WARNING: ICMP type 'beyond-scope' is not supported by",
+"WARNING: ICMP type 'failed-policy' is not supported by",
+"WARNING: ICMP type 'reject-route' is not supported by",
+"WARNING: beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
+"WARNING: failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
+"WARNING: reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring"]
+fixtures/firewall.txt--- -format json -order alpha -separators ----------------------------------------------------------------------------------------------------
+{"WARNING" : 
+    [{": ICMP type" : 
+        [" 'beyond-scope' is not supported by",
+        " 'failed-policy' is not supported by",
+        " 'reject-route' is not supported by"]},
+    ": beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
+    ": failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
+    ": reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring"]}
+fixtures/firewall.txt--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
+{"WARNING" : 
+    {"ICMP type" : 
+        {"_count_" : 25,
+        "beyond-scope' is not supported by" : 
+            {"_count_" : 9},
+        "failed-policy' is not supported by" : 
+            {"_count_" : 8},
+        "reject-route' is not supported by" : 
+            {"_count_" : 8}},
+    "_count_" : 50,
+    "beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring" : 
+        {"_count_" : 9},
+    "failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring" : 
+        {"_count_" : 8},
+    "reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring" : 
+        {"_count_" : 8}},
+"_count_" : 1}
+fixtures/firewall.txt--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
+{"WARNING" : 
+    [{"ICMP" : 
+        [" type 'beyond-scope' is not supported by",
+        " type 'failed-policy' is not supported by",
+        " type 'reject-route' is not supported by"]},
+    "beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
+    "failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
+    "reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring"]}
+fixtures/firewall.txt--- -format json -order alpha -depth 3 ----------------------------------------------------------------------------------------------------
+{"WARNING" : 
+    [{"ICMP type" : 
+        ["beyond-scope' is not supported by",
+        "failed-policy' is not supported by",
+        "reject-route' is not supported by"]},
+    "beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
+    "failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
+    "reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring"]}
+fixtures/firewall.txt--- -format json -order alpha -no-fold ----------------------------------------------------------------------------------------------------
+{"WARNING" : 
     {"ICMP" : 
         {"type" : 
             {"beyond" : 
@@ -1192,173 +1180,6 @@ fixtures/firewall.txt--- -format json -order alpha  ----------------------------
                         {"supported" : 
                             {"ICMP" : 
                                 {"type" : "ignoring"}}}}}}}}}
-fixtures/firewall.txt--- -format json -order alpha -breaks / ----------------------------------------------------------------------------------------------------
-["WARNING: ICMP type 'beyond-scope' is not supported by",
-"WARNING: ICMP type 'failed-policy' is not supported by",
-"WARNING: ICMP type 'reject-route' is not supported by",
-"WARNING: beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
-"WARNING: failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
-"WARNING: reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring"]
-fixtures/firewall.txt--- -format json -order alpha -separators ----------------------------------------------------------------------------------------------------
-{"WARNING" : 
-    {": ICMP" : 
-        {" type" : 
-            {" 'beyond" : 
-                {"-scope" : 
-                    {"' is" : 
-                        {" not" : 
-                            {" supported" : " by"}}}},
-            " 'failed" : 
-                {"-policy" : 
-                    {"' is" : 
-                        {" not" : 
-                            {" supported" : " by"}}}},
-            " 'reject" : 
-                {"-route" : 
-                    {"' is" : 
-                        {" not" : 
-                            {" supported" : " by"}}}}}},
-    ": beyond" : 
-        {"-scope" : 
-            {": INVALID" : 
-                {"_ICMPTYPE" : 
-                    {": No" : 
-                        {" supported" : 
-                            {" ICMP" : 
-                                {" type" : "., ignoring"}}}}}}},
-    ": failed" : 
-        {"-policy" : 
-            {": INVALID" : 
-                {"_ICMPTYPE" : 
-                    {": No" : 
-                        {" supported" : 
-                            {" ICMP" : 
-                                {" type" : "., ignoring"}}}}}}},
-    ": reject" : 
-        {"-route" : 
-            {": INVALID" : 
-                {"_ICMPTYPE" : 
-                    {": No" : 
-                        {" supported" : 
-                            {" ICMP" : 
-                                {" type" : "., ignoring"}}}}}}}}}
-fixtures/firewall.txt--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
-{"WARNING" : 
-    {"ICMP" : 
-        {"_count_" : 25,
-        "type" : 
-            {"_count_" : 25,
-            "beyond" : 
-                {"_count_" : 9,
-                "scope" : 
-                    {"_count_" : 9,
-                    "is" : 
-                        {"_count_" : 9,
-                        "not" : 
-                            {"_count_" : 9,
-                            "supported" : 
-                                {"_count_" : 9,
-                                "by" : 
-                                    {"_count_" : 9}}}}}},
-            "failed" : 
-                {"_count_" : 8,
-                "policy" : 
-                    {"_count_" : 8,
-                    "is" : 
-                        {"_count_" : 8,
-                        "not" : 
-                            {"_count_" : 8,
-                            "supported" : 
-                                {"_count_" : 8,
-                                "by" : 
-                                    {"_count_" : 8}}}}}},
-            "reject" : 
-                {"_count_" : 8,
-                "route" : 
-                    {"_count_" : 8,
-                    "is" : 
-                        {"_count_" : 8,
-                        "not" : 
-                            {"_count_" : 8,
-                            "supported" : 
-                                {"_count_" : 8,
-                                "by" : 
-                                    {"_count_" : 8}}}}}}}},
-    "_count_" : 50,
-    "beyond" : 
-        {"_count_" : 9,
-        "scope" : 
-            {"INVALID" : 
-                {"ICMPTYPE" : 
-                    {"No" : 
-                        {"_count_" : 9,
-                        "supported" : 
-                            {"ICMP" : 
-                                {"_count_" : 9,
-                                "type" : 
-                                    {"_count_" : 9,
-                                    "ignoring" : 
-                                        {"_count_" : 9}}},
-                            "_count_" : 9}},
-                    "_count_" : 9},
-                "_count_" : 9},
-            "_count_" : 9}},
-    "failed" : 
-        {"_count_" : 8,
-        "policy" : 
-            {"INVALID" : 
-                {"ICMPTYPE" : 
-                    {"No" : 
-                        {"_count_" : 8,
-                        "supported" : 
-                            {"ICMP" : 
-                                {"_count_" : 8,
-                                "type" : 
-                                    {"_count_" : 8,
-                                    "ignoring" : 
-                                        {"_count_" : 8}}},
-                            "_count_" : 8}},
-                    "_count_" : 8},
-                "_count_" : 8},
-            "_count_" : 8}},
-    "reject" : 
-        {"_count_" : 8,
-        "route" : 
-            {"INVALID" : 
-                {"ICMPTYPE" : 
-                    {"No" : 
-                        {"_count_" : 8,
-                        "supported" : 
-                            {"ICMP" : 
-                                {"_count_" : 8,
-                                "type" : 
-                                    {"_count_" : 8,
-                                    "ignoring" : 
-                                        {"_count_" : 8}}},
-                            "_count_" : 8}},
-                    "_count_" : 8},
-                "_count_" : 8},
-            "_count_" : 8}}},
-"_count_" : 1}
-fixtures/firewall.txt--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
-{"WARNING" : 
-    {"ICMP" : 
-        [" type 'beyond-scope' is not supported by",
-        " type 'failed-policy' is not supported by",
-        " type 'reject-route' is not supported by"],
-    "beyond" : "-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
-    "failed" : "-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
-    "reject" : "-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring"}}
-fixtures/firewall.txt--- -format json -order alpha -depth 2 ----------------------------------------------------------------------------------------------------
-{"WARNING" : 
-    {"ICMP" : 
-        {"type" : null},
-    "beyond" : 
-        {"scope" : null},
-    "failed" : 
-        {"policy" : null},
-    "reject" : 
-        {"route" : null}}}
 fixtures/log-file.txt---  ----------------------------------------------------------------------------------------------------
 May 10
     03:17:06 localhost systemd
@@ -1573,6 +1394,101 @@ May 10
     03:17:06 localhost systemd
     04:00:00 localhost
 fixtures/log-file.txt--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
+{"May 10" : 
+    {"03:17:06 localhost systemd" : 
+        ["Removed slice User Slice of root",
+        "Stopping User Slice of root"],
+    "04:00:00 localhost" : 
+        {"dockerd-current: time=\"2020-05-10T04:00:00" : 
+            ["629849861+10:00\" level=debug msg=\"Calling GET /_ping",
+            "629948000+10:00\" level=debug msg=\"Unable to determine container for",
+            "630103455+10:00\" level=debug msg=\"{Action=_ping, LoginUID=12345678, PID=21075",
+            "630684502+10:00\" level=debug msg=\"Calling GET /v1.26/containers/json?all=1\u0026filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D",
+            "630704513+10:00\" level=debug msg=\"Unable to determine container for containers",
+            "630735545+10:00\" level=debug msg=\"{Action=json, LoginUID=12345678, PID=21075"],
+        "systemd" : 
+            ["Started Docker Cleanup",
+            "Starting Docker Cleanup"]}}}
+fixtures/log-file.txt--- -format json -order alpha -breaks / ----------------------------------------------------------------------------------------------------
+["May 10 03:17:06 localhost systemd: Removed slice User Slice of root.",
+"May 10 03:17:06 localhost systemd: Stopping User Slice of root.",
+"May 10 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.629849861+10:00\" level=debug msg=\"Calling GET /_ping\"",
+"May 10 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.629948000+10:00\" level=debug msg=\"Unable to determine container for /\"",
+"May 10 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630103455+10:00\" level=debug msg=\"{Action=_ping, LoginUID=12345678, PID=21075}\"",
+"May 10 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630684502+10:00\" level=debug msg=\"Calling GET /v1.26/containers/json?all=1\u0026filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D\"",
+"May 10 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630704513+10:00\" level=debug msg=\"Unable to determine container for containers\"",
+"May 10 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630735545+10:00\" level=debug msg=\"{Action=json, LoginUID=12345678, PID=21075}\"",
+"May 10 04:00:00 localhost systemd: Started Docker Cleanup.",
+"May 10 04:00:00 localhost systemd: Starting Docker Cleanup..."]
+fixtures/log-file.txt--- -format json -order alpha -separators ----------------------------------------------------------------------------------------------------
+{"May 10" : 
+    {" 03:17:06 localhost systemd" : 
+        [": Removed slice User Slice of root",
+        ": Stopping User Slice of root"],
+    " 04:00:00 localhost" : 
+        {" dockerd-current: time=\"2020-05-10T04:00:00" : 
+            [".629849861+10:00\" level=debug msg=\"Calling GET /_ping",
+            ".629948000+10:00\" level=debug msg=\"Unable to determine container for",
+            ".630103455+10:00\" level=debug msg=\"{Action=_ping, LoginUID=12345678, PID=21075",
+            ".630684502+10:00\" level=debug msg=\"Calling GET /v1.26/containers/json?all=1\u0026filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D",
+            ".630704513+10:00\" level=debug msg=\"Unable to determine container for containers",
+            ".630735545+10:00\" level=debug msg=\"{Action=json, LoginUID=12345678, PID=21075"],
+        " systemd" : 
+            [": Started Docker Cleanup",
+            ": Starting Docker Cleanup"]}}}
+fixtures/log-file.txt--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
+{"May 10" : 
+    {"03:17:06 localhost systemd" : 
+        {"Removed slice User Slice of root" : 
+            {"_count_" : 1},
+        "Stopping User Slice of root" : 
+            {"_count_" : 1},
+        "_count_" : 2},
+    "04:00:00 localhost" : 
+        {"_count_" : 8,
+        "dockerd-current: time=\"2020-05-10T04:00:00" : 
+            {"629849861+10:00\" level=debug msg=\"Calling GET /_ping" : 
+                {"_count_" : 1},
+            "629948000+10:00\" level=debug msg=\"Unable to determine container for" : 
+                {"_count_" : 1},
+            "630103455+10:00\" level=debug msg=\"{Action=_ping, LoginUID=12345678, PID=21075" : 
+                {"_count_" : 1},
+            "630684502+10:00\" level=debug msg=\"Calling GET /v1.26/containers/json?all=1\u0026filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D" : 
+                {"_count_" : 1},
+            "630704513+10:00\" level=debug msg=\"Unable to determine container for containers" : 
+                {"_count_" : 1},
+            "630735545+10:00\" level=debug msg=\"{Action=json, LoginUID=12345678, PID=21075" : 
+                {"_count_" : 1},
+            "_count_" : 6},
+        "systemd" : 
+            {"Started Docker Cleanup" : 
+                {"_count_" : 1},
+            "Starting Docker Cleanup" : 
+                {"_count_" : 1},
+            "_count_" : 2}},
+    "_count_" : 10},
+"_count_" : 1}
+fixtures/log-file.txt--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
+{"May 10" : 
+    [" 03:17:06 localhost systemd: Removed slice User Slice of root",
+    " 03:17:06 localhost systemd: Stopping User Slice of root",
+    " 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.629849861+10:00\" level=debug msg=\"Calling GET /_ping",
+    " 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.629948000+10:00\" level=debug msg=\"Unable to determine container for",
+    " 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630103455+10:00\" level=debug msg=\"{Action=_ping, LoginUID=12345678, PID=21075",
+    " 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630684502+10:00\" level=debug msg=\"Calling GET /v1.26/containers/json?all=1\u0026filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D",
+    " 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630704513+10:00\" level=debug msg=\"Unable to determine container for containers",
+    " 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630735545+10:00\" level=debug msg=\"{Action=json, LoginUID=12345678, PID=21075",
+    " 04:00:00 localhost systemd: Started Docker Cleanup",
+    " 04:00:00 localhost systemd: Starting Docker Cleanup"]}
+fixtures/log-file.txt--- -format json -order alpha -depth 3 ----------------------------------------------------------------------------------------------------
+{"May 10" : 
+    {"03:17:06 localhost systemd" : 
+        ["Removed slice User Slice of root",
+        "Stopping User Slice of root"],
+    "04:00:00 localhost" : 
+        {"dockerd-current: time=\"2020-05-10T04:00:00" : null,
+        "systemd" : null}}}
+fixtures/log-file.txt--- -format json -order alpha -no-fold ----------------------------------------------------------------------------------------------------
 {"May" : 
     {"10" : 
         {"03" : 
@@ -1681,384 +1597,6 @@ fixtures/log-file.txt--- -format json -order alpha  ----------------------------
                                 {"Docker" : "Cleanup"},
                             "Starting" : 
                                 {"Docker" : "Cleanup"}}}}}}}}}
-fixtures/log-file.txt--- -format json -order alpha -breaks / ----------------------------------------------------------------------------------------------------
-["May 10 03:17:06 localhost systemd: Removed slice User Slice of root.",
-"May 10 03:17:06 localhost systemd: Stopping User Slice of root.",
-{"May 10 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.629849861+10:00\" level=debug msg=\"Calling GET " : "_ping\""},
-{"May 10 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.629948000+10:00\" level=debug msg=\"Unable to determine container for " : "\""},
-"May 10 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630103455+10:00\" level=debug msg=\"{Action=_ping, LoginUID=12345678, PID=21075}\"",
-{"May 10 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630684502+10:00\" level=debug msg=\"Calling GET " : 
-    {"v1.26" : 
-        {"containers" : "json?all=1\u0026filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D\""}}},
-"May 10 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630704513+10:00\" level=debug msg=\"Unable to determine container for containers\"",
-"May 10 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630735545+10:00\" level=debug msg=\"{Action=json, LoginUID=12345678, PID=21075}\"",
-"May 10 04:00:00 localhost systemd: Started Docker Cleanup.",
-"May 10 04:00:00 localhost systemd: Starting Docker Cleanup..."]
-fixtures/log-file.txt--- -format json -order alpha -separators ----------------------------------------------------------------------------------------------------
-{"May" : 
-    {" 10" : 
-        {" 03" : 
-            {":17" : 
-                {":06" : 
-                    {" localhost" : 
-                        {" systemd" : 
-                            {": Removed" : 
-                                {" slice" : 
-                                    {" User" : 
-                                        {" Slice" : 
-                                            {" of" : " root"}}}},
-                            ": Stopping" : 
-                                {" User" : 
-                                    {" Slice" : 
-                                        {" of" : " root"}}}}}}}},
-        " 04" : 
-            {":00" : 
-                {":00" : 
-                    {" localhost" : 
-                        {" dockerd" : 
-                            {"-current" : 
-                                {": time" : 
-                                    {"=\"2020" : 
-                                        {"-05" : 
-                                            {"-10T04" : 
-                                                {":00" : 
-                                                    {":00" : 
-                                                        {".629849861" : 
-                                                            {"+10" : 
-                                                                {":00" : 
-                                                                    {"\" level" : 
-                                                                        {"=debug" : 
-                                                                            {" msg" : 
-                                                                                {"=\"Calling" : 
-                                                                                    {" GET" : " /_ping"}}}}}}},
-                                                        ".629948000" : 
-                                                            {"+10" : 
-                                                                {":00" : 
-                                                                    {"\" level" : 
-                                                                        {"=debug" : 
-                                                                            {" msg" : 
-                                                                                {"=\"Unable" : 
-                                                                                    {" to" : 
-                                                                                        {" determine" : 
-                                                                                            {" container" : " for"}}}}}}}}},
-                                                        ".630103455" : 
-                                                            {"+10" : 
-                                                                {":00" : 
-                                                                    {"\" level" : 
-                                                                        {"=debug" : 
-                                                                            {" msg" : 
-                                                                                {"=\"{Action" : 
-                                                                                    {"=_ping" : 
-                                                                                        {", LoginUID" : 
-                                                                                            {"=12345678" : 
-                                                                                                {", PID" : "=21075"}}}}}}}}}},
-                                                        ".630684502" : 
-                                                            {"+10" : 
-                                                                {":00" : 
-                                                                    {"\" level" : 
-                                                                        {"=debug" : 
-                                                                            {" msg" : 
-                                                                                {"=\"Calling" : 
-                                                                                    {" GET" : 
-                                                                                        {" /v1" : 
-                                                                                            {".26" : 
-                                                                                                {"/containers" : 
-                                                                                                    {"/json" : 
-                                                                                                        {"?all" : 
-                                                                                                            {"=1" : 
-                                                                                                                {"\u0026filters" : 
-                                                                                                                    {"=%7B" : 
-                                                                                                                        {"%22status" : 
-                                                                                                                            {"%22" : 
-                                                                                                                                {"%3A" : 
-                                                                                                                                    {"%7B" : 
-                                                                                                                                        {"%22dead" : 
-                                                                                                                                            {"%22" : 
-                                                                                                                                                {"%3Atrue" : 
-                                                                                                                                                    {"%7D" : "%7D"}}}}}}}}}}}}}}}}}}}}}}},
-                                                        ".630704513" : 
-                                                            {"+10" : 
-                                                                {":00" : 
-                                                                    {"\" level" : 
-                                                                        {"=debug" : 
-                                                                            {" msg" : 
-                                                                                {"=\"Unable" : 
-                                                                                    {" to" : 
-                                                                                        {" determine" : 
-                                                                                            {" container" : 
-                                                                                                {" for" : " containers"}}}}}}}}}},
-                                                        ".630735545" : 
-                                                            {"+10" : 
-                                                                {":00" : 
-                                                                    {"\" level" : 
-                                                                        {"=debug" : 
-                                                                            {" msg" : 
-                                                                                {"=\"{Action" : 
-                                                                                    {"=json" : 
-                                                                                        {", LoginUID" : 
-                                                                                            {"=12345678" : 
-                                                                                                {", PID" : "=21075"}}}}}}}}}}}}}}}}}},
-                        " systemd" : 
-                            {": Started" : 
-                                {" Docker" : " Cleanup"},
-                            ": Starting" : 
-                                {" Docker" : " Cleanup"}}}}}}}}}
-fixtures/log-file.txt--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
-{"May" : 
-    {"10" : 
-        {"03" : 
-            {"17" : 
-                {"06" : 
-                    {"_count_" : 2,
-                    "localhost" : 
-                        {"_count_" : 2,
-                        "systemd" : 
-                            {"Removed" : 
-                                {"_count_" : 1,
-                                "slice" : 
-                                    {"User" : 
-                                        {"Slice" : 
-                                            {"_count_" : 1,
-                                            "of" : 
-                                                {"_count_" : 1,
-                                                "root" : 
-                                                    {"_count_" : 1}}},
-                                        "_count_" : 1},
-                                    "_count_" : 1}},
-                            "Stopping" : 
-                                {"User" : 
-                                    {"Slice" : 
-                                        {"_count_" : 1,
-                                        "of" : 
-                                            {"_count_" : 1,
-                                            "root" : 
-                                                {"_count_" : 1}}},
-                                    "_count_" : 1},
-                                "_count_" : 1},
-                            "_count_" : 2}}},
-                "_count_" : 2},
-            "_count_" : 2},
-        "04" : 
-            {"00" : 
-                {"00" : 
-                    {"_count_" : 8,
-                    "localhost" : 
-                        {"_count_" : 8,
-                        "dockerd" : 
-                            {"_count_" : 6,
-                            "current" : 
-                                {"_count_" : 6,
-                                "time" : 
-                                    {"2020" : 
-                                        {"05" : 
-                                            {"10T04" : 
-                                                {"00" : 
-                                                    {"00" : 
-                                                        {"629849861" : 
-                                                            {"10" : 
-                                                                {"00" : 
-                                                                    {"_count_" : 1,
-                                                                    "level" : 
-                                                                        {"_count_" : 1,
-                                                                        "debug" : 
-                                                                            {"_count_" : 1,
-                                                                            "msg" : 
-                                                                                {"Calling" : 
-                                                                                    {"GET" : 
-                                                                                        {"_count_" : 1,
-                                                                                        "ping" : 
-                                                                                            {"_count_" : 1}},
-                                                                                    "_count_" : 1},
-                                                                                "_count_" : 1}}}},
-                                                                "_count_" : 1},
-                                                            "_count_" : 1},
-                                                        "629948000" : 
-                                                            {"10" : 
-                                                                {"00" : 
-                                                                    {"_count_" : 1,
-                                                                    "level" : 
-                                                                        {"_count_" : 1,
-                                                                        "debug" : 
-                                                                            {"_count_" : 1,
-                                                                            "msg" : 
-                                                                                {"Unable" : 
-                                                                                    {"_count_" : 1,
-                                                                                    "to" : 
-                                                                                        {"_count_" : 1,
-                                                                                        "determine" : 
-                                                                                            {"_count_" : 1,
-                                                                                            "container" : 
-                                                                                                {"_count_" : 1,
-                                                                                                "for" : 
-                                                                                                    {"_count_" : 1}}}}},
-                                                                                "_count_" : 1}}}},
-                                                                "_count_" : 1},
-                                                            "_count_" : 1},
-                                                        "630103455" : 
-                                                            {"10" : 
-                                                                {"00" : 
-                                                                    {"_count_" : 1,
-                                                                    "level" : 
-                                                                        {"_count_" : 1,
-                                                                        "debug" : 
-                                                                            {"_count_" : 1,
-                                                                            "msg" : 
-                                                                                {"Action" : 
-                                                                                    {"_count_" : 1,
-                                                                                    "ping" : 
-                                                                                        {"LoginUID" : 
-                                                                                            {"12345678" : 
-                                                                                                {"PID" : 
-                                                                                                    {"21075" : 
-                                                                                                        {"_count_" : 1},
-                                                                                                    "_count_" : 1},
-                                                                                                "_count_" : 1},
-                                                                                            "_count_" : 1},
-                                                                                        "_count_" : 1}},
-                                                                                "_count_" : 1}}}},
-                                                                "_count_" : 1},
-                                                            "_count_" : 1},
-                                                        "630684502" : 
-                                                            {"10" : 
-                                                                {"00" : 
-                                                                    {"_count_" : 1,
-                                                                    "level" : 
-                                                                        {"_count_" : 1,
-                                                                        "debug" : 
-                                                                            {"_count_" : 1,
-                                                                            "msg" : 
-                                                                                {"Calling" : 
-                                                                                    {"GET" : 
-                                                                                        {"_count_" : 1,
-                                                                                        "v1" : 
-                                                                                            {"26" : 
-                                                                                                {"_count_" : 1,
-                                                                                                "containers" : 
-                                                                                                    {"_count_" : 1,
-                                                                                                    "json" : 
-                                                                                                        {"_count_" : 1,
-                                                                                                        "all" : 
-                                                                                                            {"1" : 
-                                                                                                                {"_count_" : 1,
-                                                                                                                "filters" : 
-                                                                                                                    {"7B" : 
-                                                                                                                        {"22status" : 
-                                                                                                                            {"22" : 
-                                                                                                                                {"3A" : 
-                                                                                                                                    {"7B" : 
-                                                                                                                                        {"22dead" : 
-                                                                                                                                            {"22" : 
-                                                                                                                                                {"3Atrue" : 
-                                                                                                                                                    {"7D" : 
-                                                                                                                                                        {"7D" : 
-                                                                                                                                                            {"_count_" : 1},
-                                                                                                                                                        "_count_" : 1},
-                                                                                                                                                    "_count_" : 1},
-                                                                                                                                                "_count_" : 1},
-                                                                                                                                            "_count_" : 1},
-                                                                                                                                        "_count_" : 1},
-                                                                                                                                    "_count_" : 1},
-                                                                                                                                "_count_" : 1},
-                                                                                                                            "_count_" : 1},
-                                                                                                                        "_count_" : 1},
-                                                                                                                    "_count_" : 1}},
-                                                                                                            "_count_" : 1}}}},
-                                                                                            "_count_" : 1}},
-                                                                                    "_count_" : 1},
-                                                                                "_count_" : 1}}}},
-                                                                "_count_" : 1},
-                                                            "_count_" : 1},
-                                                        "630704513" : 
-                                                            {"10" : 
-                                                                {"00" : 
-                                                                    {"_count_" : 1,
-                                                                    "level" : 
-                                                                        {"_count_" : 1,
-                                                                        "debug" : 
-                                                                            {"_count_" : 1,
-                                                                            "msg" : 
-                                                                                {"Unable" : 
-                                                                                    {"_count_" : 1,
-                                                                                    "to" : 
-                                                                                        {"_count_" : 1,
-                                                                                        "determine" : 
-                                                                                            {"_count_" : 1,
-                                                                                            "container" : 
-                                                                                                {"_count_" : 1,
-                                                                                                "for" : 
-                                                                                                    {"_count_" : 1,
-                                                                                                    "containers" : 
-                                                                                                        {"_count_" : 1}}}}}},
-                                                                                "_count_" : 1}}}},
-                                                                "_count_" : 1},
-                                                            "_count_" : 1},
-                                                        "630735545" : 
-                                                            {"10" : 
-                                                                {"00" : 
-                                                                    {"_count_" : 1,
-                                                                    "level" : 
-                                                                        {"_count_" : 1,
-                                                                        "debug" : 
-                                                                            {"_count_" : 1,
-                                                                            "msg" : 
-                                                                                {"Action" : 
-                                                                                    {"_count_" : 1,
-                                                                                    "json" : 
-                                                                                        {"LoginUID" : 
-                                                                                            {"12345678" : 
-                                                                                                {"PID" : 
-                                                                                                    {"21075" : 
-                                                                                                        {"_count_" : 1},
-                                                                                                    "_count_" : 1},
-                                                                                                "_count_" : 1},
-                                                                                            "_count_" : 1},
-                                                                                        "_count_" : 1}},
-                                                                                "_count_" : 1}}}},
-                                                                "_count_" : 1},
-                                                            "_count_" : 1},
-                                                        "_count_" : 6},
-                                                    "_count_" : 6},
-                                                "_count_" : 6},
-                                            "_count_" : 6},
-                                        "_count_" : 6},
-                                    "_count_" : 6}}},
-                        "systemd" : 
-                            {"Started" : 
-                                {"Docker" : 
-                                    {"Cleanup" : 
-                                        {"_count_" : 1},
-                                    "_count_" : 1},
-                                "_count_" : 1},
-                            "Starting" : 
-                                {"Docker" : 
-                                    {"Cleanup" : 
-                                        {"_count_" : 1},
-                                    "_count_" : 1},
-                                "_count_" : 1},
-                            "_count_" : 2}}},
-                "_count_" : 8},
-            "_count_" : 8},
-        "_count_" : 10},
-    "_count_" : 10},
-"_count_" : 1}
-fixtures/log-file.txt--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
-{"May" : 
-    {"10" : 
-        [" 03:17:06 localhost systemd: Removed slice User Slice of root",
-        " 03:17:06 localhost systemd: Stopping User Slice of root",
-        " 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.629849861+10:00\" level=debug msg=\"Calling GET /_ping",
-        " 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.629948000+10:00\" level=debug msg=\"Unable to determine container for",
-        " 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630103455+10:00\" level=debug msg=\"{Action=_ping, LoginUID=12345678, PID=21075",
-        " 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630684502+10:00\" level=debug msg=\"Calling GET /v1.26/containers/json?all=1\u0026filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D",
-        " 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630704513+10:00\" level=debug msg=\"Unable to determine container for containers",
-        " 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630735545+10:00\" level=debug msg=\"{Action=json, LoginUID=12345678, PID=21075",
-        " 04:00:00 localhost systemd: Started Docker Cleanup",
-        " 04:00:00 localhost systemd: Starting Docker Cleanup"]}}
-fixtures/log-file.txt--- -format json -order alpha -depth 2 ----------------------------------------------------------------------------------------------------
-{"May" : 
-    {"10" : 
-        {"03" : null,
-        "04" : null}}}
 fixtures/morse.txt---  ----------------------------------------------------------------------------------------------------
 A
 B
@@ -2263,7 +1801,21 @@ fixtures/morse.txt--- -format json -order alpha -level 2 -----------------------
 "K",
 "L",
 "M"]
-fixtures/morse.txt--- -format json -order alpha -depth 2 ----------------------------------------------------------------------------------------------------
+fixtures/morse.txt--- -format json -order alpha -depth 3 ----------------------------------------------------------------------------------------------------
+["A",
+"B",
+"C",
+"D",
+"E",
+"F",
+"G",
+"H",
+"I",
+"J",
+"K",
+"L",
+"M"]
+fixtures/morse.txt--- -format json -order alpha -no-fold ----------------------------------------------------------------------------------------------------
 ["A",
 "B",
 "C",
@@ -4604,6 +4156,438 @@ authority
 fixtures/movies.csv--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
 {"authority" : 
     {"imdb" : 
+        ["name/nm0036934,name,Greg Aronowitz",
+        {"title" : 
+            {"tt0105001" : 
+                ["directed_by,/en/irwin_winkler",
+                "name,Night and the City",
+                {"starring,/en" : 
+                    ["jessica_lange",
+                    "robert_de_niro"]}],
+            "tt0486761" : 
+                [{"directed_by" : 
+                    ["en/tony_craig",
+                    "guid/9202a8c04000641f80000000010ff1da"]},
+                "name,Leroy \u0026 Stitch",
+                {"starring,/en" : 
+                    ["chris_sanders",
+                    "daveigh_chase",
+                    "david_ogden_stiers",
+                    "jeff_bennett",
+                    {"kevin" : 
+                        ["mcdonald",
+                        "michael_richardson"]},
+                    "rob_paulsen",
+                    "tara_strong",
+                    "tia_carrere",
+                    "zoe_caldwell"]}]}}],
+    "netflix/movie/70062973" : 
+        ["directed_by,/en/michael_lindsay-hogg",
+        "name,Ivana Trump's For Love Alone",
+        {"starring,/en" : 
+            ["madeline_kahn",
+            "stephen_collins"]}]},
+"en" : 
+    [{"bad_taste" : 
+        ["directed_by,/en/peter_jackson",
+        "name,Bad Taste",
+        {"starring" : 
+            ["en/peter_jackson",
+            {"guid" : 
+                ["9202a8c04000641f80000000010cf91e",
+                "9202a8c04000641f80000000010cf924",
+                "9202a8c04000641f80000000010cf92b",
+                "9202a8c04000641f800000000434a77d"]}]}]},
+    "candy_barr,name,Candy Barr",
+    "david_greene,name,David Greene",
+    "gymkata,name,Gymkata",
+    "hiroyuki_okiura,name,Hiroyuki Okiura",
+    "john_glen,name,John Glen",
+    "karl_maka,name,Karl Maka",
+    "masahiko_tsugawa,name,Masahiko Tsugawa",
+    "megan_mullally,name,Megan Mullally",
+    {"milou_en_mai" : 
+        ["directed_by,/en/louis_malle",
+        "name,Milou en mai",
+        {"starring,/en" : 
+            ["dominique_blanc",
+            "harriet_walter",
+            "michel_piccoli",
+            "miou-miou"]}]},
+    "oscar_homolka,name,Oscar Homolka",
+    "sebastian_arcelus,name,Sebastian Arcelus"],
+"guid" : 
+    ["9202a8c04000641f80000000010de9bd,name,Jacques Martineau",
+    "9202a8c04000641f80000000010fa2fc,name,Yoshiko Ohta",
+    "9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy",
+    "9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco",
+    "9202a8c04000641f80000000056d973b,name,Kate Dickie"]}
+fixtures/movies.csv--- -format json -order alpha -breaks / ----------------------------------------------------------------------------------------------------
+{"authority" : 
+    {"imdb" : 
+        ["name/nm0036934,name,Greg Aronowitz",
+        {"title" : 
+            ["tt0105001,directed_by,/en/irwin_winkler",
+            "tt0105001,name,Night and the City",
+            {"tt0105001,starring,/en" : 
+                ["jessica_lange",
+                "robert_de_niro"]},
+            {"tt0486761,directed_by," : 
+                ["en/tony_craig",
+                "guid/9202a8c04000641f80000000010ff1da"]},
+            "tt0486761,name,Leroy \u0026 Stitch",
+            {"tt0486761,starring,/en" : 
+                ["chris_sanders",
+                "daveigh_chase",
+                "david_ogden_stiers",
+                "jeff_bennett",
+                "kevin_mcdonald",
+                "kevin_michael_richardson",
+                "rob_paulsen",
+                "tara_strong",
+                "tia_carrere",
+                "zoe_caldwell"]}]}],
+    "netflix/movie" : 
+        ["70062973,directed_by,/en/michael_lindsay-hogg",
+        "70062973,name,Ivana Trump's For Love Alone",
+        {"70062973,starring,/en" : 
+            ["madeline_kahn",
+            "stephen_collins"]}]},
+"en" : 
+    ["bad_taste,directed_by,/en/peter_jackson",
+    "bad_taste,name,Bad Taste",
+    {"bad_taste,starring," : 
+        ["en/peter_jackson",
+        {"guid" : 
+            ["9202a8c04000641f80000000010cf91e",
+            "9202a8c04000641f80000000010cf924",
+            "9202a8c04000641f80000000010cf92b",
+            "9202a8c04000641f800000000434a77d"]}]},
+    "candy_barr,name,Candy Barr",
+    "david_greene,name,David Greene",
+    "gymkata,name,Gymkata",
+    "hiroyuki_okiura,name,Hiroyuki Okiura",
+    "john_glen,name,John Glen",
+    "karl_maka,name,Karl Maka",
+    "masahiko_tsugawa,name,Masahiko Tsugawa",
+    "megan_mullally,name,Megan Mullally",
+    "milou_en_mai,directed_by,/en/louis_malle",
+    "milou_en_mai,name,Milou en mai",
+    {"milou_en_mai,starring,/en" : 
+        ["dominique_blanc",
+        "harriet_walter",
+        "michel_piccoli",
+        "miou-miou"]},
+    "oscar_homolka,name,Oscar Homolka",
+    "sebastian_arcelus,name,Sebastian Arcelus"],
+"guid" : 
+    ["9202a8c04000641f80000000010de9bd,name,Jacques Martineau",
+    "9202a8c04000641f80000000010fa2fc,name,Yoshiko Ohta",
+    "9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy",
+    "9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco",
+    "9202a8c04000641f80000000056d973b,name,Kate Dickie"]}
+fixtures/movies.csv--- -format json -order alpha -separators ----------------------------------------------------------------------------------------------------
+{"/authority" : 
+    {"/imdb" : 
+        ["/name/nm0036934,name,Greg Aronowitz",
+        {"/title" : 
+            {"/tt0105001" : 
+                [",directed_by,/en/irwin_winkler",
+                ",name,Night and the City",
+                {",starring,/en" : 
+                    ["/jessica_lange",
+                    "/robert_de_niro"]}],
+            "/tt0486761" : 
+                [{",directed_by" : 
+                    [",/en/tony_craig",
+                    ",/guid/9202a8c04000641f80000000010ff1da"]},
+                ",name,Leroy \u0026 Stitch",
+                {",starring,/en" : 
+                    ["/chris_sanders",
+                    "/daveigh_chase",
+                    "/david_ogden_stiers",
+                    "/jeff_bennett",
+                    {"/kevin" : 
+                        ["_mcdonald",
+                        "_michael_richardson"]},
+                    "/rob_paulsen",
+                    "/tara_strong",
+                    "/tia_carrere",
+                    "/zoe_caldwell"]}]}}],
+    "/netflix/movie/70062973" : 
+        [",directed_by,/en/michael_lindsay-hogg",
+        ",name,Ivana Trump's For Love Alone",
+        {",starring,/en" : 
+            ["/madeline_kahn",
+            "/stephen_collins"]}]},
+"/en" : 
+    [{"/bad_taste" : 
+        [",directed_by,/en/peter_jackson",
+        ",name,Bad Taste",
+        {",starring" : 
+            [",/en/peter_jackson",
+            {",/guid" : 
+                ["/9202a8c04000641f80000000010cf91e",
+                "/9202a8c04000641f80000000010cf924",
+                "/9202a8c04000641f80000000010cf92b",
+                "/9202a8c04000641f800000000434a77d"]}]}]},
+    "/candy_barr,name,Candy Barr",
+    "/david_greene,name,David Greene",
+    "/gymkata,name,Gymkata",
+    "/hiroyuki_okiura,name,Hiroyuki Okiura",
+    "/john_glen,name,John Glen",
+    "/karl_maka,name,Karl Maka",
+    "/masahiko_tsugawa,name,Masahiko Tsugawa",
+    "/megan_mullally,name,Megan Mullally",
+    {"/milou_en_mai" : 
+        [",directed_by,/en/louis_malle",
+        ",name,Milou en mai",
+        {",starring,/en" : 
+            ["/dominique_blanc",
+            "/harriet_walter",
+            "/michel_piccoli",
+            "/miou-miou"]}]},
+    "/oscar_homolka,name,Oscar Homolka",
+    "/sebastian_arcelus,name,Sebastian Arcelus"],
+"/guid" : 
+    ["/9202a8c04000641f80000000010de9bd,name,Jacques Martineau",
+    "/9202a8c04000641f80000000010fa2fc,name,Yoshiko Ohta",
+    "/9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy",
+    "/9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco",
+    "/9202a8c04000641f80000000056d973b,name,Kate Dickie"]}
+fixtures/movies.csv--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
+{"_count_" : 1,
+"authority" : 
+    {"_count_" : 22,
+    "imdb" : 
+        {"_count_" : 18,
+        "name/nm0036934,name,Greg Aronowitz" : 
+            {"_count_" : 1},
+        "title" : 
+            {"_count_" : 17,
+            "tt0105001" : 
+                {"_count_" : 4,
+                "directed_by,/en/irwin_winkler" : 
+                    {"_count_" : 1},
+                "name,Night and the City" : 
+                    {"_count_" : 1},
+                "starring,/en" : 
+                    {"_count_" : 2,
+                    "jessica_lange" : 
+                        {"_count_" : 1},
+                    "robert_de_niro" : 
+                        {"_count_" : 1}}},
+            "tt0486761" : 
+                {"_count_" : 13,
+                "directed_by" : 
+                    {"_count_" : 2,
+                    "en/tony_craig" : 
+                        {"_count_" : 1},
+                    "guid/9202a8c04000641f80000000010ff1da" : 
+                        {"_count_" : 1}},
+                "name,Leroy \u0026 Stitch" : 
+                    {"_count_" : 1},
+                "starring,/en" : 
+                    {"_count_" : 10,
+                    "chris_sanders" : 
+                        {"_count_" : 1},
+                    "daveigh_chase" : 
+                        {"_count_" : 1},
+                    "david_ogden_stiers" : 
+                        {"_count_" : 1},
+                    "jeff_bennett" : 
+                        {"_count_" : 1},
+                    "kevin" : 
+                        {"_count_" : 2,
+                        "mcdonald" : 
+                            {"_count_" : 1},
+                        "michael_richardson" : 
+                            {"_count_" : 1}},
+                    "rob_paulsen" : 
+                        {"_count_" : 1},
+                    "tara_strong" : 
+                        {"_count_" : 1},
+                    "tia_carrere" : 
+                        {"_count_" : 1},
+                    "zoe_caldwell" : 
+                        {"_count_" : 1}}}}},
+    "netflix/movie/70062973" : 
+        {"_count_" : 4,
+        "directed_by,/en/michael_lindsay-hogg" : 
+            {"_count_" : 1},
+        "name,Ivana Trump's For Love Alone" : 
+            {"_count_" : 1},
+        "starring,/en" : 
+            {"_count_" : 2,
+            "madeline_kahn" : 
+                {"_count_" : 1},
+            "stephen_collins" : 
+                {"_count_" : 1}}}},
+"en" : 
+    {"_count_" : 23,
+    "bad_taste" : 
+        {"_count_" : 7,
+        "directed_by,/en/peter_jackson" : 
+            {"_count_" : 1},
+        "name,Bad Taste" : 
+            {"_count_" : 1},
+        "starring" : 
+            {"_count_" : 5,
+            "en/peter_jackson" : 
+                {"_count_" : 1},
+            "guid" : 
+                {"9202a8c04000641f80000000010cf91e" : 
+                    {"_count_" : 1},
+                "9202a8c04000641f80000000010cf924" : 
+                    {"_count_" : 1},
+                "9202a8c04000641f80000000010cf92b" : 
+                    {"_count_" : 1},
+                "9202a8c04000641f800000000434a77d" : 
+                    {"_count_" : 1},
+                "_count_" : 4}}},
+    "candy_barr,name,Candy Barr" : 
+        {"_count_" : 1},
+    "david_greene,name,David Greene" : 
+        {"_count_" : 1},
+    "gymkata,name,Gymkata" : 
+        {"_count_" : 1},
+    "hiroyuki_okiura,name,Hiroyuki Okiura" : 
+        {"_count_" : 1},
+    "john_glen,name,John Glen" : 
+        {"_count_" : 1},
+    "karl_maka,name,Karl Maka" : 
+        {"_count_" : 1},
+    "masahiko_tsugawa,name,Masahiko Tsugawa" : 
+        {"_count_" : 1},
+    "megan_mullally,name,Megan Mullally" : 
+        {"_count_" : 1},
+    "milou_en_mai" : 
+        {"_count_" : 6,
+        "directed_by,/en/louis_malle" : 
+            {"_count_" : 1},
+        "name,Milou en mai" : 
+            {"_count_" : 1},
+        "starring,/en" : 
+            {"_count_" : 4,
+            "dominique_blanc" : 
+                {"_count_" : 1},
+            "harriet_walter" : 
+                {"_count_" : 1},
+            "michel_piccoli" : 
+                {"_count_" : 1},
+            "miou-miou" : 
+                {"_count_" : 1}}},
+    "oscar_homolka,name,Oscar Homolka" : 
+        {"_count_" : 1},
+    "sebastian_arcelus,name,Sebastian Arcelus" : 
+        {"_count_" : 1}},
+"guid" : 
+    {"9202a8c04000641f80000000010de9bd,name,Jacques Martineau" : 
+        {"_count_" : 1},
+    "9202a8c04000641f80000000010fa2fc,name,Yoshiko Ohta" : 
+        {"_count_" : 1},
+    "9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy" : 
+        {"_count_" : 1},
+    "9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco" : 
+        {"_count_" : 1},
+    "9202a8c04000641f80000000056d973b,name,Kate Dickie" : 
+        {"_count_" : 1},
+    "_count_" : 5}}
+fixtures/movies.csv--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
+{"authority" : 
+    {"imdb" : 
+        ["/name/nm0036934,name,Greg Aronowitz",
+        "/title/tt0105001,directed_by,/en/irwin_winkler",
+        "/title/tt0105001,name,Night and the City",
+        "/title/tt0105001,starring,/en/jessica_lange",
+        "/title/tt0105001,starring,/en/robert_de_niro",
+        "/title/tt0486761,directed_by,/en/tony_craig",
+        "/title/tt0486761,directed_by,/guid/9202a8c04000641f80000000010ff1da",
+        "/title/tt0486761,name,Leroy \u0026 Stitch",
+        "/title/tt0486761,starring,/en/chris_sanders",
+        "/title/tt0486761,starring,/en/daveigh_chase",
+        "/title/tt0486761,starring,/en/david_ogden_stiers",
+        "/title/tt0486761,starring,/en/jeff_bennett",
+        "/title/tt0486761,starring,/en/kevin_mcdonald",
+        "/title/tt0486761,starring,/en/kevin_michael_richardson",
+        "/title/tt0486761,starring,/en/rob_paulsen",
+        "/title/tt0486761,starring,/en/tara_strong",
+        "/title/tt0486761,starring,/en/tia_carrere",
+        "/title/tt0486761,starring,/en/zoe_caldwell"],
+    "netflix" : 
+        ["/movie/70062973,directed_by,/en/michael_lindsay-hogg",
+        "/movie/70062973,name,Ivana Trump's For Love Alone",
+        "/movie/70062973,starring,/en/madeline_kahn",
+        "/movie/70062973,starring,/en/stephen_collins"]},
+"en" : 
+    [{"bad" : 
+        ["_taste,directed_by,/en/peter_jackson",
+        "_taste,name,Bad Taste",
+        "_taste,starring,/en/peter_jackson",
+        "_taste,starring,/guid/9202a8c04000641f80000000010cf91e",
+        "_taste,starring,/guid/9202a8c04000641f80000000010cf924",
+        "_taste,starring,/guid/9202a8c04000641f80000000010cf92b",
+        "_taste,starring,/guid/9202a8c04000641f800000000434a77d"]},
+    "candy_barr,name,Candy Barr",
+    "david_greene,name,David Greene",
+    "gymkata,name,Gymkata",
+    "hiroyuki_okiura,name,Hiroyuki Okiura",
+    "john_glen,name,John Glen",
+    "karl_maka,name,Karl Maka",
+    "masahiko_tsugawa,name,Masahiko Tsugawa",
+    "megan_mullally,name,Megan Mullally",
+    {"milou" : 
+        ["_en_mai,directed_by,/en/louis_malle",
+        "_en_mai,name,Milou en mai",
+        "_en_mai,starring,/en/dominique_blanc",
+        "_en_mai,starring,/en/harriet_walter",
+        "_en_mai,starring,/en/michel_piccoli",
+        "_en_mai,starring,/en/miou-miou"]},
+    "oscar_homolka,name,Oscar Homolka",
+    "sebastian_arcelus,name,Sebastian Arcelus"],
+"guid" : 
+    ["9202a8c04000641f80000000010de9bd,name,Jacques Martineau",
+    "9202a8c04000641f80000000010fa2fc,name,Yoshiko Ohta",
+    "9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy",
+    "9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco",
+    "9202a8c04000641f80000000056d973b,name,Kate Dickie"]}
+fixtures/movies.csv--- -format json -order alpha -depth 3 ----------------------------------------------------------------------------------------------------
+{"authority" : 
+    {"imdb" : 
+        ["name/nm0036934,name,Greg Aronowitz",
+        {"title" : null}],
+    "netflix/movie/70062973" : 
+        ["directed_by,/en/michael_lindsay-hogg",
+        "name,Ivana Trump's For Love Alone",
+        {"starring,/en" : null}]},
+"en" : 
+    [{"bad_taste" : 
+        ["directed_by,/en/peter_jackson",
+        "name,Bad Taste",
+        {"starring" : null}]},
+    "candy_barr,name,Candy Barr",
+    "david_greene,name,David Greene",
+    "gymkata,name,Gymkata",
+    "hiroyuki_okiura,name,Hiroyuki Okiura",
+    "john_glen,name,John Glen",
+    "karl_maka,name,Karl Maka",
+    "masahiko_tsugawa,name,Masahiko Tsugawa",
+    "megan_mullally,name,Megan Mullally",
+    {"milou_en_mai" : 
+        ["directed_by,/en/louis_malle",
+        "name,Milou en mai",
+        {"starring,/en" : null}]},
+    "oscar_homolka,name,Oscar Homolka",
+    "sebastian_arcelus,name,Sebastian Arcelus"],
+"guid" : 
+    ["9202a8c04000641f80000000010de9bd,name,Jacques Martineau",
+    "9202a8c04000641f80000000010fa2fc,name,Yoshiko Ohta",
+    "9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy",
+    "9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco",
+    "9202a8c04000641f80000000056d973b,name,Kate Dickie"]}
+fixtures/movies.csv--- -format json -order alpha -no-fold ----------------------------------------------------------------------------------------------------
+{"authority" : 
+    {"imdb" : 
         {"name" : 
             {"nm0036934" : 
                 {"name" : 
@@ -4752,723 +4736,6 @@ fixtures/movies.csv--- -format json -order alpha  ------------------------------
     "9202a8c04000641f80000000056d973b" : 
         {"name" : 
             {"Kate" : "Dickie"}}}}
-fixtures/movies.csv--- -format json -order alpha -breaks / ----------------------------------------------------------------------------------------------------
-{"authority" : 
-    {"imdb" : 
-        {"name" : "nm0036934,name,Greg Aronowitz",
-        "title" : 
-            [{"tt0105001,directed_by," : 
-                {"en" : "irwin_winkler"}},
-            "tt0105001,name,Night and the City",
-            {"tt0105001,starring," : 
-                {"en" : 
-                    ["jessica_lange",
-                    "robert_de_niro"]}},
-            {"tt0486761,directed_by," : 
-                {"en" : "tony_craig",
-                "guid" : "9202a8c04000641f80000000010ff1da"}},
-            "tt0486761,name,Leroy \u0026 Stitch",
-            {"tt0486761,starring," : 
-                {"en" : 
-                    ["chris_sanders",
-                    "daveigh_chase",
-                    "david_ogden_stiers",
-                    "jeff_bennett",
-                    "kevin_mcdonald",
-                    "kevin_michael_richardson",
-                    "rob_paulsen",
-                    "tara_strong",
-                    "tia_carrere",
-                    "zoe_caldwell"]}}]},
-    "netflix" : 
-        {"movie" : 
-            [{"70062973,directed_by," : 
-                {"en" : "michael_lindsay-hogg"}},
-            "70062973,name,Ivana Trump's For Love Alone",
-            {"70062973,starring," : 
-                {"en" : 
-                    ["madeline_kahn",
-                    "stephen_collins"]}}]}},
-"en" : 
-    [{"bad_taste,directed_by," : 
-        {"en" : "peter_jackson"}},
-    "bad_taste,name,Bad Taste",
-    {"bad_taste,starring," : 
-        {"en" : "peter_jackson",
-        "guid" : 
-            ["9202a8c04000641f80000000010cf91e",
-            "9202a8c04000641f80000000010cf924",
-            "9202a8c04000641f80000000010cf92b",
-            "9202a8c04000641f800000000434a77d"]}},
-    "candy_barr,name,Candy Barr",
-    "david_greene,name,David Greene",
-    "gymkata,name,Gymkata",
-    "hiroyuki_okiura,name,Hiroyuki Okiura",
-    "john_glen,name,John Glen",
-    "karl_maka,name,Karl Maka",
-    "masahiko_tsugawa,name,Masahiko Tsugawa",
-    "megan_mullally,name,Megan Mullally",
-    {"milou_en_mai,directed_by," : 
-        {"en" : "louis_malle"}},
-    "milou_en_mai,name,Milou en mai",
-    {"milou_en_mai,starring," : 
-        {"en" : 
-            ["dominique_blanc",
-            "harriet_walter",
-            "michel_piccoli",
-            "miou-miou"]}},
-    "oscar_homolka,name,Oscar Homolka",
-    "sebastian_arcelus,name,Sebastian Arcelus"],
-"guid" : 
-    ["9202a8c04000641f80000000010de9bd,name,Jacques Martineau",
-    "9202a8c04000641f80000000010fa2fc,name,Yoshiko Ohta",
-    "9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy",
-    "9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco",
-    "9202a8c04000641f80000000056d973b,name,Kate Dickie"]}
-fixtures/movies.csv--- -format json -order alpha -separators ----------------------------------------------------------------------------------------------------
-{"/authority" : 
-    {"/imdb" : 
-        {"/name" : 
-            {"/nm0036934" : 
-                {",name" : 
-                    {",Greg" : " Aronowitz"}}},
-        "/title" : 
-            {"/tt0105001" : 
-                {",directed" : 
-                    {"_by" : 
-                        {",/en" : 
-                            {"/irwin" : "_winkler"}}},
-                ",name" : 
-                    {",Night" : 
-                        {" and" : 
-                            {" the" : " City"}}},
-                ",starring" : 
-                    {",/en" : 
-                        {"/jessica" : "_lange",
-                        "/robert" : 
-                            {"_de" : "_niro"}}}},
-            "/tt0486761" : 
-                {",directed" : 
-                    {"_by" : 
-                        {",/en" : 
-                            {"/tony" : "_craig"},
-                        ",/guid" : "/9202a8c04000641f80000000010ff1da"}},
-                ",name" : 
-                    {",Leroy" : " \u0026 Stitch"},
-                ",starring" : 
-                    {",/en" : 
-                        {"/chris" : "_sanders",
-                        "/daveigh" : "_chase",
-                        "/david" : 
-                            {"_ogden" : "_stiers"},
-                        "/jeff" : "_bennett",
-                        "/kevin" : 
-                            ["_mcdonald",
-                            {"_michael" : "_richardson"}],
-                        "/rob" : "_paulsen",
-                        "/tara" : "_strong",
-                        "/tia" : "_carrere",
-                        "/zoe" : "_caldwell"}}}}},
-    "/netflix" : 
-        {"/movie" : 
-            {"/70062973" : 
-                {",directed" : 
-                    {"_by" : 
-                        {",/en" : 
-                            {"/michael" : 
-                                {"_lindsay" : "-hogg"}}}},
-                ",name" : 
-                    {",Ivana" : 
-                        {" Trump" : 
-                            {"'s" : 
-                                {" For" : 
-                                    {" Love" : " Alone"}}}}},
-                ",starring" : 
-                    {",/en" : 
-                        {"/madeline" : "_kahn",
-                        "/stephen" : "_collins"}}}}}},
-"/en" : 
-    {"/bad" : 
-        {"_taste" : 
-            {",directed" : 
-                {"_by" : 
-                    {",/en" : 
-                        {"/peter" : "_jackson"}}},
-            ",name" : 
-                {",Bad" : " Taste"},
-            ",starring" : 
-                {",/en" : 
-                    {"/peter" : "_jackson"},
-                ",/guid" : 
-                    ["/9202a8c04000641f80000000010cf91e",
-                    "/9202a8c04000641f80000000010cf924",
-                    "/9202a8c04000641f80000000010cf92b",
-                    "/9202a8c04000641f800000000434a77d"]}}},
-    "/candy" : 
-        {"_barr" : 
-            {",name" : 
-                {",Candy" : " Barr"}}},
-    "/david" : 
-        {"_greene" : 
-            {",name" : 
-                {",David" : " Greene"}}},
-    "/gymkata" : 
-        {",name" : ",Gymkata"},
-    "/hiroyuki" : 
-        {"_okiura" : 
-            {",name" : 
-                {",Hiroyuki" : " Okiura"}}},
-    "/john" : 
-        {"_glen" : 
-            {",name" : 
-                {",John" : " Glen"}}},
-    "/karl" : 
-        {"_maka" : 
-            {",name" : 
-                {",Karl" : " Maka"}}},
-    "/masahiko" : 
-        {"_tsugawa" : 
-            {",name" : 
-                {",Masahiko" : " Tsugawa"}}},
-    "/megan" : 
-        {"_mullally" : 
-            {",name" : 
-                {",Megan" : " Mullally"}}},
-    "/milou" : 
-        {"_en" : 
-            {"_mai" : 
-                {",directed" : 
-                    {"_by" : 
-                        {",/en" : 
-                            {"/louis" : "_malle"}}},
-                ",name" : 
-                    {",Milou" : 
-                        {" en" : " mai"}},
-                ",starring" : 
-                    {",/en" : 
-                        {"/dominique" : "_blanc",
-                        "/harriet" : "_walter",
-                        "/michel" : "_piccoli",
-                        "/miou" : "-miou"}}}}},
-    "/oscar" : 
-        {"_homolka" : 
-            {",name" : 
-                {",Oscar" : " Homolka"}}},
-    "/sebastian" : 
-        {"_arcelus" : 
-            {",name" : 
-                {",Sebastian" : " Arcelus"}}}},
-"/guid" : 
-    {"/9202a8c04000641f80000000010de9bd" : 
-        {",name" : 
-            {",Jacques" : " Martineau"}},
-    "/9202a8c04000641f80000000010fa2fc" : 
-        {",name" : 
-            {",Yoshiko" : " Ohta"}},
-    "/9202a8c04000641f800000000471d8b2" : 
-        {",name" : 
-            {",J" : 
-                {". D" : ". Chakravarthy"}}},
-    "/9202a8c04000641f8000000005588bf1" : 
-        {",name" : 
-            {",Bobby" : 
-                {" Di" : " Cicco"}}},
-    "/9202a8c04000641f80000000056d973b" : 
-        {",name" : 
-            {",Kate" : " Dickie"}}}}
-fixtures/movies.csv--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
-{"_count_" : 1,
-"authority" : 
-    {"_count_" : 22,
-    "imdb" : 
-        {"_count_" : 18,
-        "name" : 
-            {"_count_" : 1,
-            "nm0036934" : 
-                {"_count_" : 1,
-                "name" : 
-                    {"Greg" : 
-                        {"Aronowitz" : 
-                            {"_count_" : 1},
-                        "_count_" : 1},
-                    "_count_" : 1}}},
-        "title" : 
-            {"_count_" : 17,
-            "tt0105001" : 
-                {"_count_" : 4,
-                "directed" : 
-                    {"_count_" : 1,
-                    "by" : 
-                        {"_count_" : 1,
-                        "en" : 
-                            {"_count_" : 1,
-                            "irwin" : 
-                                {"_count_" : 1,
-                                "winkler" : 
-                                    {"_count_" : 1}}}}},
-                "name" : 
-                    {"Night" : 
-                        {"_count_" : 1,
-                        "and" : 
-                            {"_count_" : 1,
-                            "the" : 
-                                {"City" : 
-                                    {"_count_" : 1},
-                                "_count_" : 1}}},
-                    "_count_" : 1},
-                "starring" : 
-                    {"_count_" : 2,
-                    "en" : 
-                        {"_count_" : 2,
-                        "jessica" : 
-                            {"_count_" : 1,
-                            "lange" : 
-                                {"_count_" : 1}},
-                        "robert" : 
-                            {"_count_" : 1,
-                            "de" : 
-                                {"_count_" : 1,
-                                "niro" : 
-                                    {"_count_" : 1}}}}}},
-            "tt0486761" : 
-                {"_count_" : 13,
-                "directed" : 
-                    {"_count_" : 2,
-                    "by" : 
-                        {"_count_" : 2,
-                        "en" : 
-                            {"_count_" : 1,
-                            "tony" : 
-                                {"_count_" : 1,
-                                "craig" : 
-                                    {"_count_" : 1}}},
-                        "guid" : 
-                            {"9202a8c04000641f80000000010ff1da" : 
-                                {"_count_" : 1},
-                            "_count_" : 1}}},
-                "name" : 
-                    {"Leroy" : 
-                        {"Stitch" : 
-                            {"_count_" : 1},
-                        "_count_" : 1},
-                    "_count_" : 1},
-                "starring" : 
-                    {"_count_" : 10,
-                    "en" : 
-                        {"_count_" : 10,
-                        "chris" : 
-                            {"_count_" : 1,
-                            "sanders" : 
-                                {"_count_" : 1}},
-                        "daveigh" : 
-                            {"_count_" : 1,
-                            "chase" : 
-                                {"_count_" : 1}},
-                        "david" : 
-                            {"_count_" : 1,
-                            "ogden" : 
-                                {"_count_" : 1,
-                                "stiers" : 
-                                    {"_count_" : 1}}},
-                        "jeff" : 
-                            {"_count_" : 1,
-                            "bennett" : 
-                                {"_count_" : 1}},
-                        "kevin" : 
-                            {"_count_" : 2,
-                            "mcdonald" : 
-                                {"_count_" : 1},
-                            "michael" : 
-                                {"_count_" : 1,
-                                "richardson" : 
-                                    {"_count_" : 1}}},
-                        "rob" : 
-                            {"_count_" : 1,
-                            "paulsen" : 
-                                {"_count_" : 1}},
-                        "tara" : 
-                            {"_count_" : 1,
-                            "strong" : 
-                                {"_count_" : 1}},
-                        "tia" : 
-                            {"_count_" : 1,
-                            "carrere" : 
-                                {"_count_" : 1}},
-                        "zoe" : 
-                            {"_count_" : 1,
-                            "caldwell" : 
-                                {"_count_" : 1}}}}}}},
-    "netflix" : 
-        {"_count_" : 4,
-        "movie" : 
-            {"70062973" : 
-                {"_count_" : 4,
-                "directed" : 
-                    {"_count_" : 1,
-                    "by" : 
-                        {"_count_" : 1,
-                        "en" : 
-                            {"_count_" : 1,
-                            "michael" : 
-                                {"_count_" : 1,
-                                "lindsay" : 
-                                    {"_count_" : 1,
-                                    "hogg" : 
-                                        {"_count_" : 1}}}}}},
-                "name" : 
-                    {"Ivana" : 
-                        {"Trump" : 
-                            {"_count_" : 1,
-                            "s" : 
-                                {"For" : 
-                                    {"Love" : 
-                                        {"Alone" : 
-                                            {"_count_" : 1},
-                                        "_count_" : 1},
-                                    "_count_" : 1},
-                                "_count_" : 1}},
-                        "_count_" : 1},
-                    "_count_" : 1},
-                "starring" : 
-                    {"_count_" : 2,
-                    "en" : 
-                        {"_count_" : 2,
-                        "madeline" : 
-                            {"_count_" : 1,
-                            "kahn" : 
-                                {"_count_" : 1}},
-                        "stephen" : 
-                            {"_count_" : 1,
-                            "collins" : 
-                                {"_count_" : 1}}}}},
-            "_count_" : 4}}},
-"en" : 
-    {"_count_" : 23,
-    "bad" : 
-        {"_count_" : 7,
-        "taste" : 
-            {"_count_" : 7,
-            "directed" : 
-                {"_count_" : 1,
-                "by" : 
-                    {"_count_" : 1,
-                    "en" : 
-                        {"_count_" : 1,
-                        "peter" : 
-                            {"_count_" : 1,
-                            "jackson" : 
-                                {"_count_" : 1}}}}},
-            "name" : 
-                {"Bad" : 
-                    {"Taste" : 
-                        {"_count_" : 1},
-                    "_count_" : 1},
-                "_count_" : 1},
-            "starring" : 
-                {"_count_" : 5,
-                "en" : 
-                    {"_count_" : 1,
-                    "peter" : 
-                        {"_count_" : 1,
-                        "jackson" : 
-                            {"_count_" : 1}}},
-                "guid" : 
-                    {"9202a8c04000641f80000000010cf91e" : 
-                        {"_count_" : 1},
-                    "9202a8c04000641f80000000010cf924" : 
-                        {"_count_" : 1},
-                    "9202a8c04000641f80000000010cf92b" : 
-                        {"_count_" : 1},
-                    "9202a8c04000641f800000000434a77d" : 
-                        {"_count_" : 1},
-                    "_count_" : 4}}}},
-    "candy" : 
-        {"_count_" : 1,
-        "barr" : 
-            {"_count_" : 1,
-            "name" : 
-                {"Candy" : 
-                    {"Barr" : 
-                        {"_count_" : 1},
-                    "_count_" : 1},
-                "_count_" : 1}}},
-    "david" : 
-        {"_count_" : 1,
-        "greene" : 
-            {"_count_" : 1,
-            "name" : 
-                {"David" : 
-                    {"Greene" : 
-                        {"_count_" : 1},
-                    "_count_" : 1},
-                "_count_" : 1}}},
-    "gymkata" : 
-        {"_count_" : 1,
-        "name" : 
-            {"Gymkata" : 
-                {"_count_" : 1},
-            "_count_" : 1}},
-    "hiroyuki" : 
-        {"_count_" : 1,
-        "okiura" : 
-            {"_count_" : 1,
-            "name" : 
-                {"Hiroyuki" : 
-                    {"Okiura" : 
-                        {"_count_" : 1},
-                    "_count_" : 1},
-                "_count_" : 1}}},
-    "john" : 
-        {"_count_" : 1,
-        "glen" : 
-            {"_count_" : 1,
-            "name" : 
-                {"John" : 
-                    {"Glen" : 
-                        {"_count_" : 1},
-                    "_count_" : 1},
-                "_count_" : 1}}},
-    "karl" : 
-        {"_count_" : 1,
-        "maka" : 
-            {"_count_" : 1,
-            "name" : 
-                {"Karl" : 
-                    {"Maka" : 
-                        {"_count_" : 1},
-                    "_count_" : 1},
-                "_count_" : 1}}},
-    "masahiko" : 
-        {"_count_" : 1,
-        "tsugawa" : 
-            {"_count_" : 1,
-            "name" : 
-                {"Masahiko" : 
-                    {"Tsugawa" : 
-                        {"_count_" : 1},
-                    "_count_" : 1},
-                "_count_" : 1}}},
-    "megan" : 
-        {"_count_" : 1,
-        "mullally" : 
-            {"_count_" : 1,
-            "name" : 
-                {"Megan" : 
-                    {"Mullally" : 
-                        {"_count_" : 1},
-                    "_count_" : 1},
-                "_count_" : 1}}},
-    "milou" : 
-        {"_count_" : 6,
-        "en" : 
-            {"_count_" : 6,
-            "mai" : 
-                {"_count_" : 6,
-                "directed" : 
-                    {"_count_" : 1,
-                    "by" : 
-                        {"_count_" : 1,
-                        "en" : 
-                            {"_count_" : 1,
-                            "louis" : 
-                                {"_count_" : 1,
-                                "malle" : 
-                                    {"_count_" : 1}}}}},
-                "name" : 
-                    {"Milou" : 
-                        {"_count_" : 1,
-                        "en" : 
-                            {"_count_" : 1,
-                            "mai" : 
-                                {"_count_" : 1}}},
-                    "_count_" : 1},
-                "starring" : 
-                    {"_count_" : 4,
-                    "en" : 
-                        {"_count_" : 4,
-                        "dominique" : 
-                            {"_count_" : 1,
-                            "blanc" : 
-                                {"_count_" : 1}},
-                        "harriet" : 
-                            {"_count_" : 1,
-                            "walter" : 
-                                {"_count_" : 1}},
-                        "michel" : 
-                            {"_count_" : 1,
-                            "piccoli" : 
-                                {"_count_" : 1}},
-                        "miou" : 
-                            {"_count_" : 1,
-                            "miou" : 
-                                {"_count_" : 1}}}}}}},
-    "oscar" : 
-        {"_count_" : 1,
-        "homolka" : 
-            {"_count_" : 1,
-            "name" : 
-                {"Oscar" : 
-                    {"Homolka" : 
-                        {"_count_" : 1},
-                    "_count_" : 1},
-                "_count_" : 1}}},
-    "sebastian" : 
-        {"_count_" : 1,
-        "arcelus" : 
-            {"_count_" : 1,
-            "name" : 
-                {"Sebastian" : 
-                    {"Arcelus" : 
-                        {"_count_" : 1},
-                    "_count_" : 1},
-                "_count_" : 1}}}},
-"guid" : 
-    {"9202a8c04000641f80000000010de9bd" : 
-        {"_count_" : 1,
-        "name" : 
-            {"Jacques" : 
-                {"Martineau" : 
-                    {"_count_" : 1},
-                "_count_" : 1},
-            "_count_" : 1}},
-    "9202a8c04000641f80000000010fa2fc" : 
-        {"_count_" : 1,
-        "name" : 
-            {"Yoshiko" : 
-                {"Ohta" : 
-                    {"_count_" : 1},
-                "_count_" : 1},
-            "_count_" : 1}},
-    "9202a8c04000641f800000000471d8b2" : 
-        {"_count_" : 1,
-        "name" : 
-            {"J" : 
-                {"D" : 
-                    {"Chakravarthy" : 
-                        {"_count_" : 1},
-                    "_count_" : 1},
-                "_count_" : 1},
-            "_count_" : 1}},
-    "9202a8c04000641f8000000005588bf1" : 
-        {"_count_" : 1,
-        "name" : 
-            {"Bobby" : 
-                {"Di" : 
-                    {"Cicco" : 
-                        {"_count_" : 1},
-                    "_count_" : 1},
-                "_count_" : 1},
-            "_count_" : 1}},
-    "9202a8c04000641f80000000056d973b" : 
-        {"_count_" : 1,
-        "name" : 
-            {"Kate" : 
-                {"Dickie" : 
-                    {"_count_" : 1},
-                "_count_" : 1},
-            "_count_" : 1}},
-    "_count_" : 5}}
-fixtures/movies.csv--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
-{"authority" : 
-    {"imdb" : 
-        ["/name/nm0036934,name,Greg Aronowitz",
-        "/title/tt0105001,directed_by,/en/irwin_winkler",
-        "/title/tt0105001,name,Night and the City",
-        "/title/tt0105001,starring,/en/jessica_lange",
-        "/title/tt0105001,starring,/en/robert_de_niro",
-        "/title/tt0486761,directed_by,/en/tony_craig",
-        "/title/tt0486761,directed_by,/guid/9202a8c04000641f80000000010ff1da",
-        "/title/tt0486761,name,Leroy \u0026 Stitch",
-        "/title/tt0486761,starring,/en/chris_sanders",
-        "/title/tt0486761,starring,/en/daveigh_chase",
-        "/title/tt0486761,starring,/en/david_ogden_stiers",
-        "/title/tt0486761,starring,/en/jeff_bennett",
-        "/title/tt0486761,starring,/en/kevin_mcdonald",
-        "/title/tt0486761,starring,/en/kevin_michael_richardson",
-        "/title/tt0486761,starring,/en/rob_paulsen",
-        "/title/tt0486761,starring,/en/tara_strong",
-        "/title/tt0486761,starring,/en/tia_carrere",
-        "/title/tt0486761,starring,/en/zoe_caldwell"],
-    "netflix" : 
-        ["/movie/70062973,directed_by,/en/michael_lindsay-hogg",
-        "/movie/70062973,name,Ivana Trump's For Love Alone",
-        "/movie/70062973,starring,/en/madeline_kahn",
-        "/movie/70062973,starring,/en/stephen_collins"]},
-"en" : 
-    {"bad" : 
-        ["_taste,directed_by,/en/peter_jackson",
-        "_taste,name,Bad Taste",
-        "_taste,starring,/en/peter_jackson",
-        "_taste,starring,/guid/9202a8c04000641f80000000010cf91e",
-        "_taste,starring,/guid/9202a8c04000641f80000000010cf924",
-        "_taste,starring,/guid/9202a8c04000641f80000000010cf92b",
-        "_taste,starring,/guid/9202a8c04000641f800000000434a77d"],
-    "candy" : "_barr,name,Candy Barr",
-    "david" : "_greene,name,David Greene",
-    "gymkata" : ",name,Gymkata",
-    "hiroyuki" : "_okiura,name,Hiroyuki Okiura",
-    "john" : "_glen,name,John Glen",
-    "karl" : "_maka,name,Karl Maka",
-    "masahiko" : "_tsugawa,name,Masahiko Tsugawa",
-    "megan" : "_mullally,name,Megan Mullally",
-    "milou" : 
-        ["_en_mai,directed_by,/en/louis_malle",
-        "_en_mai,name,Milou en mai",
-        "_en_mai,starring,/en/dominique_blanc",
-        "_en_mai,starring,/en/harriet_walter",
-        "_en_mai,starring,/en/michel_piccoli",
-        "_en_mai,starring,/en/miou-miou"],
-    "oscar" : "_homolka,name,Oscar Homolka",
-    "sebastian" : "_arcelus,name,Sebastian Arcelus"},
-"guid" : 
-    {"9202a8c04000641f80000000010de9bd" : ",name,Jacques Martineau",
-    "9202a8c04000641f80000000010fa2fc" : ",name,Yoshiko Ohta",
-    "9202a8c04000641f800000000471d8b2" : ",name,J. D. Chakravarthy",
-    "9202a8c04000641f8000000005588bf1" : ",name,Bobby Di Cicco",
-    "9202a8c04000641f80000000056d973b" : ",name,Kate Dickie"}}
-fixtures/movies.csv--- -format json -order alpha -depth 2 ----------------------------------------------------------------------------------------------------
-{"authority" : 
-    {"imdb" : 
-        {"name" : null,
-        "title" : null},
-    "netflix" : 
-        {"movie" : null}},
-"en" : 
-    {"bad" : 
-        {"taste" : null},
-    "candy" : 
-        {"barr" : null},
-    "david" : 
-        {"greene" : null},
-    "gymkata" : 
-        {"name" : null},
-    "hiroyuki" : 
-        {"okiura" : null},
-    "john" : 
-        {"glen" : null},
-    "karl" : 
-        {"maka" : null},
-    "masahiko" : 
-        {"tsugawa" : null},
-    "megan" : 
-        {"mullally" : null},
-    "milou" : 
-        {"en" : null},
-    "oscar" : 
-        {"homolka" : null},
-    "sebastian" : 
-        {"arcelus" : null}},
-"guid" : 
-    {"9202a8c04000641f80000000010de9bd" : 
-        {"name" : null},
-    "9202a8c04000641f80000000010fa2fc" : 
-        {"name" : null},
-    "9202a8c04000641f800000000471d8b2" : 
-        {"name" : null},
-    "9202a8c04000641f8000000005588bf1" : 
-        {"name" : null},
-    "9202a8c04000641f80000000056d973b" : 
-        {"name" : null}}}
 fixtures/random.txt---  ----------------------------------------------------------------------------------------------------
 ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU
 3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy
@@ -6051,7 +5318,48 @@ fixtures/random.txt--- -format json -order alpha -level 2 ----------------------
 "mGMbJt9c7sH7p86btgk7vR6xEre4DvkO",
 "wCycdlsmXtYzLukRcPjijCAcwTckFLfa",
 "xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3"]
-fixtures/random.txt--- -format json -order alpha -depth 2 ----------------------------------------------------------------------------------------------------
+fixtures/random.txt--- -format json -order alpha -depth 3 ----------------------------------------------------------------------------------------------------
+["0s69iWKK3Pfi0mS1aLdJSboXwENv4neb",
+"1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF",
+"3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy",
+"4WiWCkpjXGadDIYCsy6O2VMyWQVWiJx3",
+"52JHD4TyE8dQu2F4Xk9diqIWqePyAaVM",
+"5BLkNuwztrirIvJc7roZ4o9W2huxg5Qo",
+"5lsY90hTZPNcPj26LeI2QEqd3ItY8i1s",
+"5vyN97KXONcmVaUmbYafEmS3kK4huL0d",
+"ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU",
+"ApwtzoSzcSasveDV2Geu8U3n5G7c4TtX",
+"BPMAkBfEKLreg9sPVfLt0YyxLl0ykFTg",
+"CcMuwCe585yt0a0Xd0IwXvwbH5yrhBHt",
+"DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7",
+"DsBm1fRlrPweuUrkmLn4AAjtkAz1D8qj",
+"F3Uw74ZOqKk6iX1DAS1jlCz3kwhjmZSP",
+"GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF",
+"GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0",
+"IBqxNzZNUyimsNYDa4X5gLFkXxTWXBnT",
+"Mv7SgDpn8htl5OI7eCmGE3S8fTMAFtyW",
+"NRsk6JebWnQ8HERnBJZaWkQXzEVbfkFt",
+"NbdjXjxaGFWfFuFgndDggCYYBOKNcCiz",
+"O8F94IGLmkPcq0OPofRWBlqUIQVsUeoa",
+"SEtMfDjCThZoyJiIdNTlEMmFTkp9Z3dj",
+"WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7",
+"XHcZrTrO4DgDyJuLRGlFv1kxiXUjN2fE",
+"YI0OM5HRlB1j0ZTgCG76W6er0vdp4BHk",
+"bkUPVXN3iGxStK1GyVyCx9H3712KhB71",
+"dJO8CseqDgr9AjPAAlofAmwKzo5i6ORX",
+"f7LHn0HwnRjZBUXzWwlO4IrFzfNvFM6P",
+"gNbYB65NOStT4ltMktBaJa1oWkPfqzNz",
+"h4kd4u3TDLeWrqVIjwZ9WHach7zFToWN",
+"hWDeAHqIIzSjT6Iv4pr07Bn6HF8uRI6T",
+"imzBe68oWn81zkGnUPq3Q6MvoFnDnaqM",
+"k4U63BHEOh5d6AZtViZU3Umfz8WZvzdb",
+"kXLPCQ9qMVwUzYQyt28xJNTUWkBYItV7",
+"m56AVisdRuHvPMua3GseSUW9uzaEbxn8",
+"mCuE5Mt0SUq84e4VZ6Xgvp0mS862STe9",
+"mGMbJt9c7sH7p86btgk7vR6xEre4DvkO",
+"wCycdlsmXtYzLukRcPjijCAcwTckFLfa",
+"xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3"]
+fixtures/random.txt--- -format json -order alpha -no-fold ----------------------------------------------------------------------------------------------------
 ["0s69iWKK3Pfi0mS1aLdJSboXwENv4neb",
 "1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF",
 "3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy",
@@ -6136,7 +5444,7 @@ A: 1
 C: 2
     2: 1
     D: 1
-x.a: 2
+x.a: 3
     1: 1
     2: 1
 Z: 1
@@ -6174,16 +5482,15 @@ x.a
 Z
 1.2
 fixtures/simplechars.txt--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
-[{"1" : 2},
+["1.2",
 "A",
 {"C" : 
     [2,
     "D"]},
 "Z",
-{"x" : 
-    {"a" : 
-        [1,
-        2]}}]
+{"x.a" : 
+    [1,
+    2]}]
 fixtures/simplechars.txt--- -format json -order alpha -breaks / ----------------------------------------------------------------------------------------------------
 ["1.2",
 "A",
@@ -6194,21 +5501,18 @@ fixtures/simplechars.txt--- -format json -order alpha -breaks / ----------------
 "x.a.1",
 "x.a.2"]
 fixtures/simplechars.txt--- -format json -order alpha -separators ----------------------------------------------------------------------------------------------------
-[{"1" : ".2"},
+["1.2",
 "A",
 {"C" : 
     [".2",
     ".D"]},
 "Z",
-{"x" : 
-    {".a" : 
-        [".1",
-        ".2"]}}]
+{"x.a" : 
+    [".1",
+    ".2"]}]
 fixtures/simplechars.txt--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
-{"1" : 
-    {"2" : 
-        {"_count_" : 1},
-    "_count_" : 1},
+{"1.2" : 
+    {"_count_" : 1},
 "A" : 
     {"_count_" : 1},
 "C" : 
@@ -6220,26 +5524,33 @@ fixtures/simplechars.txt--- -format json -order alpha -counts ------------------
 "Z" : 
     {"_count_" : 1},
 "_count_" : 1,
-"x" : 
-    {"_count_" : 3,
-    "a" : 
-        {"1" : 
-            {"_count_" : 1},
-        "2" : 
-            {"_count_" : 1},
-        "_count_" : 2}}}
+"x.a" : 
+    {"1" : 
+        {"_count_" : 1},
+    "2" : 
+        {"_count_" : 1},
+    "_count_" : 3}}
 fixtures/simplechars.txt--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
-[{"1" : 2},
+["1.2",
 "A",
 {"C" : 
     [2,
     "D"]},
 "Z",
-{"x" : 
-    {"a" : 
-        [".1",
-        ".2"]}}]
-fixtures/simplechars.txt--- -format json -order alpha -depth 2 ----------------------------------------------------------------------------------------------------
+{"x.a" : 
+    [".1",
+    ".2"]}]
+fixtures/simplechars.txt--- -format json -order alpha -depth 3 ----------------------------------------------------------------------------------------------------
+["1.2",
+"A",
+{"C" : 
+    [2,
+    "D"]},
+"Z",
+{"x.a" : 
+    [1,
+    2]}]
+fixtures/simplechars.txt--- -format json -order alpha -no-fold ----------------------------------------------------------------------------------------------------
 [{"1" : 2},
 "A",
 {"C" : 
@@ -6504,6 +5815,194 @@ birchb1@jupiter
     hasPassword,birchb-pw-2
 birchb,hasAccount,birchb1@jupiter
 fixtures/triples.csv--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
+["Production,was_hostname,jupiter",
+{"alice1@jupiter" : 
+    [{"hasPassword" : 
+        ["evan2-pw-15",
+        "joanna-pw-19",
+        "kalpana-pw-18"]},
+    "rdf:type,UnixAccount"]},
+"alice2,hasAccount,evan1@jupiter",
+"birchb,hasAccount,birchb1@jupiter",
+{"birchb1@jupiter" : 
+    ["hasPassword,birchb-pw-2",
+    "rdf:type,UnixAccount"]},
+"felicity,hasAccount,john1@jupiter",
+"joanna,hasAccount,alice1@jupiter",
+{"john1@jupiter" : 
+    ["hasPassword,felicity-pw-8",
+    "rdf:type,UnixAccount"]},
+{"jupiter" : 
+    ["defaultAccount,alice1",
+    {"hasUser" : 
+        ["alice1",
+        "birchb1",
+        "john1"]},
+    {"rdf:type" : 
+        ["UnixMachine",
+        "WasDmgr"]}]},
+"kalpana,hasAccount,alice1@jupiter"]
+fixtures/triples.csv--- -format json -order alpha -breaks / ----------------------------------------------------------------------------------------------------
+["Production,was_hostname,jupiter",
+"alice1@jupiter,hasPassword,evan2-pw-15",
+"alice1@jupiter,hasPassword,joanna-pw-19",
+"alice1@jupiter,hasPassword,kalpana-pw-18",
+"alice1@jupiter,rdf:type,UnixAccount",
+"alice2,hasAccount,evan1@jupiter",
+"birchb,hasAccount,birchb1@jupiter",
+"birchb1@jupiter,hasPassword,birchb-pw-2",
+"birchb1@jupiter,rdf:type,UnixAccount",
+"felicity,hasAccount,john1@jupiter",
+"joanna,hasAccount,alice1@jupiter",
+"john1@jupiter,hasPassword,felicity-pw-8",
+"john1@jupiter,rdf:type,UnixAccount",
+"jupiter,defaultAccount,alice1",
+"jupiter,hasUser,alice1",
+"jupiter,hasUser,birchb1",
+"jupiter,hasUser,john1",
+"jupiter,rdf:type,UnixMachine",
+"jupiter,rdf:type,WasDmgr",
+"kalpana,hasAccount,alice1@jupiter"]
+fixtures/triples.csv--- -format json -order alpha -separators ----------------------------------------------------------------------------------------------------
+["Production,was_hostname,jupiter",
+{"alice1@jupiter" : 
+    [{",hasPassword" : 
+        [",evan2-pw-15",
+        ",joanna-pw-19",
+        ",kalpana-pw-18"]},
+    ",rdf:type,UnixAccount"]},
+"alice2,hasAccount,evan1@jupiter",
+"birchb,hasAccount,birchb1@jupiter",
+{"birchb1@jupiter" : 
+    [",hasPassword,birchb-pw-2",
+    ",rdf:type,UnixAccount"]},
+"felicity,hasAccount,john1@jupiter",
+"joanna,hasAccount,alice1@jupiter",
+{"john1@jupiter" : 
+    [",hasPassword,felicity-pw-8",
+    ",rdf:type,UnixAccount"]},
+{"jupiter" : 
+    [",defaultAccount,alice1",
+    {",hasUser" : 
+        [",alice1",
+        ",birchb1",
+        ",john1"]},
+    {",rdf:type" : 
+        [",UnixMachine",
+        ",WasDmgr"]}]},
+"kalpana,hasAccount,alice1@jupiter"]
+fixtures/triples.csv--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
+{"Production,was_hostname,jupiter" : 
+    {"_count_" : 1},
+"_count_" : 1,
+"alice1@jupiter" : 
+    {"_count_" : 4,
+    "hasPassword" : 
+        {"_count_" : 3,
+        "evan2-pw-15" : 
+            {"_count_" : 1},
+        "joanna-pw-19" : 
+            {"_count_" : 1},
+        "kalpana-pw-18" : 
+            {"_count_" : 1}},
+    "rdf:type,UnixAccount" : 
+        {"_count_" : 1}},
+"alice2,hasAccount,evan1@jupiter" : 
+    {"_count_" : 1},
+"birchb,hasAccount,birchb1@jupiter" : 
+    {"_count_" : 1},
+"birchb1@jupiter" : 
+    {"_count_" : 2,
+    "hasPassword,birchb-pw-2" : 
+        {"_count_" : 1},
+    "rdf:type,UnixAccount" : 
+        {"_count_" : 1}},
+"felicity,hasAccount,john1@jupiter" : 
+    {"_count_" : 1},
+"joanna,hasAccount,alice1@jupiter" : 
+    {"_count_" : 1},
+"john1@jupiter" : 
+    {"_count_" : 2,
+    "hasPassword,felicity-pw-8" : 
+        {"_count_" : 1},
+    "rdf:type,UnixAccount" : 
+        {"_count_" : 1}},
+"jupiter" : 
+    {"_count_" : 6,
+    "defaultAccount,alice1" : 
+        {"_count_" : 1},
+    "hasUser" : 
+        {"_count_" : 3,
+        "alice1" : 
+            {"_count_" : 1},
+        "birchb1" : 
+            {"_count_" : 1},
+        "john1" : 
+            {"_count_" : 1}},
+    "rdf:type" : 
+        {"UnixMachine" : 
+            {"_count_" : 1},
+        "WasDmgr" : 
+            {"_count_" : 1},
+        "_count_" : 2}},
+"kalpana,hasAccount,alice1@jupiter" : 
+    {"_count_" : 1}}
+fixtures/triples.csv--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
+["Production,was_hostname,jupiter",
+{"alice1@jupiter" : 
+    [",hasPassword,evan2-pw-15",
+    ",hasPassword,joanna-pw-19",
+    ",hasPassword,kalpana-pw-18",
+    ",rdf:type,UnixAccount"]},
+"alice2,hasAccount,evan1@jupiter",
+"birchb,hasAccount,birchb1@jupiter",
+{"birchb1@jupiter" : 
+    [",hasPassword,birchb-pw-2",
+    ",rdf:type,UnixAccount"]},
+"felicity,hasAccount,john1@jupiter",
+"joanna,hasAccount,alice1@jupiter",
+{"john1@jupiter" : 
+    [",hasPassword,felicity-pw-8",
+    ",rdf:type,UnixAccount"]},
+{"jupiter" : 
+    ["defaultAccount,alice1",
+    {"hasUser" : 
+        [",alice1",
+        ",birchb1",
+        ",john1"]},
+    {"rdf" : 
+        [":type,UnixMachine",
+        ":type,WasDmgr"]}]},
+"kalpana,hasAccount,alice1@jupiter"]
+fixtures/triples.csv--- -format json -order alpha -depth 3 ----------------------------------------------------------------------------------------------------
+["Production,was_hostname,jupiter",
+{"alice1@jupiter" : 
+    [{"hasPassword" : 
+        ["evan2-pw-15",
+        "joanna-pw-19",
+        "kalpana-pw-18"]},
+    "rdf:type,UnixAccount"]},
+"alice2,hasAccount,evan1@jupiter",
+"birchb,hasAccount,birchb1@jupiter",
+{"birchb1@jupiter" : 
+    ["hasPassword,birchb-pw-2",
+    "rdf:type,UnixAccount"]},
+"felicity,hasAccount,john1@jupiter",
+"joanna,hasAccount,alice1@jupiter",
+{"john1@jupiter" : 
+    ["hasPassword,felicity-pw-8",
+    "rdf:type,UnixAccount"]},
+{"jupiter" : 
+    ["defaultAccount,alice1",
+    {"hasUser" : 
+        ["alice1",
+        "birchb1",
+        "john1"]},
+    {"rdf:type" : 
+        ["UnixMachine",
+        "WasDmgr"]}]},
+"kalpana,hasAccount,alice1@jupiter"]
+fixtures/triples.csv--- -format json -order alpha -no-fold ----------------------------------------------------------------------------------------------------
 {"Production" : 
     {"was" : 
         {"hostname" : "jupiter"}},
@@ -6557,291 +6056,3 @@ fixtures/triples.csv--- -format json -order alpha  -----------------------------
 "kalpana" : 
     {"hasAccount" : 
         {"alice1" : "jupiter"}}}
-fixtures/triples.csv--- -format json -order alpha -breaks / ----------------------------------------------------------------------------------------------------
-["Production,was_hostname,jupiter",
-"alice1@jupiter,hasPassword,evan2-pw-15",
-"alice1@jupiter,hasPassword,joanna-pw-19",
-"alice1@jupiter,hasPassword,kalpana-pw-18",
-"alice1@jupiter,rdf:type,UnixAccount",
-"alice2,hasAccount,evan1@jupiter",
-"birchb,hasAccount,birchb1@jupiter",
-"birchb1@jupiter,hasPassword,birchb-pw-2",
-"birchb1@jupiter,rdf:type,UnixAccount",
-"felicity,hasAccount,john1@jupiter",
-"joanna,hasAccount,alice1@jupiter",
-"john1@jupiter,hasPassword,felicity-pw-8",
-"john1@jupiter,rdf:type,UnixAccount",
-"jupiter,defaultAccount,alice1",
-"jupiter,hasUser,alice1",
-"jupiter,hasUser,birchb1",
-"jupiter,hasUser,john1",
-"jupiter,rdf:type,UnixMachine",
-"jupiter,rdf:type,WasDmgr",
-"kalpana,hasAccount,alice1@jupiter"]
-fixtures/triples.csv--- -format json -order alpha -separators ----------------------------------------------------------------------------------------------------
-{"Production" : 
-    {",was" : 
-        {"_hostname" : ",jupiter"}},
-"alice1" : 
-    {"@jupiter" : 
-        {",hasPassword" : 
-            {",evan2" : 
-                {"-pw" : "-15"},
-            ",joanna" : 
-                {"-pw" : "-19"},
-            ",kalpana" : 
-                {"-pw" : "-18"}},
-        ",rdf" : 
-            {":type" : ",UnixAccount"}}},
-"alice2" : 
-    {",hasAccount" : 
-        {",evan1" : "@jupiter"}},
-"birchb" : 
-    {",hasAccount" : 
-        {",birchb1" : "@jupiter"}},
-"birchb1" : 
-    {"@jupiter" : 
-        {",hasPassword" : 
-            {",birchb" : 
-                {"-pw" : "-2"}},
-        ",rdf" : 
-            {":type" : ",UnixAccount"}}},
-"felicity" : 
-    {",hasAccount" : 
-        {",john1" : "@jupiter"}},
-"joanna" : 
-    {",hasAccount" : 
-        {",alice1" : "@jupiter"}},
-"john1" : 
-    {"@jupiter" : 
-        {",hasPassword" : 
-            {",felicity" : 
-                {"-pw" : "-8"}},
-        ",rdf" : 
-            {":type" : ",UnixAccount"}}},
-"jupiter" : 
-    {",defaultAccount" : ",alice1",
-    ",hasUser" : 
-        [",alice1",
-        ",birchb1",
-        ",john1"],
-    ",rdf" : 
-        {":type" : 
-            [",UnixMachine",
-            ",WasDmgr"]}},
-"kalpana" : 
-    {",hasAccount" : 
-        {",alice1" : "@jupiter"}}}
-fixtures/triples.csv--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
-{"Production" : 
-    {"_count_" : 1,
-    "was" : 
-        {"_count_" : 1,
-        "hostname" : 
-            {"_count_" : 1,
-            "jupiter" : 
-                {"_count_" : 1}}}},
-"_count_" : 1,
-"alice1" : 
-    {"_count_" : 4,
-    "jupiter" : 
-        {"_count_" : 4,
-        "hasPassword" : 
-            {"_count_" : 3,
-            "evan2" : 
-                {"_count_" : 1,
-                "pw" : 
-                    {"15" : 
-                        {"_count_" : 1},
-                    "_count_" : 1}},
-            "joanna" : 
-                {"_count_" : 1,
-                "pw" : 
-                    {"19" : 
-                        {"_count_" : 1},
-                    "_count_" : 1}},
-            "kalpana" : 
-                {"_count_" : 1,
-                "pw" : 
-                    {"18" : 
-                        {"_count_" : 1},
-                    "_count_" : 1}}},
-        "rdf" : 
-            {"_count_" : 1,
-            "type" : 
-                {"UnixAccount" : 
-                    {"_count_" : 1},
-                "_count_" : 1}}}},
-"alice2" : 
-    {"_count_" : 1,
-    "hasAccount" : 
-        {"_count_" : 1,
-        "evan1" : 
-            {"_count_" : 1,
-            "jupiter" : 
-                {"_count_" : 1}}}},
-"birchb" : 
-    {"_count_" : 1,
-    "hasAccount" : 
-        {"_count_" : 1,
-        "birchb1" : 
-            {"_count_" : 1,
-            "jupiter" : 
-                {"_count_" : 1}}}},
-"birchb1" : 
-    {"_count_" : 2,
-    "jupiter" : 
-        {"_count_" : 2,
-        "hasPassword" : 
-            {"_count_" : 1,
-            "birchb" : 
-                {"_count_" : 1,
-                "pw" : 
-                    {"2" : 
-                        {"_count_" : 1},
-                    "_count_" : 1}}},
-        "rdf" : 
-            {"_count_" : 1,
-            "type" : 
-                {"UnixAccount" : 
-                    {"_count_" : 1},
-                "_count_" : 1}}}},
-"felicity" : 
-    {"_count_" : 1,
-    "hasAccount" : 
-        {"_count_" : 1,
-        "john1" : 
-            {"_count_" : 1,
-            "jupiter" : 
-                {"_count_" : 1}}}},
-"joanna" : 
-    {"_count_" : 1,
-    "hasAccount" : 
-        {"_count_" : 1,
-        "alice1" : 
-            {"_count_" : 1,
-            "jupiter" : 
-                {"_count_" : 1}}}},
-"john1" : 
-    {"_count_" : 2,
-    "jupiter" : 
-        {"_count_" : 2,
-        "hasPassword" : 
-            {"_count_" : 1,
-            "felicity" : 
-                {"_count_" : 1,
-                "pw" : 
-                    {"8" : 
-                        {"_count_" : 1},
-                    "_count_" : 1}}},
-        "rdf" : 
-            {"_count_" : 1,
-            "type" : 
-                {"UnixAccount" : 
-                    {"_count_" : 1},
-                "_count_" : 1}}}},
-"jupiter" : 
-    {"_count_" : 6,
-    "defaultAccount" : 
-        {"_count_" : 1,
-        "alice1" : 
-            {"_count_" : 1}},
-    "hasUser" : 
-        {"_count_" : 3,
-        "alice1" : 
-            {"_count_" : 1},
-        "birchb1" : 
-            {"_count_" : 1},
-        "john1" : 
-            {"_count_" : 1}},
-    "rdf" : 
-        {"_count_" : 2,
-        "type" : 
-            {"UnixMachine" : 
-                {"_count_" : 1},
-            "WasDmgr" : 
-                {"_count_" : 1},
-            "_count_" : 2}}},
-"kalpana" : 
-    {"_count_" : 1,
-    "hasAccount" : 
-        {"_count_" : 1,
-        "alice1" : 
-            {"_count_" : 1,
-            "jupiter" : 
-                {"_count_" : 1}}}}}
-fixtures/triples.csv--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
-{"Production" : 
-    {"was" : "_hostname,jupiter"},
-"alice1" : 
-    {"jupiter" : 
-        [",hasPassword,evan2-pw-15",
-        ",hasPassword,joanna-pw-19",
-        ",hasPassword,kalpana-pw-18",
-        ",rdf:type,UnixAccount"]},
-"alice2" : 
-    {"hasAccount" : ",evan1@jupiter"},
-"birchb" : 
-    {"hasAccount" : ",birchb1@jupiter"},
-"birchb1" : 
-    {"jupiter" : 
-        [",hasPassword,birchb-pw-2",
-        ",rdf:type,UnixAccount"]},
-"felicity" : 
-    {"hasAccount" : ",john1@jupiter"},
-"joanna" : 
-    {"hasAccount" : ",alice1@jupiter"},
-"john1" : 
-    {"jupiter" : 
-        [",hasPassword,felicity-pw-8",
-        ",rdf:type,UnixAccount"]},
-"jupiter" : 
-    {"defaultAccount" : ",alice1",
-    "hasUser" : 
-        [",alice1",
-        ",birchb1",
-        ",john1"],
-    "rdf" : 
-        [":type,UnixMachine",
-        ":type,WasDmgr"]},
-"kalpana" : 
-    {"hasAccount" : ",alice1@jupiter"}}
-fixtures/triples.csv--- -format json -order alpha -depth 2 ----------------------------------------------------------------------------------------------------
-{"Production" : 
-    {"was" : 
-        {"hostname" : null}},
-"alice1" : 
-    {"jupiter" : 
-        {"hasPassword" : null,
-        "rdf" : null}},
-"alice2" : 
-    {"hasAccount" : 
-        {"evan1" : null}},
-"birchb" : 
-    {"hasAccount" : 
-        {"birchb1" : null}},
-"birchb1" : 
-    {"jupiter" : 
-        {"hasPassword" : null,
-        "rdf" : null}},
-"felicity" : 
-    {"hasAccount" : 
-        {"john1" : null}},
-"joanna" : 
-    {"hasAccount" : 
-        {"alice1" : null}},
-"john1" : 
-    {"jupiter" : 
-        {"hasPassword" : null,
-        "rdf" : null}},
-"jupiter" : 
-    {"defaultAccount" : "alice1",
-    "hasUser" : 
-        ["alice1",
-        "birchb1",
-        "john1"],
-    "rdf" : 
-        {"type" : null}},
-"kalpana" : 
-    {"hasAccount" : 
-        {"alice1" : null}}}

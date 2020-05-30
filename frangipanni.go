@@ -26,6 +26,7 @@ type node struct {
 	sep        string
 	children   map[string]*node
 	numMatched int // The number of matches of text
+	depth      int // The depth of this node in the tree
 }
 
 //
@@ -33,7 +34,6 @@ type node struct {
 func (n *node) hasChildLeaves() bool {
 
 	for _, c := range n.children {
-		//fmt.Fprintf(os.Stderr, "%v#\n", c)
 		if len(c.children) == 0 {
 			return true
 		}
@@ -45,7 +45,6 @@ func (n *node) hasChildLeaves() bool {
 func sliceHasLeaves(nodes []*node) bool {
 
 	for _, n := range nodes {
-		//fmt.Fprintf(os.Stderr, "%v#\n", c)
 		if len(n.children) == 0 {
 			return true
 		}
@@ -53,8 +52,35 @@ func sliceHasLeaves(nodes []*node) bool {
 	return false
 }
 
-func add(lineNumber int, tree *node, tok []string, sep []string, depth int) {
-	//fmt.Printf("add %d %d node (%s) <= %s %s\n", lineNumber, depth, tree.text, tok, sep)
+func depthAdjust(n *node) {
+	for _, c := range n.children {
+		c.depth = n.depth + 1
+		depthAdjust(c)
+	}
+}
+
+func fold(n *node) *node {
+	if len(n.children) == 0 {
+		return n
+	}
+	for txt, c := range n.children {
+		nc := fold(c)
+		delete(n.children, txt)
+		n.children[nc.text] = nc
+	}
+	if len(n.children) != 1 || n.depth == 0 { // Don't fold into the root node.
+		return n
+	}
+	for _, c := range n.children {
+		// contatenate this into the parent node
+		n.text = n.text + c.sep + c.text
+		n.children = c.children
+	}
+	depthAdjust(n)
+	return n
+}
+
+func add(lineNumber int, n *node, tok []string, sep []string) {
 	if len(tok) < 1 {
 		return
 	}
@@ -64,25 +90,23 @@ func add(lineNumber int, tree *node, tok []string, sep []string, depth int) {
 		firstSep = sep[0]
 		restSeps = sep[1:]
 	}
-	for _, c := range tree.children {
-		//fmt.Printf("children %d node %s child %d %s\n", depth, tree.text, i, c.text)
+	for _, c := range n.children {
 		if tok[0] == c.text {
 			c.numMatched++
-			add(lineNumber, c, tok[1:], restSeps, depth+1)
+			add(lineNumber, c, tok[1:], restSeps)
 			return
 		}
 	}
 	// So not a match to the children. It's a new child.
-	x := node{lineNumber, tok[0], firstSep, map[string]*node{}, 1}
-	tree.children[tok[0]] = &x
-	add(lineNumber, &x, tok[1:], restSeps, depth+1)
-	//fmt.Printf("newchild %d %s\n", depth, tree)
+	x := node{lineNumber, tok[0], firstSep, map[string]*node{}, 1, n.depth + 1}
+	n.children[tok[0]] = &x
+	add(lineNumber, &x, tok[1:], restSeps)
 }
 
-func fprintchildslice(out io.Writer, childs []*node, depth int, orderBy string, parent *node) {
+func fprintchildslice(out io.Writer, childs []*node, orderBy string, parent *node) {
 
 	for _, kc := range childs {
-		fprintTree(out, kc, depth+1, orderBy) // print the children in order
+		fprintTree(out, kc, orderBy) // print the children in order
 	}
 }
 
@@ -114,35 +138,26 @@ func nodeGetChildrenSliceSorted(x *node) []*node {
 	return childs
 }
 
-func fprintTree(out io.Writer, t *node, depth int, orderBy string) {
-
-	if depth+1 > printDepth {
+func fprintTree(out io.Writer, x *node, orderBy string) {
+	if x.depth > printDepth {
 		return
 	}
-	indent(out, depth)
-	x := t                                // temp pointer
-	for len(x.children) == 1 && !noFold { // Print singletons on the same line
-		if !printSeparators && x == t { // First one
-			fmt.Fprint(out, x.text)
-		} else {
-			fmt.Fprint(out, x.sep+x.text)
-		}
-		for k := range x.children { // Get first and only child, loops once.
-			x = x.children[k]
-		}
-	}
-	count := ""
-	if printCounts {
-		count = ": " + strconv.Itoa(x.numMatched)
-	}
-	if !printSeparators && x == t { // First one
-		fmt.Fprintln(out, x.text+count)
-	} else {
-		fmt.Fprintln(out, x.sep+x.text+count)
-	}
+	// Special case for the empty root node - dont print it
+	if x.depth != 0 {
+		indent(out, x.depth)
 
+		count := ""
+		if printCounts {
+			count = ": " + strconv.Itoa(x.numMatched)
+		}
+		if !printSeparators {
+			fmt.Fprintln(out, x.text+count)
+		} else {
+			fmt.Fprintln(out, x.sep+x.text+count)
+		}
+	}
 	childs := nodeGetChildrenSliceSorted(x)
-	fprintchildslice(out, childs, depth, orderBy, x)
+	fprintchildslice(out, childs, orderBy, x)
 }
 
 func escapeJSON(s string) string {
@@ -154,7 +169,7 @@ func escapeJSON(s string) string {
 }
 
 func indent(out io.Writer, depth int) {
-	for i := 0; i < depth; i++ {
+	for i := 0; i < depth-1; i++ {
 		for ts := 0; ts < indentWidth; ts++ {
 			out.Write([]byte(" "))
 		}
@@ -169,10 +184,10 @@ func fprintNodeChildrenListJSON(out io.Writer, childs []*node, depth int) {
 		return
 	}
 	if len(childs) == 1 {
-		fprintNodeJSON(out, childs[0], depth)
+		fprintNodeJSON(out, childs[0])
 		return
 	}
-	if depth >= 0 {
+	if depth > 0 {
 		fmt.Fprint(out, "\n")
 	}
 	indent(out, depth+1)
@@ -182,7 +197,7 @@ func fprintNodeChildrenListJSON(out io.Writer, childs []*node, depth int) {
 			fmt.Fprint(out, "\n")
 			indent(out, depth+1)
 		}
-		fprintNodeJSON(out, c, depth)
+		fprintNodeJSON(out, c)
 		if i < len(childs)-1 {
 			fmt.Fprint(out, ",")
 		}
@@ -200,7 +215,7 @@ func fprintNodeChildrenMapJSON(out io.Writer, childs []*node, depth int, parent 
 	if len(childs) == 0 {
 		return
 	}
-	if depth >= 0 {
+	if depth > 0 {
 		fmt.Fprint(out, "\n")
 	}
 	indent(out, depth+1)
@@ -216,7 +231,7 @@ func fprintNodeChildrenMapJSON(out io.Writer, childs []*node, depth int, parent 
 			indent(out, depth+1)
 		}
 		fmt.Fprint(out, ctext+" : ")
-		fprintNodeChildrenJSON(out, c.children, depth+1, c)
+		fprintNodeChildrenJSON(out, c)
 		if i < len(childs)-1 {
 			fmt.Fprint(out, ",")
 		}
@@ -224,27 +239,27 @@ func fprintNodeChildrenMapJSON(out io.Writer, childs []*node, depth int, parent 
 	fmt.Fprint(out, "}")
 }
 
-func fprintNodeChildrenJSON(out io.Writer, nodemap map[string]*node, depth int, parent *node) {
+func fprintNodeChildrenJSON(out io.Writer, n *node) {
 
-	if depth+1 > printDepth {
+	if n.depth >= printDepth {
 		fmt.Fprint(out, "null")
 		return
 	}
-	if len(nodemap) == 0 {
+	if len(n.children) == 0 {
 		return
 	}
 
-	childs := nodeGetChildrenSliceSorted(parent)
+	childs := nodeGetChildrenSliceSorted(n)
 
 	if sliceHasLeaves(childs) {
-		fprintNodeChildrenListJSON(out, childs, depth)
+		fprintNodeChildrenListJSON(out, childs, n.depth)
 		return
 	}
-	fprintNodeChildrenMapJSON(out, childs, depth, parent)
+	fprintNodeChildrenMapJSON(out, childs, n.depth, n)
 }
 
-func fprintNodeJSON(out io.Writer, n *node, depth int) {
-	if depth+1 > printDepth {
+func fprintNodeJSON(out io.Writer, n *node) {
+	if n.depth > printDepth {
 		fmt.Fprint(out, "null")
 		return
 	}
@@ -263,7 +278,7 @@ func fprintNodeJSON(out io.Writer, n *node, depth int) {
 		return
 	}
 	fmt.Fprint(out, "{"+ntext+" : ")
-	fprintNodeChildrenJSON(out, n.children, depth+1, n)
+	fprintNodeChildrenJSON(out, n)
 	fmt.Fprint(out, "}")
 }
 
@@ -288,7 +303,6 @@ func fakeCounts(n *node) {
 	key.children[strconv.Itoa(n.numMatched)] = value
 	n.children[tag] = key
 
-	//fmt.Printf("%+v\n", n)
 }
 
 //var cpuprofile = flag.String("cpuprofile", "", "write cpu profile to `file`")
@@ -334,7 +348,6 @@ func main() {
 		log.Fatalln("Breaks option incompatible with chars option.")
 	}
 	printSeparators = printSeparators || splitOnCharacters
-
 	/* 	if *cpuprofile != "" {
 	   		f, err := os.Create(*cpuprofile)
 	   		if err != nil {
@@ -362,7 +375,7 @@ func main() {
 		return !isSep(c)
 	}
 
-	root := node{-1, "stdin", "", map[string]*node{}, 1}
+	root := node{-1, "", "", map[string]*node{}, 1, 0}
 	scanner := bufio.NewScanner(file)
 	nr := 0
 	t := make([]string, 1024)
@@ -390,7 +403,7 @@ func main() {
 			}
 		}
 		if len(t) <= maxLevel {
-			add(nr, &root, t, seps, 0)
+			add(nr, &root, t, seps)
 		} else {
 			// Don't use the tokens beyond maxLevel - concatenate the remainder into one
 			childs := make([]string, maxLevel+1)
@@ -402,22 +415,26 @@ func main() {
 			for i := maxLevel; i < len(t) && i < len(seps); i++ {
 				childs[maxLevel] = childs[maxLevel] + seps[i] + t[i]
 			}
-			add(nr, &root, childs, separators, 0)
+			add(nr, &root, childs, separators)
 		}
 	}
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
+
+	froot := &root
+	if !noFold {
+		froot = fold(&root)
+	}
 	switch format {
 	case "indent":
-		childs := nodeGetChildrenSliceSorted(&root)
-		fprintchildslice(stdoutBuffered, childs, -1, orderBy, &root)
+		fprintTree(stdoutBuffered, froot, orderBy)
 
 	case "json":
 		if printCounts {
-			fakeCounts(&root)
+			fakeCounts(froot)
 		}
-		fprintNodeChildrenJSON(stdoutBuffered, root.children, -1, &root)
+		fprintNodeChildrenJSON(stdoutBuffered, froot)
 		fmt.Fprintln(stdoutBuffered)
 
 	default:

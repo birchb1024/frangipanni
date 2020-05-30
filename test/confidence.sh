@@ -11,7 +11,7 @@ do
         echo "$tf--- $sw ----------------------------------------------------------------------------------------------------" >> "$tempfile"
         head -200 "$tf" | ../frangipanni $sw >> "$tempfile"
     done
-    for sw in '' '-breaks /' -separators -counts '-level 2' '-depth 2'
+    for sw in '' '-breaks /' -separators -counts '-level 2' '-depth 3' '-no-fold'
     do
         echo "$tf--- -format json -order alpha $sw ----------------------------------------------------------------------------------------------------" >> "$tempfile"
         head -50 "$tf" | ../frangipanni $sw -format json -order alpha | jq '.' > /dev/null
