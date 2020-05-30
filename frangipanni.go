@@ -103,10 +103,10 @@ func add(lineNumber int, n *node, tok []string, sep []string) {
 	add(lineNumber, &x, tok[1:], restSeps)
 }
 
-func fprintchildslice(out io.Writer, childs []*node, orderBy string, parent *node) {
+func fprintchildslice(out io.Writer, childs []*node, parent *node) {
 
 	for _, kc := range childs {
-		fprintTree(out, kc, orderBy) // print the children in order
+		fprintTree(out, kc) // print the children in order
 	}
 }
 
@@ -138,7 +138,7 @@ func nodeGetChildrenSliceSorted(x *node) []*node {
 	return childs
 }
 
-func fprintTree(out io.Writer, x *node, orderBy string) {
+func fprintTree(out io.Writer, x *node) {
 	if x.depth > printDepth {
 		return
 	}
@@ -157,7 +157,7 @@ func fprintTree(out io.Writer, x *node, orderBy string) {
 		}
 	}
 	childs := nodeGetChildrenSliceSorted(x)
-	fprintchildslice(out, childs, orderBy, x)
+	fprintchildslice(out, childs, x)
 }
 
 func escapeJSON(s string) string {
@@ -428,7 +428,7 @@ func main() {
 	}
 	switch format {
 	case "indent":
-		fprintTree(stdoutBuffered, froot, orderBy)
+		fprintTree(stdoutBuffered, froot)
 
 	case "json":
 		if printCounts {
