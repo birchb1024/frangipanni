@@ -173,22 +173,25 @@ XDG_SESSION_COOKIE=fe37f2ef4-158904.727668-469753
 
 And run with 
 ```
-$ env | egrep '^XDG' | ./frangipanni -breaks '_=' -order alpha -format json
+$ env | egrep '^XDG' | ./frangipanni -breaks '=_' -no-fold -format json
 ```
 we get 
 
 ```json
 {"XDG" : 
-    ["CURRENT_DESKTOP=KDE",
-    "DATA_DIRS=/usr/share:/usr/share:/usr/local/share",
-    "RUNTIME_DIR=/run/user/1000",
-    "SEAT=seat0",
-    {"SESSION" : 
-        ["COOKIE=fe37f2ef4-158904.727668-469753",
-        "DESKTOP=plasma",
-        "ID=5",
-        "TYPE=x11"]},
-    "VTNR=2"]}
+    {"VTNR" : 2,
+    "SESSION" : 
+        {"ID" : 5,
+        "TYPE" : "x11",
+        "DESKTOP" : "plasma",
+        "COOKIE" : "fe37f2ef4-158904.727668-469753"},
+    "DATA" : 
+        {"DIRS" : "/usr/share:/usr/share:/usr/local/share"},
+    "CURRENT" : 
+        {"DESKTOP" : "KDE"},
+    "SEAT" : "seat0",
+    "RUNTIME" : 
+        {"DIR" : "/run/user/1000"}}}
 ```
 ## Split the PATH
 
