@@ -255,7 +255,7 @@ $ cat test/fixtures/triples.csv | \
   "defaultAccount": "alice1",
   "hasUser": [
     "alice1",
-    "alice1",
+    "birchb1",
     "john1"
   ],
   "rdf:type": [
