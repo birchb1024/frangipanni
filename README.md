@@ -3,7 +3,7 @@ Program to convert lines of text into a beautiful tree structure.
 
 <img src="frangipanni.jpg" alt="A Tree" width="200" align="right">
 
-The program reads each line on the standard input in turn. It breaks the line into tokens, then adds the sequence of tokens into a tree structure which is printed as indented lines, or JSON formats. 
+The program reads each line on the standard input in turn. It breaks the line into tokens, then adds the sequence of tokens into a tree structure which is printed as indented lines or JSON formats. 
 
 Options control where the line is broken into tokens, and output considerations.
 
@@ -27,10 +27,30 @@ We get this input data:
 
 The program, when invoked with :
 ```
-sudo find /etc -maxdepth 3 | tail -9 | frangipanni -breaks / -no-fold
+sudo find /etc -maxdepth 3 | tail -9 | frangipanni
 ```
 produces this output:
 
+```
+etc
+    bluetooth
+        rfcomm.conf.dpkg-remove
+        serial.conf.dpkg-remove
+        input.conf
+        audio.conf.dpkg-remove
+        network.conf
+        main.conf
+    fish/completions/task.fish
+```
+The program reads each line and splits them into tokens on any non-alphanumeric character. 
+
+In this example we're process a list of files produced by `find` so we only want to break on directories. So we can specify `-breaks /`. 
+
+The default behaviour is to _fold_ tree branches with no sub-branches into a single line of output. e.g. `fish/completions/task.fish` We turn off folding by specifying the `-no-fold` option. With the refined command
+```
+frangipanni -breaks / -no-fold
+```
+We see this output
 ```
 etc
     bluetooth
@@ -44,9 +64,7 @@ etc
         completions
             task.fish
 ```
-The program reads each line and splits them into tokens on the forward-slash characters. In this example we're process a list of files produced by `find` so we only want to break on directories. Hence we specify `-breaks /`. 
 
-The default behaviour is to fold tree branches with no sub-branches into a single line of output. e.g. `fish/completions/task.fish` For this explanation we turn off folding by specifying the `-no-fold` option. 
 
 Having restructured the data into a tree format we can output in other formats. We can ask for JSON by adding the `-format json` option. We get this output:
 
@@ -62,9 +80,10 @@ Having restructured the data into a tree format we can output in other formats. 
     "fish" : 
         {"completions" : "task.fish"}}}
 ```
-By default, `frangipanni` breaks lines into tokens on any non-alphanumeric character. 
+
 
 # Usage
+The command is a simple filter taking standard input, and output on stdout.
 
 ```
 cat <input> | frangipanni [options]
@@ -74,12 +93,11 @@ cat <input> | frangipanni [options]
 
 ```
   -breaks string
-        Characters to slice lines with. e.g. '/:_'
+        Characters to slice lines with.
   -chars
-        Slice line after each character.
+        Slice line after every character.
   -counts
-        Print number of matches at the end of the line or 
-        add `__count__ : NNN` to each JSON object.
+        Print number of matches at the end of the line.
   -depth int
         Maximum tree depth to print. (default 2147483647)
   -format string
@@ -94,6 +112,8 @@ cat <input> | frangipanni [options]
         Sort order input|alpha. Sort the childs either in input order or via character ordering (default "input")
   -separators
         Print leading separators.
+  -spacer string
+        Characters to indent lines with. (default " ")
 ```
 
 
@@ -159,19 +179,16 @@ we get
 
 ```json
 {"XDG" : 
-    {"CURRENT" : 
-        {"DESKTOP" : "KDE"},
-    "DATA" : 
-        {"DIRS" : "/usr/share:/usr/share:/usr/local/share"},
-    "RUNTIME" : 
-        {"DIR" : "/run/user/1000"},
-    "SEAT" : "seat0",
-    "SESSION" : 
-        {"COOKIE" : "fe3c308cda1ed18ad0deaaba527f2ef4-1589682304.727668-469721653",
-        "DESKTOP" : "plasma",
-        "ID" : 5,
-        "TYPE" : "x11"},
-    "VTNR" : 2}}
+    ["CURRENT_DESKTOP=KDE",
+    "DATA_DIRS=/usr/share:/usr/share:/usr/local/share",
+    "RUNTIME_DIR=/run/user/1000",
+    "SEAT=seat0",
+    {"SESSION" : 
+        ["COOKIE=fe37f2ef4-158904.727668-469753",
+        "DESKTOP=plasma",
+        "ID=5",
+        "TYPE=x11"]},
+    "VTNR=2"]}
 ```
 ## Split the PATH
 
@@ -181,7 +198,7 @@ $ echo $PATH | tr ':' '\n' | ./frangipanni -separators
 
 ```
 /home/alice
-    /work/gopath/src/github.com/akice/frangipanni
+    /work/gopath/src/github.com/birchb1024/frangipanni
     /apps
         /textadept_10.8.x86_64
         /shellcheck-v0.7.1
@@ -190,12 +207,6 @@ $ echo $PATH | tr ':' '\n' | ./frangipanni -separators
         /idea-IC-172.4343.14/bin
         /GoLand-173.3531.21/bin
         /arduino-1.6.7
-    /workspace
-        /gopath
-            /src/github.com/akice/goyamp
-            /bin
-        /go/bin
-        /genyris/bin
     /yed
     /bin
 /usr
@@ -232,7 +243,7 @@ In this example we want the data about the `jupiter` machine. We permute the inp
 ```
 $ cat test/fixtures/triples.csv | \
   awk -F, '{print $2,$1,$3; print $1, $2, $3; print $3, $2, $1}' | \
-  ./frangipanni  -breaks ' ' -order alpha -format json | \
+  ./frangipanni  -breaks ' ' -order alpha -format json -no-fold | \
   jq '."jupiter"'
 ```
 
@@ -252,7 +263,7 @@ $ cat test/fixtures/triples.csv | \
 }
 ```
 
-# Security Analysis of sudo use in Auth Log File
+## Security Analysis of sudo use in Auth Log File
 
 The Linux /var/log/auth.log file has timed records about `sudo` which look like this:
 
@@ -267,7 +278,7 @@ By skipping the date/time component of the lines, and specifying `-counts` we ca
 ```
 $ sudo cat /var/log/auth.log | grep sudo | \
     awk '{print substr($0,16),substr($0,1,15)}' | \
-    ./frangipanni -breaks ' ;:'  -depth 4 -counts -separators
+    ./frangipanni -breaks ' ;:'  -depth 5 -counts -separators
 ```
 
 Produces
@@ -293,3 +304,59 @@ Produces
 ```
 
 We can see alice has run 42 sudo commands, 28 of whuch were `cat`ing files from /var.
+
+## Output for Spreadsheets
+
+Inevitably you will need to output reports from frangipanni into a spreadsheet. You can use the `-spacer` option to specify the character(s) to use for indentation and before the counts. So with the file list example from above and this command
+
+```
+sudo find /etc -maxdepth 3 | tail -9 | frangipanni -no-fold -counts -indent 1 -spacer $'\t'
+```
+
+You will have a tab-separated output which can be imported to your spreadsheet.
+
+
+||||
+|---|---|---|
+|etc|9
+|bluetooth|6
+||rfcomm.conf.dpkg-remove|1
+||serial.conf.dpkg-remove|1
+||input.conf|1
+||audio.conf.dpkg-remove|1
+||network.conf|1
+||main.conf|1
+|fish/completions/task.fish|3
+
+
+## Output for Markdown
+
+To use the output with markdown or other text-based tools, sepecify the `-separator` option. This can be used by tools like `sed` to convert the leading separator into the markup required. example to get a leading minus sign 
+for an un-numbered Markdown list, use `sed` to 
+
+```
+sudo find /etc -maxdepth 3 | tail -9 | frangipanni -separators | sed 's;/; - ;'
+```
+
+Which results in an indented bullet list:
+
+>- etc
+>    - bluetooth
+>        - rfcomm.conf.dpkg-remove
+>        - serial.conf.dpkg-remove
+>        - input.conf
+>        - audio.conf.dpkg-remove
+>        - network.conf
+>        - main.conf
+>    - fish/completions/task.fish
+
+
+
+
+
+
+
+
+
+
+

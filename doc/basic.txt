@@ -1,0 +1,9 @@
+/etc/bluetooth/rfcomm.conf.dpkg-remove
+/etc/bluetooth/serial.conf.dpkg-remove
+/etc/bluetooth/input.conf
+/etc/bluetooth/audio.conf.dpkg-remove
+/etc/bluetooth/network.conf
+/etc/bluetooth/main.conf
+/etc/fish
+/etc/fish/completions
+/etc/fish/completions/task.fish
