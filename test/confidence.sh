@@ -6,7 +6,7 @@ tempfile=$(mktemp)
 cd $scriptdir   # So all paths arelative to here in test data file
 for tf in fixtures/*
 do
-    for sw in '' -chars '-breaks /' -separators -counts -no-fold '-level 2' '-depth 2' 
+    for sw in '' -chars '-breaks /' -separators -counts -no-fold '-level 2' '-depth 2' '-spacer ^ -indent 1 -counts'
     do
         echo "$tf--- $sw ----------------------------------------------------------------------------------------------------" >> "$tempfile"
         head -200 "$tf" | ../frangipanni $sw >> "$tempfile"
@@ -19,5 +19,4 @@ do
     done
 done
 set -x
-#cp "$tempfile" $scriptdir/fixtures.log
 diff "$tempfile" $scriptdir/fixtures.log || kdiff3 "$tempfile" $scriptdir/fixtures.log

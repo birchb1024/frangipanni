@@ -142,13 +142,17 @@ func fprintTree(out io.Writer, x *node) {
 	if x.depth > printDepth {
 		return
 	}
-	// Special case for the empty root node - dont print it
-	if x.depth != 0 {
+
+	if x.depth != 0 { // Special case for the empty root node - dont print it
 		indent(out, x.depth)
 
 		count := ""
+		spacer := ": "
+		if indentString != " " {
+			spacer = indentString
+		}
 		if printCounts {
-			count = ": " + strconv.Itoa(x.numMatched)
+			count = spacer + strconv.Itoa(x.numMatched)
 		}
 		if !printSeparators {
 			fmt.Fprintln(out, x.text+count)
@@ -171,7 +175,7 @@ func escapeJSON(s string) string {
 func indent(out io.Writer, depth int) {
 	for i := 0; i < depth-1; i++ {
 		for ts := 0; ts < indentWidth; ts++ {
-			out.Write([]byte(" "))
+			out.Write([]byte(indentString))
 		}
 	}
 }
@@ -319,6 +323,7 @@ var splitOnCharacters bool
 var printCounts bool
 var printDepth int
 var indentWidth int
+var indentString string
 
 func main() {
 
@@ -336,6 +341,7 @@ func main() {
 	flag.BoolVar(&printCounts, "counts", false, "Print number of matches at the end of the line.")
 	flag.IntVar(&printDepth, "depth", math.MaxInt32, "Maximum tree depth to print.")
 	flag.IntVar(&indentWidth, "indent", 4, "Number of spaces to indent per level.")
+	flag.StringVar(&indentString, "spacer", " ", "Characters to indent lines with.")
 
 	flag.Parse()
 	if maxLevel < 0 {
@@ -348,6 +354,7 @@ func main() {
 		log.Fatalln("Breaks option incompatible with chars option.")
 	}
 	printSeparators = printSeparators || splitOnCharacters
+
 	/* 	if *cpuprofile != "" {
 	   		f, err := os.Create(*cpuprofile)
 	   		if err != nil {

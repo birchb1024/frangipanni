@@ -397,6 +397,53 @@ usr/local/go
     test2
     test3/fixedbugs/bug196.go
     test4/fixedbugs/issue19667.go
+fixtures/find.txt--- -spacer ^ -indent 1 -counts ----------------------------------------------------------------------------------------------------
+proc/22468^7
+^io^1
+^uid_map^1
+^gid_map^1
+^projid_map^1
+^setgroups^1
+^timers^1
+^timerslack_ns^1
+oldroot^1
+boot^28
+^grub^15
+^^grub.cfg^2
+^^unicode.pf2^2
+^^locale^2
+^^grubenv^2
+^^fonts^2
+^^device.map^2
+^^i386-pc^1
+^vmlinuz-4.9.0^3
+^^11-amd64^1
+^^8-amd64^1
+^^12-amd64^1
+^initrd.img-4.9.0^3
+^^12-amd64^1
+^^8-amd64^1
+^^11-amd64^1
+^System.map-4.9.0^3
+^^8-amd64^1
+^^11-amd64^1
+^^12-amd64^1
+^config-4.9.0^3
+^^12-amd64^1
+^^11-amd64^1
+^^8-amd64^1
+srv^1
+usr/local/go^7
+^test/fixedbugs/bug028.go^1
+^test2^4
+^^fixedbugs1^2
+^^^bug205.go^1
+^^^bug206.go^1
+^^fixedbugs2^2
+^^^bug481.go^1
+^^^bug482.go^1
+^test3/fixedbugs/bug196.go^1
+^test4/fixedbugs/issue19667.go^1
 fixtures/find.txt--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
 [{"boot" : 
     {"System.map-4.9.0" : 
@@ -1076,6 +1123,38 @@ WARNING
     reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring
     COMMAND_FAILED: '/usr/sbin/iptables -w2
 h' or 'iptables --help' for more information
+fixtures/firewall.txt--- -spacer ^ -indent 1 -counts ----------------------------------------------------------------------------------------------------
+WARNING^196
+^ICMP type^62
+^^beyond-scope' is not supported by^21
+^^failed-policy' is not supported by^21
+^^reject-route' is not supported by^20
+^beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring^21
+^failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring^20
+^reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring^20
+^COMMAND_FAILED: '/usr/sbin/iptables -w2^73
+^^t^68
+^^^nat^33
+^^^^D^11
+^^^^^OUTPUT^8
+^^^^^PREROUTING^3
+^^^^F DOCKER^2
+^^^^X DOCKER^2
+^^^^n -L^3
+^^^^C^15
+^^^^^POSTROUTING^4
+^^^^^DOCKER^5
+^^^^^PREROUTING^3
+^^^^^OUTPUT^3
+^^^filter^35
+^^^^F DOCKER-ISOLATION^4
+^^^^X DOCKER-ISOLATION^6
+^^^^n -L^4
+^^^^C^21
+^^^^^DOCKER-ISOLATION^3
+^^^^^FORWARD^18
+^^D FORWARD -i docker0^5
+h' or 'iptables --help' for more information^4
 fixtures/firewall.txt--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
 {"WARNING" : 
     [{"ICMP type" : 
@@ -1393,6 +1472,22 @@ fixtures/log-file.txt--- -depth 2 ----------------------------------------------
 May 10
     03:17:06 localhost systemd
     04:00:00 localhost
+fixtures/log-file.txt--- -spacer ^ -indent 1 -counts ----------------------------------------------------------------------------------------------------
+May 10^10
+^03:17:06 localhost systemd^2
+^^Removed slice User Slice of root^1
+^^Stopping User Slice of root^1
+^04:00:00 localhost^8
+^^systemd^2
+^^^Starting Docker Cleanup^1
+^^^Started Docker Cleanup^1
+^^dockerd-current: time="2020-05-10T04:00:00^6
+^^^629849861+10:00" level=debug msg="Calling GET /_ping^1
+^^^629948000+10:00" level=debug msg="Unable to determine container for^1
+^^^630103455+10:00" level=debug msg="{Action=_ping, LoginUID=12345678, PID=21075^1
+^^^630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D^1
+^^^630704513+10:00" level=debug msg="Unable to determine container for containers^1
+^^^630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075^1
 fixtures/log-file.txt--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
 {"May 10" : 
     {"03:17:06 localhost systemd" : 
@@ -1717,6 +1812,20 @@ J
 K
 L
 M
+fixtures/morse.txt--- -spacer ^ -indent 1 -counts ----------------------------------------------------------------------------------------------------
+A^1
+B^1
+C^1
+D^1
+E^1
+F^1
+G^1
+H^1
+I^1
+J^1
+K^1
+L^1
+M^1
 fixtures/morse.txt--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
 ["A",
 "B",
@@ -4153,6 +4262,276 @@ en
 authority
     imdb
     netflix/movie
+fixtures/movies.csv--- -spacer ^ -indent 1 -counts ----------------------------------------------------------------------------------------------------
+guid^33
+^9202a8c04000641f80000000056d973b,name,Kate Dickie^1
+^9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco^1
+^9202a8c04000641f80000000010fa2fc,name,Yoshiko Ohta^1
+^9202a8c04000641f80000000010de9bd,name,Jacques Martineau^1
+^9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy^1
+^9202a8c04000641f80000000055ec985,name,Karine Vanasse^1
+^9202a8c04000641f8000000006e78c3a,name,Dan Cox^1
+^9202a8c04000641f8000000006c283e4,name,Marilyn Fox^1
+^9202a8c04000641f8000000007a20ead,name,Alfred Hoffmann^1
+^9202a8c04000641f80000000010eff49,name,Joel Hershman^1
+^9202a8c04000641f80000000056b3aec^3
+^^name,Il signor Max^1
+^^starring,/en/vittorio_de_sica^1
+^^directed_by,/guid/9202a8c04000641f800000000568c253^1
+^9202a8c04000641f8000000004784012^5
+^^name,The Sitter Downers^1
+^^starring^3
+^^^en^2
+^^^^curly_howard^1
+^^^^moe_howard^1
+^^^guid/9202a8c04000641f80000000002c8289^1
+^^directed_by,/en/del_lord^1
+^9202a8c04000641f8000000000488e6c,name,Jay R. Smith^1
+^9202a8c04000641f80000000010de9b7,name,Olivier Ducastel^1
+^9202a8c04000641f8000000005e326fc,name,Harry McCoy^1
+^9202a8c04000641f8000000001100c83,name,J.P. Dutta^1
+^9202a8c04000641f80000000056ac128^6
+^^name,Sanyasi^1
+^^starring,/en^4
+^^^premnath^1
+^^^pran_sikhand^1
+^^^manoj_kumar^1
+^^^hema_malini^1
+^^directed_by,/en/sohanlal_kanwar^1
+^9202a8c04000641f8000000006b51797^3
+^^name,Roaring Rails^1
+^^starring,/en/harry_carey^1
+^^directed_by,/en/tom_forman^1
+^9202a8c04000641f80000000010c797b,name,Lou Lubin^1
+^9202a8c04000641f800000000575e1d7,name,Giada Colagrande^1
+en^109
+^hiroyuki_okiura,name,Hiroyuki Okiura^1
+^bad_taste^7
+^^name,Bad Taste^1
+^^starring^5
+^^^guid^4
+^^^^9202a8c04000641f80000000010cf924^1
+^^^^9202a8c04000641f800000000434a77d^1
+^^^^9202a8c04000641f80000000010cf91e^1
+^^^^9202a8c04000641f80000000010cf92b^1
+^^^en/peter_jackson^1
+^^directed_by,/en/peter_jackson^1
+^milou_en_mai^6
+^^name,Milou en mai^1
+^^starring,/en^4
+^^^michel_piccoli^1
+^^^dominique_blanc^1
+^^^miou-miou^1
+^^^harriet_walter^1
+^^directed_by,/en/louis_malle^1
+^sebastian_arcelus,name,Sebastian Arcelus^1
+^candy_barr,name,Candy Barr^1
+^megan_mullally,name,Megan Mullally^1
+^john_glen,name,John Glen^1
+^karl_maka,name,Karl Maka^1
+^oscar_homolka,name,Oscar Homolka^1
+^david_greene,name,David Greene^1
+^masahiko_tsugawa,name,Masahiko Tsugawa^1
+^gymkata^5
+^^name,Gymkata^1
+^^starring^3
+^^^guid/9202a8c04000641f8000000000931b97^1
+^^^en^2
+^^^^tetchie_agbayani^1
+^^^^richard_norton^1
+^^directed_by,/guid/9202a8c04000641f80000000010d353a^1
+^robin_christopher,name,Robin Christopher^1
+^three_little_pigskins^15
+^^name,Three Little Pigskins^1
+^^starring^11
+^^^en^5
+^^^^lucille_ball^1
+^^^^walter_long^1
+^^^^curly_howard^1
+^^^^moe_howard^1
+^^^^roger_moore^1
+^^^guid^6
+^^^^9202a8c04000641f80000000056e2837^1
+^^^^9202a8c04000641f8000000001138b99^1
+^^^^9202a8c04000641f8000000001138b9f^1
+^^^^9202a8c04000641f8000000005e00878^1
+^^^^9202a8c04000641f80000000002c8289^1
+^^^^9202a8c04000641f80000000008ab408^1
+^^directed_by^3
+^^^guid^2
+^^^^9202a8c04000641f8000000001138b93^1
+^^^^9202a8c04000641f8000000006b9f529^1
+^^^en/raymond_mccarey^1
+^the^29
+^^ladykillers^9
+^^^name,The Ladykillers^1
+^^^starring^7
+^^^^en^6
+^^^^^peter_sellers^1
+^^^^^alec_guinness^1
+^^^^^jack_warner^1
+^^^^^cecil_parker^1
+^^^^^katie_johnson^1
+^^^^^herbert_lom^1
+^^^^guid/9202a8c04000641f800000000014f655^1
+^^^directed_by,/en/alexander_mackendrick^1
+^^legend_of_zorro^6
+^^^name,The Legend of Zorro^1
+^^^starring,/en^4
+^^^^catherine_zeta-jones^1
+^^^^antonio_banderas^1
+^^^^leo_burmester^1
+^^^^rufus_sewell^1
+^^^directed_by,/en/martin_campbell^1
+^^leopard_man^6
+^^^name,The Leopard Man^1
+^^^starring^4
+^^^^en^3
+^^^^^margo^1
+^^^^^jean_brooks^1
+^^^^^richard_dix^1
+^^^^guid/9202a8c04000641f800000000016b5dc^1
+^^^directed_by,/en/jacques_tourneur^1
+^^wood^8
+^^^name,The Wood^1
+^^^starring^6
+^^^^en^5
+^^^^^lisaraye_mccoy^1
+^^^^^malinda_williams^1
+^^^^^omar_epps^1
+^^^^^sanaa_lathan^1
+^^^^^taye_diggs^1
+^^^^guid/9202a8c04000641f8000000000ab5811^1
+^^^directed_by,/en/rick_famuyiwa^1
+^pixel_perfect^5
+^^name,Pixel Perfect^1
+^^starring,/en^3
+^^^spencer_redford^1
+^^^leah_pipes^1
+^^^ricky_ullman^1
+^^directed_by,/guid/9202a8c04000641f80000000010f0d37^1
+^mio_in_the_land_of_faraway^7
+^^name,Mio in the Land of Faraway^1
+^^starring,/en^5
+^^^nick_pickard^1
+^^^christian_bale^1
+^^^timothy_bottoms^1
+^^^christopher_lee^1
+^^^susannah_york^1
+^^directed_by,/guid/9202a8c04000641f8000000001105672^1
+^i_shot_andy_warhol^9
+^^name,I Shot Andy Warhol^1
+^^starring,/en^7
+^^^jared_harris^1
+^^^bill_sage^1
+^^^martha_plimpton^1
+^^^lili_taylor^1
+^^^lothaire_bluteau^1
+^^^stephen_dorff^1
+^^^tahnee_welch^1
+^^directed_by,/en/mary_harron^1
+^kate_vernon,name,Kate Vernon^1
+^virumaandi^9
+^^name,Virumaandi^1
+^^starring^7
+^^^guid^4
+^^^^9202a8c04000641f800000000113e008^1
+^^^^9202a8c04000641f800000000113dffa^1
+^^^^9202a8c04000641f800000000113e002^1
+^^^^9202a8c04000641f80000000010cde15^1
+^^^en^3
+^^^^rohini^1
+^^^^kamal_haasan^1
+^^^^nassar^1
+^^directed_by,/en/kamal_haasan^1
+^neil_hopkins,name,Neil Hopkins^1
+^roger_rees,name,Roger Rees^1
+^helena_rojo,name,Helena Rojo^1
+^jackson_browne,name,Jackson Browne^1
+^dorothy_malone,name,Dorothy Malone^1
+^molly_parker,name,Molly Parker^1
+authority^58
+^imdb^38
+^^name/nm0036934,name,Greg Aronowitz^1
+^^title^37
+^^^tt0105001^4
+^^^^name,Night and the City^1
+^^^^starring,/en^2
+^^^^^jessica_lange^1
+^^^^^robert_de_niro^1
+^^^^directed_by,/en/irwin_winkler^1
+^^^tt0486761^13
+^^^^name,Leroy & Stitch^1
+^^^^starring,/en^10
+^^^^^rob_paulsen^1
+^^^^^kevin^2
+^^^^^^mcdonald^1
+^^^^^^michael_richardson^1
+^^^^^chris_sanders^1
+^^^^^david_ogden_stiers^1
+^^^^^tia_carrere^1
+^^^^^zoe_caldwell^1
+^^^^^jeff_bennett^1
+^^^^^tara_strong^1
+^^^^^daveigh_chase^1
+^^^^directed_by^2
+^^^^^en/tony_craig^1
+^^^^^guid/9202a8c04000641f80000000010ff1da^1
+^^^tt0118603^7
+^^^^name,American Perfekt^1
+^^^^starring,/en^5
+^^^^^paul_sorvino^1
+^^^^^david_thewlis^1
+^^^^^fairuza_balk^1
+^^^^^amanda_plummer^1
+^^^^^robert_forster^1
+^^^^directed_by,/guid/9202a8c04000641f80000000010cb446^1
+^^^tt0118607^13
+^^^^name,Amistad^1
+^^^^starring^11
+^^^^^en^10
+^^^^^^harry_blackmun^1
+^^^^^^morgan_freeman^1
+^^^^^^chiwetel_ejiofor^1
+^^^^^^matthew_mcconaughey^1
+^^^^^^anna_paquin^1
+^^^^^^pete_postlethwaite^1
+^^^^^^djimon_hounsou^1
+^^^^^^jeremy_northam^1
+^^^^^^stellan_skarsgard^1
+^^^^^^anthony_hopkins^1
+^^^^^guid/9202a8c04000641f800000000081a1ab^1
+^^^^directed_by,/en/steven_spielberg^1
+^netflix/movie^20
+^^70062973^4
+^^^name,Ivana Trump's For Love Alone^1
+^^^starring,/en^2
+^^^^stephen_collins^1
+^^^^madeline_kahn^1
+^^^directed_by,/en/michael_lindsay-hogg^1
+^^60023256^4
+^^^name,Lost Command^1
+^^^starring,/en^2
+^^^^alain_delon^1
+^^^^anthony_quinn^1
+^^^directed_by,/en/mark_robson^1
+^^60032983^3
+^^^name,A Charlie Brown Valentine^1
+^^^starring,/guid/9202a8c04000641f800000000566116b^1
+^^^directed_by,/en/bill_melendez^1
+^^70051108^5
+^^^name,My Kung-Fu Sweetheart^1
+^^^starring,/en^3
+^^^^leo_ku^1
+^^^^cecilia_cheung^1
+^^^^yuen_wah^1
+^^^directed_by,/en/wong_jing^1
+^^70012787^4
+^^^name,"Remember Me, My Love^1
+^^^starring,/en^3
+^^^^laura_morante^1
+^^^^fabrizio_bentivoglio^1
+^^^^silvio_muccino^1
 fixtures/movies.csv--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
 {"authority" : 
     {"imdb" : 
@@ -5072,6 +5451,47 @@ WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7
 GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF
 GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0
 DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7
+fixtures/random.txt--- -spacer ^ -indent 1 -counts ----------------------------------------------------------------------------------------------------
+ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU^1
+3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy^1
+h4kd4u3TDLeWrqVIjwZ9WHach7zFToWN^1
+5vyN97KXONcmVaUmbYafEmS3kK4huL0d^1
+0s69iWKK3Pfi0mS1aLdJSboXwENv4neb^1
+52JHD4TyE8dQu2F4Xk9diqIWqePyAaVM^1
+4WiWCkpjXGadDIYCsy6O2VMyWQVWiJx3^1
+YI0OM5HRlB1j0ZTgCG76W6er0vdp4BHk^1
+hWDeAHqIIzSjT6Iv4pr07Bn6HF8uRI6T^1
+DsBm1fRlrPweuUrkmLn4AAjtkAz1D8qj^1
+O8F94IGLmkPcq0OPofRWBlqUIQVsUeoa^1
+bkUPVXN3iGxStK1GyVyCx9H3712KhB71^1
+k4U63BHEOh5d6AZtViZU3Umfz8WZvzdb^1
+5BLkNuwztrirIvJc7roZ4o9W2huxg5Qo^1
+ApwtzoSzcSasveDV2Geu8U3n5G7c4TtX^1
+f7LHn0HwnRjZBUXzWwlO4IrFzfNvFM6P^1
+m56AVisdRuHvPMua3GseSUW9uzaEbxn8^1
+BPMAkBfEKLreg9sPVfLt0YyxLl0ykFTg^1
+1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF^1
+F3Uw74ZOqKk6iX1DAS1jlCz3kwhjmZSP^1
+gNbYB65NOStT4ltMktBaJa1oWkPfqzNz^1
+xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3^1
+wCycdlsmXtYzLukRcPjijCAcwTckFLfa^1
+NRsk6JebWnQ8HERnBJZaWkQXzEVbfkFt^1
+SEtMfDjCThZoyJiIdNTlEMmFTkp9Z3dj^1
+mGMbJt9c7sH7p86btgk7vR6xEre4DvkO^1
+imzBe68oWn81zkGnUPq3Q6MvoFnDnaqM^1
+Mv7SgDpn8htl5OI7eCmGE3S8fTMAFtyW^1
+mCuE5Mt0SUq84e4VZ6Xgvp0mS862STe9^1
+kXLPCQ9qMVwUzYQyt28xJNTUWkBYItV7^1
+dJO8CseqDgr9AjPAAlofAmwKzo5i6ORX^1
+NbdjXjxaGFWfFuFgndDggCYYBOKNcCiz^1
+CcMuwCe585yt0a0Xd0IwXvwbH5yrhBHt^1
+IBqxNzZNUyimsNYDa4X5gLFkXxTWXBnT^1
+5lsY90hTZPNcPj26LeI2QEqd3ItY8i1s^1
+XHcZrTrO4DgDyJuLRGlFv1kxiXUjN2fE^1
+WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7^1
+GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF^1
+GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0^1
+DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7^1
 fixtures/random.txt--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
 ["0s69iWKK3Pfi0mS1aLdJSboXwENv4neb",
 "1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF",
@@ -5481,6 +5901,16 @@ x.a
     2
 Z
 1.2
+fixtures/simplechars.txt--- -spacer ^ -indent 1 -counts ----------------------------------------------------------------------------------------------------
+A^1
+C^2
+^2^1
+^D^1
+x.a^3
+^1^1
+^2^1
+Z^1
+1.2^1
 fixtures/simplechars.txt--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
 ["1.2",
 "A",
@@ -5814,6 +6244,34 @@ birchb1@jupiter
     rdf:type,UnixAccount
     hasPassword,birchb-pw-2
 birchb,hasAccount,birchb1@jupiter
+fixtures/triples.csv--- -spacer ^ -indent 1 -counts ----------------------------------------------------------------------------------------------------
+john1@jupiter^2
+^rdf:type,UnixAccount^1
+^hasPassword,felicity-pw-8^1
+joanna,hasAccount,alice1@jupiter^1
+jupiter^6
+^defaultAccount,alice1^1
+^hasUser^3
+^^alice1^1
+^^birchb1^1
+^^john1^1
+^rdf:type^2
+^^UnixMachine^1
+^^WasDmgr^1
+alice2,hasAccount,evan1@jupiter^1
+felicity,hasAccount,john1@jupiter^1
+alice1@jupiter^4
+^rdf:type,UnixAccount^1
+^hasPassword^3
+^^kalpana-pw-18^1
+^^evan2-pw-15^1
+^^joanna-pw-19^1
+kalpana,hasAccount,alice1@jupiter^1
+Production,was_hostname,jupiter^1
+birchb1@jupiter^2
+^rdf:type,UnixAccount^1
+^hasPassword,birchb-pw-2^1
+birchb,hasAccount,birchb1@jupiter^1
 fixtures/triples.csv--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
 ["Production,was_hostname,jupiter",
 {"alice1@jupiter" : 
