@@ -10,9 +10,9 @@ import (
 	"io"
 	"log"
 	"os"
-	//	"runtime"
-	//	"runtime/pprof"
 	"encoding/json"
+	luajson "github.com/layeh/gopher-json"
+	"github.com/yuin/gopher-lua"
 	"math"
 	"sort"
 	"strconv"
@@ -309,8 +309,32 @@ func fakeCounts(n *node) {
 
 }
 
-//var cpuprofile = flag.String("cpuprofile", "", "write cpu profile to `file`")
-//var memprofile = flag.String("memprofile", "", "write memory profile to `file`")
+func makeLuaTableFromNode(L *lua.LState, n *node) *lua.LTable {
+	tb := L.CreateTable(6,6)
+
+	tb.RawSet(lua.LString("lineNumber"), lua.LNumber(n.lineNumber))
+	tb.RawSet(lua.LString("text"), lua.LString(n.text))
+	tb.RawSet(lua.LString("sep"), lua.LString(n.sep))
+	tb.RawSet(lua.LString("numMatched"), lua.LNumber(n.numMatched))
+	tb.RawSet(lua.LString("depth"), lua.LNumber(n.depth))
+	ch := L.CreateTable(len(n.children), len(n.children))
+	tb.RawSet(lua.LString("children"), ch)
+	for k, v := range n.children {
+		ch.RawSet(lua.LString(k), makeLuaTableFromNode(L, v))
+	}
+	return tb
+}
+
+func luaRun(out io.Writer, root *node) {
+	L := lua.NewState()
+	luajson.Preload(L)
+	L.SetGlobal("frangipanni", makeLuaTableFromNode(L, root))
+	defer L.Close()
+	if err := L.DoFile(luaFile); err != nil {
+		panic(err)
+	}
+}
+
 
 // Nasty Globals for options ;-)
 var printSeparators bool
@@ -324,6 +348,7 @@ var printCounts bool
 var printDepth int
 var indentWidth int
 var indentString string
+var luaFile string
 
 func main() {
 
@@ -342,6 +367,7 @@ func main() {
 	flag.IntVar(&printDepth, "depth", math.MaxInt32, "Maximum tree depth to print.")
 	flag.IntVar(&indentWidth, "indent", 4, "Number of spaces to indent per level.")
 	flag.StringVar(&indentString, "spacer", " ", "Characters to indent lines with.")
+	flag.StringVar(&luaFile, "lua", "", "Lua Script to run")
 
 	flag.Parse()
 	if maxLevel < 0 {
@@ -354,19 +380,6 @@ func main() {
 		log.Fatalln("Breaks option incompatible with chars option.")
 	}
 	printSeparators = printSeparators || splitOnCharacters
-
-	/* 	if *cpuprofile != "" {
-	   		f, err := os.Create(*cpuprofile)
-	   		if err != nil {
-	   			log.Fatal("could not create CPU profile: ", err)
-	   		}
-	   		defer f.Close() // error handling omitted for example
-	   		if err := pprof.StartCPUProfile(f); err != nil {
-	   			log.Fatal("could not start CPU profile: ", err)
-	   		}
-	   		defer pprof.StopCPUProfile()
-	   	}
-	*/
 
 	file := os.Stdin
 	defer file.Close()
@@ -433,6 +446,12 @@ func main() {
 	if !noFold {
 		froot = fold(&root)
 	}
+
+	if luaFile != "" {
+		luaRun(stdoutBuffered, &root)
+		os.Exit(0)
+	}
+
 	switch format {
 	case "indent":
 		fprintTree(stdoutBuffered, froot)
@@ -447,17 +466,4 @@ func main() {
 	default:
 		log.Fatalf("Error: unknown format option '%v'", format)
 	}
-
-	/* 	if *memprofile != "" {
-	   		f, err := os.Create(*memprofile)
-	   		if err != nil {
-	   			log.Fatal("could not create memory profile: ", err)
-	   		}
-	   		defer f.Close() // error handling omitted for example
-	   		runtime.GC()    // get up-to-date statistics
-	   		if err := pprof.WriteHeapProfile(f); err != nil {
-	   			log.Fatal("could not write memory profile: ", err)
-	   		}
-	   	}
-	*/
 }

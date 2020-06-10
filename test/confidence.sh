@@ -18,5 +18,12 @@ do
         head -50 "$tf" | ../frangipanni $sw -format json -order alpha >> "$tempfile"
     done
 done
+# Lua
+    echo "fixtures/simplechars.txt--- -lua json.lua ----------------------------------------------------------------------------------------------------" >> "$tempfile"
+    <fixtures/simplechars.txt ../frangipanni -lua ../json.lua | jp '@' >> "$tempfile"
+
+    echo "fixtures/simplechars.txt--- -lua xml.lua ----------------------------------------------------------------------------------------------------" >> "$tempfile"
+    <fixtures/simplechars.txt ../frangipanni -lua ../xml.lua >> "$tempfile"
+
 set -x
 diff "$tempfile" $scriptdir/fixtures.log || kdiff3 "$tempfile" $scriptdir/fixtures.log

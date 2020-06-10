@@ -6514,3 +6514,101 @@ fixtures/triples.csv--- -format json -order alpha -no-fold ---------------------
 "kalpana" : 
     {"hasAccount" : 
         {"alice1" : "jupiter"}}}
+fixtures/simplechars.txt--- -lua json.lua ----------------------------------------------------------------------------------------------------
+{
+  "children": {
+    "1.2": {
+      "children": [],
+      "depth": 1,
+      "lineNumber": 8,
+      "numMatched": 1,
+      "sep": "",
+      "text": "1.2"
+    },
+    "A": {
+      "children": [],
+      "depth": 1,
+      "lineNumber": 1,
+      "numMatched": 1,
+      "sep": "",
+      "text": "A"
+    },
+    "C": {
+      "children": {
+        "2": {
+          "children": [],
+          "depth": 2,
+          "lineNumber": 2,
+          "numMatched": 1,
+          "sep": ".",
+          "text": "2"
+        },
+        "D": {
+          "children": [],
+          "depth": 2,
+          "lineNumber": 3,
+          "numMatched": 1,
+          "sep": ".",
+          "text": "D"
+        }
+      },
+      "depth": 1,
+      "lineNumber": 2,
+      "numMatched": 2,
+      "sep": "",
+      "text": "C"
+    },
+    "Z": {
+      "children": [],
+      "depth": 1,
+      "lineNumber": 7,
+      "numMatched": 1,
+      "sep": "",
+      "text": "Z"
+    },
+    "x.a": {
+      "children": {
+        "1": {
+          "children": [],
+          "depth": 2,
+          "lineNumber": 4,
+          "numMatched": 1,
+          "sep": ".",
+          "text": "1"
+        },
+        "2": {
+          "children": [],
+          "depth": 2,
+          "lineNumber": 5,
+          "numMatched": 1,
+          "sep": ".",
+          "text": "2"
+        }
+      },
+      "depth": 1,
+      "lineNumber": 4,
+      "numMatched": 3,
+      "sep": "",
+      "text": "x.a"
+    }
+  },
+  "depth": 0,
+  "lineNumber": -1,
+  "numMatched": 1,
+  "sep": "",
+  "text": ""
+}
+fixtures/simplechars.txt--- -lua xml.lua ----------------------------------------------------------------------------------------------------
+<root count="1" sep="">
+   <1.2 count="1" sep=""/>
+   <A count="1" sep=""/>
+   <C count="2" sep="">
+      <2 count="1" sep="."/>
+      <D count="1" sep="."/>
+   </C>
+   <Z count="1" sep=""/>
+   <x.a count="3" sep="">
+      <1 count="1" sep="."/>
+      <2 count="1" sep="."/>
+   </x.a>
+</root>

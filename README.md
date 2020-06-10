@@ -3,7 +3,7 @@ Program to convert lines of text into a beautiful tree structure.
 
 <img src="frangipanni.jpg" alt="A Tree" width="200" align="right">
 
-The program reads each line on the standard input in turn. It breaks the line into tokens, then adds the sequence of tokens into a tree structure which is printed as indented lines or JSON formats. 
+The program reads each line on the standard input in turn. It breaks the line into tokens, then adds the sequence of tokens into a tree structure which is printed as indented lines or JSON formats. Alternatively the tree can be passed to a gopher-Lua script which you can write for any format.
 
 Options control where the line is broken into tokens, and output considerations.
 
@@ -106,6 +106,8 @@ cat <input> | frangipanni [options]
         Number of spaces to indent per level. (default 4)
   -level int
         Analyse down to this level (positive integer). (default 2147483647)
+  -lua string
+        Lua Script to run
   -no-fold
         Don't fold into one line.
   -order string
@@ -353,10 +355,118 @@ Which results in an indented bullet list:
 >        - main.conf
 >    - fish/completions/task.fish
 
+## Lua Examples
+
+### JSON (again)
+
+First, we are going tell frangipanni to output via a Lua program called 'json.lua', and we will format the json with the 'jp' program.
+
+```
+$ <test/fixtures/simplechars.txt frangipanni -lua json.lua | jp @
+```
+
+The Lua script uses the `github.com/layeh/gopher-json` module which is imported in the Lua. The data
+is made available in the variable `frangipanni` which has a table for each node, with fields
+
+* depth - in the tree starting from 0
+* lineNumber - the token was first detected
+* numMatched - the number of times the token was seen
+* sep - separation characters preceding the token
+* text - the token itself
+* children - a table containing the child nodes 
+
+```Lua
+local json = require("json")
+
+print(json.encode(frangipanni))
+```
+
+The output shows that all the fields of the parsed nodes are passed to Lua in a Table.
+The root node is empty except for it's children. The Lua script is therafore able to use
+the fields intelligently.
+
+```json
+{
+  "depth": 0,
+  "lineNumber": -1,
+  "numMatched": 1,
+  "sep": "",
+  "text": ""
+  "children": {
+    "1.2": {
+      "children": [],
+      "depth": 1,
+      "lineNumber": 8,
+      "numMatched": 1,
+      "sep": "",
+      "text": "1.2"
+    },
+    "A": {
+      "children": [],
+      "depth": 1,
+      "lineNumber": 1,
+      "numMatched": 1,
+      "sep": "",
+      "text": "A"
+    },
+```
+
+### Markdown
+
+```Lua
+function indent(n)
+    for i=1, n do
+        io.write("   ")
+    end
+end
+
+function markdown(node)
+    indent(node.depth)
+    io.write("* ")
+    print(node.text)
+    for k, v in pairs(node.children) do
+        markdown(v)
+    end
+end
+
+markdown(frangipanni)
+```
+
+The output can look like this:
+
+```
+* 
+   * A
+   * C
+      * 2
+      * D
+   * x.a
+      * 2
+      * 1
+   * Z
+   * 1.2
+```
 
 
+### XML
 
+The xml.lua script provided in the release outputs very basic XML format which might suit simple inputs.
 
+```XML
+<root count="1" sep="">
+   <C count="2" sep="">
+      <2 count="1" sep="."/>
+      <D count="1" sep="."/>
+   </C>
+   <x.a count="3" sep="">
+      <1 count="1" sep="."/>
+      <2 count="1" sep="."/>
+   </x.a>
+   <Z count="1" sep=""/>
+   <1.2 count="1" sep=""/>
+   <A count="1" sep=""/>
+</root>
+```
 
 
 
