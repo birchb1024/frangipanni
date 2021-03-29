@@ -19,3 +19,6 @@ frangipanni_mac
 frangipanni.tgz
 frangipanni.zip
 sandbox
+
+# IDEs
+.idea

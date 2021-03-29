@@ -5,15 +5,15 @@ package main
 //
 import (
 	"bufio"
+	"encoding/json"
 	"flag"
 	"fmt"
-	"io"
-	"log"
-	"os"
-	"encoding/json"
 	luajson "github.com/layeh/gopher-json"
 	"github.com/yuin/gopher-lua"
+	"io"
+	"log"
 	"math"
+	"os"
 	"sort"
 	"strconv"
 	"strings"
@@ -310,7 +310,7 @@ func fakeCounts(n *node) {
 }
 
 func makeLuaTableFromNode(L *lua.LState, n *node) *lua.LTable {
-	tb := L.CreateTable(6,6)
+	tb := L.CreateTable(6, 6)
 
 	tb.RawSet(lua.LString("lineNumber"), lua.LNumber(n.lineNumber))
 	tb.RawSet(lua.LString("text"), lua.LString(n.text))
@@ -335,7 +335,6 @@ func luaRun(out io.Writer, root *node) {
 	}
 }
 
-
 // Nasty Globals for options ;-)
 var printSeparators bool
 var noFold bool
@@ -349,6 +348,7 @@ var printDepth int
 var indentWidth int
 var indentString string
 var luaFile string
+var skipLevel int
 
 func main() {
 
@@ -368,6 +368,7 @@ func main() {
 	flag.IntVar(&indentWidth, "indent", 4, "Number of spaces to indent per level.")
 	flag.StringVar(&indentString, "spacer", " ", "Characters to indent lines with.")
 	flag.StringVar(&luaFile, "lua", "", "Lua Script to run")
+	flag.IntVar(&skipLevel, "skip", 0, "Number of leading fields to skip.")
 
 	flag.Parse()
 	if maxLevel < 0 {
@@ -416,12 +417,19 @@ func main() {
 			t = strings.FieldsFunc(line, isSep)
 			seps = strings.FieldsFunc(line, isNotSep)
 			if isNotSep(rune(line[0])) {
-				// line didn't start with a seperator, so insert a fake one
+				// line didn't start with a separator, so insert a fake one
 				seps = append(seps, "") // add space at the end
 				copy(seps[1:], seps)    // shift right
 				seps[0] = ""            // inject fake at the front
 			}
 		}
+		//
+		// Skip leading fields if required
+		for s := skipLevel; s > 0 && len(t) > 1 && len(seps) > 1; s-- {
+			t = t[1:]
+			seps = seps[1:]
+		}
+
 		if len(t) <= maxLevel {
 			add(nr, &root, t, seps)
 		} else {

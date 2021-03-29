@@ -1,17 +1,17 @@
 # frangipanni
-Program to convert lines of text into a beautiful tree structure.
+Program to convert lines of text into beautiful tree structures.
 
 <img src="frangipanni.jpg" alt="A Tree" width="200" align="right">
 
-The program reads each line on the standard input in turn. It breaks the line into tokens, then adds the sequence of tokens into a tree structure which is printed as indented lines or JSON formats. Alternatively the tree can be passed to a gopher-Lua script which you can write for any format.
+The program reads each line on the standard input in turn. It breaks each line into tokens, then adds the sequence of tokens into a tree structure. Lines with the same leading tokens are placed in the same branch of the tree. The tree is printed as indented lines or JSON format. Alternatively the tree can be passed to a user-provided Lua script which can produce any output format.
 
-Options control where the line is broken into tokens, and output considerations.
+Options control where the line is broken into tokens, and how it is analysed and output.
 
 ## Basic Operation
 
-To explain the action of the program here is a simple example. Given this  command `sudo find /etc -maxdepth 3 | tail -9 `, 
+Here is a simple example. Given this  command `sudo find /etc -maxdepth 3 | tail -9 `, 
 
-We get this input data:
+We get this data:
 
 ```
 /etc/bluetooth/rfcomm.conf.dpkg-remove
@@ -25,11 +25,11 @@ We get this input data:
 /etc/fish/completions/task.fish
 ```
 
-The program, when invoked with :
+When we pipe this into the `frangipanni` program :
 ```
 sudo find /etc -maxdepth 3 | tail -9 | frangipanni
 ```
-produces this output:
+we see this output:
 
 ```
 etc
@@ -42,9 +42,9 @@ etc
         main.conf
     fish/completions/task.fish
 ```
-The program reads each line and splits them into tokens on any non-alphanumeric character. 
+By default, it reads each line and splits them into tokens when it finds a non-alphanumeric character. 
 
-In this example we're process a list of files produced by `find` so we only want to break on directories. So we can specify `-breaks /`. 
+In this next example we're processing a list of files produced by `find` so we only want to break on directories. So we can specify `-breaks /`. 
 
 The default behaviour is to _fold_ tree branches with no sub-branches into a single line of output. e.g. `fish/completions/task.fish` We turn off folding by specifying the `-no-fold` option. With the refined command
 ```
@@ -114,6 +114,8 @@ cat <input> | frangipanni [options]
         Sort order input|alpha. Sort the childs either in input order or via character ordering (default "input")
   -separators
         Print leading separators.
+  -skip int
+        Number of leading fields to skip.
   -spacer string
         Characters to indent lines with. (default " ")
 ```
@@ -157,6 +159,25 @@ May 10
     : Started Docker Cleanup
     : Starting Docker Cleanup
 ```
+
+with the `-skip 5` option we can ignore the data and time at the beginning of each line. The output is
+
+```
+localhost
+    systemd
+        Removed slice User Slice of root
+        Stopping User Slice of root
+        Starting Docker Cleanup
+        Started Docker Cleanup
+    dockerd-current: time="2020-05-10T04:00:00
+        629849861+10:00" level=debug msg="Calling GET /_ping
+        629948000+10:00" level=debug msg="Unable to determine container for
+        630103455+10:00" level=debug msg="{Action=_ping, LoginUID=12345678, PID=21075
+        630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D
+        630704513+10:00" level=debug msg="Unable to determine container for containers
+        630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075
+```
+
 
 ## Data from environment variables
 

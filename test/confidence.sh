@@ -24,6 +24,9 @@ done
 
     echo "fixtures/simplechars.txt--- -lua xml.lua ----------------------------------------------------------------------------------------------------" >> "$tempfile"
     <fixtures/simplechars.txt ../frangipanni -lua ../xml.lua >> "$tempfile"
+# -skip
+    echo "fixtures/log-file.txt--- -skip 3 ----------------------------------------------------------------------------------------------------" >> "$tempfile"
+    <fixtures/log-file.txt ../frangipanni -skip 5 >> "$tempfile"
 
 set -x
-diff "$tempfile" $scriptdir/fixtures.log || kdiff3 "$tempfile" $scriptdir/fixtures.log
+diff "$tempfile" $scriptdir/fixtures.log || meld "$tempfile" $scriptdir/fixtures.log
