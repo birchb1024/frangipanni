@@ -412,7 +412,7 @@ the fields intelligently.
   "lineNumber": -1,
   "numMatched": 1,
   "sep": "",
-  "text": ""
+  "text": "",
   "children": {
     "1.2": {
       "children": [],
