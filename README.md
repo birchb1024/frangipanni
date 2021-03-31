@@ -160,7 +160,7 @@ May 10
     : Starting Docker Cleanup
 ```
 
-with the `-skip 5` option we can ignore the data and time at the beginning of each line. The output is
+with the `-skip 5` option we can ignore the date and time at the beginning of each line. The output is
 
 ```
 localhost
