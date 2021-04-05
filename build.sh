@@ -3,12 +3,15 @@ set -xeuo pipefail
 scriptdir="$(readlink -f $( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd ))"
 
 git describe 
-go build
+
+export CGO_ENABLED=0 # For static build without 'C'
+
+go build -a
 
 test/confidence.sh
 
-GOOS=windows GOARCH=386 go build -o frangipanni.exe frangipanni.go
-GOOS=darwin GOARCH=amd64 go build -o frangipanni_mac frangipanni.go
+GOOS=windows GOARCH=386 go build -a -o frangipanni.exe frangipanni.go
+GOOS=darwin GOARCH=amd64 go build -a -o frangipanni_mac frangipanni.go
 
 rm -f frangipanni.zip rm -f frangipanni.tgz
 tar zcvf frangipanni.tgz frangipanni *.lua
