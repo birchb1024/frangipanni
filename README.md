@@ -83,6 +83,7 @@ Having restructured the data into a tree format we can output in other formats. 
 
 # Download and Installation
 
+## Pre-Compiled Binaries
 You can download executables of `frangipanni` from the Github repository in the  [Releases area.](https://github.com/birchb1024/frangipanni/releases) You will find archive files containing the binary and Lua files:
 
 ```
@@ -98,9 +99,22 @@ frangipanni_windows_386.zip
 frangipanni_windows_amd64.zip
 ```
 
-Download the file for your operating system and hardware, then decompress the archive in a directory. Ensure the binary file is executable, and you're ready to go.
+Download the file for your operating system and hardware, then decompress the archive in a directory. Ensure the binary file is executable, and you're ready to go. Your directory should look something like this, depending on operating system:
+```
+.
+├── [-rwxrwxr-x]  frangipanni_linux_arm64
+├── [-rw-rw-r--]  json.lua
+├── [-rw-rw-r--]  markdown.lua
+└── [-rw-rw-r--]  xml.lua
+```
 
-The author has tested frangipanni_linux_amd64, the others are output from the Go cross-compiler and are provided 'as-is'. RSVP if you find an issue. 
+I have tested `frangipanni_linux_amd64`, the others are output from the Go cross-compiler and are provided 'as-is'. Please send a Pull Request if you find an issue. 
+
+## Building From Source Code
+
+If there is no pre-compiled binary or your platform, you can compile from the source. First you need [the 'Go' compiler](https://golang.org/doc/install), version 1.15.2 or greater. After cloning [the frangipanni repository](https://github.com/birchb1024/frangipanni) with git, it suffices to run `GO111MODULE=on go build` and the executable will be built as `frangipanni`. You can run the regression test suite with `test/confidence.sh`, but first install `jp` from [github.com/jmespath/jp](https://github.com/jmespath/jp). 
+
+Read all about `Go` here: [golang.org](https://golang.org/)  
 
 # Usage
 The command is a simple filter taking standard input, and output on stdout.
@@ -139,7 +153,6 @@ cat <input> | frangipanni [options]
   -spacer string
         Characters to indent lines with. (default " ")
 ```
-
 
 # Examples
 
