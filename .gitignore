@@ -15,9 +15,9 @@
 # vendor/
 foo*
 frangipanni
-frangipanni_mac
-frangipanni.tgz
-frangipanni.zip
+frangipanni_*_*
+frangipanni*tgz
+frangipanni*zip
 sandbox
 
 # IDEs

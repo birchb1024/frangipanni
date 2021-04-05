@@ -1,5 +1,6 @@
 #!/bin/bash
 set -euo pipefail
+#set -x
 scriptdir="$(readlink -f $( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd ))"
 (cd "$scriptdir"/.. ; go build)
 tempfile=$(mktemp)
@@ -29,4 +30,4 @@ done
     <fixtures/log-file.txt ../frangipanni -skip 5 >> "$tempfile"
 
 set -x
-diff "$tempfile" $scriptdir/fixtures.log || meld "$tempfile" $scriptdir/fixtures.log
+diff "$tempfile" $scriptdir/fixtures.log # || meld "$tempfile" $scriptdir/fixtures.log

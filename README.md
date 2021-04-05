@@ -81,6 +81,26 @@ Having restructured the data into a tree format we can output in other formats. 
         {"completions" : "task.fish"}}}
 ```
 
+# Download and Installation
+
+You can download executables of `frangipanni` from the Github repository in the  [Releases area.](https://github.com/birchb1024/frangipanni/releases) You will find archive files containing the binary and Lua files:
+
+```
+frangipanni_darwin_amd64.zip
+frangipanni_freebsd_amd64.zip
+frangipanni_js_wasm.zip
+frangipanni_linux_386.tgz
+frangipanni_linux_amd64.tgz
+frangipanni_linux_arm64.tgz
+frangipanni_netbsd_amd64.zip
+frangipanni_openbsd_amd64.zip
+frangipanni_windows_386.zip
+frangipanni_windows_amd64.zip
+```
+
+Download the file for your operating system and hardware, then decompress the archive in a directory. Ensure the binary file is executable, and you're ready to go.
+
+The author has tested frangipanni_linux_amd64, the others are output from the Go cross-compiler and are provided 'as-is'. RSVP if you find an issue. 
 
 # Usage
 The command is a simple filter taking standard input, and output on stdout.
