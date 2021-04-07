@@ -18,13 +18,15 @@ function indent(n)
     end
 end
 
-function markdown(node)
-    indent(node.depth)
-    io.write("* ")
-    print(node.text)
+function markdown(node, bullet)
+    if node.lineNumber > 0 then  -- don't write a root note
+        indent(node.depth -1)
+        io.write(bullet)
+        print(node.text)
+    end
     for k, v in pairs(node.children) do
-        markdown(v)
+        markdown(v, bullet)
     end
 end
 
-markdown(frangipanni)
+markdown(frangipanni, os.getenv("NUMBERED_LIST") and "1. " or "* ")

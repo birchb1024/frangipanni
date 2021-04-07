@@ -462,10 +462,15 @@ the fields intelligently.
       "numMatched": 1,
       "sep": "",
       "text": "A"
-    },
+    }
+  }
+}
 ```
 
 ### Markdown
+
+This example shows recursive scanning of the tree, with output format controlled by
+an environment variable. 
 
 ```Lua
 function indent(n)
@@ -474,51 +479,62 @@ function indent(n)
     end
 end
 
-function markdown(node)
-    indent(node.depth)
-    io.write("* ")
-    print(node.text)
+function markdown(node, bullet)
+    if node.lineNumber > 0 then  -- don't write a root note
+        indent(node.depth -1)
+        io.write(bullet)
+        print(node.text)
+    end
     for k, v in pairs(node.children) do
-        markdown(v)
+        markdown(v, bullet)
     end
 end
 
-markdown(frangipanni)
+markdown(frangipanni, os.getenv("NUMBERED_LIST") and "1. " or "* ")
 ```
 
-The output can look like this:
+With `./frangipanni -lua markdown.lua <test/fixtures/simplechars.txt` The output looks like this:
 
 ```
-* 
-   * A
-   * C
-      * 2
-      * D
-   * x.a
-      * 2
-      * 1
-   * Z
-   * 1.2
+* Z
+* 1.2
+* A
+* C
+   * 2
+   * D
+* x.a
+   * 1
+   * 2
 ```
-
+or with `NUMBERED_LIST=1 ./frangipanni -lua markdown.lua <test/fixtures/simplechars.txt`
+```
+1. Z
+1. 1.2
+1. A
+1. C
+   1. 2
+   1. D
+1. x.a
+   1. 1
+   1. 2
+```
 
 ### XML
 
-The xml.lua script provided in the release outputs very basic XML format which might suit simple inputs.
+The xml.lua script provided in the release outputs very basic XML format which might suit simple inputs. Example
+
+`find /proc | head -5  | ./frangipanni -breaks / -no-fold -lua xml.lua`
 
 ```XML
 <root count="1" sep="">
-   <C count="2" sep="">
-      <2 count="1" sep="."/>
-      <D count="1" sep="."/>
-   </C>
-   <x.a count="3" sep="">
-      <1 count="1" sep="."/>
-      <2 count="1" sep="."/>
-   </x.a>
-   <Z count="1" sep=""/>
-   <1.2 count="1" sep=""/>
-   <A count="1" sep=""/>
+   <proc count="5" sep="/">
+      <fb count="1" sep="/"/>
+      <fs count="3" sep="/">
+         <aufs count="2" sep="/">
+            <plink_maint count="1" sep="/"/>
+         </aufs>
+      </fs>
+   </proc>
 </root>
 ```
 
