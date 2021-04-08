@@ -582,7 +582,7 @@ fixtures/find.txt--- -format json -order alpha -separators ---------------------
     "/test3/fixedbugs/bug196.go",
     "/test4/fixedbugs/issue19667.go"]}]
 fixtures/find.txt--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
-{"_count_" : 1,
+{"_count_" : 44,
 "boot" : 
     {"System.map-4.9.0" : 
         {"11-amd64" : 
@@ -1197,7 +1197,7 @@ fixtures/firewall.txt--- -format json -order alpha -counts ---------------------
         {"_count_" : 8},
     "reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring" : 
         {"_count_" : 8}},
-"_count_" : 1}
+"_count_" : 50}
 fixtures/firewall.txt--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
 {"WARNING" : 
     [{"ICMP" : 
@@ -1562,7 +1562,7 @@ fixtures/log-file.txt--- -format json -order alpha -counts ---------------------
                 {"_count_" : 1},
             "_count_" : 2}},
     "_count_" : 10},
-"_count_" : 1}
+"_count_" : 10}
 fixtures/log-file.txt--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
 {"May 10" : 
     [" 03:17:06 localhost systemd: Removed slice User Slice of root",
@@ -1895,7 +1895,7 @@ fixtures/morse.txt--- -format json -order alpha -counts ------------------------
     {"_count_" : 1},
 "M" : 
     {"_count_" : 1},
-"_count_" : 1}
+"_count_" : 13}
 fixtures/morse.txt--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
 ["A",
 "B",
@@ -4735,7 +4735,7 @@ fixtures/movies.csv--- -format json -order alpha -separators -------------------
     "/9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco",
     "/9202a8c04000641f80000000056d973b,name,Kate Dickie"]}
 fixtures/movies.csv--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
-{"_count_" : 1,
+{"_count_" : 50,
 "authority" : 
     {"_count_" : 22,
     "imdb" : 
@@ -5668,7 +5668,7 @@ fixtures/random.txt--- -format json -order alpha -counts -----------------------
     {"_count_" : 1},
 "YI0OM5HRlB1j0ZTgCG76W6er0vdp4BHk" : 
     {"_count_" : 1},
-"_count_" : 1,
+"_count_" : 40,
 "bkUPVXN3iGxStK1GyVyCx9H3712KhB71" : 
     {"_count_" : 1},
 "dJO8CseqDgr9AjPAAlofAmwKzo5i6ORX" : 
@@ -5953,7 +5953,7 @@ fixtures/simplechars.txt--- -format json -order alpha -counts ------------------
     "_count_" : 2},
 "Z" : 
     {"_count_" : 1},
-"_count_" : 1,
+"_count_" : 8,
 "x.a" : 
     {"1" : 
         {"_count_" : 1},
@@ -6352,7 +6352,7 @@ fixtures/triples.csv--- -format json -order alpha -separators ------------------
 fixtures/triples.csv--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
 {"Production,was_hostname,jupiter" : 
     {"_count_" : 1},
-"_count_" : 1,
+"_count_" : 20,
 "alice1@jupiter" : 
     {"_count_" : 4,
     "hasPassword" : 
@@ -6594,12 +6594,12 @@ fixtures/simplechars.txt--- -lua json.lua --------------------------------------
   },
   "depth": 0,
   "lineNumber": -1,
-  "numMatched": 1,
+  "numMatched": 8,
   "sep": "",
   "text": ""
 }
 fixtures/simplechars.txt--- -lua xml.lua ----------------------------------------------------------------------------------------------------
-<root count="1" sep="">
+<root count="8" sep="">
    <1.2 count="1" sep=""/>
    <A count="1" sep=""/>
    <C count="2" sep="">

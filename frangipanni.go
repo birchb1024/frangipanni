@@ -449,7 +449,12 @@ func main() {
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
-
+	// calculate root node count
+	root.numMatched = 0
+	for _, c := range root.children {
+		root.numMatched += c.numMatched
+	}
+	// fold the root node
 	froot := &root
 	if !noFold {
 		froot = fold(&root)
