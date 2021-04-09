@@ -160,7 +160,8 @@ cat <input> | frangipanni [options]
 
 ## Log files
 
-Given input from a log file:
+Operating systems and applications generate copious ASCII log files, frangipanni can help make sense of them. 
+Here is a portion of a Linux system log file, `/var/log/syslog`: 
 
 ```
 May 10 03:17:06 localhost systemd: Removed slice User Slice of root.
@@ -175,7 +176,7 @@ May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630704513+1
 May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075}"
 ```
 
-default output is:
+default frangipanni output is:
 
 ```
 May 10
@@ -195,7 +196,7 @@ May 10
     : Starting Docker Cleanup
 ```
 
-with the `-skip 5` option we can ignore the date and time at the beginning of each line. The output is
+With the `-skip 5` option we can ignore the date and time at the beginning of each line. The output is
 
 ```
 localhost
@@ -212,7 +213,6 @@ localhost
         630704513+10:00" level=debug msg="Unable to determine container for containers
         630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075
 ```
-
 
 ## Data from environment variables
 
