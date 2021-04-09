@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euo pipefail
-scriptdir="$(readlink -f $( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd ))"
+scriptdir="$(readlink -f "$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )")"
 
 
 git describe 
@@ -31,7 +31,7 @@ test/confidence.sh
 
 for arch in 386 arm64 amd64
 do
-  linux_compile $arch
+  linux_compile "$arch"
 done
 for dist in windows/amd64 windows/386 darwin/amd64 freebsd/amd64 js/wasm netbsd/amd64 openbsd/amd64
 do

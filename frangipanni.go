@@ -121,7 +121,7 @@ func nodeGetChildrenSlice(x *node) []*node {
 func nodeGetChildrenSliceSorted(x *node) []*node {
 
 	childs := nodeGetChildrenSlice(x)
-	switch orderBy {
+	switch sortBy {
 	case "input":
 		sort.SliceStable(childs, func(i, j int) bool {
 			return childs[i].lineNumber < childs[j].lineNumber
@@ -133,7 +133,7 @@ func nodeGetChildrenSliceSorted(x *node) []*node {
 		})
 
 	default:
-		log.Fatalf("Error: unknown order option '%v'", orderBy)
+		log.Fatalf("Error: unknown sort value '%v'", sortBy)
 	}
 	return childs
 }
@@ -339,7 +339,7 @@ func luaRun(out io.Writer, root *node) {
 var printSeparators bool
 var noFold bool
 var fieldSeparators string // List of characters to split line on, e.g. "/:"
-var orderBy string
+var sortBy string
 var format string
 var maxLevel int
 var splitOnCharacters bool
@@ -357,7 +357,7 @@ func main() {
 	defer stdoutBuffered.Flush()
 
 	flag.BoolVar(&printSeparators, "separators", false, "Print leading separators.")
-	flag.StringVar(&orderBy, "order", "input", "Sort order input|alpha. Sort the childs either in input order or via character ordering")
+	flag.StringVar(&sortBy, "sort", "input", "Sort by input|alpha. Sort the branches either in input order, or via character ordering.")
 	flag.StringVar(&format, "format", "indent", "Format of output: indent|json")
 	flag.StringVar(&fieldSeparators, "breaks", "", "Characters to slice lines with.")
 	flag.BoolVar(&noFold, "no-fold", false, "Don't fold into one line.")

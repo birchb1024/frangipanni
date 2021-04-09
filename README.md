@@ -126,32 +126,33 @@ cat <input> | frangipanni [options]
 ## Options
 
 ```
+Usage of ./frangipanni:
   -breaks string
-        Characters to slice lines with.
+    	Characters to slice lines with.
   -chars
-        Slice line after every character.
+    	Slice line after each character.
   -counts
-        Print number of matches at the end of the line.
+    	Print number of matches at the end of the line.
   -depth int
-        Maximum tree depth to print. (default 2147483647)
+    	Maximum tree depth to print. (default 2147483647)
   -format string
-        Format of output: indent|json (default "indent")
+    	Format of output: indent|json (default "indent")
   -indent int
-        Number of spaces to indent per level. (default 4)
+    	Number of spaces to indent per level. (default 4)
   -level int
-        Analyse down to this level (positive integer). (default 2147483647)
+    	Analyse down to this level (positive integer). (default 2147483647)
   -lua string
-        Lua Script to run
+    	Lua Script to run
   -no-fold
-        Don't fold into one line.
-  -order string
-        Sort order input|alpha. Sort the childs either in input order or via character ordering (default "input")
+    	Don't fold into one line.
   -separators
-        Print leading separators.
+    	Print leading separators.
   -skip int
-        Number of leading fields to skip.
+    	Number of leading fields to skip.
+  -sort string
+    	Sort by input|alpha. Sort the branches either in input order, or via character ordering. (default "input")
   -spacer string
-        Characters to indent lines with. (default " ")
+    	Characters to indent lines with. (default " ")
 ```
 
 # Examples
@@ -302,7 +303,7 @@ In this example we want the data about the `jupiter` machine. We permute the inp
 ```
 $ cat test/fixtures/triples.csv | \
   awk -F, '{print $2,$1,$3; print $1, $2, $3; print $3, $2, $1}' | \
-  ./frangipanni  -breaks ' ' -order alpha -format json -no-fold | \
+  ./frangipanni  -breaks ' ' -sort alpha -format json -no-fold | \
   jq '."jupiter"'
 ```
 

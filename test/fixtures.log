@@ -444,7 +444,7 @@ usr/local/go^7
 ^^^bug482.go^1
 ^test3/fixedbugs/bug196.go^1
 ^test4/fixedbugs/issue19667.go^1
-fixtures/find.txt--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
+fixtures/find.txt--- -format json -sort alpha  ----------------------------------------------------------------------------------------------------
 [{"boot" : 
     {"System.map-4.9.0" : 
         ["11-amd64",
@@ -491,7 +491,7 @@ fixtures/find.txt--- -format json -order alpha  --------------------------------
             "bug482.go"]}},
     "test3/fixedbugs/bug196.go",
     "test4/fixedbugs/issue19667.go"]}]
-fixtures/find.txt--- -format json -order alpha -breaks / ----------------------------------------------------------------------------------------------------
+fixtures/find.txt--- -format json -sort alpha -breaks / ----------------------------------------------------------------------------------------------------
 [".oldroot",
 {"boot" : 
     ["System.map-4.9.0-11-amd64",
@@ -534,7 +534,7 @@ fixtures/find.txt--- -format json -order alpha -breaks / -----------------------
             "bug482.go"]}},
     "test3/fixedbugs/bug196.go",
     "test4/fixedbugs/issue19667.go"]}]
-fixtures/find.txt--- -format json -order alpha -separators ----------------------------------------------------------------------------------------------------
+fixtures/find.txt--- -format json -sort alpha -separators ----------------------------------------------------------------------------------------------------
 [{"/boot" : 
     {"/System.map-4.9.0" : 
         ["-11-amd64",
@@ -581,7 +581,7 @@ fixtures/find.txt--- -format json -order alpha -separators ---------------------
             "/bug482.go"]}},
     "/test3/fixedbugs/bug196.go",
     "/test4/fixedbugs/issue19667.go"]}]
-fixtures/find.txt--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
+fixtures/find.txt--- -format json -sort alpha -counts ----------------------------------------------------------------------------------------------------
 {"_count_" : 44,
 "boot" : 
     {"System.map-4.9.0" : 
@@ -675,7 +675,7 @@ fixtures/find.txt--- -format json -order alpha -counts -------------------------
         {"_count_" : 1},
     "test4/fixedbugs/issue19667.go" : 
         {"_count_" : 1}}}
-fixtures/find.txt--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
+fixtures/find.txt--- -format json -sort alpha -level 2 ----------------------------------------------------------------------------------------------------
 [{"boot" : 
     {"System" : 
         [".map-4.9.0-11-amd64",
@@ -719,7 +719,7 @@ fixtures/find.txt--- -format json -order alpha -level 2 ------------------------
     "/go/test2/fixedbugs2/bug482.go",
     "/go/test3/fixedbugs/bug196.go",
     "/go/test4/fixedbugs/issue19667.go"]}]
-fixtures/find.txt--- -format json -order alpha -depth 3 ----------------------------------------------------------------------------------------------------
+fixtures/find.txt--- -format json -sort alpha -depth 3 ----------------------------------------------------------------------------------------------------
 [{"boot" : 
     {"System.map-4.9.0" : 
         ["11-amd64",
@@ -762,7 +762,7 @@ fixtures/find.txt--- -format json -order alpha -depth 3 ------------------------
         "fixedbugs2" : null}},
     "test3/fixedbugs/bug196.go",
     "test4/fixedbugs/issue19667.go"]}]
-fixtures/find.txt--- -format json -order alpha -no-fold ----------------------------------------------------------------------------------------------------
+fixtures/find.txt--- -format json -sort alpha -no-fold ----------------------------------------------------------------------------------------------------
 [{"boot" : 
     {"System" : 
         {"map" : 
@@ -1155,7 +1155,7 @@ WARNING^196
 ^^^^^FORWARD^18
 ^^D FORWARD -i docker0^5
 h' or 'iptables --help' for more information^4
-fixtures/firewall.txt--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
+fixtures/firewall.txt--- -format json -sort alpha  ----------------------------------------------------------------------------------------------------
 {"WARNING" : 
     [{"ICMP type" : 
         ["beyond-scope' is not supported by",
@@ -1164,14 +1164,14 @@ fixtures/firewall.txt--- -format json -order alpha  ----------------------------
     "beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
     "failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
     "reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring"]}
-fixtures/firewall.txt--- -format json -order alpha -breaks / ----------------------------------------------------------------------------------------------------
+fixtures/firewall.txt--- -format json -sort alpha -breaks / ----------------------------------------------------------------------------------------------------
 ["WARNING: ICMP type 'beyond-scope' is not supported by",
 "WARNING: ICMP type 'failed-policy' is not supported by",
 "WARNING: ICMP type 'reject-route' is not supported by",
 "WARNING: beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
 "WARNING: failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
 "WARNING: reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring"]
-fixtures/firewall.txt--- -format json -order alpha -separators ----------------------------------------------------------------------------------------------------
+fixtures/firewall.txt--- -format json -sort alpha -separators ----------------------------------------------------------------------------------------------------
 {"WARNING" : 
     [{": ICMP type" : 
         [" 'beyond-scope' is not supported by",
@@ -1180,7 +1180,7 @@ fixtures/firewall.txt--- -format json -order alpha -separators -----------------
     ": beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
     ": failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
     ": reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring"]}
-fixtures/firewall.txt--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
+fixtures/firewall.txt--- -format json -sort alpha -counts ----------------------------------------------------------------------------------------------------
 {"WARNING" : 
     {"ICMP type" : 
         {"_count_" : 25,
@@ -1198,7 +1198,7 @@ fixtures/firewall.txt--- -format json -order alpha -counts ---------------------
     "reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring" : 
         {"_count_" : 8}},
 "_count_" : 50}
-fixtures/firewall.txt--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
+fixtures/firewall.txt--- -format json -sort alpha -level 2 ----------------------------------------------------------------------------------------------------
 {"WARNING" : 
     [{"ICMP" : 
         [" type 'beyond-scope' is not supported by",
@@ -1207,7 +1207,7 @@ fixtures/firewall.txt--- -format json -order alpha -level 2 --------------------
     "beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
     "failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
     "reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring"]}
-fixtures/firewall.txt--- -format json -order alpha -depth 3 ----------------------------------------------------------------------------------------------------
+fixtures/firewall.txt--- -format json -sort alpha -depth 3 ----------------------------------------------------------------------------------------------------
 {"WARNING" : 
     [{"ICMP type" : 
         ["beyond-scope' is not supported by",
@@ -1216,7 +1216,7 @@ fixtures/firewall.txt--- -format json -order alpha -depth 3 --------------------
     "beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
     "failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
     "reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring"]}
-fixtures/firewall.txt--- -format json -order alpha -no-fold ----------------------------------------------------------------------------------------------------
+fixtures/firewall.txt--- -format json -sort alpha -no-fold ----------------------------------------------------------------------------------------------------
 {"WARNING" : 
     {"ICMP" : 
         {"type" : 
@@ -1488,7 +1488,7 @@ May 10^10
 ^^^630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D^1
 ^^^630704513+10:00" level=debug msg="Unable to determine container for containers^1
 ^^^630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075^1
-fixtures/log-file.txt--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
+fixtures/log-file.txt--- -format json -sort alpha  ----------------------------------------------------------------------------------------------------
 {"May 10" : 
     {"03:17:06 localhost systemd" : 
         ["Removed slice User Slice of root",
@@ -1504,7 +1504,7 @@ fixtures/log-file.txt--- -format json -order alpha  ----------------------------
         "systemd" : 
             ["Started Docker Cleanup",
             "Starting Docker Cleanup"]}}}
-fixtures/log-file.txt--- -format json -order alpha -breaks / ----------------------------------------------------------------------------------------------------
+fixtures/log-file.txt--- -format json -sort alpha -breaks / ----------------------------------------------------------------------------------------------------
 ["May 10 03:17:06 localhost systemd: Removed slice User Slice of root.",
 "May 10 03:17:06 localhost systemd: Stopping User Slice of root.",
 "May 10 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.629849861+10:00\" level=debug msg=\"Calling GET /_ping\"",
@@ -1515,7 +1515,7 @@ fixtures/log-file.txt--- -format json -order alpha -breaks / -------------------
 "May 10 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630735545+10:00\" level=debug msg=\"{Action=json, LoginUID=12345678, PID=21075}\"",
 "May 10 04:00:00 localhost systemd: Started Docker Cleanup.",
 "May 10 04:00:00 localhost systemd: Starting Docker Cleanup..."]
-fixtures/log-file.txt--- -format json -order alpha -separators ----------------------------------------------------------------------------------------------------
+fixtures/log-file.txt--- -format json -sort alpha -separators ----------------------------------------------------------------------------------------------------
 {"May 10" : 
     {" 03:17:06 localhost systemd" : 
         [": Removed slice User Slice of root",
@@ -1531,7 +1531,7 @@ fixtures/log-file.txt--- -format json -order alpha -separators -----------------
         " systemd" : 
             [": Started Docker Cleanup",
             ": Starting Docker Cleanup"]}}}
-fixtures/log-file.txt--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
+fixtures/log-file.txt--- -format json -sort alpha -counts ----------------------------------------------------------------------------------------------------
 {"May 10" : 
     {"03:17:06 localhost systemd" : 
         {"Removed slice User Slice of root" : 
@@ -1563,7 +1563,7 @@ fixtures/log-file.txt--- -format json -order alpha -counts ---------------------
             "_count_" : 2}},
     "_count_" : 10},
 "_count_" : 10}
-fixtures/log-file.txt--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
+fixtures/log-file.txt--- -format json -sort alpha -level 2 ----------------------------------------------------------------------------------------------------
 {"May 10" : 
     [" 03:17:06 localhost systemd: Removed slice User Slice of root",
     " 03:17:06 localhost systemd: Stopping User Slice of root",
@@ -1575,7 +1575,7 @@ fixtures/log-file.txt--- -format json -order alpha -level 2 --------------------
     " 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630735545+10:00\" level=debug msg=\"{Action=json, LoginUID=12345678, PID=21075",
     " 04:00:00 localhost systemd: Started Docker Cleanup",
     " 04:00:00 localhost systemd: Starting Docker Cleanup"]}
-fixtures/log-file.txt--- -format json -order alpha -depth 3 ----------------------------------------------------------------------------------------------------
+fixtures/log-file.txt--- -format json -sort alpha -depth 3 ----------------------------------------------------------------------------------------------------
 {"May 10" : 
     {"03:17:06 localhost systemd" : 
         ["Removed slice User Slice of root",
@@ -1583,7 +1583,7 @@ fixtures/log-file.txt--- -format json -order alpha -depth 3 --------------------
     "04:00:00 localhost" : 
         {"dockerd-current: time=\"2020-05-10T04:00:00" : null,
         "systemd" : null}}}
-fixtures/log-file.txt--- -format json -order alpha -no-fold ----------------------------------------------------------------------------------------------------
+fixtures/log-file.txt--- -format json -sort alpha -no-fold ----------------------------------------------------------------------------------------------------
 {"May" : 
     {"10" : 
         {"03" : 
@@ -1826,7 +1826,7 @@ J^1
 K^1
 L^1
 M^1
-fixtures/morse.txt--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
+fixtures/morse.txt--- -format json -sort alpha  ----------------------------------------------------------------------------------------------------
 ["A",
 "B",
 "C",
@@ -1840,7 +1840,7 @@ fixtures/morse.txt--- -format json -order alpha  -------------------------------
 "K",
 "L",
 "M"]
-fixtures/morse.txt--- -format json -order alpha -breaks / ----------------------------------------------------------------------------------------------------
+fixtures/morse.txt--- -format json -sort alpha -breaks / ----------------------------------------------------------------------------------------------------
 [". E",
 ".. I",
 ".... H",
@@ -1854,7 +1854,7 @@ fixtures/morse.txt--- -format json -order alpha -breaks / ----------------------
 "_._. C",
 "__ M",
 "__. G"]
-fixtures/morse.txt--- -format json -order alpha -separators ----------------------------------------------------------------------------------------------------
+fixtures/morse.txt--- -format json -sort alpha -separators ----------------------------------------------------------------------------------------------------
 ["._ A",
 "_... B",
 "_._. C",
@@ -1868,7 +1868,7 @@ fixtures/morse.txt--- -format json -order alpha -separators --------------------
 "_._ K",
 "._.. L",
 "__ M"]
-fixtures/morse.txt--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
+fixtures/morse.txt--- -format json -sort alpha -counts ----------------------------------------------------------------------------------------------------
 {"A" : 
     {"_count_" : 1},
 "B" : 
@@ -1896,7 +1896,7 @@ fixtures/morse.txt--- -format json -order alpha -counts ------------------------
 "M" : 
     {"_count_" : 1},
 "_count_" : 13}
-fixtures/morse.txt--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
+fixtures/morse.txt--- -format json -sort alpha -level 2 ----------------------------------------------------------------------------------------------------
 ["A",
 "B",
 "C",
@@ -1910,7 +1910,7 @@ fixtures/morse.txt--- -format json -order alpha -level 2 -----------------------
 "K",
 "L",
 "M"]
-fixtures/morse.txt--- -format json -order alpha -depth 3 ----------------------------------------------------------------------------------------------------
+fixtures/morse.txt--- -format json -sort alpha -depth 3 ----------------------------------------------------------------------------------------------------
 ["A",
 "B",
 "C",
@@ -1924,7 +1924,7 @@ fixtures/morse.txt--- -format json -order alpha -depth 3 -----------------------
 "K",
 "L",
 "M"]
-fixtures/morse.txt--- -format json -order alpha -no-fold ----------------------------------------------------------------------------------------------------
+fixtures/morse.txt--- -format json -sort alpha -no-fold ----------------------------------------------------------------------------------------------------
 ["A",
 "B",
 "C",
@@ -4532,7 +4532,7 @@ authority^58
 ^^^^laura_morante^1
 ^^^^fabrizio_bentivoglio^1
 ^^^^silvio_muccino^1
-fixtures/movies.csv--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
+fixtures/movies.csv--- -format json -sort alpha  ----------------------------------------------------------------------------------------------------
 {"authority" : 
     {"imdb" : 
         ["name/nm0036934,name,Greg Aronowitz",
@@ -4601,7 +4601,7 @@ fixtures/movies.csv--- -format json -order alpha  ------------------------------
     "9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy",
     "9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco",
     "9202a8c04000641f80000000056d973b,name,Kate Dickie"]}
-fixtures/movies.csv--- -format json -order alpha -breaks / ----------------------------------------------------------------------------------------------------
+fixtures/movies.csv--- -format json -sort alpha -breaks / ----------------------------------------------------------------------------------------------------
 {"authority" : 
     {"imdb" : 
         ["name/nm0036934,name,Greg Aronowitz",
@@ -4665,7 +4665,7 @@ fixtures/movies.csv--- -format json -order alpha -breaks / ---------------------
     "9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy",
     "9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco",
     "9202a8c04000641f80000000056d973b,name,Kate Dickie"]}
-fixtures/movies.csv--- -format json -order alpha -separators ----------------------------------------------------------------------------------------------------
+fixtures/movies.csv--- -format json -sort alpha -separators ----------------------------------------------------------------------------------------------------
 {"/authority" : 
     {"/imdb" : 
         ["/name/nm0036934,name,Greg Aronowitz",
@@ -4734,7 +4734,7 @@ fixtures/movies.csv--- -format json -order alpha -separators -------------------
     "/9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy",
     "/9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco",
     "/9202a8c04000641f80000000056d973b,name,Kate Dickie"]}
-fixtures/movies.csv--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
+fixtures/movies.csv--- -format json -sort alpha -counts ----------------------------------------------------------------------------------------------------
 {"_count_" : 50,
 "authority" : 
     {"_count_" : 22,
@@ -4872,7 +4872,7 @@ fixtures/movies.csv--- -format json -order alpha -counts -----------------------
     "9202a8c04000641f80000000056d973b,name,Kate Dickie" : 
         {"_count_" : 1},
     "_count_" : 5}}
-fixtures/movies.csv--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
+fixtures/movies.csv--- -format json -sort alpha -level 2 ----------------------------------------------------------------------------------------------------
 {"authority" : 
     {"imdb" : 
         ["/name/nm0036934,name,Greg Aronowitz",
@@ -4930,7 +4930,7 @@ fixtures/movies.csv--- -format json -order alpha -level 2 ----------------------
     "9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy",
     "9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco",
     "9202a8c04000641f80000000056d973b,name,Kate Dickie"]}
-fixtures/movies.csv--- -format json -order alpha -depth 3 ----------------------------------------------------------------------------------------------------
+fixtures/movies.csv--- -format json -sort alpha -depth 3 ----------------------------------------------------------------------------------------------------
 {"authority" : 
     {"imdb" : 
         ["name/nm0036934,name,Greg Aronowitz",
@@ -4964,7 +4964,7 @@ fixtures/movies.csv--- -format json -order alpha -depth 3 ----------------------
     "9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy",
     "9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco",
     "9202a8c04000641f80000000056d973b,name,Kate Dickie"]}
-fixtures/movies.csv--- -format json -order alpha -no-fold ----------------------------------------------------------------------------------------------------
+fixtures/movies.csv--- -format json -sort alpha -no-fold ----------------------------------------------------------------------------------------------------
 {"authority" : 
     {"imdb" : 
         {"name" : 
@@ -5492,7 +5492,7 @@ WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7^1
 GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF^1
 GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0^1
 DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7^1
-fixtures/random.txt--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
+fixtures/random.txt--- -format json -sort alpha  ----------------------------------------------------------------------------------------------------
 ["0s69iWKK3Pfi0mS1aLdJSboXwENv4neb",
 "1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF",
 "3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy",
@@ -5533,7 +5533,7 @@ fixtures/random.txt--- -format json -order alpha  ------------------------------
 "mGMbJt9c7sH7p86btgk7vR6xEre4DvkO",
 "wCycdlsmXtYzLukRcPjijCAcwTckFLfa",
 "xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3"]
-fixtures/random.txt--- -format json -order alpha -breaks / ----------------------------------------------------------------------------------------------------
+fixtures/random.txt--- -format json -sort alpha -breaks / ----------------------------------------------------------------------------------------------------
 ["0s69iWKK3Pfi0mS1aLdJSboXwENv4neb",
 "1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF",
 "3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy",
@@ -5574,7 +5574,7 @@ fixtures/random.txt--- -format json -order alpha -breaks / ---------------------
 "mGMbJt9c7sH7p86btgk7vR6xEre4DvkO",
 "wCycdlsmXtYzLukRcPjijCAcwTckFLfa",
 "xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3"]
-fixtures/random.txt--- -format json -order alpha -separators ----------------------------------------------------------------------------------------------------
+fixtures/random.txt--- -format json -sort alpha -separators ----------------------------------------------------------------------------------------------------
 ["0s69iWKK3Pfi0mS1aLdJSboXwENv4neb",
 "1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF",
 "3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy",
@@ -5615,7 +5615,7 @@ fixtures/random.txt--- -format json -order alpha -separators -------------------
 "mGMbJt9c7sH7p86btgk7vR6xEre4DvkO",
 "wCycdlsmXtYzLukRcPjijCAcwTckFLfa",
 "xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3"]
-fixtures/random.txt--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
+fixtures/random.txt--- -format json -sort alpha -counts ----------------------------------------------------------------------------------------------------
 {"0s69iWKK3Pfi0mS1aLdJSboXwENv4neb" : 
     {"_count_" : 1},
 "1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF" : 
@@ -5697,7 +5697,7 @@ fixtures/random.txt--- -format json -order alpha -counts -----------------------
     {"_count_" : 1},
 "xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3" : 
     {"_count_" : 1}}
-fixtures/random.txt--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
+fixtures/random.txt--- -format json -sort alpha -level 2 ----------------------------------------------------------------------------------------------------
 ["0s69iWKK3Pfi0mS1aLdJSboXwENv4neb",
 "1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF",
 "3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy",
@@ -5738,7 +5738,7 @@ fixtures/random.txt--- -format json -order alpha -level 2 ----------------------
 "mGMbJt9c7sH7p86btgk7vR6xEre4DvkO",
 "wCycdlsmXtYzLukRcPjijCAcwTckFLfa",
 "xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3"]
-fixtures/random.txt--- -format json -order alpha -depth 3 ----------------------------------------------------------------------------------------------------
+fixtures/random.txt--- -format json -sort alpha -depth 3 ----------------------------------------------------------------------------------------------------
 ["0s69iWKK3Pfi0mS1aLdJSboXwENv4neb",
 "1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF",
 "3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy",
@@ -5779,7 +5779,7 @@ fixtures/random.txt--- -format json -order alpha -depth 3 ----------------------
 "mGMbJt9c7sH7p86btgk7vR6xEre4DvkO",
 "wCycdlsmXtYzLukRcPjijCAcwTckFLfa",
 "xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3"]
-fixtures/random.txt--- -format json -order alpha -no-fold ----------------------------------------------------------------------------------------------------
+fixtures/random.txt--- -format json -sort alpha -no-fold ----------------------------------------------------------------------------------------------------
 ["0s69iWKK3Pfi0mS1aLdJSboXwENv4neb",
 "1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF",
 "3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy",
@@ -5911,7 +5911,7 @@ x.a^3
 ^2^1
 Z^1
 1.2^1
-fixtures/simplechars.txt--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
+fixtures/simplechars.txt--- -format json -sort alpha  ----------------------------------------------------------------------------------------------------
 ["1.2",
 "A",
 {"C" : 
@@ -5921,7 +5921,7 @@ fixtures/simplechars.txt--- -format json -order alpha  -------------------------
 {"x.a" : 
     [1,
     2]}]
-fixtures/simplechars.txt--- -format json -order alpha -breaks / ----------------------------------------------------------------------------------------------------
+fixtures/simplechars.txt--- -format json -sort alpha -breaks / ----------------------------------------------------------------------------------------------------
 ["1.2",
 "A",
 "C.2",
@@ -5930,7 +5930,7 @@ fixtures/simplechars.txt--- -format json -order alpha -breaks / ----------------
 "x",
 "x.a.1",
 "x.a.2"]
-fixtures/simplechars.txt--- -format json -order alpha -separators ----------------------------------------------------------------------------------------------------
+fixtures/simplechars.txt--- -format json -sort alpha -separators ----------------------------------------------------------------------------------------------------
 ["1.2",
 "A",
 {"C" : 
@@ -5940,7 +5940,7 @@ fixtures/simplechars.txt--- -format json -order alpha -separators --------------
 {"x.a" : 
     [".1",
     ".2"]}]
-fixtures/simplechars.txt--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
+fixtures/simplechars.txt--- -format json -sort alpha -counts ----------------------------------------------------------------------------------------------------
 {"1.2" : 
     {"_count_" : 1},
 "A" : 
@@ -5960,7 +5960,7 @@ fixtures/simplechars.txt--- -format json -order alpha -counts ------------------
     "2" : 
         {"_count_" : 1},
     "_count_" : 3}}
-fixtures/simplechars.txt--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
+fixtures/simplechars.txt--- -format json -sort alpha -level 2 ----------------------------------------------------------------------------------------------------
 ["1.2",
 "A",
 {"C" : 
@@ -5970,7 +5970,7 @@ fixtures/simplechars.txt--- -format json -order alpha -level 2 -----------------
 {"x.a" : 
     [".1",
     ".2"]}]
-fixtures/simplechars.txt--- -format json -order alpha -depth 3 ----------------------------------------------------------------------------------------------------
+fixtures/simplechars.txt--- -format json -sort alpha -depth 3 ----------------------------------------------------------------------------------------------------
 ["1.2",
 "A",
 {"C" : 
@@ -5980,7 +5980,7 @@ fixtures/simplechars.txt--- -format json -order alpha -depth 3 -----------------
 {"x.a" : 
     [1,
     2]}]
-fixtures/simplechars.txt--- -format json -order alpha -no-fold ----------------------------------------------------------------------------------------------------
+fixtures/simplechars.txt--- -format json -sort alpha -no-fold ----------------------------------------------------------------------------------------------------
 [{"1" : 2},
 "A",
 {"C" : 
@@ -6272,7 +6272,7 @@ birchb1@jupiter^2
 ^rdf:type,UnixAccount^1
 ^hasPassword,birchb-pw-2^1
 birchb,hasAccount,birchb1@jupiter^1
-fixtures/triples.csv--- -format json -order alpha  ----------------------------------------------------------------------------------------------------
+fixtures/triples.csv--- -format json -sort alpha  ----------------------------------------------------------------------------------------------------
 ["Production,was_hostname,jupiter",
 {"alice1@jupiter" : 
     [{"hasPassword" : 
@@ -6300,7 +6300,7 @@ fixtures/triples.csv--- -format json -order alpha  -----------------------------
         ["UnixMachine",
         "WasDmgr"]}]},
 "kalpana,hasAccount,alice1@jupiter"]
-fixtures/triples.csv--- -format json -order alpha -breaks / ----------------------------------------------------------------------------------------------------
+fixtures/triples.csv--- -format json -sort alpha -breaks / ----------------------------------------------------------------------------------------------------
 ["Production,was_hostname,jupiter",
 "alice1@jupiter,hasPassword,evan2-pw-15",
 "alice1@jupiter,hasPassword,joanna-pw-19",
@@ -6321,7 +6321,7 @@ fixtures/triples.csv--- -format json -order alpha -breaks / --------------------
 "jupiter,rdf:type,UnixMachine",
 "jupiter,rdf:type,WasDmgr",
 "kalpana,hasAccount,alice1@jupiter"]
-fixtures/triples.csv--- -format json -order alpha -separators ----------------------------------------------------------------------------------------------------
+fixtures/triples.csv--- -format json -sort alpha -separators ----------------------------------------------------------------------------------------------------
 ["Production,was_hostname,jupiter",
 {"alice1@jupiter" : 
     [{",hasPassword" : 
@@ -6349,7 +6349,7 @@ fixtures/triples.csv--- -format json -order alpha -separators ------------------
         [",UnixMachine",
         ",WasDmgr"]}]},
 "kalpana,hasAccount,alice1@jupiter"]
-fixtures/triples.csv--- -format json -order alpha -counts ----------------------------------------------------------------------------------------------------
+fixtures/triples.csv--- -format json -sort alpha -counts ----------------------------------------------------------------------------------------------------
 {"Production,was_hostname,jupiter" : 
     {"_count_" : 1},
 "_count_" : 20,
@@ -6405,7 +6405,7 @@ fixtures/triples.csv--- -format json -order alpha -counts ----------------------
         "_count_" : 2}},
 "kalpana,hasAccount,alice1@jupiter" : 
     {"_count_" : 1}}
-fixtures/triples.csv--- -format json -order alpha -level 2 ----------------------------------------------------------------------------------------------------
+fixtures/triples.csv--- -format json -sort alpha -level 2 ----------------------------------------------------------------------------------------------------
 ["Production,was_hostname,jupiter",
 {"alice1@jupiter" : 
     [",hasPassword,evan2-pw-15",
@@ -6432,7 +6432,7 @@ fixtures/triples.csv--- -format json -order alpha -level 2 ---------------------
         [":type,UnixMachine",
         ":type,WasDmgr"]}]},
 "kalpana,hasAccount,alice1@jupiter"]
-fixtures/triples.csv--- -format json -order alpha -depth 3 ----------------------------------------------------------------------------------------------------
+fixtures/triples.csv--- -format json -sort alpha -depth 3 ----------------------------------------------------------------------------------------------------
 ["Production,was_hostname,jupiter",
 {"alice1@jupiter" : 
     [{"hasPassword" : 
@@ -6460,7 +6460,7 @@ fixtures/triples.csv--- -format json -order alpha -depth 3 ---------------------
         ["UnixMachine",
         "WasDmgr"]}]},
 "kalpana,hasAccount,alice1@jupiter"]
-fixtures/triples.csv--- -format json -order alpha -no-fold ----------------------------------------------------------------------------------------------------
+fixtures/triples.csv--- -format json -sort alpha -no-fold ----------------------------------------------------------------------------------------------------
 {"Production" : 
     {"was" : 
         {"hostname" : "jupiter"}},
@@ -6612,7 +6612,7 @@ fixtures/simplechars.txt--- -lua xml.lua ---------------------------------------
       <2 count="1" sep="."/>
    </x.a>
 </root>
-fixtures/log-file.txt--- -skip 3 ----------------------------------------------------------------------------------------------------
+fixtures/log-file.txt--- -skip 5 ----------------------------------------------------------------------------------------------------
 localhost
     systemd
         Removed slice User Slice of root
