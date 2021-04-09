@@ -832,6 +832,53 @@ fixtures/find.txt--- -format json -sort alpha -no-fold -------------------------
             "test4" : 
                 {"fixedbugs" : 
                     {"issue19667" : "go"}}}}}}]
+fixtures/find.txt--- -format json -sort alpha -down ----------------------------------------------------------------------------------------------------
+[{"usr/local/go" : 
+    ["test4/fixedbugs/issue19667.go",
+    "test3/fixedbugs/bug196.go",
+    {"test2" : 
+        {"fixedbugs2" : 
+            ["bug482.go",
+            "bug481.go"],
+        "fixedbugs1" : 
+            ["bug206.go",
+            "bug205.go"]}},
+    "test/fixedbugs/bug028.go"]},
+"srv",
+{"proc/22468" : 
+    ["uid_map",
+    "timerslack_ns",
+    "timers",
+    "setgroups",
+    "projid_map",
+    "io",
+    "gid_map"]},
+"oldroot",
+{"boot" : 
+    {"vmlinuz-4.9.0" : 
+        ["8-amd64",
+        "12-amd64",
+        "11-amd64"],
+    "initrd.img-4.9.0" : 
+        ["8-amd64",
+        "12-amd64",
+        "11-amd64"],
+    "grub" : 
+        ["unicode.pf2",
+        "locale",
+        "i386-pc",
+        "grubenv",
+        "grub.cfg",
+        "fonts",
+        "device.map"],
+    "config-4.9.0" : 
+        ["8-amd64",
+        "12-amd64",
+        "11-amd64"],
+    "System.map-4.9.0" : 
+        ["8-amd64",
+        "12-amd64",
+        "11-amd64"]}}]
 fixtures/firewall.txt---  ----------------------------------------------------------------------------------------------------
 WARNING
     ICMP type
@@ -1259,6 +1306,15 @@ fixtures/firewall.txt--- -format json -sort alpha -no-fold ---------------------
                         {"supported" : 
                             {"ICMP" : 
                                 {"type" : "ignoring"}}}}}}}}}
+fixtures/firewall.txt--- -format json -sort alpha -down ----------------------------------------------------------------------------------------------------
+{"WARNING" : 
+    ["reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
+    "failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
+    "beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
+    {"ICMP type" : 
+        ["reject-route' is not supported by",
+        "failed-policy' is not supported by",
+        "beyond-scope' is not supported by"]}]}
 fixtures/log-file.txt---  ----------------------------------------------------------------------------------------------------
 May 10
     03:17:06 localhost systemd
@@ -1692,6 +1748,22 @@ fixtures/log-file.txt--- -format json -sort alpha -no-fold ---------------------
                                 {"Docker" : "Cleanup"},
                             "Starting" : 
                                 {"Docker" : "Cleanup"}}}}}}}}}
+fixtures/log-file.txt--- -format json -sort alpha -down ----------------------------------------------------------------------------------------------------
+{"May 10" : 
+    {"04:00:00 localhost" : 
+        {"systemd" : 
+            ["Starting Docker Cleanup",
+            "Started Docker Cleanup"],
+        "dockerd-current: time=\"2020-05-10T04:00:00" : 
+            ["630735545+10:00\" level=debug msg=\"{Action=json, LoginUID=12345678, PID=21075",
+            "630704513+10:00\" level=debug msg=\"Unable to determine container for containers",
+            "630684502+10:00\" level=debug msg=\"Calling GET /v1.26/containers/json?all=1\u0026filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D",
+            "630103455+10:00\" level=debug msg=\"{Action=_ping, LoginUID=12345678, PID=21075",
+            "629948000+10:00\" level=debug msg=\"Unable to determine container for",
+            "629849861+10:00\" level=debug msg=\"Calling GET /_ping"]},
+    "03:17:06 localhost systemd" : 
+        ["Stopping User Slice of root",
+        "Removed slice User Slice of root"]}}
 fixtures/morse.txt---  ----------------------------------------------------------------------------------------------------
 A
 B
@@ -1938,6 +2010,20 @@ fixtures/morse.txt--- -format json -sort alpha -no-fold ------------------------
 "K",
 "L",
 "M"]
+fixtures/morse.txt--- -format json -sort alpha -down ----------------------------------------------------------------------------------------------------
+["M",
+"L",
+"K",
+"J",
+"I",
+"H",
+"G",
+"F",
+"E",
+"D",
+"C",
+"B",
+"A"]
 fixtures/movies.csv---  ----------------------------------------------------------------------------------------------------
 guid
     9202a8c04000641f80000000056d973b,name,Kate Dickie
@@ -5115,6 +5201,75 @@ fixtures/movies.csv--- -format json -sort alpha -no-fold -----------------------
     "9202a8c04000641f80000000056d973b" : 
         {"name" : 
             {"Kate" : "Dickie"}}}}
+fixtures/movies.csv--- -format json -sort alpha -down ----------------------------------------------------------------------------------------------------
+{"guid" : 
+    ["9202a8c04000641f80000000056d973b,name,Kate Dickie",
+    "9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco",
+    "9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy",
+    "9202a8c04000641f80000000010fa2fc,name,Yoshiko Ohta",
+    "9202a8c04000641f80000000010de9bd,name,Jacques Martineau"],
+"en" : 
+    ["sebastian_arcelus,name,Sebastian Arcelus",
+    "oscar_homolka,name,Oscar Homolka",
+    {"milou_en_mai" : 
+        [{"starring,/en" : 
+            ["miou-miou",
+            "michel_piccoli",
+            "harriet_walter",
+            "dominique_blanc"]},
+        "name,Milou en mai",
+        "directed_by,/en/louis_malle"]},
+    "megan_mullally,name,Megan Mullally",
+    "masahiko_tsugawa,name,Masahiko Tsugawa",
+    "karl_maka,name,Karl Maka",
+    "john_glen,name,John Glen",
+    "hiroyuki_okiura,name,Hiroyuki Okiura",
+    "gymkata,name,Gymkata",
+    "david_greene,name,David Greene",
+    "candy_barr,name,Candy Barr",
+    {"bad_taste" : 
+        [{"starring" : 
+            [{"guid" : 
+                ["9202a8c04000641f800000000434a77d",
+                "9202a8c04000641f80000000010cf92b",
+                "9202a8c04000641f80000000010cf924",
+                "9202a8c04000641f80000000010cf91e"]},
+            "en/peter_jackson"]},
+        "name,Bad Taste",
+        "directed_by,/en/peter_jackson"]}],
+"authority" : 
+    {"netflix/movie/70062973" : 
+        [{"starring,/en" : 
+            ["stephen_collins",
+            "madeline_kahn"]},
+        "name,Ivana Trump's For Love Alone",
+        "directed_by,/en/michael_lindsay-hogg"],
+    "imdb" : 
+        [{"title" : 
+            {"tt0486761" : 
+                [{"starring,/en" : 
+                    ["zoe_caldwell",
+                    "tia_carrere",
+                    "tara_strong",
+                    "rob_paulsen",
+                    {"kevin" : 
+                        ["michael_richardson",
+                        "mcdonald"]},
+                    "jeff_bennett",
+                    "david_ogden_stiers",
+                    "daveigh_chase",
+                    "chris_sanders"]},
+                "name,Leroy \u0026 Stitch",
+                {"directed_by" : 
+                    ["guid/9202a8c04000641f80000000010ff1da",
+                    "en/tony_craig"]}],
+            "tt0105001" : 
+                [{"starring,/en" : 
+                    ["robert_de_niro",
+                    "jessica_lange"]},
+                "name,Night and the City",
+                "directed_by,/en/irwin_winkler"]}},
+        "name/nm0036934,name,Greg Aronowitz"]}}
 fixtures/random.txt---  ----------------------------------------------------------------------------------------------------
 ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU
 3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy
@@ -5820,6 +5975,47 @@ fixtures/random.txt--- -format json -sort alpha -no-fold -----------------------
 "mGMbJt9c7sH7p86btgk7vR6xEre4DvkO",
 "wCycdlsmXtYzLukRcPjijCAcwTckFLfa",
 "xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3"]
+fixtures/random.txt--- -format json -sort alpha -down ----------------------------------------------------------------------------------------------------
+["xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3",
+"wCycdlsmXtYzLukRcPjijCAcwTckFLfa",
+"mGMbJt9c7sH7p86btgk7vR6xEre4DvkO",
+"mCuE5Mt0SUq84e4VZ6Xgvp0mS862STe9",
+"m56AVisdRuHvPMua3GseSUW9uzaEbxn8",
+"kXLPCQ9qMVwUzYQyt28xJNTUWkBYItV7",
+"k4U63BHEOh5d6AZtViZU3Umfz8WZvzdb",
+"imzBe68oWn81zkGnUPq3Q6MvoFnDnaqM",
+"hWDeAHqIIzSjT6Iv4pr07Bn6HF8uRI6T",
+"h4kd4u3TDLeWrqVIjwZ9WHach7zFToWN",
+"gNbYB65NOStT4ltMktBaJa1oWkPfqzNz",
+"f7LHn0HwnRjZBUXzWwlO4IrFzfNvFM6P",
+"dJO8CseqDgr9AjPAAlofAmwKzo5i6ORX",
+"bkUPVXN3iGxStK1GyVyCx9H3712KhB71",
+"YI0OM5HRlB1j0ZTgCG76W6er0vdp4BHk",
+"XHcZrTrO4DgDyJuLRGlFv1kxiXUjN2fE",
+"WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7",
+"SEtMfDjCThZoyJiIdNTlEMmFTkp9Z3dj",
+"O8F94IGLmkPcq0OPofRWBlqUIQVsUeoa",
+"NbdjXjxaGFWfFuFgndDggCYYBOKNcCiz",
+"NRsk6JebWnQ8HERnBJZaWkQXzEVbfkFt",
+"Mv7SgDpn8htl5OI7eCmGE3S8fTMAFtyW",
+"IBqxNzZNUyimsNYDa4X5gLFkXxTWXBnT",
+"GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0",
+"GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF",
+"F3Uw74ZOqKk6iX1DAS1jlCz3kwhjmZSP",
+"DsBm1fRlrPweuUrkmLn4AAjtkAz1D8qj",
+"DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7",
+"CcMuwCe585yt0a0Xd0IwXvwbH5yrhBHt",
+"BPMAkBfEKLreg9sPVfLt0YyxLl0ykFTg",
+"ApwtzoSzcSasveDV2Geu8U3n5G7c4TtX",
+"ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU",
+"5vyN97KXONcmVaUmbYafEmS3kK4huL0d",
+"5lsY90hTZPNcPj26LeI2QEqd3ItY8i1s",
+"5BLkNuwztrirIvJc7roZ4o9W2huxg5Qo",
+"52JHD4TyE8dQu2F4Xk9diqIWqePyAaVM",
+"4WiWCkpjXGadDIYCsy6O2VMyWQVWiJx3",
+"3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy",
+"1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF",
+"0s69iWKK3Pfi0mS1aLdJSboXwENv4neb"]
 fixtures/simplechars.txt---  ----------------------------------------------------------------------------------------------------
 A
 C
@@ -5991,6 +6187,16 @@ fixtures/simplechars.txt--- -format json -sort alpha -no-fold ------------------
     {"a" : 
         [1,
         2]}}]
+fixtures/simplechars.txt--- -format json -sort alpha -down ----------------------------------------------------------------------------------------------------
+[{"x.a" : 
+    [2,
+    1]},
+"Z",
+{"C" : 
+    ["D",
+    2]},
+"A",
+"1.2"]
 fixtures/triples.csv---  ----------------------------------------------------------------------------------------------------
 john1@jupiter
     rdf:type,UnixAccount
@@ -6514,6 +6720,34 @@ fixtures/triples.csv--- -format json -sort alpha -no-fold ----------------------
 "kalpana" : 
     {"hasAccount" : 
         {"alice1" : "jupiter"}}}
+fixtures/triples.csv--- -format json -sort alpha -down ----------------------------------------------------------------------------------------------------
+["kalpana,hasAccount,alice1@jupiter",
+{"jupiter" : 
+    [{"rdf:type" : 
+        ["WasDmgr",
+        "UnixMachine"]},
+    {"hasUser" : 
+        ["john1",
+        "birchb1",
+        "alice1"]},
+    "defaultAccount,alice1"]},
+{"john1@jupiter" : 
+    ["rdf:type,UnixAccount",
+    "hasPassword,felicity-pw-8"]},
+"joanna,hasAccount,alice1@jupiter",
+"felicity,hasAccount,john1@jupiter",
+{"birchb1@jupiter" : 
+    ["rdf:type,UnixAccount",
+    "hasPassword,birchb-pw-2"]},
+"birchb,hasAccount,birchb1@jupiter",
+"alice2,hasAccount,evan1@jupiter",
+{"alice1@jupiter" : 
+    ["rdf:type,UnixAccount",
+    {"hasPassword" : 
+        ["kalpana-pw-18",
+        "joanna-pw-19",
+        "evan2-pw-15"]}]},
+"Production,was_hostname,jupiter"]
 fixtures/simplechars.txt--- -lua json.lua ----------------------------------------------------------------------------------------------------
 {
   "children": {

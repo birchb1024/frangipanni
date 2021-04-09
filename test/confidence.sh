@@ -14,7 +14,7 @@ do
         # shellcheck disable=SC2086
         head -200 "$tf" | ../frangipanni $sw >> "$tempfile"
     done
-    for sw in '' '-breaks /' -separators -counts '-level 2' '-depth 3' '-no-fold'
+    for sw in '' '-breaks /' -separators -counts '-level 2' '-depth 3' '-no-fold' '-down'
     do
         echo "$tf--- -format json -sort alpha $sw ----------------------------------------------------------------------------------------------------" >> "$tempfile"
         # shellcheck disable=SC2086

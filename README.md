@@ -126,7 +126,6 @@ cat <input> | frangipanni [options]
 ## Options
 
 ```
-Usage of ./frangipanni:
   -breaks string
     	Characters to slice lines with.
   -chars
@@ -135,6 +134,8 @@ Usage of ./frangipanni:
     	Print number of matches at the end of the line.
   -depth int
     	Maximum tree depth to print. (default 2147483647)
+  -down
+    	Sort branches in descending order. (default ascending)
   -format string
     	Format of output: indent|json (default "indent")
   -indent int
@@ -150,7 +151,7 @@ Usage of ./frangipanni:
   -skip int
     	Number of leading fields to skip.
   -sort string
-    	Sort by input|alpha. Sort the branches either in input order, or via character ordering. (default "input")
+    	Sort by input|alpha. Sort the branches either by input order, or via alphanumeric character ordering. (default "input")
   -spacer string
     	Characters to indent lines with. (default " ")
 ```

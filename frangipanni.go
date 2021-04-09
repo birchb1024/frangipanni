@@ -118,24 +118,31 @@ func nodeGetChildrenSlice(x *node) []*node {
 	}
 	return childs
 }
+func reOrder(o bool) bool {
+	if sortDescending {
+		return !o
+	}
+	return o
+}
+
 func nodeGetChildrenSliceSorted(x *node) []*node {
 
-	childs := nodeGetChildrenSlice(x)
+	children := nodeGetChildrenSlice(x)
 	switch sortBy {
 	case "input":
-		sort.SliceStable(childs, func(i, j int) bool {
-			return childs[i].lineNumber < childs[j].lineNumber
+		sort.SliceStable(children, func(i, j int) bool {
+			return reOrder(children[i].lineNumber < children[j].lineNumber)
 		})
 
 	case "alpha":
-		sort.SliceStable(childs, func(i, j int) bool {
-			return childs[i].text < childs[j].text
+		sort.SliceStable(children, func(i, j int) bool {
+			return reOrder(children[i].text < children[j].text)
 		})
 
 	default:
 		log.Fatalf("Error: unknown sort value '%v'", sortBy)
 	}
-	return childs
+	return children
 }
 
 func fprintTree(out io.Writer, x *node) {
@@ -349,6 +356,7 @@ var indentWidth int
 var indentString string
 var luaFile string
 var skipLevel int
+var sortDescending bool
 
 func main() {
 
@@ -357,7 +365,7 @@ func main() {
 	defer stdoutBuffered.Flush()
 
 	flag.BoolVar(&printSeparators, "separators", false, "Print leading separators.")
-	flag.StringVar(&sortBy, "sort", "input", "Sort by input|alpha. Sort the branches either in input order, or via character ordering.")
+	flag.StringVar(&sortBy, "sort", "input", "Sort by input|alpha. Sort the branches either by input order, or via alphanumeric character ordering.")
 	flag.StringVar(&format, "format", "indent", "Format of output: indent|json")
 	flag.StringVar(&fieldSeparators, "breaks", "", "Characters to slice lines with.")
 	flag.BoolVar(&noFold, "no-fold", false, "Don't fold into one line.")
@@ -369,6 +377,7 @@ func main() {
 	flag.StringVar(&indentString, "spacer", " ", "Characters to indent lines with.")
 	flag.StringVar(&luaFile, "lua", "", "Lua Script to run")
 	flag.IntVar(&skipLevel, "skip", 0, "Number of leading fields to skip.")
+	flag.BoolVar(&sortDescending, "down", false, "Sort branches in descending order. (default ascending)")
 
 	flag.Parse()
 	if maxLevel < 0 {
