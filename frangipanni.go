@@ -380,6 +380,7 @@ func main() {
 
 	flag.BoolVar(&printSeparators, "separators", false, "Print leading separators.")
 	flag.StringVar(&sortBy, "sort", "input", "Sort by input|alpha|counts. Sort the branches either by input order, or via alphanumeric character ordering, or the branch frequency count.")
+	flag.StringVar(&sortBy, "order", "input", "** Deprecated, use the -sort option **")
 	flag.StringVar(&format, "format", "indent", "Format of output: indent|json")
 	flag.StringVar(&fieldSeparators, "breaks", "", "Characters to slice lines with.")
 	flag.BoolVar(&noFold, "no-fold", false, "Don't fold into one line.")
