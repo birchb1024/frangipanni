@@ -20,6 +20,8 @@ import (
 	"unicode"
 )
 
+var Version = "none"
+
 type node struct {
 	lineNumber int
 	text       string
@@ -368,6 +370,7 @@ var indentString string
 var luaFile string
 var skipLevel int
 var sortDescending bool
+var printVersion bool
 
 func main() {
 
@@ -389,8 +392,14 @@ func main() {
 	flag.StringVar(&luaFile, "lua", "", "Lua Script to run")
 	flag.IntVar(&skipLevel, "skip", 0, "Number of leading fields to skip.")
 	flag.BoolVar(&sortDescending, "down", false, "Sort branches in descending order. (default ascending)")
+	flag.BoolVar(&printVersion, "version", false, "Print frangipanni's version number and exit.")
 
 	flag.Parse()
+	if printVersion {
+		fmt.Println(Version)
+		os.Exit(0)
+	}
+
 	if maxLevel < 0 {
 		log.Fatalf("Error: %d is negative.\n", maxLevel)
 	}

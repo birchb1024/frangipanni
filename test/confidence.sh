@@ -3,9 +3,15 @@
 set -euo pipefail
 #set -x
 scriptdir="$(readlink -f "$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )")"
-(cd "$scriptdir"/.. ; go build)
-tempfile=$(mktemp)
+(cd "$scriptdir"/.. ; go build -ldflags="-X 'main.Version=$(git describe)'")
 cd "$scriptdir"   # So all paths are relative to here in test data file
+V="$(../frangipanni -version)"
+if [[ "$V" != "$(git describe)" ]]
+then
+  echo "Incorrect version number '$V' was expecting '$(git describe)'"
+  exit 1
+fi
+tempfile=$(mktemp)
 for tf in fixtures/*
 do
     for sw in '' -chars '-breaks /' -separators -counts -no-fold '-level 2' '-depth 2' '-spacer ^ -indent 1 -counts'
