@@ -345,9 +345,26 @@ func makeLuaTableFromNode(L *lua.LState, n *node) *lua.LTable {
 	return tb
 }
 
+func makeLuaTableFromFlags(L *lua.LState) *lua.LTable {
+	tb := L.CreateTable(6, 6)
+	flag.VisitAll(func(f *flag.Flag) {
+		if f.Name == "order" { // Deprecated
+			return
+		}
+		tb.RawSet(lua.LString(f.Name), lua.LString(f.Value.String()))
+	})
+	args := L.CreateTable(len(flag.Args()), len(flag.Args()))
+	for i, a := range flag.Args() {
+		args.RawSetInt(i+1, lua.LString(a))
+	}
+	tb.RawSet(lua.LString("args"), args)
+	return tb
+}
+
 func luaRun(out io.Writer, root *node) {
 	L := lua.NewState()
 	luajson.Preload(L)
+	L.SetGlobal("frangipanni_args", makeLuaTableFromFlags(L))
 	L.SetGlobal("frangipanni", makeLuaTableFromNode(L, root))
 	defer L.Close()
 	if err := L.DoFile(luaFile); err != nil {

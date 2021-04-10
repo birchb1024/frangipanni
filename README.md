@@ -442,9 +442,9 @@ Which results in an indented bullet list:
 
 ## Lua Examples
 
-### JSON (again)
+### Accessing the Tree from Lua and output to JSON
 
-First, we are going tell frangipanni to output via a Lua program called 'json.lua', and we will format the json with the 'jp' program.
+First, we are going tell frangipanni to output via a Lua program called `json.lua`, and we will format the json with the 'jp' program.
 
 ```
 $ <test/fixtures/simplechars.txt frangipanni -lua json.lua | jp @
@@ -453,19 +453,17 @@ $ <test/fixtures/simplechars.txt frangipanni -lua json.lua | jp @
 The Lua script uses the `github.com/layeh/gopher-json` module which is imported in the Lua. The data
 is made available in the variable `frangipanni` which has a table for each node, with fields
 
-* depth - in the tree starting from 0
-* lineNumber - the token was first detected
-* numMatched - the number of times the token was seen
-* sep - separation characters preceding the token
-* text - the token itself
-* children - a table containing the child nodes 
+* `depth` - in the tree starting from 0
+* `lineNumber` - the token was first detected
+* `numMatched` - the number of times the token was seen
+* `sep` - separation characters preceding the token
+* `text` - the token itself
+* `children` - a table containing the child nodes 
 
 ```Lua
 local json = require("json")
-
 print(json.encode(frangipanni))
 ```
-
 The output shows that all the fields of the parsed nodes are passed to Lua in a Table.
 The root node is empty except for it's children. The Lua script is therafore able to use
 the fields intelligently.
@@ -495,6 +493,39 @@ the fields intelligently.
       "text": "A"
     }
   }
+}
+```
+
+### Accessing frangipanni command-line arguments from Lua
+
+frangipanni hands the command arguments to the Lua interpreter in the variable `frangipanni_args`. This holds a table keyed on the argument switch and holding the current value in a string. Command-line arguments found after switches are collected in the `args` array in this table. This example Lua program, `args.lua`, prints the table in JSON format:
+```Lua
+local json = require("json")
+print(json.encode(frangipanni_args))
+```
+The output is:
+```JSON
+$ ./frangipanni -breaks / -counts -depth 3 -level 20 -lua args.lua arg1 arg2 </dev/null | jp '@'
+{
+  "args": [
+    "arg1",
+    "arg2"
+  ],
+  "breaks": "/",
+  "chars": "false",
+  "counts": "true",
+  "depth": "3",
+  "down": "false",
+  "format": "indent",
+  "indent": "4",
+  "level": "20",
+  "lua": "args.lua",
+  "no-fold": "false",
+  "separators": "false",
+  "skip": "0",
+  "sort": "input",
+  "spacer": " ",
+  "version": "false"
 }
 ```
 
@@ -549,6 +580,16 @@ or with `NUMBERED_LIST=1 ./frangipanni -lua markdown.lua <test/fixtures/simplech
    1. 1
    1. 2
 ```
+Which renders like this:
+1. Z
+1. 1.2
+1. A
+1. C
+   1. 2
+   1. D
+1. x.a
+   1. 1
+   1. 2
 
 ### XML
 

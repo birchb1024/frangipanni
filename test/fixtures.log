@@ -1,3 +1,25 @@
+--- -breaks / -counts -depth 3 -level 20 -lua args.lua ----------------------------------------------------------------------------------------------------
+{
+  "args": [
+    "arg1",
+    "arg2"
+  ],
+  "breaks": "/",
+  "chars": "false",
+  "counts": "true",
+  "depth": "3",
+  "down": "false",
+  "format": "indent",
+  "indent": "4",
+  "level": "20",
+  "lua": "../args.lua",
+  "no-fold": "false",
+  "separators": "false",
+  "skip": "0",
+  "sort": "input",
+  "spacer": " ",
+  "version": "false"
+}
 fixtures/find.txt---  ----------------------------------------------------------------------------------------------------
 proc/22468
     io

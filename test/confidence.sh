@@ -12,6 +12,10 @@ then
   exit 1
 fi
 tempfile=$(mktemp)
+
+echo "--- -breaks / -counts -depth 3 -level 20 -lua args.lua ----------------------------------------------------------------------------------------------------" >> "$tempfile"
+../frangipanni -breaks / -counts -depth 3 -level 20 -lua ../args.lua arg1 arg2 </dev/null | jp '@' >> "$tempfile"
+
 for tf in fixtures/*
 do
     for sw in '' -chars '-breaks /' -separators -counts -no-fold '-level 2' '-depth 2' '-spacer ^ -indent 1 -counts'
