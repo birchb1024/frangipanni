@@ -136,11 +136,17 @@ func nodeGetChildrenSliceSorted(x *node) []*node {
 
 	case "alpha":
 		sort.SliceStable(children, func(i, j int) bool {
+			if children[i].text == children[j].text {
+				return reOrder(children[i].lineNumber < children[j].lineNumber)
+			}
 			return reOrder(children[i].text < children[j].text)
 		})
 
 	case "counts":
 		sort.SliceStable(children, func(i, j int) bool {
+			if children[i].numMatched == children[j].numMatched {
+				return reOrder(children[i].lineNumber < children[j].lineNumber)
+			}
 			return reOrder(children[i].numMatched < children[j].numMatched)
 		})
 
