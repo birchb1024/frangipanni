@@ -151,7 +151,7 @@ cat <input> | frangipanni [options]
   -skip int
     	Number of leading fields to skip.
   -sort string
-    	Sort by input|alpha|counts. Sort the branches either by input order, 
+    	Sort by input|alpha|counts. Sort the branches either by input order,
         or via alphanumeric character ordering, or the branch frequency count.
         (default "input")
   -spacer string
