@@ -21,6 +21,9 @@ do
         head -50 "$tf" | ../frangipanni $sw -format json -sort alpha | jq '.' > /dev/null
         # shellcheck disable=SC2086
         head -50 "$tf" | ../frangipanni $sw -format json -sort alpha >> "$tempfile"
+        echo "$tf--- -counts -sort counts -down $sw ----------------------------------------------------------------------------------------------------" >> "$tempfile"
+        # shellcheck disable=SC2086
+        head -50 "$tf" | ../frangipanni $sw -counts -sort counts -down >> "$tempfile"
     done
 done
 # Lua
@@ -33,7 +36,7 @@ done
     echo "fixtures/log-file.txt--- -skip 5 ----------------------------------------------------------------------------------------------------" >> "$tempfile"
     <fixtures/log-file.txt ../frangipanni -sort input -skip 5 >> "$tempfile"
 
-set -x
+#set -x
 if diff "$tempfile" "$scriptdir"/fixtures.log # || meld "$tempfile" $scriptdir/fixtures.log
 then
   : "PASS"

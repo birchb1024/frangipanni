@@ -491,6 +491,53 @@ fixtures/find.txt--- -format json -sort alpha  ---------------------------------
             "bug482.go"]}},
     "test3/fixedbugs/bug196.go",
     "test4/fixedbugs/issue19667.go"]}]
+fixtures/find.txt--- -counts -sort counts -down  ----------------------------------------------------------------------------------------------------
+boot: 28
+    grub: 15
+        grub.cfg: 2
+        device.map: 2
+        fonts: 2
+        grubenv: 2
+        locale: 2
+        unicode.pf2: 2
+        i386-pc: 1
+    config-4.9.0: 3
+        8-amd64: 1
+        11-amd64: 1
+        12-amd64: 1
+    System.map-4.9.0: 3
+        12-amd64: 1
+        11-amd64: 1
+        8-amd64: 1
+    initrd.img-4.9.0: 3
+        11-amd64: 1
+        8-amd64: 1
+        12-amd64: 1
+    vmlinuz-4.9.0: 3
+        12-amd64: 1
+        8-amd64: 1
+        11-amd64: 1
+proc/22468: 7
+    timers: 1
+    setgroups: 1
+    projid_map: 1
+    gid_map: 1
+    uid_map: 1
+    io: 1
+    timerslack_ns: 1
+usr/local/go: 7
+    test2: 4
+        fixedbugs2: 2
+            bug482.go: 1
+            bug481.go: 1
+        fixedbugs1: 2
+            bug206.go: 1
+            bug205.go: 1
+    test4/fixedbugs/issue19667.go: 1
+    test3/fixedbugs/bug196.go: 1
+    test/fixedbugs/bug028.go: 1
+srv: 1
+oldroot: 1
 fixtures/find.txt--- -format json -sort alpha -breaks / ----------------------------------------------------------------------------------------------------
 [".oldroot",
 {"boot" : 
@@ -534,6 +581,49 @@ fixtures/find.txt--- -format json -sort alpha -breaks / ------------------------
             "bug482.go"]}},
     "test3/fixedbugs/bug196.go",
     "test4/fixedbugs/issue19667.go"]}]
+fixtures/find.txt--- -counts -sort counts -down -breaks / ----------------------------------------------------------------------------------------------------
+boot: 28
+    grub: 15
+        device.map: 2
+        fonts: 2
+        grubenv: 2
+        locale: 2
+        unicode.pf2: 2
+        grub.cfg: 2
+        i386-pc: 1
+    System.map-4.9.0-11-amd64: 1
+    initrd.img-4.9.0-12-amd64: 1
+    vmlinuz-4.9.0-12-amd64: 1
+    vmlinuz-4.9.0-8-amd64: 1
+    vmlinuz-4.9.0-11-amd64: 1
+    initrd.img-4.9.0-11-amd64: 1
+    config-4.9.0-11-amd64: 1
+    initrd.img-4.9.0-8-amd64: 1
+    System.map-4.9.0-12-amd64: 1
+    config-4.9.0-8-amd64: 1
+    config-4.9.0-12-amd64: 1
+    System.map-4.9.0-8-amd64: 1
+usr/local/go: 7
+    test2: 4
+        fixedbugs2: 2
+            bug482.go: 1
+            bug481.go: 1
+        fixedbugs1: 2
+            bug206.go: 1
+            bug205.go: 1
+    test4/fixedbugs/issue19667.go: 1
+    test3/fixedbugs/bug196.go: 1
+    test/fixedbugs/bug028.go: 1
+proc/22468: 7
+    setgroups: 1
+    projid_map: 1
+    gid_map: 1
+    uid_map: 1
+    io: 1
+    timerslack_ns: 1
+    timers: 1
+srv: 1
+.oldroot: 1
 fixtures/find.txt--- -format json -sort alpha -separators ----------------------------------------------------------------------------------------------------
 [{"/boot" : 
     {"/System.map-4.9.0" : 
@@ -581,6 +671,53 @@ fixtures/find.txt--- -format json -sort alpha -separators ----------------------
             "/bug482.go"]}},
     "/test3/fixedbugs/bug196.go",
     "/test4/fixedbugs/issue19667.go"]}]
+fixtures/find.txt--- -counts -sort counts -down -separators ----------------------------------------------------------------------------------------------------
+/boot: 28
+    /grub: 15
+        /device.map: 2
+        /fonts: 2
+        /grubenv: 2
+        /locale: 2
+        /unicode.pf2: 2
+        /grub.cfg: 2
+        /i386-pc: 1
+    /config-4.9.0: 3
+        -8-amd64: 1
+        -11-amd64: 1
+        -12-amd64: 1
+    /System.map-4.9.0: 3
+        -12-amd64: 1
+        -11-amd64: 1
+        -8-amd64: 1
+    /initrd.img-4.9.0: 3
+        -11-amd64: 1
+        -8-amd64: 1
+        -12-amd64: 1
+    /vmlinuz-4.9.0: 3
+        -12-amd64: 1
+        -8-amd64: 1
+        -11-amd64: 1
+/proc/22468: 7
+    /timerslack_ns: 1
+    /timers: 1
+    /setgroups: 1
+    /projid_map: 1
+    /gid_map: 1
+    /uid_map: 1
+    /io: 1
+/usr/local/go: 7
+    /test2: 4
+        /fixedbugs1: 2
+            /bug206.go: 1
+            /bug205.go: 1
+        /fixedbugs2: 2
+            /bug482.go: 1
+            /bug481.go: 1
+    /test/fixedbugs/bug028.go: 1
+    /test4/fixedbugs/issue19667.go: 1
+    /test3/fixedbugs/bug196.go: 1
+/srv: 1
+/.oldroot: 1
 fixtures/find.txt--- -format json -sort alpha -counts ----------------------------------------------------------------------------------------------------
 {"_count_" : 44,
 "boot" : 
@@ -675,6 +812,53 @@ fixtures/find.txt--- -format json -sort alpha -counts --------------------------
         {"_count_" : 1},
     "test4/fixedbugs/issue19667.go" : 
         {"_count_" : 1}}}
+fixtures/find.txt--- -counts -sort counts -down -counts ----------------------------------------------------------------------------------------------------
+boot: 28
+    grub: 15
+        unicode.pf2: 2
+        grub.cfg: 2
+        device.map: 2
+        fonts: 2
+        grubenv: 2
+        locale: 2
+        i386-pc: 1
+    config-4.9.0: 3
+        8-amd64: 1
+        11-amd64: 1
+        12-amd64: 1
+    System.map-4.9.0: 3
+        12-amd64: 1
+        11-amd64: 1
+        8-amd64: 1
+    initrd.img-4.9.0: 3
+        12-amd64: 1
+        11-amd64: 1
+        8-amd64: 1
+    vmlinuz-4.9.0: 3
+        12-amd64: 1
+        8-amd64: 1
+        11-amd64: 1
+proc/22468: 7
+    timerslack_ns: 1
+    timers: 1
+    setgroups: 1
+    projid_map: 1
+    gid_map: 1
+    uid_map: 1
+    io: 1
+usr/local/go: 7
+    test2: 4
+        fixedbugs2: 2
+            bug482.go: 1
+            bug481.go: 1
+        fixedbugs1: 2
+            bug206.go: 1
+            bug205.go: 1
+    test4/fixedbugs/issue19667.go: 1
+    test3/fixedbugs/bug196.go: 1
+    test/fixedbugs/bug028.go: 1
+srv: 1
+oldroot: 1
 fixtures/find.txt--- -format json -sort alpha -level 2 ----------------------------------------------------------------------------------------------------
 [{"boot" : 
     {"System" : 
@@ -719,6 +903,50 @@ fixtures/find.txt--- -format json -sort alpha -level 2 -------------------------
     "/go/test2/fixedbugs2/bug482.go",
     "/go/test3/fixedbugs/bug196.go",
     "/go/test4/fixedbugs/issue19667.go"]}]
+fixtures/find.txt--- -counts -sort counts -down -level 2 ----------------------------------------------------------------------------------------------------
+boot: 28
+    grub: 15
+        /device.map: 2
+        /fonts: 2
+        /grubenv: 2
+        /locale: 2
+        /unicode.pf2: 2
+        /grub.cfg: 2
+        /i386-pc: 1
+    config: 3
+        -4.9.0-12-amd64: 1
+        -4.9.0-8-amd64: 1
+        -4.9.0-11-amd64: 1
+    System: 3
+        .map-4.9.0-11-amd64: 1
+        .map-4.9.0-8-amd64: 1
+        .map-4.9.0-12-amd64: 1
+    initrd: 3
+        .img-4.9.0-11-amd64: 1
+        .img-4.9.0-8-amd64: 1
+        .img-4.9.0-12-amd64: 1
+    vmlinuz: 3
+        -4.9.0-11-amd64: 1
+        -4.9.0-12-amd64: 1
+        -4.9.0-8-amd64: 1
+proc/22468: 7
+    /timerslack_ns: 1
+    /timers: 1
+    /setgroups: 1
+    /projid_map: 1
+    /gid_map: 1
+    /uid_map: 1
+    /io: 1
+usr/local: 7
+    /go/test2/fixedbugs2/bug481.go: 1
+    /go/test2/fixedbugs1/bug206.go: 1
+    /go/test2/fixedbugs1/bug205.go: 1
+    /go/test/fixedbugs/bug028.go: 1
+    /go/test4/fixedbugs/issue19667.go: 1
+    /go/test3/fixedbugs/bug196.go: 1
+    /go/test2/fixedbugs2/bug482.go: 1
+oldroot: 1
+srv: 1
 fixtures/find.txt--- -format json -sort alpha -depth 3 ----------------------------------------------------------------------------------------------------
 [{"boot" : 
     {"System.map-4.9.0" : 
@@ -762,6 +990,49 @@ fixtures/find.txt--- -format json -sort alpha -depth 3 -------------------------
         "fixedbugs2" : null}},
     "test3/fixedbugs/bug196.go",
     "test4/fixedbugs/issue19667.go"]}]
+fixtures/find.txt--- -counts -sort counts -down -depth 3 ----------------------------------------------------------------------------------------------------
+boot: 28
+    grub: 15
+        unicode.pf2: 2
+        grub.cfg: 2
+        device.map: 2
+        fonts: 2
+        grubenv: 2
+        locale: 2
+        i386-pc: 1
+    vmlinuz-4.9.0: 3
+        12-amd64: 1
+        8-amd64: 1
+        11-amd64: 1
+    config-4.9.0: 3
+        8-amd64: 1
+        11-amd64: 1
+        12-amd64: 1
+    System.map-4.9.0: 3
+        12-amd64: 1
+        11-amd64: 1
+        8-amd64: 1
+    initrd.img-4.9.0: 3
+        11-amd64: 1
+        8-amd64: 1
+        12-amd64: 1
+proc/22468: 7
+    timerslack_ns: 1
+    timers: 1
+    setgroups: 1
+    projid_map: 1
+    gid_map: 1
+    uid_map: 1
+    io: 1
+usr/local/go: 7
+    test2: 4
+        fixedbugs2: 2
+        fixedbugs1: 2
+    test/fixedbugs/bug028.go: 1
+    test4/fixedbugs/issue19667.go: 1
+    test3/fixedbugs/bug196.go: 1
+oldroot: 1
+srv: 1
 fixtures/find.txt--- -format json -sort alpha -no-fold ----------------------------------------------------------------------------------------------------
 [{"boot" : 
     {"System" : 
@@ -832,6 +1103,103 @@ fixtures/find.txt--- -format json -sort alpha -no-fold -------------------------
             "test4" : 
                 {"fixedbugs" : 
                     {"issue19667" : "go"}}}}}}]
+fixtures/find.txt--- -counts -sort counts -down -no-fold ----------------------------------------------------------------------------------------------------
+boot: 28
+    grub: 15
+        locale: 2
+        unicode: 2
+            pf2: 2
+        grub: 2
+            cfg: 2
+        device: 2
+            map: 2
+        fonts: 2
+        grubenv: 2
+        i386: 1
+            pc: 1
+    config: 3
+        4: 3
+            9: 3
+                0: 3
+                    8: 1
+                        amd64: 1
+                    11: 1
+                        amd64: 1
+                    12: 1
+                        amd64: 1
+    System: 3
+        map: 3
+            4: 3
+                9: 3
+                    0: 3
+                        8: 1
+                            amd64: 1
+                        12: 1
+                            amd64: 1
+                        11: 1
+                            amd64: 1
+    initrd: 3
+        img: 3
+            4: 3
+                9: 3
+                    0: 3
+                        11: 1
+                            amd64: 1
+                        8: 1
+                            amd64: 1
+                        12: 1
+                            amd64: 1
+    vmlinuz: 3
+        4: 3
+            9: 3
+                0: 3
+                    12: 1
+                        amd64: 1
+                    8: 1
+                        amd64: 1
+                    11: 1
+                        amd64: 1
+proc: 7
+    22468: 7
+        gid: 1
+            map: 1
+        uid: 1
+            map: 1
+        io: 1
+        timerslack: 1
+            ns: 1
+        timers: 1
+        setgroups: 1
+        projid: 1
+            map: 1
+usr: 7
+    local: 7
+        go: 7
+            test2: 4
+                fixedbugs2: 2
+                    bug482: 1
+                        go: 1
+                    bug481: 1
+                        go: 1
+                fixedbugs1: 2
+                    bug205: 1
+                        go: 1
+                    bug206: 1
+                        go: 1
+            test4: 1
+                fixedbugs: 1
+                    issue19667: 1
+                        go: 1
+            test3: 1
+                fixedbugs: 1
+                    bug196: 1
+                        go: 1
+            test: 1
+                fixedbugs: 1
+                    bug028: 1
+                        go: 1
+oldroot: 1
+srv: 1
 fixtures/find.txt--- -format json -sort alpha -down ----------------------------------------------------------------------------------------------------
 [{"usr/local/go" : 
     ["test4/fixedbugs/issue19667.go",
@@ -879,6 +1247,53 @@ fixtures/find.txt--- -format json -sort alpha -down ----------------------------
         ["8-amd64",
         "12-amd64",
         "11-amd64"]}}]
+fixtures/find.txt--- -counts -sort counts -down -down ----------------------------------------------------------------------------------------------------
+boot: 28
+    grub: 15
+        locale: 2
+        unicode.pf2: 2
+        grub.cfg: 2
+        device.map: 2
+        fonts: 2
+        grubenv: 2
+        i386-pc: 1
+    vmlinuz-4.9.0: 3
+        8-amd64: 1
+        11-amd64: 1
+        12-amd64: 1
+    config-4.9.0: 3
+        8-amd64: 1
+        11-amd64: 1
+        12-amd64: 1
+    System.map-4.9.0: 3
+        12-amd64: 1
+        11-amd64: 1
+        8-amd64: 1
+    initrd.img-4.9.0: 3
+        8-amd64: 1
+        12-amd64: 1
+        11-amd64: 1
+usr/local/go: 7
+    test2: 4
+        fixedbugs2: 2
+            bug482.go: 1
+            bug481.go: 1
+        fixedbugs1: 2
+            bug206.go: 1
+            bug205.go: 1
+    test4/fixedbugs/issue19667.go: 1
+    test3/fixedbugs/bug196.go: 1
+    test/fixedbugs/bug028.go: 1
+proc/22468: 7
+    projid_map: 1
+    gid_map: 1
+    uid_map: 1
+    io: 1
+    timerslack_ns: 1
+    timers: 1
+    setgroups: 1
+srv: 1
+oldroot: 1
 fixtures/firewall.txt---  ----------------------------------------------------------------------------------------------------
 WARNING
     ICMP type
@@ -1211,6 +1626,15 @@ fixtures/firewall.txt--- -format json -sort alpha  -----------------------------
     "beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
     "failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
     "reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring"]}
+fixtures/firewall.txt--- -counts -sort counts -down  ----------------------------------------------------------------------------------------------------
+WARNING: 50
+    ICMP type: 25
+        beyond-scope' is not supported by: 9
+        reject-route' is not supported by: 8
+        failed-policy' is not supported by: 8
+    beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 9
+    reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 8
+    failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 8
 fixtures/firewall.txt--- -format json -sort alpha -breaks / ----------------------------------------------------------------------------------------------------
 ["WARNING: ICMP type 'beyond-scope' is not supported by",
 "WARNING: ICMP type 'failed-policy' is not supported by",
@@ -1218,6 +1642,13 @@ fixtures/firewall.txt--- -format json -sort alpha -breaks / --------------------
 "WARNING: beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
 "WARNING: failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
 "WARNING: reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring"]
+fixtures/firewall.txt--- -counts -sort counts -down -breaks / ----------------------------------------------------------------------------------------------------
+WARNING: ICMP type 'beyond-scope' is not supported by: 9
+WARNING: beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 9
+WARNING: reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 8
+WARNING: ICMP type 'reject-route' is not supported by: 8
+WARNING: failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 8
+WARNING: ICMP type 'failed-policy' is not supported by: 8
 fixtures/firewall.txt--- -format json -sort alpha -separators ----------------------------------------------------------------------------------------------------
 {"WARNING" : 
     [{": ICMP type" : 
@@ -1227,6 +1658,15 @@ fixtures/firewall.txt--- -format json -sort alpha -separators ------------------
     ": beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
     ": failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
     ": reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring"]}
+fixtures/firewall.txt--- -counts -sort counts -down -separators ----------------------------------------------------------------------------------------------------
+WARNING: 50
+    : ICMP type: 25
+         'beyond-scope' is not supported by: 9
+         'reject-route' is not supported by: 8
+         'failed-policy' is not supported by: 8
+    : beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 9
+    : failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 8
+    : reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 8
 fixtures/firewall.txt--- -format json -sort alpha -counts ----------------------------------------------------------------------------------------------------
 {"WARNING" : 
     {"ICMP type" : 
@@ -1245,6 +1685,15 @@ fixtures/firewall.txt--- -format json -sort alpha -counts ----------------------
     "reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring" : 
         {"_count_" : 8}},
 "_count_" : 50}
+fixtures/firewall.txt--- -counts -sort counts -down -counts ----------------------------------------------------------------------------------------------------
+WARNING: 50
+    ICMP type: 25
+        beyond-scope' is not supported by: 9
+        reject-route' is not supported by: 8
+        failed-policy' is not supported by: 8
+    beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 9
+    reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 8
+    failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 8
 fixtures/firewall.txt--- -format json -sort alpha -level 2 ----------------------------------------------------------------------------------------------------
 {"WARNING" : 
     [{"ICMP" : 
@@ -1254,6 +1703,15 @@ fixtures/firewall.txt--- -format json -sort alpha -level 2 ---------------------
     "beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
     "failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
     "reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring"]}
+fixtures/firewall.txt--- -counts -sort counts -down -level 2 ----------------------------------------------------------------------------------------------------
+WARNING: 50
+    ICMP: 25
+         type 'beyond-scope' is not supported by: 9
+         type 'failed-policy' is not supported by: 8
+         type 'reject-route' is not supported by: 8
+    beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 9
+    failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 8
+    reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 8
 fixtures/firewall.txt--- -format json -sort alpha -depth 3 ----------------------------------------------------------------------------------------------------
 {"WARNING" : 
     [{"ICMP type" : 
@@ -1263,6 +1721,15 @@ fixtures/firewall.txt--- -format json -sort alpha -depth 3 ---------------------
     "beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
     "failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
     "reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring"]}
+fixtures/firewall.txt--- -counts -sort counts -down -depth 3 ----------------------------------------------------------------------------------------------------
+WARNING: 50
+    ICMP type: 25
+        beyond-scope' is not supported by: 9
+        reject-route' is not supported by: 8
+        failed-policy' is not supported by: 8
+    beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 9
+    reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 8
+    failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 8
 fixtures/firewall.txt--- -format json -sort alpha -no-fold ----------------------------------------------------------------------------------------------------
 {"WARNING" : 
     {"ICMP" : 
@@ -1306,6 +1773,55 @@ fixtures/firewall.txt--- -format json -sort alpha -no-fold ---------------------
                         {"supported" : 
                             {"ICMP" : 
                                 {"type" : "ignoring"}}}}}}}}}
+fixtures/firewall.txt--- -counts -sort counts -down -no-fold ----------------------------------------------------------------------------------------------------
+WARNING: 50
+    ICMP: 25
+        type: 25
+            beyond: 9
+                scope: 9
+                    is: 9
+                        not: 9
+                            supported: 9
+                                by: 9
+            failed: 8
+                policy: 8
+                    is: 8
+                        not: 8
+                            supported: 8
+                                by: 8
+            reject: 8
+                route: 8
+                    is: 8
+                        not: 8
+                            supported: 8
+                                by: 8
+    beyond: 9
+        scope: 9
+            INVALID: 9
+                ICMPTYPE: 9
+                    No: 9
+                        supported: 9
+                            ICMP: 9
+                                type: 9
+                                    ignoring: 9
+    failed: 8
+        policy: 8
+            INVALID: 8
+                ICMPTYPE: 8
+                    No: 8
+                        supported: 8
+                            ICMP: 8
+                                type: 8
+                                    ignoring: 8
+    reject: 8
+        route: 8
+            INVALID: 8
+                ICMPTYPE: 8
+                    No: 8
+                        supported: 8
+                            ICMP: 8
+                                type: 8
+                                    ignoring: 8
 fixtures/firewall.txt--- -format json -sort alpha -down ----------------------------------------------------------------------------------------------------
 {"WARNING" : 
     ["reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring",
@@ -1315,6 +1831,15 @@ fixtures/firewall.txt--- -format json -sort alpha -down ------------------------
         ["reject-route' is not supported by",
         "failed-policy' is not supported by",
         "beyond-scope' is not supported by"]}]}
+fixtures/firewall.txt--- -counts -sort counts -down -down ----------------------------------------------------------------------------------------------------
+WARNING: 50
+    ICMP type: 25
+        beyond-scope' is not supported by: 9
+        reject-route' is not supported by: 8
+        failed-policy' is not supported by: 8
+    beyond-scope: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 9
+    reject-route: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 8
+    failed-policy: INVALID_ICMPTYPE: No supported ICMP type., ignoring: 8
 fixtures/log-file.txt---  ----------------------------------------------------------------------------------------------------
 May 10
     03:17:06 localhost systemd
@@ -1560,6 +2085,22 @@ fixtures/log-file.txt--- -format json -sort alpha  -----------------------------
         "systemd" : 
             ["Started Docker Cleanup",
             "Starting Docker Cleanup"]}}}
+fixtures/log-file.txt--- -counts -sort counts -down  ----------------------------------------------------------------------------------------------------
+May 10: 10
+    04:00:00 localhost: 8
+        dockerd-current: time="2020-05-10T04:00:00: 6
+            629948000+10:00" level=debug msg="Unable to determine container for: 1
+            629849861+10:00" level=debug msg="Calling GET /_ping: 1
+            630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075: 1
+            630704513+10:00" level=debug msg="Unable to determine container for containers: 1
+            630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D: 1
+            630103455+10:00" level=debug msg="{Action=_ping, LoginUID=12345678, PID=21075: 1
+        systemd: 2
+            Started Docker Cleanup: 1
+            Starting Docker Cleanup: 1
+    03:17:06 localhost systemd: 2
+        Stopping User Slice of root: 1
+        Removed slice User Slice of root: 1
 fixtures/log-file.txt--- -format json -sort alpha -breaks / ----------------------------------------------------------------------------------------------------
 ["May 10 03:17:06 localhost systemd: Removed slice User Slice of root.",
 "May 10 03:17:06 localhost systemd: Stopping User Slice of root.",
@@ -1571,6 +2112,17 @@ fixtures/log-file.txt--- -format json -sort alpha -breaks / --------------------
 "May 10 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630735545+10:00\" level=debug msg=\"{Action=json, LoginUID=12345678, PID=21075}\"",
 "May 10 04:00:00 localhost systemd: Started Docker Cleanup.",
 "May 10 04:00:00 localhost systemd: Starting Docker Cleanup..."]
+fixtures/log-file.txt--- -counts -sort counts -down -breaks / ----------------------------------------------------------------------------------------------------
+May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630704513+10:00" level=debug msg="Unable to determine container for containers": 1
+May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D": 1
+May 10 04:00:00 localhost systemd: Started Docker Cleanup.: 1
+May 10 04:00:00 localhost systemd: Starting Docker Cleanup...: 1
+May 10 03:17:06 localhost systemd: Removed slice User Slice of root.: 1
+May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.629849861+10:00" level=debug msg="Calling GET /_ping": 1
+May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075}": 1
+May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630103455+10:00" level=debug msg="{Action=_ping, LoginUID=12345678, PID=21075}": 1
+May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.629948000+10:00" level=debug msg="Unable to determine container for /": 1
+May 10 03:17:06 localhost systemd: Stopping User Slice of root.: 1
 fixtures/log-file.txt--- -format json -sort alpha -separators ----------------------------------------------------------------------------------------------------
 {"May 10" : 
     {" 03:17:06 localhost systemd" : 
@@ -1587,6 +2139,22 @@ fixtures/log-file.txt--- -format json -sort alpha -separators ------------------
         " systemd" : 
             [": Started Docker Cleanup",
             ": Starting Docker Cleanup"]}}}
+fixtures/log-file.txt--- -counts -sort counts -down -separators ----------------------------------------------------------------------------------------------------
+May 10: 10
+     04:00:00 localhost: 8
+         dockerd-current: time="2020-05-10T04:00:00: 6
+            .630103455+10:00" level=debug msg="{Action=_ping, LoginUID=12345678, PID=21075: 1
+            .629948000+10:00" level=debug msg="Unable to determine container for: 1
+            .629849861+10:00" level=debug msg="Calling GET /_ping: 1
+            .630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075: 1
+            .630704513+10:00" level=debug msg="Unable to determine container for containers: 1
+            .630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D: 1
+         systemd: 2
+            : Started Docker Cleanup: 1
+            : Starting Docker Cleanup: 1
+     03:17:06 localhost systemd: 2
+        : Stopping User Slice of root: 1
+        : Removed slice User Slice of root: 1
 fixtures/log-file.txt--- -format json -sort alpha -counts ----------------------------------------------------------------------------------------------------
 {"May 10" : 
     {"03:17:06 localhost systemd" : 
@@ -1619,6 +2187,22 @@ fixtures/log-file.txt--- -format json -sort alpha -counts ----------------------
             "_count_" : 2}},
     "_count_" : 10},
 "_count_" : 10}
+fixtures/log-file.txt--- -counts -sort counts -down -counts ----------------------------------------------------------------------------------------------------
+May 10: 10
+    04:00:00 localhost: 8
+        dockerd-current: time="2020-05-10T04:00:00: 6
+            629849861+10:00" level=debug msg="Calling GET /_ping: 1
+            630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075: 1
+            630704513+10:00" level=debug msg="Unable to determine container for containers: 1
+            630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D: 1
+            630103455+10:00" level=debug msg="{Action=_ping, LoginUID=12345678, PID=21075: 1
+            629948000+10:00" level=debug msg="Unable to determine container for: 1
+        systemd: 2
+            Started Docker Cleanup: 1
+            Starting Docker Cleanup: 1
+    03:17:06 localhost systemd: 2
+        Stopping User Slice of root: 1
+        Removed slice User Slice of root: 1
 fixtures/log-file.txt--- -format json -sort alpha -level 2 ----------------------------------------------------------------------------------------------------
 {"May 10" : 
     [" 03:17:06 localhost systemd: Removed slice User Slice of root",
@@ -1631,6 +2215,18 @@ fixtures/log-file.txt--- -format json -sort alpha -level 2 ---------------------
     " 04:00:00 localhost dockerd-current: time=\"2020-05-10T04:00:00.630735545+10:00\" level=debug msg=\"{Action=json, LoginUID=12345678, PID=21075",
     " 04:00:00 localhost systemd: Started Docker Cleanup",
     " 04:00:00 localhost systemd: Starting Docker Cleanup"]}
+fixtures/log-file.txt--- -counts -sort counts -down -level 2 ----------------------------------------------------------------------------------------------------
+May 10: 10
+     04:00:00 localhost systemd: Started Docker Cleanup: 1
+     04:00:00 localhost systemd: Starting Docker Cleanup: 1
+     04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075: 1
+     04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630704513+10:00" level=debug msg="Unable to determine container for containers: 1
+     04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630103455+10:00" level=debug msg="{Action=_ping, LoginUID=12345678, PID=21075: 1
+     03:17:06 localhost systemd: Stopping User Slice of root: 1
+     03:17:06 localhost systemd: Removed slice User Slice of root: 1
+     04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D: 1
+     04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.629948000+10:00" level=debug msg="Unable to determine container for: 1
+     04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.629849861+10:00" level=debug msg="Calling GET /_ping: 1
 fixtures/log-file.txt--- -format json -sort alpha -depth 3 ----------------------------------------------------------------------------------------------------
 {"May 10" : 
     {"03:17:06 localhost systemd" : 
@@ -1639,6 +2235,14 @@ fixtures/log-file.txt--- -format json -sort alpha -depth 3 ---------------------
     "04:00:00 localhost" : 
         {"dockerd-current: time=\"2020-05-10T04:00:00" : null,
         "systemd" : null}}}
+fixtures/log-file.txt--- -counts -sort counts -down -depth 3 ----------------------------------------------------------------------------------------------------
+May 10: 10
+    04:00:00 localhost: 8
+        dockerd-current: time="2020-05-10T04:00:00: 6
+        systemd: 2
+    03:17:06 localhost systemd: 2
+        Stopping User Slice of root: 1
+        Removed slice User Slice of root: 1
 fixtures/log-file.txt--- -format json -sort alpha -no-fold ----------------------------------------------------------------------------------------------------
 {"May" : 
     {"10" : 
@@ -1748,6 +2352,125 @@ fixtures/log-file.txt--- -format json -sort alpha -no-fold ---------------------
                                 {"Docker" : "Cleanup"},
                             "Starting" : 
                                 {"Docker" : "Cleanup"}}}}}}}}}
+fixtures/log-file.txt--- -counts -sort counts -down -no-fold ----------------------------------------------------------------------------------------------------
+May: 10
+    10: 10
+        04: 8
+            00: 8
+                00: 8
+                    localhost: 8
+                        dockerd: 6
+                            current: 6
+                                time: 6
+                                    2020: 6
+                                        05: 6
+                                            10T04: 6
+                                                00: 6
+                                                    00: 6
+                                                        630684502: 1
+                                                            10: 1
+                                                                00: 1
+                                                                    level: 1
+                                                                        debug: 1
+                                                                            msg: 1
+                                                                                Calling: 1
+                                                                                    GET: 1
+                                                                                        v1: 1
+                                                                                            26: 1
+                                                                                                containers: 1
+                                                                                                    json: 1
+                                                                                                        all: 1
+                                                                                                            1: 1
+                                                                                                                filters: 1
+                                                                                                                    7B: 1
+                                                                                                                        22status: 1
+                                                                                                                            22: 1
+                                                                                                                                3A: 1
+                                                                                                                                    7B: 1
+                                                                                                                                        22dead: 1
+                                                                                                                                            22: 1
+                                                                                                                                                3Atrue: 1
+                                                                                                                                                    7D: 1
+                                                                                                                                                        7D: 1
+                                                        630103455: 1
+                                                            10: 1
+                                                                00: 1
+                                                                    level: 1
+                                                                        debug: 1
+                                                                            msg: 1
+                                                                                Action: 1
+                                                                                    ping: 1
+                                                                                        LoginUID: 1
+                                                                                            12345678: 1
+                                                                                                PID: 1
+                                                                                                    21075: 1
+                                                        629948000: 1
+                                                            10: 1
+                                                                00: 1
+                                                                    level: 1
+                                                                        debug: 1
+                                                                            msg: 1
+                                                                                Unable: 1
+                                                                                    to: 1
+                                                                                        determine: 1
+                                                                                            container: 1
+                                                                                                for: 1
+                                                        629849861: 1
+                                                            10: 1
+                                                                00: 1
+                                                                    level: 1
+                                                                        debug: 1
+                                                                            msg: 1
+                                                                                Calling: 1
+                                                                                    GET: 1
+                                                                                        ping: 1
+                                                        630735545: 1
+                                                            10: 1
+                                                                00: 1
+                                                                    level: 1
+                                                                        debug: 1
+                                                                            msg: 1
+                                                                                Action: 1
+                                                                                    json: 1
+                                                                                        LoginUID: 1
+                                                                                            12345678: 1
+                                                                                                PID: 1
+                                                                                                    21075: 1
+                                                        630704513: 1
+                                                            10: 1
+                                                                00: 1
+                                                                    level: 1
+                                                                        debug: 1
+                                                                            msg: 1
+                                                                                Unable: 1
+                                                                                    to: 1
+                                                                                        determine: 1
+                                                                                            container: 1
+                                                                                                for: 1
+                                                                                                    containers: 1
+                        systemd: 2
+                            Started: 1
+                                Docker: 1
+                                    Cleanup: 1
+                            Starting: 1
+                                Docker: 1
+                                    Cleanup: 1
+        03: 2
+            17: 2
+                06: 2
+                    localhost: 2
+                        systemd: 2
+                            Stopping: 1
+                                User: 1
+                                    Slice: 1
+                                        of: 1
+                                            root: 1
+                            Removed: 1
+                                slice: 1
+                                    User: 1
+                                        Slice: 1
+                                            of: 1
+                                                root: 1
 fixtures/log-file.txt--- -format json -sort alpha -down ----------------------------------------------------------------------------------------------------
 {"May 10" : 
     {"04:00:00 localhost" : 
@@ -1764,6 +2487,22 @@ fixtures/log-file.txt--- -format json -sort alpha -down ------------------------
     "03:17:06 localhost systemd" : 
         ["Stopping User Slice of root",
         "Removed slice User Slice of root"]}}
+fixtures/log-file.txt--- -counts -sort counts -down -down ----------------------------------------------------------------------------------------------------
+May 10: 10
+    04:00:00 localhost: 8
+        dockerd-current: time="2020-05-10T04:00:00: 6
+            630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075: 1
+            630704513+10:00" level=debug msg="Unable to determine container for containers: 1
+            630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D: 1
+            630103455+10:00" level=debug msg="{Action=_ping, LoginUID=12345678, PID=21075: 1
+            629948000+10:00" level=debug msg="Unable to determine container for: 1
+            629849861+10:00" level=debug msg="Calling GET /_ping: 1
+        systemd: 2
+            Started Docker Cleanup: 1
+            Starting Docker Cleanup: 1
+    03:17:06 localhost systemd: 2
+        Stopping User Slice of root: 1
+        Removed slice User Slice of root: 1
 fixtures/morse.txt---  ----------------------------------------------------------------------------------------------------
 A
 B
@@ -1912,6 +2651,20 @@ fixtures/morse.txt--- -format json -sort alpha  --------------------------------
 "K",
 "L",
 "M"]
+fixtures/morse.txt--- -counts -sort counts -down  ----------------------------------------------------------------------------------------------------
+M: 1
+D: 1
+C: 1
+L: 1
+K: 1
+I: 1
+H: 1
+G: 1
+E: 1
+B: 1
+A: 1
+J: 1
+F: 1
 fixtures/morse.txt--- -format json -sort alpha -breaks / ----------------------------------------------------------------------------------------------------
 [". E",
 ".. I",
@@ -1926,6 +2679,20 @@ fixtures/morse.txt--- -format json -sort alpha -breaks / -----------------------
 "_._. C",
 "__ M",
 "__. G"]
+fixtures/morse.txt--- -counts -sort counts -down -breaks / ----------------------------------------------------------------------------------------------------
+_._ K: 1
+.___ J: 1
+.... H: 1
+__. G: 1
+.._. F: 1
+. E: 1
+_.. D: 1
+._.. L: 1
+__ M: 1
+.. I: 1
+_._. C: 1
+_... B: 1
+._ A: 1
 fixtures/morse.txt--- -format json -sort alpha -separators ----------------------------------------------------------------------------------------------------
 ["._ A",
 "_... B",
@@ -1940,6 +2707,20 @@ fixtures/morse.txt--- -format json -sort alpha -separators ---------------------
 "_._ K",
 "._.. L",
 "__ M"]
+fixtures/morse.txt--- -counts -sort counts -down -separators ----------------------------------------------------------------------------------------------------
+_... B: 1
+__ M: 1
+._.. L: 1
+.._. F: 1
+. E: 1
+_.. D: 1
+_._. C: 1
+._ A: 1
+_._ K: 1
+.___ J: 1
+.. I: 1
+.... H: 1
+__. G: 1
 fixtures/morse.txt--- -format json -sort alpha -counts ----------------------------------------------------------------------------------------------------
 {"A" : 
     {"_count_" : 1},
@@ -1968,6 +2749,20 @@ fixtures/morse.txt--- -format json -sort alpha -counts -------------------------
 "M" : 
     {"_count_" : 1},
 "_count_" : 13}
+fixtures/morse.txt--- -counts -sort counts -down -counts ----------------------------------------------------------------------------------------------------
+I: 1
+D: 1
+C: 1
+A: 1
+L: 1
+K: 1
+G: 1
+F: 1
+E: 1
+B: 1
+M: 1
+J: 1
+H: 1
 fixtures/morse.txt--- -format json -sort alpha -level 2 ----------------------------------------------------------------------------------------------------
 ["A",
 "B",
@@ -1982,6 +2777,20 @@ fixtures/morse.txt--- -format json -sort alpha -level 2 ------------------------
 "K",
 "L",
 "M"]
+fixtures/morse.txt--- -counts -sort counts -down -level 2 ----------------------------------------------------------------------------------------------------
+A: 1
+J: 1
+E: 1
+L: 1
+M: 1
+B: 1
+K: 1
+I: 1
+H: 1
+G: 1
+F: 1
+D: 1
+C: 1
 fixtures/morse.txt--- -format json -sort alpha -depth 3 ----------------------------------------------------------------------------------------------------
 ["A",
 "B",
@@ -1996,6 +2805,20 @@ fixtures/morse.txt--- -format json -sort alpha -depth 3 ------------------------
 "K",
 "L",
 "M"]
+fixtures/morse.txt--- -counts -sort counts -down -depth 3 ----------------------------------------------------------------------------------------------------
+D: 1
+H: 1
+K: 1
+M: 1
+L: 1
+A: 1
+J: 1
+I: 1
+G: 1
+F: 1
+E: 1
+C: 1
+B: 1
 fixtures/morse.txt--- -format json -sort alpha -no-fold ----------------------------------------------------------------------------------------------------
 ["A",
 "B",
@@ -2010,6 +2833,20 @@ fixtures/morse.txt--- -format json -sort alpha -no-fold ------------------------
 "K",
 "L",
 "M"]
+fixtures/morse.txt--- -counts -sort counts -down -no-fold ----------------------------------------------------------------------------------------------------
+J: 1
+H: 1
+F: 1
+E: 1
+C: 1
+B: 1
+M: 1
+K: 1
+L: 1
+I: 1
+G: 1
+D: 1
+A: 1
 fixtures/morse.txt--- -format json -sort alpha -down ----------------------------------------------------------------------------------------------------
 ["M",
 "L",
@@ -2024,6 +2861,20 @@ fixtures/morse.txt--- -format json -sort alpha -down ---------------------------
 "C",
 "B",
 "A"]
+fixtures/morse.txt--- -counts -sort counts -down -down ----------------------------------------------------------------------------------------------------
+G: 1
+E: 1
+B: 1
+M: 1
+L: 1
+K: 1
+D: 1
+C: 1
+A: 1
+J: 1
+I: 1
+H: 1
+F: 1
 fixtures/movies.csv---  ----------------------------------------------------------------------------------------------------
 guid
     9202a8c04000641f80000000056d973b,name,Kate Dickie
@@ -4687,6 +5538,75 @@ fixtures/movies.csv--- -format json -sort alpha  -------------------------------
     "9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy",
     "9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco",
     "9202a8c04000641f80000000056d973b,name,Kate Dickie"]}
+fixtures/movies.csv--- -counts -sort counts -down  ----------------------------------------------------------------------------------------------------
+en: 23
+    bad_taste: 7
+        starring: 5
+            guid: 4
+                9202a8c04000641f80000000010cf92b: 1
+                9202a8c04000641f80000000010cf91e: 1
+                9202a8c04000641f800000000434a77d: 1
+                9202a8c04000641f80000000010cf924: 1
+            en/peter_jackson: 1
+        name,Bad Taste: 1
+        directed_by,/en/peter_jackson: 1
+    milou_en_mai: 6
+        starring,/en: 4
+            michel_piccoli: 1
+            harriet_walter: 1
+            miou-miou: 1
+            dominique_blanc: 1
+        name,Milou en mai: 1
+        directed_by,/en/louis_malle: 1
+    gymkata,name,Gymkata: 1
+    megan_mullally,name,Megan Mullally: 1
+    sebastian_arcelus,name,Sebastian Arcelus: 1
+    hiroyuki_okiura,name,Hiroyuki Okiura: 1
+    masahiko_tsugawa,name,Masahiko Tsugawa: 1
+    karl_maka,name,Karl Maka: 1
+    john_glen,name,John Glen: 1
+    candy_barr,name,Candy Barr: 1
+    david_greene,name,David Greene: 1
+    oscar_homolka,name,Oscar Homolka: 1
+authority: 22
+    imdb: 18
+        title: 17
+            tt0486761: 13
+                starring,/en: 10
+                    kevin: 2
+                        michael_richardson: 1
+                        mcdonald: 1
+                    daveigh_chase: 1
+                    tara_strong: 1
+                    tia_carrere: 1
+                    david_ogden_stiers: 1
+                    rob_paulsen: 1
+                    zoe_caldwell: 1
+                    jeff_bennett: 1
+                    chris_sanders: 1
+                directed_by: 2
+                    guid/9202a8c04000641f80000000010ff1da: 1
+                    en/tony_craig: 1
+                name,Leroy & Stitch: 1
+            tt0105001: 4
+                starring,/en: 2
+                    robert_de_niro: 1
+                    jessica_lange: 1
+                directed_by,/en/irwin_winkler: 1
+                name,Night and the City: 1
+        name/nm0036934,name,Greg Aronowitz: 1
+    netflix/movie/70062973: 4
+        starring,/en: 2
+            stephen_collins: 1
+            madeline_kahn: 1
+        directed_by,/en/michael_lindsay-hogg: 1
+        name,Ivana Trump's For Love Alone: 1
+guid: 5
+    9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy: 1
+    9202a8c04000641f80000000010de9bd,name,Jacques Martineau: 1
+    9202a8c04000641f80000000010fa2fc,name,Yoshiko Ohta: 1
+    9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco: 1
+    9202a8c04000641f80000000056d973b,name,Kate Dickie: 1
 fixtures/movies.csv--- -format json -sort alpha -breaks / ----------------------------------------------------------------------------------------------------
 {"authority" : 
     {"imdb" : 
@@ -4751,6 +5671,70 @@ fixtures/movies.csv--- -format json -sort alpha -breaks / ----------------------
     "9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy",
     "9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco",
     "9202a8c04000641f80000000056d973b,name,Kate Dickie"]}
+fixtures/movies.csv--- -counts -sort counts -down -breaks / ----------------------------------------------------------------------------------------------------
+en: 23
+    bad_taste,starring,: 5
+        guid: 4
+            9202a8c04000641f80000000010cf92b: 1
+            9202a8c04000641f80000000010cf91e: 1
+            9202a8c04000641f800000000434a77d: 1
+            9202a8c04000641f80000000010cf924: 1
+        en/peter_jackson: 1
+    milou_en_mai,starring,/en: 4
+        harriet_walter: 1
+        miou-miou: 1
+        dominique_blanc: 1
+        michel_piccoli: 1
+    masahiko_tsugawa,name,Masahiko Tsugawa: 1
+    oscar_homolka,name,Oscar Homolka: 1
+    sebastian_arcelus,name,Sebastian Arcelus: 1
+    david_greene,name,David Greene: 1
+    john_glen,name,John Glen: 1
+    hiroyuki_okiura,name,Hiroyuki Okiura: 1
+    megan_mullally,name,Megan Mullally: 1
+    candy_barr,name,Candy Barr: 1
+    karl_maka,name,Karl Maka: 1
+    milou_en_mai,directed_by,/en/louis_malle: 1
+    milou_en_mai,name,Milou en mai: 1
+    bad_taste,name,Bad Taste: 1
+    bad_taste,directed_by,/en/peter_jackson: 1
+    gymkata,name,Gymkata: 1
+authority: 22
+    imdb: 18
+        title: 17
+            tt0486761,starring,/en: 10
+                daveigh_chase: 1
+                david_ogden_stiers: 1
+                chris_sanders: 1
+                kevin_michael_richardson: 1
+                rob_paulsen: 1
+                tara_strong: 1
+                jeff_bennett: 1
+                zoe_caldwell: 1
+                tia_carrere: 1
+                kevin_mcdonald: 1
+            tt0486761,directed_by,: 2
+                guid/9202a8c04000641f80000000010ff1da: 1
+                en/tony_craig: 1
+            tt0105001,starring,/en: 2
+                robert_de_niro: 1
+                jessica_lange: 1
+            tt0105001,name,Night and the City: 1
+            tt0486761,name,Leroy & Stitch: 1
+            tt0105001,directed_by,/en/irwin_winkler: 1
+        name/nm0036934,name,Greg Aronowitz: 1
+    netflix/movie: 4
+        70062973,starring,/en: 2
+            madeline_kahn: 1
+            stephen_collins: 1
+        70062973,directed_by,/en/michael_lindsay-hogg: 1
+        70062973,name,Ivana Trump's For Love Alone: 1
+guid: 5
+    9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy: 1
+    9202a8c04000641f80000000010de9bd,name,Jacques Martineau: 1
+    9202a8c04000641f80000000010fa2fc,name,Yoshiko Ohta: 1
+    9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco: 1
+    9202a8c04000641f80000000056d973b,name,Kate Dickie: 1
 fixtures/movies.csv--- -format json -sort alpha -separators ----------------------------------------------------------------------------------------------------
 {"/authority" : 
     {"/imdb" : 
@@ -4820,6 +5804,75 @@ fixtures/movies.csv--- -format json -sort alpha -separators --------------------
     "/9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy",
     "/9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco",
     "/9202a8c04000641f80000000056d973b,name,Kate Dickie"]}
+fixtures/movies.csv--- -counts -sort counts -down -separators ----------------------------------------------------------------------------------------------------
+/en: 23
+    /bad_taste: 7
+        ,starring: 5
+            ,/guid: 4
+                /9202a8c04000641f800000000434a77d: 1
+                /9202a8c04000641f80000000010cf924: 1
+                /9202a8c04000641f80000000010cf92b: 1
+                /9202a8c04000641f80000000010cf91e: 1
+            ,/en/peter_jackson: 1
+        ,directed_by,/en/peter_jackson: 1
+        ,name,Bad Taste: 1
+    /milou_en_mai: 6
+        ,starring,/en: 4
+            /harriet_walter: 1
+            /miou-miou: 1
+            /dominique_blanc: 1
+            /michel_piccoli: 1
+        ,directed_by,/en/louis_malle: 1
+        ,name,Milou en mai: 1
+    /karl_maka,name,Karl Maka: 1
+    /john_glen,name,John Glen: 1
+    /megan_mullally,name,Megan Mullally: 1
+    /oscar_homolka,name,Oscar Homolka: 1
+    /candy_barr,name,Candy Barr: 1
+    /gymkata,name,Gymkata: 1
+    /masahiko_tsugawa,name,Masahiko Tsugawa: 1
+    /sebastian_arcelus,name,Sebastian Arcelus: 1
+    /david_greene,name,David Greene: 1
+    /hiroyuki_okiura,name,Hiroyuki Okiura: 1
+/authority: 22
+    /imdb: 18
+        /title: 17
+            /tt0486761: 13
+                ,starring,/en: 10
+                    /kevin: 2
+                        _mcdonald: 1
+                        _michael_richardson: 1
+                    /jeff_bennett: 1
+                    /chris_sanders: 1
+                    /tia_carrere: 1
+                    /rob_paulsen: 1
+                    /daveigh_chase: 1
+                    /tara_strong: 1
+                    /zoe_caldwell: 1
+                    /david_ogden_stiers: 1
+                ,directed_by: 2
+                    ,/guid/9202a8c04000641f80000000010ff1da: 1
+                    ,/en/tony_craig: 1
+                ,name,Leroy & Stitch: 1
+            /tt0105001: 4
+                ,starring,/en: 2
+                    /robert_de_niro: 1
+                    /jessica_lange: 1
+                ,directed_by,/en/irwin_winkler: 1
+                ,name,Night and the City: 1
+        /name/nm0036934,name,Greg Aronowitz: 1
+    /netflix/movie/70062973: 4
+        ,starring,/en: 2
+            /madeline_kahn: 1
+            /stephen_collins: 1
+        ,directed_by,/en/michael_lindsay-hogg: 1
+        ,name,Ivana Trump's For Love Alone: 1
+/guid: 5
+    /9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy: 1
+    /9202a8c04000641f80000000010de9bd,name,Jacques Martineau: 1
+    /9202a8c04000641f80000000010fa2fc,name,Yoshiko Ohta: 1
+    /9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco: 1
+    /9202a8c04000641f80000000056d973b,name,Kate Dickie: 1
 fixtures/movies.csv--- -format json -sort alpha -counts ----------------------------------------------------------------------------------------------------
 {"_count_" : 50,
 "authority" : 
@@ -4958,6 +6011,75 @@ fixtures/movies.csv--- -format json -sort alpha -counts ------------------------
     "9202a8c04000641f80000000056d973b,name,Kate Dickie" : 
         {"_count_" : 1},
     "_count_" : 5}}
+fixtures/movies.csv--- -counts -sort counts -down -counts ----------------------------------------------------------------------------------------------------
+en: 23
+    bad_taste: 7
+        starring: 5
+            guid: 4
+                9202a8c04000641f80000000010cf924: 1
+                9202a8c04000641f80000000010cf92b: 1
+                9202a8c04000641f80000000010cf91e: 1
+                9202a8c04000641f800000000434a77d: 1
+            en/peter_jackson: 1
+        directed_by,/en/peter_jackson: 1
+        name,Bad Taste: 1
+    milou_en_mai: 6
+        starring,/en: 4
+            harriet_walter: 1
+            miou-miou: 1
+            dominique_blanc: 1
+            michel_piccoli: 1
+        directed_by,/en/louis_malle: 1
+        name,Milou en mai: 1
+    sebastian_arcelus,name,Sebastian Arcelus: 1
+    john_glen,name,John Glen: 1
+    gymkata,name,Gymkata: 1
+    karl_maka,name,Karl Maka: 1
+    david_greene,name,David Greene: 1
+    hiroyuki_okiura,name,Hiroyuki Okiura: 1
+    megan_mullally,name,Megan Mullally: 1
+    masahiko_tsugawa,name,Masahiko Tsugawa: 1
+    oscar_homolka,name,Oscar Homolka: 1
+    candy_barr,name,Candy Barr: 1
+authority: 22
+    imdb: 18
+        title: 17
+            tt0486761: 13
+                starring,/en: 10
+                    kevin: 2
+                        michael_richardson: 1
+                        mcdonald: 1
+                    david_ogden_stiers: 1
+                    jeff_bennett: 1
+                    zoe_caldwell: 1
+                    tara_strong: 1
+                    rob_paulsen: 1
+                    daveigh_chase: 1
+                    tia_carrere: 1
+                    chris_sanders: 1
+                directed_by: 2
+                    guid/9202a8c04000641f80000000010ff1da: 1
+                    en/tony_craig: 1
+                name,Leroy & Stitch: 1
+            tt0105001: 4
+                starring,/en: 2
+                    robert_de_niro: 1
+                    jessica_lange: 1
+                directed_by,/en/irwin_winkler: 1
+                name,Night and the City: 1
+        name/nm0036934,name,Greg Aronowitz: 1
+    netflix/movie/70062973: 4
+        starring,/en: 2
+            madeline_kahn: 1
+            stephen_collins: 1
+        directed_by,/en/michael_lindsay-hogg: 1
+        name,Ivana Trump's For Love Alone: 1
+guid: 5
+    9202a8c04000641f80000000056d973b,name,Kate Dickie: 1
+    9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy: 1
+    9202a8c04000641f80000000010de9bd,name,Jacques Martineau: 1
+    9202a8c04000641f80000000010fa2fc,name,Yoshiko Ohta: 1
+    9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco: 1
 fixtures/movies.csv--- -format json -sort alpha -level 2 ----------------------------------------------------------------------------------------------------
 {"authority" : 
     {"imdb" : 
@@ -5016,6 +6138,64 @@ fixtures/movies.csv--- -format json -sort alpha -level 2 -----------------------
     "9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy",
     "9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco",
     "9202a8c04000641f80000000056d973b,name,Kate Dickie"]}
+fixtures/movies.csv--- -counts -sort counts -down -level 2 ----------------------------------------------------------------------------------------------------
+en: 23
+    bad: 7
+        _taste,name,Bad Taste: 1
+        _taste,directed_by,/en/peter_jackson: 1
+        _taste,starring,/en/peter_jackson: 1
+        _taste,starring,/guid/9202a8c04000641f80000000010cf92b: 1
+        _taste,starring,/guid/9202a8c04000641f80000000010cf91e: 1
+        _taste,starring,/guid/9202a8c04000641f800000000434a77d: 1
+        _taste,starring,/guid/9202a8c04000641f80000000010cf924: 1
+    milou: 6
+        _en_mai,name,Milou en mai: 1
+        _en_mai,directed_by,/en/louis_malle: 1
+        _en_mai,starring,/en/harriet_walter: 1
+        _en_mai,starring,/en/miou-miou: 1
+        _en_mai,starring,/en/dominique_blanc: 1
+        _en_mai,starring,/en/michel_piccoli: 1
+    oscar_homolka,name,Oscar Homolka: 1
+    sebastian_arcelus,name,Sebastian Arcelus: 1
+    hiroyuki_okiura,name,Hiroyuki Okiura: 1
+    karl_maka,name,Karl Maka: 1
+    john_glen,name,John Glen: 1
+    candy_barr,name,Candy Barr: 1
+    megan_mullally,name,Megan Mullally: 1
+    gymkata,name,Gymkata: 1
+    david_greene,name,David Greene: 1
+    masahiko_tsugawa,name,Masahiko Tsugawa: 1
+authority: 22
+    imdb: 18
+        /title/tt0105001,starring,/en/jessica_lange: 1
+        /title/tt0486761,directed_by,/guid/9202a8c04000641f80000000010ff1da: 1
+        /title/tt0486761,directed_by,/en/tony_craig: 1
+        /title/tt0486761,name,Leroy & Stitch: 1
+        /name/nm0036934,name,Greg Aronowitz: 1
+        /title/tt0486761,starring,/en/tara_strong: 1
+        /title/tt0486761,starring,/en/jeff_bennett: 1
+        /title/tt0486761,starring,/en/tia_carrere: 1
+        /title/tt0105001,directed_by,/en/irwin_winkler: 1
+        /title/tt0105001,name,Night and the City: 1
+        /title/tt0486761,starring,/en/daveigh_chase: 1
+        /title/tt0486761,starring,/en/zoe_caldwell: 1
+        /title/tt0486761,starring,/en/david_ogden_stiers: 1
+        /title/tt0486761,starring,/en/chris_sanders: 1
+        /title/tt0486761,starring,/en/kevin_michael_richardson: 1
+        /title/tt0486761,starring,/en/kevin_mcdonald: 1
+        /title/tt0486761,starring,/en/rob_paulsen: 1
+        /title/tt0105001,starring,/en/robert_de_niro: 1
+    netflix: 4
+        /movie/70062973,directed_by,/en/michael_lindsay-hogg: 1
+        /movie/70062973,starring,/en/madeline_kahn: 1
+        /movie/70062973,starring,/en/stephen_collins: 1
+        /movie/70062973,name,Ivana Trump's For Love Alone: 1
+guid: 5
+    9202a8c04000641f80000000010de9bd,name,Jacques Martineau: 1
+    9202a8c04000641f80000000010fa2fc,name,Yoshiko Ohta: 1
+    9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco: 1
+    9202a8c04000641f80000000056d973b,name,Kate Dickie: 1
+    9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy: 1
 fixtures/movies.csv--- -format json -sort alpha -depth 3 ----------------------------------------------------------------------------------------------------
 {"authority" : 
     {"imdb" : 
@@ -5050,6 +6230,40 @@ fixtures/movies.csv--- -format json -sort alpha -depth 3 -----------------------
     "9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy",
     "9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco",
     "9202a8c04000641f80000000056d973b,name,Kate Dickie"]}
+fixtures/movies.csv--- -counts -sort counts -down -depth 3 ----------------------------------------------------------------------------------------------------
+en: 23
+    bad_taste: 7
+        starring: 5
+        directed_by,/en/peter_jackson: 1
+        name,Bad Taste: 1
+    milou_en_mai: 6
+        starring,/en: 4
+        name,Milou en mai: 1
+        directed_by,/en/louis_malle: 1
+    john_glen,name,John Glen: 1
+    candy_barr,name,Candy Barr: 1
+    karl_maka,name,Karl Maka: 1
+    megan_mullally,name,Megan Mullally: 1
+    gymkata,name,Gymkata: 1
+    david_greene,name,David Greene: 1
+    oscar_homolka,name,Oscar Homolka: 1
+    hiroyuki_okiura,name,Hiroyuki Okiura: 1
+    masahiko_tsugawa,name,Masahiko Tsugawa: 1
+    sebastian_arcelus,name,Sebastian Arcelus: 1
+authority: 22
+    imdb: 18
+        title: 17
+        name/nm0036934,name,Greg Aronowitz: 1
+    netflix/movie/70062973: 4
+        starring,/en: 2
+        directed_by,/en/michael_lindsay-hogg: 1
+        name,Ivana Trump's For Love Alone: 1
+guid: 5
+    9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy: 1
+    9202a8c04000641f80000000010de9bd,name,Jacques Martineau: 1
+    9202a8c04000641f80000000010fa2fc,name,Yoshiko Ohta: 1
+    9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco: 1
+    9202a8c04000641f80000000056d973b,name,Kate Dickie: 1
 fixtures/movies.csv--- -format json -sort alpha -no-fold ----------------------------------------------------------------------------------------------------
 {"authority" : 
     {"imdb" : 
@@ -5201,6 +6415,202 @@ fixtures/movies.csv--- -format json -sort alpha -no-fold -----------------------
     "9202a8c04000641f80000000056d973b" : 
         {"name" : 
             {"Kate" : "Dickie"}}}}
+fixtures/movies.csv--- -counts -sort counts -down -no-fold ----------------------------------------------------------------------------------------------------
+en: 23
+    bad: 7
+        taste: 7
+            starring: 5
+                guid: 4
+                    9202a8c04000641f80000000010cf924: 1
+                    9202a8c04000641f80000000010cf92b: 1
+                    9202a8c04000641f80000000010cf91e: 1
+                    9202a8c04000641f800000000434a77d: 1
+                en: 1
+                    peter: 1
+                        jackson: 1
+            directed: 1
+                by: 1
+                    en: 1
+                        peter: 1
+                            jackson: 1
+            name: 1
+                Bad: 1
+                    Taste: 1
+    milou: 6
+        en: 6
+            mai: 6
+                starring: 4
+                    en: 4
+                        harriet: 1
+                            walter: 1
+                        miou: 1
+                            miou: 1
+                        dominique: 1
+                            blanc: 1
+                        michel: 1
+                            piccoli: 1
+                directed: 1
+                    by: 1
+                        en: 1
+                            louis: 1
+                                malle: 1
+                name: 1
+                    Milou: 1
+                        en: 1
+                            mai: 1
+    masahiko: 1
+        tsugawa: 1
+            name: 1
+                Masahiko: 1
+                    Tsugawa: 1
+    david: 1
+        greene: 1
+            name: 1
+                David: 1
+                    Greene: 1
+    oscar: 1
+        homolka: 1
+            name: 1
+                Oscar: 1
+                    Homolka: 1
+    john: 1
+        glen: 1
+            name: 1
+                John: 1
+                    Glen: 1
+    megan: 1
+        mullally: 1
+            name: 1
+                Megan: 1
+                    Mullally: 1
+    gymkata: 1
+        name: 1
+            Gymkata: 1
+    karl: 1
+        maka: 1
+            name: 1
+                Karl: 1
+                    Maka: 1
+    candy: 1
+        barr: 1
+            name: 1
+                Candy: 1
+                    Barr: 1
+    sebastian: 1
+        arcelus: 1
+            name: 1
+                Sebastian: 1
+                    Arcelus: 1
+    hiroyuki: 1
+        okiura: 1
+            name: 1
+                Hiroyuki: 1
+                    Okiura: 1
+authority: 22
+    imdb: 18
+        title: 17
+            tt0486761: 13
+                starring: 10
+                    en: 10
+                        kevin: 2
+                            michael: 1
+                                richardson: 1
+                            mcdonald: 1
+                        daveigh: 1
+                            chase: 1
+                        zoe: 1
+                            caldwell: 1
+                        tara: 1
+                            strong: 1
+                        jeff: 1
+                            bennett: 1
+                        tia: 1
+                            carrere: 1
+                        david: 1
+                            ogden: 1
+                                stiers: 1
+                        chris: 1
+                            sanders: 1
+                        rob: 1
+                            paulsen: 1
+                directed: 2
+                    by: 2
+                        guid: 1
+                            9202a8c04000641f80000000010ff1da: 1
+                        en: 1
+                            tony: 1
+                                craig: 1
+                name: 1
+                    Leroy: 1
+                        Stitch: 1
+            tt0105001: 4
+                starring: 2
+                    en: 2
+                        robert: 1
+                            de: 1
+                                niro: 1
+                        jessica: 1
+                            lange: 1
+                directed: 1
+                    by: 1
+                        en: 1
+                            irwin: 1
+                                winkler: 1
+                name: 1
+                    Night: 1
+                        and: 1
+                            the: 1
+                                City: 1
+        name: 1
+            nm0036934: 1
+                name: 1
+                    Greg: 1
+                        Aronowitz: 1
+    netflix: 4
+        movie: 4
+            70062973: 4
+                starring: 2
+                    en: 2
+                        madeline: 1
+                            kahn: 1
+                        stephen: 1
+                            collins: 1
+                name: 1
+                    Ivana: 1
+                        Trump: 1
+                            s: 1
+                                For: 1
+                                    Love: 1
+                                        Alone: 1
+                directed: 1
+                    by: 1
+                        en: 1
+                            michael: 1
+                                lindsay: 1
+                                    hogg: 1
+guid: 5
+    9202a8c04000641f800000000471d8b2: 1
+        name: 1
+            J: 1
+                D: 1
+                    Chakravarthy: 1
+    9202a8c04000641f80000000010de9bd: 1
+        name: 1
+            Jacques: 1
+                Martineau: 1
+    9202a8c04000641f80000000010fa2fc: 1
+        name: 1
+            Yoshiko: 1
+                Ohta: 1
+    9202a8c04000641f8000000005588bf1: 1
+        name: 1
+            Bobby: 1
+                Di: 1
+                    Cicco: 1
+    9202a8c04000641f80000000056d973b: 1
+        name: 1
+            Kate: 1
+                Dickie: 1
 fixtures/movies.csv--- -format json -sort alpha -down ----------------------------------------------------------------------------------------------------
 {"guid" : 
     ["9202a8c04000641f80000000056d973b,name,Kate Dickie",
@@ -5270,6 +6680,75 @@ fixtures/movies.csv--- -format json -sort alpha -down --------------------------
                 "name,Night and the City",
                 "directed_by,/en/irwin_winkler"]}},
         "name/nm0036934,name,Greg Aronowitz"]}}
+fixtures/movies.csv--- -counts -sort counts -down -down ----------------------------------------------------------------------------------------------------
+en: 23
+    bad_taste: 7
+        starring: 5
+            guid: 4
+                9202a8c04000641f80000000010cf92b: 1
+                9202a8c04000641f80000000010cf91e: 1
+                9202a8c04000641f800000000434a77d: 1
+                9202a8c04000641f80000000010cf924: 1
+            en/peter_jackson: 1
+        directed_by,/en/peter_jackson: 1
+        name,Bad Taste: 1
+    milou_en_mai: 6
+        starring,/en: 4
+            dominique_blanc: 1
+            michel_piccoli: 1
+            harriet_walter: 1
+            miou-miou: 1
+        directed_by,/en/louis_malle: 1
+        name,Milou en mai: 1
+    david_greene,name,David Greene: 1
+    megan_mullally,name,Megan Mullally: 1
+    gymkata,name,Gymkata: 1
+    karl_maka,name,Karl Maka: 1
+    hiroyuki_okiura,name,Hiroyuki Okiura: 1
+    candy_barr,name,Candy Barr: 1
+    masahiko_tsugawa,name,Masahiko Tsugawa: 1
+    john_glen,name,John Glen: 1
+    sebastian_arcelus,name,Sebastian Arcelus: 1
+    oscar_homolka,name,Oscar Homolka: 1
+authority: 22
+    imdb: 18
+        title: 17
+            tt0486761: 13
+                starring,/en: 10
+                    kevin: 2
+                        michael_richardson: 1
+                        mcdonald: 1
+                    david_ogden_stiers: 1
+                    chris_sanders: 1
+                    rob_paulsen: 1
+                    jeff_bennett: 1
+                    zoe_caldwell: 1
+                    daveigh_chase: 1
+                    tara_strong: 1
+                    tia_carrere: 1
+                directed_by: 2
+                    guid/9202a8c04000641f80000000010ff1da: 1
+                    en/tony_craig: 1
+                name,Leroy & Stitch: 1
+            tt0105001: 4
+                starring,/en: 2
+                    robert_de_niro: 1
+                    jessica_lange: 1
+                directed_by,/en/irwin_winkler: 1
+                name,Night and the City: 1
+        name/nm0036934,name,Greg Aronowitz: 1
+    netflix/movie/70062973: 4
+        starring,/en: 2
+            madeline_kahn: 1
+            stephen_collins: 1
+        name,Ivana Trump's For Love Alone: 1
+        directed_by,/en/michael_lindsay-hogg: 1
+guid: 5
+    9202a8c04000641f80000000010fa2fc,name,Yoshiko Ohta: 1
+    9202a8c04000641f8000000005588bf1,name,Bobby Di Cicco: 1
+    9202a8c04000641f80000000056d973b,name,Kate Dickie: 1
+    9202a8c04000641f800000000471d8b2,name,J. D. Chakravarthy: 1
+    9202a8c04000641f80000000010de9bd,name,Jacques Martineau: 1
 fixtures/random.txt---  ----------------------------------------------------------------------------------------------------
 ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU
 3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy
@@ -5688,6 +7167,47 @@ fixtures/random.txt--- -format json -sort alpha  -------------------------------
 "mGMbJt9c7sH7p86btgk7vR6xEre4DvkO",
 "wCycdlsmXtYzLukRcPjijCAcwTckFLfa",
 "xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3"]
+fixtures/random.txt--- -counts -sort counts -down  ----------------------------------------------------------------------------------------------------
+DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7: 1
+GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF: 1
+mGMbJt9c7sH7p86btgk7vR6xEre4DvkO: 1
+1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF: 1
+52JHD4TyE8dQu2F4Xk9diqIWqePyAaVM: 1
+h4kd4u3TDLeWrqVIjwZ9WHach7zFToWN: 1
+XHcZrTrO4DgDyJuLRGlFv1kxiXUjN2fE: 1
+imzBe68oWn81zkGnUPq3Q6MvoFnDnaqM: 1
+NRsk6JebWnQ8HERnBJZaWkQXzEVbfkFt: 1
+xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3: 1
+3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy: 1
+IBqxNzZNUyimsNYDa4X5gLFkXxTWXBnT: 1
+Mv7SgDpn8htl5OI7eCmGE3S8fTMAFtyW: 1
+ApwtzoSzcSasveDV2Geu8U3n5G7c4TtX: 1
+GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0: 1
+WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7: 1
+dJO8CseqDgr9AjPAAlofAmwKzo5i6ORX: 1
+kXLPCQ9qMVwUzYQyt28xJNTUWkBYItV7: 1
+wCycdlsmXtYzLukRcPjijCAcwTckFLfa: 1
+F3Uw74ZOqKk6iX1DAS1jlCz3kwhjmZSP: 1
+bkUPVXN3iGxStK1GyVyCx9H3712KhB71: 1
+5lsY90hTZPNcPj26LeI2QEqd3ItY8i1s: 1
+hWDeAHqIIzSjT6Iv4pr07Bn6HF8uRI6T: 1
+4WiWCkpjXGadDIYCsy6O2VMyWQVWiJx3: 1
+0s69iWKK3Pfi0mS1aLdJSboXwENv4neb: 1
+CcMuwCe585yt0a0Xd0IwXvwbH5yrhBHt: 1
+mCuE5Mt0SUq84e4VZ6Xgvp0mS862STe9: 1
+m56AVisdRuHvPMua3GseSUW9uzaEbxn8: 1
+5BLkNuwztrirIvJc7roZ4o9W2huxg5Qo: 1
+k4U63BHEOh5d6AZtViZU3Umfz8WZvzdb: 1
+O8F94IGLmkPcq0OPofRWBlqUIQVsUeoa: 1
+YI0OM5HRlB1j0ZTgCG76W6er0vdp4BHk: 1
+ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU: 1
+SEtMfDjCThZoyJiIdNTlEMmFTkp9Z3dj: 1
+gNbYB65NOStT4ltMktBaJa1oWkPfqzNz: 1
+NbdjXjxaGFWfFuFgndDggCYYBOKNcCiz: 1
+BPMAkBfEKLreg9sPVfLt0YyxLl0ykFTg: 1
+f7LHn0HwnRjZBUXzWwlO4IrFzfNvFM6P: 1
+DsBm1fRlrPweuUrkmLn4AAjtkAz1D8qj: 1
+5vyN97KXONcmVaUmbYafEmS3kK4huL0d: 1
 fixtures/random.txt--- -format json -sort alpha -breaks / ----------------------------------------------------------------------------------------------------
 ["0s69iWKK3Pfi0mS1aLdJSboXwENv4neb",
 "1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF",
@@ -5729,6 +7249,47 @@ fixtures/random.txt--- -format json -sort alpha -breaks / ----------------------
 "mGMbJt9c7sH7p86btgk7vR6xEre4DvkO",
 "wCycdlsmXtYzLukRcPjijCAcwTckFLfa",
 "xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3"]
+fixtures/random.txt--- -counts -sort counts -down -breaks / ----------------------------------------------------------------------------------------------------
+DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7: 1
+5lsY90hTZPNcPj26LeI2QEqd3ItY8i1s: 1
+imzBe68oWn81zkGnUPq3Q6MvoFnDnaqM: 1
+DsBm1fRlrPweuUrkmLn4AAjtkAz1D8qj: 1
+kXLPCQ9qMVwUzYQyt28xJNTUWkBYItV7: 1
+wCycdlsmXtYzLukRcPjijCAcwTckFLfa: 1
+f7LHn0HwnRjZBUXzWwlO4IrFzfNvFM6P: 1
+52JHD4TyE8dQu2F4Xk9diqIWqePyAaVM: 1
+0s69iWKK3Pfi0mS1aLdJSboXwENv4neb: 1
+3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy: 1
+mCuE5Mt0SUq84e4VZ6Xgvp0mS862STe9: 1
+mGMbJt9c7sH7p86btgk7vR6xEre4DvkO: 1
+BPMAkBfEKLreg9sPVfLt0YyxLl0ykFTg: 1
+ApwtzoSzcSasveDV2Geu8U3n5G7c4TtX: 1
+O8F94IGLmkPcq0OPofRWBlqUIQVsUeoa: 1
+IBqxNzZNUyimsNYDa4X5gLFkXxTWXBnT: 1
+dJO8CseqDgr9AjPAAlofAmwKzo5i6ORX: 1
+m56AVisdRuHvPMua3GseSUW9uzaEbxn8: 1
+5BLkNuwztrirIvJc7roZ4o9W2huxg5Qo: 1
+5vyN97KXONcmVaUmbYafEmS3kK4huL0d: 1
+NRsk6JebWnQ8HERnBJZaWkQXzEVbfkFt: 1
+gNbYB65NOStT4ltMktBaJa1oWkPfqzNz: 1
+F3Uw74ZOqKk6iX1DAS1jlCz3kwhjmZSP: 1
+1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF: 1
+YI0OM5HRlB1j0ZTgCG76W6er0vdp4BHk: 1
+h4kd4u3TDLeWrqVIjwZ9WHach7zFToWN: 1
+WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7: 1
+XHcZrTrO4DgDyJuLRGlFv1kxiXUjN2fE: 1
+NbdjXjxaGFWfFuFgndDggCYYBOKNcCiz: 1
+SEtMfDjCThZoyJiIdNTlEMmFTkp9Z3dj: 1
+xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3: 1
+k4U63BHEOh5d6AZtViZU3Umfz8WZvzdb: 1
+GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF: 1
+CcMuwCe585yt0a0Xd0IwXvwbH5yrhBHt: 1
+bkUPVXN3iGxStK1GyVyCx9H3712KhB71: 1
+ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU: 1
+GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0: 1
+Mv7SgDpn8htl5OI7eCmGE3S8fTMAFtyW: 1
+hWDeAHqIIzSjT6Iv4pr07Bn6HF8uRI6T: 1
+4WiWCkpjXGadDIYCsy6O2VMyWQVWiJx3: 1
 fixtures/random.txt--- -format json -sort alpha -separators ----------------------------------------------------------------------------------------------------
 ["0s69iWKK3Pfi0mS1aLdJSboXwENv4neb",
 "1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF",
@@ -5770,6 +7331,47 @@ fixtures/random.txt--- -format json -sort alpha -separators --------------------
 "mGMbJt9c7sH7p86btgk7vR6xEre4DvkO",
 "wCycdlsmXtYzLukRcPjijCAcwTckFLfa",
 "xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3"]
+fixtures/random.txt--- -counts -sort counts -down -separators ----------------------------------------------------------------------------------------------------
+1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF: 1
+ApwtzoSzcSasveDV2Geu8U3n5G7c4TtX: 1
+O8F94IGLmkPcq0OPofRWBlqUIQVsUeoa: 1
+0s69iWKK3Pfi0mS1aLdJSboXwENv4neb: 1
+GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF: 1
+XHcZrTrO4DgDyJuLRGlFv1kxiXUjN2fE: 1
+IBqxNzZNUyimsNYDa4X5gLFkXxTWXBnT: 1
+F3Uw74ZOqKk6iX1DAS1jlCz3kwhjmZSP: 1
+DsBm1fRlrPweuUrkmLn4AAjtkAz1D8qj: 1
+YI0OM5HRlB1j0ZTgCG76W6er0vdp4BHk: 1
+3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy: 1
+dJO8CseqDgr9AjPAAlofAmwKzo5i6ORX: 1
+NRsk6JebWnQ8HERnBJZaWkQXzEVbfkFt: 1
+imzBe68oWn81zkGnUPq3Q6MvoFnDnaqM: 1
+gNbYB65NOStT4ltMktBaJa1oWkPfqzNz: 1
+5lsY90hTZPNcPj26LeI2QEqd3ItY8i1s: 1
+kXLPCQ9qMVwUzYQyt28xJNTUWkBYItV7: 1
+xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3: 1
+h4kd4u3TDLeWrqVIjwZ9WHach7zFToWN: 1
+mGMbJt9c7sH7p86btgk7vR6xEre4DvkO: 1
+wCycdlsmXtYzLukRcPjijCAcwTckFLfa: 1
+bkUPVXN3iGxStK1GyVyCx9H3712KhB71: 1
+52JHD4TyE8dQu2F4Xk9diqIWqePyAaVM: 1
+CcMuwCe585yt0a0Xd0IwXvwbH5yrhBHt: 1
+Mv7SgDpn8htl5OI7eCmGE3S8fTMAFtyW: 1
+m56AVisdRuHvPMua3GseSUW9uzaEbxn8: 1
+f7LHn0HwnRjZBUXzWwlO4IrFzfNvFM6P: 1
+5BLkNuwztrirIvJc7roZ4o9W2huxg5Qo: 1
+k4U63BHEOh5d6AZtViZU3Umfz8WZvzdb: 1
+WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7: 1
+NbdjXjxaGFWfFuFgndDggCYYBOKNcCiz: 1
+SEtMfDjCThZoyJiIdNTlEMmFTkp9Z3dj: 1
+GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0: 1
+mCuE5Mt0SUq84e4VZ6Xgvp0mS862STe9: 1
+4WiWCkpjXGadDIYCsy6O2VMyWQVWiJx3: 1
+ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU: 1
+DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7: 1
+BPMAkBfEKLreg9sPVfLt0YyxLl0ykFTg: 1
+hWDeAHqIIzSjT6Iv4pr07Bn6HF8uRI6T: 1
+5vyN97KXONcmVaUmbYafEmS3kK4huL0d: 1
 fixtures/random.txt--- -format json -sort alpha -counts ----------------------------------------------------------------------------------------------------
 {"0s69iWKK3Pfi0mS1aLdJSboXwENv4neb" : 
     {"_count_" : 1},
@@ -5852,6 +7454,47 @@ fixtures/random.txt--- -format json -sort alpha -counts ------------------------
     {"_count_" : 1},
 "xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3" : 
     {"_count_" : 1}}
+fixtures/random.txt--- -counts -sort counts -down -counts ----------------------------------------------------------------------------------------------------
+5BLkNuwztrirIvJc7roZ4o9W2huxg5Qo: 1
+k4U63BHEOh5d6AZtViZU3Umfz8WZvzdb: 1
+O8F94IGLmkPcq0OPofRWBlqUIQVsUeoa: 1
+gNbYB65NOStT4ltMktBaJa1oWkPfqzNz: 1
+BPMAkBfEKLreg9sPVfLt0YyxLl0ykFTg: 1
+f7LHn0HwnRjZBUXzWwlO4IrFzfNvFM6P: 1
+5vyN97KXONcmVaUmbYafEmS3kK4huL0d: 1
+WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7: 1
+mGMbJt9c7sH7p86btgk7vR6xEre4DvkO: 1
+xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3: 1
+1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF: 1
+ApwtzoSzcSasveDV2Geu8U3n5G7c4TtX: 1
+5lsY90hTZPNcPj26LeI2QEqd3ItY8i1s: 1
+NbdjXjxaGFWfFuFgndDggCYYBOKNcCiz: 1
+m56AVisdRuHvPMua3GseSUW9uzaEbxn8: 1
+0s69iWKK3Pfi0mS1aLdJSboXwENv4neb: 1
+ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU: 1
+CcMuwCe585yt0a0Xd0IwXvwbH5yrhBHt: 1
+kXLPCQ9qMVwUzYQyt28xJNTUWkBYItV7: 1
+wCycdlsmXtYzLukRcPjijCAcwTckFLfa: 1
+DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7: 1
+GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF: 1
+hWDeAHqIIzSjT6Iv4pr07Bn6HF8uRI6T: 1
+YI0OM5HRlB1j0ZTgCG76W6er0vdp4BHk: 1
+4WiWCkpjXGadDIYCsy6O2VMyWQVWiJx3: 1
+IBqxNzZNUyimsNYDa4X5gLFkXxTWXBnT: 1
+Mv7SgDpn8htl5OI7eCmGE3S8fTMAFtyW: 1
+SEtMfDjCThZoyJiIdNTlEMmFTkp9Z3dj: 1
+NRsk6JebWnQ8HERnBJZaWkQXzEVbfkFt: 1
+DsBm1fRlrPweuUrkmLn4AAjtkAz1D8qj: 1
+bkUPVXN3iGxStK1GyVyCx9H3712KhB71: 1
+52JHD4TyE8dQu2F4Xk9diqIWqePyAaVM: 1
+h4kd4u3TDLeWrqVIjwZ9WHach7zFToWN: 1
+GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0: 1
+imzBe68oWn81zkGnUPq3Q6MvoFnDnaqM: 1
+F3Uw74ZOqKk6iX1DAS1jlCz3kwhjmZSP: 1
+dJO8CseqDgr9AjPAAlofAmwKzo5i6ORX: 1
+mCuE5Mt0SUq84e4VZ6Xgvp0mS862STe9: 1
+3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy: 1
+XHcZrTrO4DgDyJuLRGlFv1kxiXUjN2fE: 1
 fixtures/random.txt--- -format json -sort alpha -level 2 ----------------------------------------------------------------------------------------------------
 ["0s69iWKK3Pfi0mS1aLdJSboXwENv4neb",
 "1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF",
@@ -5893,6 +7536,47 @@ fixtures/random.txt--- -format json -sort alpha -level 2 -----------------------
 "mGMbJt9c7sH7p86btgk7vR6xEre4DvkO",
 "wCycdlsmXtYzLukRcPjijCAcwTckFLfa",
 "xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3"]
+fixtures/random.txt--- -counts -sort counts -down -level 2 ----------------------------------------------------------------------------------------------------
+imzBe68oWn81zkGnUPq3Q6MvoFnDnaqM: 1
+1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF: 1
+f7LHn0HwnRjZBUXzWwlO4IrFzfNvFM6P: 1
+5BLkNuwztrirIvJc7roZ4o9W2huxg5Qo: 1
+k4U63BHEOh5d6AZtViZU3Umfz8WZvzdb: 1
+YI0OM5HRlB1j0ZTgCG76W6er0vdp4BHk: 1
+GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF: 1
+kXLPCQ9qMVwUzYQyt28xJNTUWkBYItV7: 1
+WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7: 1
+XHcZrTrO4DgDyJuLRGlFv1kxiXUjN2fE: 1
+F3Uw74ZOqKk6iX1DAS1jlCz3kwhjmZSP: 1
+gNbYB65NOStT4ltMktBaJa1oWkPfqzNz: 1
+O8F94IGLmkPcq0OPofRWBlqUIQVsUeoa: 1
+5vyN97KXONcmVaUmbYafEmS3kK4huL0d: 1
+h4kd4u3TDLeWrqVIjwZ9WHach7zFToWN: 1
+mGMbJt9c7sH7p86btgk7vR6xEre4DvkO: 1
+BPMAkBfEKLreg9sPVfLt0YyxLl0ykFTg: 1
+bkUPVXN3iGxStK1GyVyCx9H3712KhB71: 1
+3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy: 1
+CcMuwCe585yt0a0Xd0IwXvwbH5yrhBHt: 1
+GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0: 1
+SEtMfDjCThZoyJiIdNTlEMmFTkp9Z3dj: 1
+NRsk6JebWnQ8HERnBJZaWkQXzEVbfkFt: 1
+DsBm1fRlrPweuUrkmLn4AAjtkAz1D8qj: 1
+52JHD4TyE8dQu2F4Xk9diqIWqePyAaVM: 1
+5lsY90hTZPNcPj26LeI2QEqd3ItY8i1s: 1
+NbdjXjxaGFWfFuFgndDggCYYBOKNcCiz: 1
+dJO8CseqDgr9AjPAAlofAmwKzo5i6ORX: 1
+Mv7SgDpn8htl5OI7eCmGE3S8fTMAFtyW: 1
+m56AVisdRuHvPMua3GseSUW9uzaEbxn8: 1
+ApwtzoSzcSasveDV2Geu8U3n5G7c4TtX: 1
+hWDeAHqIIzSjT6Iv4pr07Bn6HF8uRI6T: 1
+4WiWCkpjXGadDIYCsy6O2VMyWQVWiJx3: 1
+wCycdlsmXtYzLukRcPjijCAcwTckFLfa: 1
+xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3: 1
+0s69iWKK3Pfi0mS1aLdJSboXwENv4neb: 1
+ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU: 1
+DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7: 1
+IBqxNzZNUyimsNYDa4X5gLFkXxTWXBnT: 1
+mCuE5Mt0SUq84e4VZ6Xgvp0mS862STe9: 1
 fixtures/random.txt--- -format json -sort alpha -depth 3 ----------------------------------------------------------------------------------------------------
 ["0s69iWKK3Pfi0mS1aLdJSboXwENv4neb",
 "1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF",
@@ -5934,6 +7618,47 @@ fixtures/random.txt--- -format json -sort alpha -depth 3 -----------------------
 "mGMbJt9c7sH7p86btgk7vR6xEre4DvkO",
 "wCycdlsmXtYzLukRcPjijCAcwTckFLfa",
 "xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3"]
+fixtures/random.txt--- -counts -sort counts -down -depth 3 ----------------------------------------------------------------------------------------------------
+ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU: 1
+GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF: 1
+kXLPCQ9qMVwUzYQyt28xJNTUWkBYItV7: 1
+5BLkNuwztrirIvJc7roZ4o9W2huxg5Qo: 1
+DsBm1fRlrPweuUrkmLn4AAjtkAz1D8qj: 1
+4WiWCkpjXGadDIYCsy6O2VMyWQVWiJx3: 1
+1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF: 1
+imzBe68oWn81zkGnUPq3Q6MvoFnDnaqM: 1
+h4kd4u3TDLeWrqVIjwZ9WHach7zFToWN: 1
+WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7: 1
+Mv7SgDpn8htl5OI7eCmGE3S8fTMAFtyW: 1
+SEtMfDjCThZoyJiIdNTlEMmFTkp9Z3dj: 1
+F3Uw74ZOqKk6iX1DAS1jlCz3kwhjmZSP: 1
+f7LHn0HwnRjZBUXzWwlO4IrFzfNvFM6P: 1
+bkUPVXN3iGxStK1GyVyCx9H3712KhB71: 1
+DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7: 1
+XHcZrTrO4DgDyJuLRGlFv1kxiXUjN2fE: 1
+CcMuwCe585yt0a0Xd0IwXvwbH5yrhBHt: 1
+NbdjXjxaGFWfFuFgndDggCYYBOKNcCiz: 1
+0s69iWKK3Pfi0mS1aLdJSboXwENv4neb: 1
+ApwtzoSzcSasveDV2Geu8U3n5G7c4TtX: 1
+mGMbJt9c7sH7p86btgk7vR6xEre4DvkO: 1
+IBqxNzZNUyimsNYDa4X5gLFkXxTWXBnT: 1
+dJO8CseqDgr9AjPAAlofAmwKzo5i6ORX: 1
+mCuE5Mt0SUq84e4VZ6Xgvp0mS862STe9: 1
+3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy: 1
+wCycdlsmXtYzLukRcPjijCAcwTckFLfa: 1
+gNbYB65NOStT4ltMktBaJa1oWkPfqzNz: 1
+BPMAkBfEKLreg9sPVfLt0YyxLl0ykFTg: 1
+m56AVisdRuHvPMua3GseSUW9uzaEbxn8: 1
+hWDeAHqIIzSjT6Iv4pr07Bn6HF8uRI6T: 1
+YI0OM5HRlB1j0ZTgCG76W6er0vdp4BHk: 1
+5vyN97KXONcmVaUmbYafEmS3kK4huL0d: 1
+O8F94IGLmkPcq0OPofRWBlqUIQVsUeoa: 1
+GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0: 1
+NRsk6JebWnQ8HERnBJZaWkQXzEVbfkFt: 1
+52JHD4TyE8dQu2F4Xk9diqIWqePyAaVM: 1
+5lsY90hTZPNcPj26LeI2QEqd3ItY8i1s: 1
+xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3: 1
+k4U63BHEOh5d6AZtViZU3Umfz8WZvzdb: 1
 fixtures/random.txt--- -format json -sort alpha -no-fold ----------------------------------------------------------------------------------------------------
 ["0s69iWKK3Pfi0mS1aLdJSboXwENv4neb",
 "1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF",
@@ -5975,6 +7700,47 @@ fixtures/random.txt--- -format json -sort alpha -no-fold -----------------------
 "mGMbJt9c7sH7p86btgk7vR6xEre4DvkO",
 "wCycdlsmXtYzLukRcPjijCAcwTckFLfa",
 "xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3"]
+fixtures/random.txt--- -counts -sort counts -down -no-fold ----------------------------------------------------------------------------------------------------
+xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3: 1
+f7LHn0HwnRjZBUXzWwlO4IrFzfNvFM6P: 1
+5vyN97KXONcmVaUmbYafEmS3kK4huL0d: 1
+3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy: 1
+Mv7SgDpn8htl5OI7eCmGE3S8fTMAFtyW: 1
+mGMbJt9c7sH7p86btgk7vR6xEre4DvkO: 1
+GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF: 1
+m56AVisdRuHvPMua3GseSUW9uzaEbxn8: 1
+5BLkNuwztrirIvJc7roZ4o9W2huxg5Qo: 1
+k4U63BHEOh5d6AZtViZU3Umfz8WZvzdb: 1
+DsBm1fRlrPweuUrkmLn4AAjtkAz1D8qj: 1
+YI0OM5HRlB1j0ZTgCG76W6er0vdp4BHk: 1
+4WiWCkpjXGadDIYCsy6O2VMyWQVWiJx3: 1
+h4kd4u3TDLeWrqVIjwZ9WHach7zFToWN: 1
+DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7: 1
+WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7: 1
+XHcZrTrO4DgDyJuLRGlFv1kxiXUjN2fE: 1
+CcMuwCe585yt0a0Xd0IwXvwbH5yrhBHt: 1
+dJO8CseqDgr9AjPAAlofAmwKzo5i6ORX: 1
+NRsk6JebWnQ8HERnBJZaWkQXzEVbfkFt: 1
+52JHD4TyE8dQu2F4Xk9diqIWqePyAaVM: 1
+GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0: 1
+kXLPCQ9qMVwUzYQyt28xJNTUWkBYItV7: 1
+mCuE5Mt0SUq84e4VZ6Xgvp0mS862STe9: 1
+F3Uw74ZOqKk6iX1DAS1jlCz3kwhjmZSP: 1
+bkUPVXN3iGxStK1GyVyCx9H3712KhB71: 1
+O8F94IGLmkPcq0OPofRWBlqUIQVsUeoa: 1
+ApwtzoSzcSasveDV2Geu8U3n5G7c4TtX: 1
+hWDeAHqIIzSjT6Iv4pr07Bn6HF8uRI6T: 1
+0s69iWKK3Pfi0mS1aLdJSboXwENv4neb: 1
+5lsY90hTZPNcPj26LeI2QEqd3ItY8i1s: 1
+IBqxNzZNUyimsNYDa4X5gLFkXxTWXBnT: 1
+NbdjXjxaGFWfFuFgndDggCYYBOKNcCiz: 1
+imzBe68oWn81zkGnUPq3Q6MvoFnDnaqM: 1
+ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU: 1
+SEtMfDjCThZoyJiIdNTlEMmFTkp9Z3dj: 1
+wCycdlsmXtYzLukRcPjijCAcwTckFLfa: 1
+gNbYB65NOStT4ltMktBaJa1oWkPfqzNz: 1
+1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF: 1
+BPMAkBfEKLreg9sPVfLt0YyxLl0ykFTg: 1
 fixtures/random.txt--- -format json -sort alpha -down ----------------------------------------------------------------------------------------------------
 ["xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3",
 "wCycdlsmXtYzLukRcPjijCAcwTckFLfa",
@@ -6016,6 +7782,47 @@ fixtures/random.txt--- -format json -sort alpha -down --------------------------
 "3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy",
 "1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF",
 "0s69iWKK3Pfi0mS1aLdJSboXwENv4neb"]
+fixtures/random.txt--- -counts -sort counts -down -down ----------------------------------------------------------------------------------------------------
+mGMbJt9c7sH7p86btgk7vR6xEre4DvkO: 1
+f7LHn0HwnRjZBUXzWwlO4IrFzfNvFM6P: 1
+5vyN97KXONcmVaUmbYafEmS3kK4huL0d: 1
+WU7mVlEJU8o7DG1mlJlphhl1UZTfOiE7: 1
+5lsY90hTZPNcPj26LeI2QEqd3ItY8i1s: 1
+dJO8CseqDgr9AjPAAlofAmwKzo5i6ORX: 1
+mCuE5Mt0SUq84e4VZ6Xgvp0mS862STe9: 1
+GhJqMF1N98nuasRzDh8SSnAp6WZfSMH0: 1
+DsBm1fRlrPweuUrkmLn4AAjtkAz1D8qj: 1
+hWDeAHqIIzSjT6Iv4pr07Bn6HF8uRI6T: 1
+YI0OM5HRlB1j0ZTgCG76W6er0vdp4BHk: 1
+NbdjXjxaGFWfFuFgndDggCYYBOKNcCiz: 1
+xylyvpc2ghBd3fhcJTXTTKHrbyRt5mm3: 1
+gNbYB65NOStT4ltMktBaJa1oWkPfqzNz: 1
+m56AVisdRuHvPMua3GseSUW9uzaEbxn8: 1
+5BLkNuwztrirIvJc7roZ4o9W2huxg5Qo: 1
+1tsCiiq1DSy4P1CSLBAAq13L5eNfBrxF: 1
+ApwtzoSzcSasveDV2Geu8U3n5G7c4TtX: 1
+IBqxNzZNUyimsNYDa4X5gLFkXxTWXBnT: 1
+SEtMfDjCThZoyJiIdNTlEMmFTkp9Z3dj: 1
+bkUPVXN3iGxStK1GyVyCx9H3712KhB71: 1
+F3Uw74ZOqKk6iX1DAS1jlCz3kwhjmZSP: 1
+k4U63BHEOh5d6AZtViZU3Umfz8WZvzdb: 1
+4WiWCkpjXGadDIYCsy6O2VMyWQVWiJx3: 1
+GAzNsfmbMWGlCT2D0H2aRnTwVxE6YllF: 1
+XHcZrTrO4DgDyJuLRGlFv1kxiXUjN2fE: 1
+imzBe68oWn81zkGnUPq3Q6MvoFnDnaqM: 1
+wCycdlsmXtYzLukRcPjijCAcwTckFLfa: 1
+O8F94IGLmkPcq0OPofRWBlqUIQVsUeoa: 1
+52JHD4TyE8dQu2F4Xk9diqIWqePyAaVM: 1
+ARdqP2ilNNmDWZmLfZyIrondCYaO5GRU: 1
+DmfxjFRGxgepLBggzFJwSYaXzFkyyDH7: 1
+kXLPCQ9qMVwUzYQyt28xJNTUWkBYItV7: 1
+NRsk6JebWnQ8HERnBJZaWkQXzEVbfkFt: 1
+BPMAkBfEKLreg9sPVfLt0YyxLl0ykFTg: 1
+0s69iWKK3Pfi0mS1aLdJSboXwENv4neb: 1
+h4kd4u3TDLeWrqVIjwZ9WHach7zFToWN: 1
+3tcRfmQQSFhi5cQCzyfO3hFM67VeTliy: 1
+CcMuwCe585yt0a0Xd0IwXvwbH5yrhBHt: 1
+Mv7SgDpn8htl5OI7eCmGE3S8fTMAFtyW: 1
 fixtures/simplechars.txt---  ----------------------------------------------------------------------------------------------------
 A
 C
@@ -6117,6 +7924,16 @@ fixtures/simplechars.txt--- -format json -sort alpha  --------------------------
 {"x.a" : 
     [1,
     2]}]
+fixtures/simplechars.txt--- -counts -sort counts -down  ----------------------------------------------------------------------------------------------------
+x.a: 3
+    2: 1
+    1: 1
+C: 2
+    D: 1
+    2: 1
+Z: 1
+A: 1
+1.2: 1
 fixtures/simplechars.txt--- -format json -sort alpha -breaks / ----------------------------------------------------------------------------------------------------
 ["1.2",
 "A",
@@ -6126,6 +7943,15 @@ fixtures/simplechars.txt--- -format json -sort alpha -breaks / -----------------
 "x",
 "x.a.1",
 "x.a.2"]
+fixtures/simplechars.txt--- -counts -sort counts -down -breaks / ----------------------------------------------------------------------------------------------------
+Z: 1
+x: 1
+x.a.2: 1
+x.a.1: 1
+C.D: 1
+C.2: 1
+A: 1
+1.2: 1
 fixtures/simplechars.txt--- -format json -sort alpha -separators ----------------------------------------------------------------------------------------------------
 ["1.2",
 "A",
@@ -6136,6 +7962,16 @@ fixtures/simplechars.txt--- -format json -sort alpha -separators ---------------
 {"x.a" : 
     [".1",
     ".2"]}]
+fixtures/simplechars.txt--- -counts -sort counts -down -separators ----------------------------------------------------------------------------------------------------
+x.a: 3
+    .2: 1
+    .1: 1
+C: 2
+    .2: 1
+    .D: 1
+A: 1
+1.2: 1
+Z: 1
 fixtures/simplechars.txt--- -format json -sort alpha -counts ----------------------------------------------------------------------------------------------------
 {"1.2" : 
     {"_count_" : 1},
@@ -6156,6 +7992,16 @@ fixtures/simplechars.txt--- -format json -sort alpha -counts -------------------
     "2" : 
         {"_count_" : 1},
     "_count_" : 3}}
+fixtures/simplechars.txt--- -counts -sort counts -down -counts ----------------------------------------------------------------------------------------------------
+x.a: 3
+    2: 1
+    1: 1
+C: 2
+    D: 1
+    2: 1
+1.2: 1
+Z: 1
+A: 1
 fixtures/simplechars.txt--- -format json -sort alpha -level 2 ----------------------------------------------------------------------------------------------------
 ["1.2",
 "A",
@@ -6166,6 +8012,16 @@ fixtures/simplechars.txt--- -format json -sort alpha -level 2 ------------------
 {"x.a" : 
     [".1",
     ".2"]}]
+fixtures/simplechars.txt--- -counts -sort counts -down -level 2 ----------------------------------------------------------------------------------------------------
+x.a: 3
+    .1: 1
+    .2: 1
+C: 2
+    D: 1
+    2: 1
+1.2: 1
+Z: 1
+A: 1
 fixtures/simplechars.txt--- -format json -sort alpha -depth 3 ----------------------------------------------------------------------------------------------------
 ["1.2",
 "A",
@@ -6176,6 +8032,16 @@ fixtures/simplechars.txt--- -format json -sort alpha -depth 3 ------------------
 {"x.a" : 
     [1,
     2]}]
+fixtures/simplechars.txt--- -counts -sort counts -down -depth 3 ----------------------------------------------------------------------------------------------------
+x.a: 3
+    2: 1
+    1: 1
+C: 2
+    D: 1
+    2: 1
+Z: 1
+A: 1
+1.2: 1
 fixtures/simplechars.txt--- -format json -sort alpha -no-fold ----------------------------------------------------------------------------------------------------
 [{"1" : 2},
 "A",
@@ -6187,6 +8053,18 @@ fixtures/simplechars.txt--- -format json -sort alpha -no-fold ------------------
     {"a" : 
         [1,
         2]}}]
+fixtures/simplechars.txt--- -counts -sort counts -down -no-fold ----------------------------------------------------------------------------------------------------
+x: 3
+    a: 2
+        2: 1
+        1: 1
+C: 2
+    D: 1
+    2: 1
+A: 1
+1: 1
+    2: 1
+Z: 1
 fixtures/simplechars.txt--- -format json -sort alpha -down ----------------------------------------------------------------------------------------------------
 [{"x.a" : 
     [2,
@@ -6197,6 +8075,16 @@ fixtures/simplechars.txt--- -format json -sort alpha -down ---------------------
     2]},
 "A",
 "1.2"]
+fixtures/simplechars.txt--- -counts -sort counts -down -down ----------------------------------------------------------------------------------------------------
+x.a: 3
+    2: 1
+    1: 1
+C: 2
+    D: 1
+    2: 1
+A: 1
+1.2: 1
+Z: 1
 fixtures/triples.csv---  ----------------------------------------------------------------------------------------------------
 john1@jupiter
     rdf:type,UnixAccount
@@ -6506,6 +8394,34 @@ fixtures/triples.csv--- -format json -sort alpha  ------------------------------
         ["UnixMachine",
         "WasDmgr"]}]},
 "kalpana,hasAccount,alice1@jupiter"]
+fixtures/triples.csv--- -counts -sort counts -down  ----------------------------------------------------------------------------------------------------
+jupiter: 6
+    hasUser: 3
+        john1: 1
+        birchb1: 1
+        alice1: 1
+    rdf:type: 2
+        UnixMachine: 1
+        WasDmgr: 1
+    defaultAccount,alice1: 1
+alice1@jupiter: 4
+    hasPassword: 3
+        joanna-pw-19: 1
+        evan2-pw-15: 1
+        kalpana-pw-18: 1
+    rdf:type,UnixAccount: 1
+birchb1@jupiter: 2
+    hasPassword,birchb-pw-2: 1
+    rdf:type,UnixAccount: 1
+john1@jupiter: 2
+    hasPassword,felicity-pw-8: 1
+    rdf:type,UnixAccount: 1
+birchb,hasAccount,birchb1@jupiter: 1
+kalpana,hasAccount,alice1@jupiter: 1
+felicity,hasAccount,john1@jupiter: 1
+Production,was_hostname,jupiter: 1
+joanna,hasAccount,alice1@jupiter: 1
+alice2,hasAccount,evan1@jupiter: 1
 fixtures/triples.csv--- -format json -sort alpha -breaks / ----------------------------------------------------------------------------------------------------
 ["Production,was_hostname,jupiter",
 "alice1@jupiter,hasPassword,evan2-pw-15",
@@ -6527,6 +8443,27 @@ fixtures/triples.csv--- -format json -sort alpha -breaks / ---------------------
 "jupiter,rdf:type,UnixMachine",
 "jupiter,rdf:type,WasDmgr",
 "kalpana,hasAccount,alice1@jupiter"]
+fixtures/triples.csv--- -counts -sort counts -down -breaks / ----------------------------------------------------------------------------------------------------
+jupiter,hasUser,birchb1: 1
+john1@jupiter,hasPassword,felicity-pw-8: 1
+alice1@jupiter,rdf:type,UnixAccount: 1
+joanna,hasAccount,alice1@jupiter: 1
+alice1@jupiter,hasPassword,evan2-pw-15: 1
+jupiter,rdf:type,WasDmgr: 1
+jupiter,hasUser,alice1: 1
+Production,was_hostname,jupiter: 1
+felicity,hasAccount,john1@jupiter: 1
+john1@jupiter,rdf:type,UnixAccount: 1
+jupiter,hasUser,john1: 1
+alice1@jupiter,hasPassword,kalpana-pw-18: 1
+jupiter,rdf:type,UnixMachine: 1
+birchb1@jupiter,rdf:type,UnixAccount: 1
+kalpana,hasAccount,alice1@jupiter: 1
+birchb,hasAccount,birchb1@jupiter: 1
+alice1@jupiter,hasPassword,joanna-pw-19: 1
+birchb1@jupiter,hasPassword,birchb-pw-2: 1
+alice2,hasAccount,evan1@jupiter: 1
+jupiter,defaultAccount,alice1: 1
 fixtures/triples.csv--- -format json -sort alpha -separators ----------------------------------------------------------------------------------------------------
 ["Production,was_hostname,jupiter",
 {"alice1@jupiter" : 
@@ -6555,6 +8492,34 @@ fixtures/triples.csv--- -format json -sort alpha -separators -------------------
         [",UnixMachine",
         ",WasDmgr"]}]},
 "kalpana,hasAccount,alice1@jupiter"]
+fixtures/triples.csv--- -counts -sort counts -down -separators ----------------------------------------------------------------------------------------------------
+jupiter: 6
+    ,hasUser: 3
+        ,john1: 1
+        ,birchb1: 1
+        ,alice1: 1
+    ,rdf:type: 2
+        ,WasDmgr: 1
+        ,UnixMachine: 1
+    ,defaultAccount,alice1: 1
+alice1@jupiter: 4
+    ,hasPassword: 3
+        ,joanna-pw-19: 1
+        ,evan2-pw-15: 1
+        ,kalpana-pw-18: 1
+    ,rdf:type,UnixAccount: 1
+john1@jupiter: 2
+    ,hasPassword,felicity-pw-8: 1
+    ,rdf:type,UnixAccount: 1
+birchb1@jupiter: 2
+    ,hasPassword,birchb-pw-2: 1
+    ,rdf:type,UnixAccount: 1
+felicity,hasAccount,john1@jupiter: 1
+kalpana,hasAccount,alice1@jupiter: 1
+joanna,hasAccount,alice1@jupiter: 1
+Production,was_hostname,jupiter: 1
+birchb,hasAccount,birchb1@jupiter: 1
+alice2,hasAccount,evan1@jupiter: 1
 fixtures/triples.csv--- -format json -sort alpha -counts ----------------------------------------------------------------------------------------------------
 {"Production,was_hostname,jupiter" : 
     {"_count_" : 1},
@@ -6611,6 +8576,34 @@ fixtures/triples.csv--- -format json -sort alpha -counts -----------------------
         "_count_" : 2}},
 "kalpana,hasAccount,alice1@jupiter" : 
     {"_count_" : 1}}
+fixtures/triples.csv--- -counts -sort counts -down -counts ----------------------------------------------------------------------------------------------------
+jupiter: 6
+    hasUser: 3
+        john1: 1
+        birchb1: 1
+        alice1: 1
+    rdf:type: 2
+        WasDmgr: 1
+        UnixMachine: 1
+    defaultAccount,alice1: 1
+alice1@jupiter: 4
+    hasPassword: 3
+        joanna-pw-19: 1
+        evan2-pw-15: 1
+        kalpana-pw-18: 1
+    rdf:type,UnixAccount: 1
+john1@jupiter: 2
+    hasPassword,felicity-pw-8: 1
+    rdf:type,UnixAccount: 1
+birchb1@jupiter: 2
+    hasPassword,birchb-pw-2: 1
+    rdf:type,UnixAccount: 1
+kalpana,hasAccount,alice1@jupiter: 1
+alice2,hasAccount,evan1@jupiter: 1
+birchb,hasAccount,birchb1@jupiter: 1
+felicity,hasAccount,john1@jupiter: 1
+joanna,hasAccount,alice1@jupiter: 1
+Production,was_hostname,jupiter: 1
 fixtures/triples.csv--- -format json -sort alpha -level 2 ----------------------------------------------------------------------------------------------------
 ["Production,was_hostname,jupiter",
 {"alice1@jupiter" : 
@@ -6638,6 +8631,33 @@ fixtures/triples.csv--- -format json -sort alpha -level 2 ----------------------
         [":type,UnixMachine",
         ":type,WasDmgr"]}]},
 "kalpana,hasAccount,alice1@jupiter"]
+fixtures/triples.csv--- -counts -sort counts -down -level 2 ----------------------------------------------------------------------------------------------------
+jupiter: 6
+    hasUser: 3
+        ,john1: 1
+        ,birchb1: 1
+        ,alice1: 1
+    rdf: 2
+        :type,WasDmgr: 1
+        :type,UnixMachine: 1
+    defaultAccount,alice1: 1
+alice1@jupiter: 4
+    ,hasPassword,joanna-pw-19: 1
+    ,hasPassword,evan2-pw-15: 1
+    ,hasPassword,kalpana-pw-18: 1
+    ,rdf:type,UnixAccount: 1
+john1@jupiter: 2
+    ,hasPassword,felicity-pw-8: 1
+    ,rdf:type,UnixAccount: 1
+birchb1@jupiter: 2
+    ,hasPassword,birchb-pw-2: 1
+    ,rdf:type,UnixAccount: 1
+kalpana,hasAccount,alice1@jupiter: 1
+joanna,hasAccount,alice1@jupiter: 1
+felicity,hasAccount,john1@jupiter: 1
+birchb,hasAccount,birchb1@jupiter: 1
+alice2,hasAccount,evan1@jupiter: 1
+Production,was_hostname,jupiter: 1
 fixtures/triples.csv--- -format json -sort alpha -depth 3 ----------------------------------------------------------------------------------------------------
 ["Production,was_hostname,jupiter",
 {"alice1@jupiter" : 
@@ -6666,6 +8686,34 @@ fixtures/triples.csv--- -format json -sort alpha -depth 3 ----------------------
         ["UnixMachine",
         "WasDmgr"]}]},
 "kalpana,hasAccount,alice1@jupiter"]
+fixtures/triples.csv--- -counts -sort counts -down -depth 3 ----------------------------------------------------------------------------------------------------
+jupiter: 6
+    hasUser: 3
+        alice1: 1
+        john1: 1
+        birchb1: 1
+    rdf:type: 2
+        WasDmgr: 1
+        UnixMachine: 1
+    defaultAccount,alice1: 1
+alice1@jupiter: 4
+    hasPassword: 3
+        joanna-pw-19: 1
+        evan2-pw-15: 1
+        kalpana-pw-18: 1
+    rdf:type,UnixAccount: 1
+john1@jupiter: 2
+    rdf:type,UnixAccount: 1
+    hasPassword,felicity-pw-8: 1
+birchb1@jupiter: 2
+    hasPassword,birchb-pw-2: 1
+    rdf:type,UnixAccount: 1
+kalpana,hasAccount,alice1@jupiter: 1
+alice2,hasAccount,evan1@jupiter: 1
+felicity,hasAccount,john1@jupiter: 1
+Production,was_hostname,jupiter: 1
+birchb,hasAccount,birchb1@jupiter: 1
+joanna,hasAccount,alice1@jupiter: 1
 fixtures/triples.csv--- -format json -sort alpha -no-fold ----------------------------------------------------------------------------------------------------
 {"Production" : 
     {"was" : 
@@ -6720,6 +8768,75 @@ fixtures/triples.csv--- -format json -sort alpha -no-fold ----------------------
 "kalpana" : 
     {"hasAccount" : 
         {"alice1" : "jupiter"}}}
+fixtures/triples.csv--- -counts -sort counts -down -no-fold ----------------------------------------------------------------------------------------------------
+jupiter: 6
+    hasUser: 3
+        john1: 1
+        birchb1: 1
+        alice1: 1
+    rdf: 2
+        type: 2
+            WasDmgr: 1
+            UnixMachine: 1
+    defaultAccount: 1
+        alice1: 1
+alice1: 4
+    jupiter: 4
+        hasPassword: 3
+            joanna: 1
+                pw: 1
+                    19: 1
+            evan2: 1
+                pw: 1
+                    15: 1
+            kalpana: 1
+                pw: 1
+                    18: 1
+        rdf: 1
+            type: 1
+                UnixAccount: 1
+john1: 2
+    jupiter: 2
+        hasPassword: 1
+            felicity: 1
+                pw: 1
+                    8: 1
+        rdf: 1
+            type: 1
+                UnixAccount: 1
+birchb1: 2
+    jupiter: 2
+        hasPassword: 1
+            birchb: 1
+                pw: 1
+                    2: 1
+        rdf: 1
+            type: 1
+                UnixAccount: 1
+Production: 1
+    was: 1
+        hostname: 1
+            jupiter: 1
+felicity: 1
+    hasAccount: 1
+        john1: 1
+            jupiter: 1
+joanna: 1
+    hasAccount: 1
+        alice1: 1
+            jupiter: 1
+birchb: 1
+    hasAccount: 1
+        birchb1: 1
+            jupiter: 1
+kalpana: 1
+    hasAccount: 1
+        alice1: 1
+            jupiter: 1
+alice2: 1
+    hasAccount: 1
+        evan1: 1
+            jupiter: 1
 fixtures/triples.csv--- -format json -sort alpha -down ----------------------------------------------------------------------------------------------------
 ["kalpana,hasAccount,alice1@jupiter",
 {"jupiter" : 
@@ -6748,6 +8865,34 @@ fixtures/triples.csv--- -format json -sort alpha -down -------------------------
         "joanna-pw-19",
         "evan2-pw-15"]}]},
 "Production,was_hostname,jupiter"]
+fixtures/triples.csv--- -counts -sort counts -down -down ----------------------------------------------------------------------------------------------------
+jupiter: 6
+    hasUser: 3
+        john1: 1
+        birchb1: 1
+        alice1: 1
+    rdf:type: 2
+        WasDmgr: 1
+        UnixMachine: 1
+    defaultAccount,alice1: 1
+alice1@jupiter: 4
+    hasPassword: 3
+        evan2-pw-15: 1
+        kalpana-pw-18: 1
+        joanna-pw-19: 1
+    rdf:type,UnixAccount: 1
+birchb1@jupiter: 2
+    hasPassword,birchb-pw-2: 1
+    rdf:type,UnixAccount: 1
+john1@jupiter: 2
+    hasPassword,felicity-pw-8: 1
+    rdf:type,UnixAccount: 1
+Production,was_hostname,jupiter: 1
+alice2,hasAccount,evan1@jupiter: 1
+kalpana,hasAccount,alice1@jupiter: 1
+felicity,hasAccount,john1@jupiter: 1
+joanna,hasAccount,alice1@jupiter: 1
+birchb,hasAccount,birchb1@jupiter: 1
 fixtures/simplechars.txt--- -lua json.lua ----------------------------------------------------------------------------------------------------
 {
   "children": {

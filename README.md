@@ -151,7 +151,7 @@ cat <input> | frangipanni [options]
   -skip int
     	Number of leading fields to skip.
   -sort string
-    	Sort by input|alpha. Sort the branches either by input order, or via alphanumeric character ordering. (default "input")
+    	Sort by input|alpha|counts. Sort the branches either by input order, or via alphanumeric character ordering, or the branch frequency count. (default "input")
   -spacer string
     	Characters to indent lines with. (default " ")
 ```
@@ -213,6 +213,31 @@ localhost
         630704513+10:00" level=debug msg="Unable to determine container for containers
         630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075
 ```
+
+We can use the `-counts -sort counts -down` flags to list the most frequently occurring branches first. In this next example I 
+* decompress all the historical log files (`zcat`)
+* skip the month name and day-of-month `-skip 2`, this gives a report for each hour of the day
+* just print the hours `depth 1 -no-fold`
+* sort by the number of branches in descending order `-counts -sort counts -down`
+ 
+```
+$ zcat /var/log/syslog* | ./frangipanni -skip 2 -depth 1 -no-fold -counts -sort counts -down | head
+10: 1247
+02: 295
+12: 106
+06: 94
+11: 91
+00: 77
+21: 76
+19: 70
+05: 69
+13: 68
+```
+Clearly 10:00am is the busiest time for this machine. 
+
+You can look for unusual events in security-related log files with the `-counts -sort counts` flags since less frequent items are pushed to the top. This command is quite interesting on my Linux system:
+
+` zcat /var/log/auth* | ./frangipanni -skip 1 -depth 7 -counts -sort counts -breaks '0123456789- []():/'  | less`
 
 ## Data from environment variables
 

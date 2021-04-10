@@ -139,6 +139,11 @@ func nodeGetChildrenSliceSorted(x *node) []*node {
 			return reOrder(children[i].text < children[j].text)
 		})
 
+	case "counts":
+		sort.SliceStable(children, func(i, j int) bool {
+			return reOrder(children[i].numMatched < children[j].numMatched)
+		})
+
 	default:
 		log.Fatalf("Error: unknown sort value '%v'", sortBy)
 	}
@@ -365,7 +370,7 @@ func main() {
 	defer stdoutBuffered.Flush()
 
 	flag.BoolVar(&printSeparators, "separators", false, "Print leading separators.")
-	flag.StringVar(&sortBy, "sort", "input", "Sort by input|alpha. Sort the branches either by input order, or via alphanumeric character ordering.")
+	flag.StringVar(&sortBy, "sort", "input", "Sort by input|alpha|counts. Sort the branches either by input order, or via alphanumeric character ordering, or the branch frequency count.")
 	flag.StringVar(&format, "format", "indent", "Format of output: indent|json")
 	flag.StringVar(&fieldSeparators, "breaks", "", "Characters to slice lines with.")
 	flag.BoolVar(&noFold, "no-fold", false, "Don't fold into one line.")
