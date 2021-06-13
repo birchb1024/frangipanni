@@ -112,7 +112,7 @@ I have tested `frangipanni_linux_amd64`, the others are output from the Go cross
 
 ## Building From Source Code
 
-If there is no pre-compiled binary for your platform, you can compile from the source. First you need [the 'Go' compiler](https://golang.org/doc/install), version 1.15.2 or greater. After cloning [the frangipanni repository](https://github.com/birchb1024/frangipanni) with git, it suffices to run `GO111MODULE=on go build` and the executable will be built as `frangipanni`. You can run the regression test suite with `test/confidence.sh`, but first install `jp` from [github.com/jmespath/jp](https://github.com/jmespath/jp). 
+If there is no pre-compiled binary for your platform, you can compile from the source. First you need [the 'Go' compiler](https://golang.org/doc/install), version 1.16.5 or greater. After cloning [the frangipanni repository](https://github.com/birchb1024/frangipanni) with git, it suffices to run `GO111MODULE=on go build` and the executable will be built as `frangipanni`. You can run the regression test suite with `test/confidence.sh`, but first install `jp` from [github.com/jmespath/jp](https://github.com/jmespath/jp). 
 
 Read all about `Go` here: [golang.org](https://golang.org/)  
 

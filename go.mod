@@ -1,6 +1,6 @@
 module github.com/birchb1024/frangipanni
 
-go 1.15
+go 1.16
 
 require (
 	github.com/layeh/gopher-json v0.0.0-20201124131017-552bb3c4c3bf
