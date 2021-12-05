@@ -8,6 +8,13 @@
 
 Program to convert lines of text into beautiful tree structures.
 
+#+attr_html: :alt Plumeria sanalsp
+# #+attr_html: :style float:right;
+#+attr_html: :width 200px
+#+attr_latex: :width 200px
+[[./frangipanni.jpg]]
+Plumeria sanalsp
+
 The program reads each line on the standard input in turn. It breaks
 each line into tokens, then adds the sequence of tokens into a tree
 structure. Lines with the same leading tokens are placed in the same
