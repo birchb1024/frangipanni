@@ -1,0 +1,1015 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-12-05 Sun 13:57 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Frangipanni</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Peter Birch" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Frangipanni</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#frangipanni">1. frangipanni</a>
+<ul>
+<li><a href="#basic-operation">1.1. Basic Operation</a></li>
+</ul>
+</li>
+<li><a href="#usage">2. Usage</a>
+<ul>
+<li><a href="#options">2.1. Options</a></li>
+</ul>
+</li>
+<li><a href="#examples">3. Examples</a>
+<ul>
+<li><a href="#log-files">3.1. Log files</a></li>
+<li><a href="#data-from-environment-variables">3.2. Data from environment variables</a></li>
+<li><a href="#split-the-path">3.3. Split the PATH</a></li>
+<li><a href="#query-a-csv-triplestore---json">3.4. Query a CSV triplestore -&gt; JSON</a></li>
+<li><a href="#security-analysis-of-sudo-use-in-auth-log-file">3.5. Security Analysis of sudo use in Auth Log File</a></li>
+<li><a href="#output-for-spreadsheets">3.6. Output for Spreadsheets</a></li>
+<li><a href="#output-for-markdown">3.7. Output for Markdown</a></li>
+<li><a href="#lua-examples">3.8. Lua Examples</a>
+<ul>
+<li><a href="#json-again">3.8.1. JSON (again)</a></li>
+<li><a href="#markdown">3.8.2. Markdown</a></li>
+<li><a href="#xml">3.8.3. XML</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org437087a" class="outline-2">
+<h2 id="frangipanni"><span class="section-number-2">1</span> frangipanni</h2>
+<div class="outline-text-2" id="text-frangipanni">
+<p>
+Program to convert lines of text into beautiful tree structures.
+</p>
+
+<p>
+The program reads each line on the standard input in turn. It breaks
+each line into tokens, then adds the sequence of tokens into a tree
+structure. Lines with the same leading tokens are placed in the same
+branch of the tree. The tree is printed as indented lines or JSON
+format. Alternatively the tree can be passed to a user-provided Lua
+script which can produce any output format.
+</p>
+
+<p>
+Options control where the line is broken into tokens, and how it is
+analysed and output.
+</p>
+</div>
+
+<div id="outline-container-org5d0b98b" class="outline-3">
+<h3 id="basic-operation"><span class="section-number-3">1.1</span> Basic Operation</h3>
+<div class="outline-text-3" id="text-basic-operation">
+<p>
+Here is a simple example. Given this command
+<code>sudo find /etc -maxdepth 3 | tail -9</code>,
+</p>
+
+<p>
+We get this data:
+</p>
+
+<pre class="example">
+/etc/bluetooth/rfcomm.conf.dpkg-remove
+/etc/bluetooth/serial.conf.dpkg-remove
+/etc/bluetooth/input.conf
+/etc/bluetooth/audio.conf.dpkg-remove
+/etc/bluetooth/network.conf
+/etc/bluetooth/main.conf
+/etc/fish
+/etc/fish/completions
+/etc/fish/completions/task.fish
+</pre>
+
+<p>
+When we pipe this into the <code>frangipanni</code> program :
+</p>
+
+<pre class="example">
+sudo find /etc -maxdepth 3 | tail -9 | frangipanni
+</pre>
+
+<p>
+we see this output:
+</p>
+
+<pre class="example">
+etc
+    bluetooth
+        rfcomm.conf.dpkg-remove
+        serial.conf.dpkg-remove
+        input.conf
+        audio.conf.dpkg-remove
+        network.conf
+        main.conf
+    fish/completions/task.fish
+</pre>
+
+<p>
+By default, it reads each line and splits them into tokens when it finds
+a non-alphanumeric character.
+</p>
+
+<p>
+In this next example we're processing a list of files produced by <code>find</code>
+so we only want to break on directories. So we can specify <code>-breaks /</code>.
+</p>
+
+<p>
+The default behaviour is to <i>fold</i> tree branches with no sub-branches
+into a single line of output. e.g. =fish/completions/task.fish= We turn
+off folding by specifying the <code>-no-fold</code> option. With the refined
+command
+</p>
+
+<pre class="example">
+frangipanni -breaks / -no-fold
+</pre>
+
+<p>
+We see this output
+</p>
+
+<pre class="example">
+etc
+    bluetooth
+        rfcomm.conf.dpkg-remove
+        serial.conf.dpkg-remove
+        input.conf
+        audio.conf.dpkg-remove
+        network.conf
+        main.conf
+    fish
+        completions
+            task.fish
+</pre>
+
+<p>
+Having restructured the data into a tree format we can output in other
+formats. We can ask for JSON by adding the <code>-format json</code> option. We get
+this output:
+</p>
+
+<pre class="example">
+{"etc" : 
+    {"bluetooth" : 
+        ["rfcomm.conf.dpkg-remove",
+        "serial.conf.dpkg-remove",
+        "input.conf",
+        "audio.conf.dpkg-remove",
+        "network.conf",
+        "main.conf"],
+    "fish" : 
+        {"completions" : "task.fish"}}}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org603d52e" class="outline-2">
+<h2 id="usage"><span class="section-number-2">2</span> Usage</h2>
+<div class="outline-text-2" id="text-usage">
+<p>
+The command is a simple filter taking standard input, and output on
+stdout.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">cat &lt;input&gt; | frangipanni [options]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org80b22e6" class="outline-3">
+<h3 id="options"><span class="section-number-3">2.1</span> Options</h3>
+<div class="outline-text-3" id="text-options">
+<pre class="example">
+-breaks string
+      Characters to slice lines with.
+-chars
+      Slice line after every character.
+-counts
+      Print number of matches at the end of the line.
+-depth int
+      Maximum tree depth to print. (default 2147483647)
+-format string
+      Format of output: indent|json (default "indent")
+-indent int
+      Number of spaces to indent per level. (default 4)
+-level int
+      Analyse down to this level (positive integer). (default 2147483647)
+-lua string
+      Lua Script to run
+-no-fold
+      Don't fold into one line.
+-order string
+      Sort order input|alpha. Sort the childs either in input order or via character ordering (default "input")
+-separators
+      Print leading separators.
+-skip int
+      Number of leading fields to skip.
+-spacer string
+      Characters to indent lines with. (default " ")
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge28159c" class="outline-2">
+<h2 id="examples"><span class="section-number-2">3</span> Examples</h2>
+<div class="outline-text-2" id="text-examples">
+</div>
+
+<div id="outline-container-org5b503b1" class="outline-3">
+<h3 id="log-files"><span class="section-number-3">3.1</span> Log files</h3>
+<div class="outline-text-3" id="text-log-files">
+<p>
+Given input from a log file:
+</p>
+
+<pre class="example">
+May 10 03:17:06 localhost systemd: Removed slice User Slice of root.
+May 10 03:17:06 localhost systemd: Stopping User Slice of root.
+May 10 04:00:00 localhost systemd: Starting Docker Cleanup...
+May 10 04:00:00 localhost systemd: Started Docker Cleanup.
+May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.629849861+10:00" level=debug msg="Calling GET /_ping"
+May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.629948000+10:00" level=debug msg="Unable to determine container for /"
+May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630103455+10:00" level=debug msg="{Action=_ping, LoginUID=12345678, PID=21075}"
+May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&amp;filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D"
+May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630704513+10:00" level=debug msg="Unable to determine container for containers"
+May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075}"
+</pre>
+
+<p>
+default output is:
+</p>
+
+<pre class="example">
+May 10
+ 03:17:06 localhost systemd
+  : Removed slice User Slice of root
+  : Stopping User Slice of root
+ 04:00:00 localhost
+   dockerd-current: time="2020-05-10T04:00:00
+    .629849861+10:00" level=debug msg="Calling GET /_ping
+    .629948000+10:00" level=debug msg="Unable to determine container for
+    .630103455+10:00" level=debug msg="{Action=_ping, LoginUID=12345678, PID=21075
+    .630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&amp;filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D
+    .630704513+10:00" level=debug msg="Unable to determine container for containers
+    .630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075
+   systemd
+    : Started Docker Cleanup
+    : Starting Docker Cleanup
+</pre>
+
+<p>
+with the <code>-skip 5</code> option we can ignore the date and time at the
+beginning of each line. The output is
+</p>
+
+<pre class="example">
+localhost
+    systemd
+        Removed slice User Slice of root
+        Stopping User Slice of root
+        Starting Docker Cleanup
+        Started Docker Cleanup
+    dockerd-current: time="2020-05-10T04:00:00
+        629849861+10:00" level=debug msg="Calling GET /_ping
+        629948000+10:00" level=debug msg="Unable to determine container for
+        630103455+10:00" level=debug msg="{Action=_ping, LoginUID=12345678, PID=21075
+        630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&amp;filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D
+        630704513+10:00" level=debug msg="Unable to determine container for containers
+        630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge06d925" class="outline-3">
+<h3 id="data-from-environment-variables"><span class="section-number-3">3.2</span> Data from environment variables</h3>
+<div class="outline-text-3" id="text-data-from-environment-variables">
+<p>
+Give this input, from <code>env | egrep '^XDG'</code> :
+</p>
+
+<pre class="example">
+XDG_VTNR=2
+XDG_SESSION_ID=5
+XDG_SESSION_TYPE=x11
+XDG_DATA_DIRS=/usr/share:/usr/share:/usr/local/share
+XDG_SESSION_DESKTOP=plasma
+XDG_CURRENT_DESKTOP=KDE
+XDG_SEAT=seat0
+XDG_RUNTIME_DIR=/run/user/1000
+XDG_SESSION_COOKIE=fe37f2ef4-158904.727668-469753
+</pre>
+
+<p>
+And run with
+</p>
+
+<pre class="example">
+$ env | egrep '^XDG' | ./frangipanni -breaks '=_' -no-fold -format json
+</pre>
+
+<p>
+we get
+</p>
+
+<pre class="example">
+{"XDG" : 
+    {"VTNR" : 2,
+    "SESSION" : 
+        {"ID" : 5,
+        "TYPE" : "x11",
+        "DESKTOP" : "plasma",
+        "COOKIE" : "fe37f2ef4-158904.727668-469753"},
+    "DATA" : 
+        {"DIRS" : "/usr/share:/usr/share:/usr/local/share"},
+    "CURRENT" : 
+        {"DESKTOP" : "KDE"},
+    "SEAT" : "seat0",
+    "RUNTIME" : 
+        {"DIR" : "/run/user/1000"}}}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge234a0c" class="outline-3">
+<h3 id="split-the-path"><span class="section-number-3">3.3</span> Split the PATH</h3>
+<div class="outline-text-3" id="text-split-the-path">
+<pre class="example">
+$ echo $PATH | tr ':' '\n' | ./frangipanni -separators
+</pre>
+
+<pre class="example">
+/home/alice
+    /work/gopath/src/github.com/birchb1024/frangipanni
+    /apps
+        /textadept_10.8.x86_64
+        /shellcheck-v0.7.1
+        /Digital/Digital
+        /gradle-4.9/bin
+        /idea-IC-172.4343.14/bin
+        /GoLand-173.3531.21/bin
+        /arduino-1.6.7
+    /yed
+    /bin
+/usr
+    /lib/jvm/java-8-openjdk-amd64/bin
+    /local
+        /bin
+        /games
+        /go/bin
+    /bin
+    /games
+/bin
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4cbb123" class="outline-3">
+<h3 id="query-a-csv-triplestore---json"><span class="section-number-3">3.4</span> Query a CSV triplestore -&gt; JSON</h3>
+<div class="outline-text-3" id="text-query-a-csv-triplestore---json">
+<p>
+A CSV tiplestore is a simple way of recording a database of facts about
+objects. Each line has a Subject, Object, Predicate structure.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csv">john1@jupiter,rdf:type,UnixAccount
+joanna,hasAccount,alice1@jupiter
+jupiter,defaultAccount,alice1
+alice2,hasAccount,evan1@jupiter
+felicity,hasAccount,john1@jupiter
+alice1@jupiter,rdf:type,UnixAccount
+kalpana,hasAccount,alice1@jupiter
+john1@jupiter,hasPassword,felicity-pw-8
+Production,was_hostname,jupiter
+alice1@jupiter,rdf:type,UnixAccount
+alice1@jupiter,hasPassword,alice-pw-2
+</pre>
+</div>
+
+<p>
+In this example we want the data about the <code>jupiter</code> machine. We permute
+the input records with awk and filter the JSON output with <code>jq</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sg">$ cat test/fixtures/triples.csv | \
+  awk -F, '{print $2,$1,$3; print $1, $2, $3; print $3, $2, $1}' | \
+  ./frangipanni  -breaks ' ' -order alpha -format json -no-fold | \
+  jq '."jupiter"'
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-javascript">{
+  "defaultAccount": "alice1",
+  "hasUser": [
+    "alice1",
+    "birchb1",
+    "john1"
+  ],
+  "rdf:type": [
+    "UnixMachine",
+    "WasDmgr"
+  ],
+  "was_hostname": "Production"
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org473421b" class="outline-3">
+<h3 id="security-analysis-of-sudo-use-in-auth-log-file"><span class="section-number-3">3.5</span> Security Analysis of sudo use in Auth Log File</h3>
+<div class="outline-text-3" id="text-security-analysis-of-sudo-use-in-auth-log-file">
+<p>
+The Linux /var/log/auth.log file has timed records about <code>sudo</code> which
+look like this:
+</p>
+
+<pre class="example">
+May 17 00:36:15 localhost sudo:   alice : TTY=pts/2 ; PWD=/home/alice ; USER=root ; COMMAND=/usr/bin/jmtpfs -o allow_other /tmp/s
+May 17 00:36:15 localhost sudo: pam_unix(sudo:session): session opened for user root by (uid=0)
+May 17 00:36:15 localhost sudo: pam_unix(sudo:session): session closed for user root
+</pre>
+
+<p>
+By skipping the date/time component of the lines, and specifying
+<code>-counts</code> we can see a breakdown of the <code>sudo</code> commands used and how
+many occurred. By placing the date/time data at the end of the input
+lines we alse get a breakdown of the commands by hour of day.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ sudo cat /var/log/auth.log | grep sudo | \
+    awk '{print substr($0,16),substr($0,1,15)}' | \
+    ./frangipanni -breaks ' ;:'  -depth 5 -counts -separators
+</pre>
+</div>
+
+<p>
+Produces
+</p>
+
+<pre class="example">
+localhost sudo: 125
+   :   alice: 42
+        : TTY=pts/2: 14
+            ; PWD=/home/alice ; USER=root ; COMMAND=/usr/bin/jmtpfs: 5
+            ; PWD=/home/alice/workspace/gopath/src/github.com/akice/frangipanni ; USER=root ; COMMAND=/usr/bin/find /etc -maxdepth 3 May 17 13: 9
+        : TTY=pts/1 ; PWD=/home/alice/workspace/gopath/src/github.com/akice/frangipanni ; USER=root ; COMMAND=/bin/cat: 28
+            /var/log/messages May 17 13:53:34: 1
+            /var/log/auth.log May 17: 27
+   : pam_unix(sudo:session): session: 83
+        opened for user root by (uid=0) May 17: 42
+            00: 5
+            13: 28
+            14: 9
+        closed for user root May 17: 41
+            00: 5
+            13: 28
+            14: 8
+</pre>
+
+<p>
+We can see alice has run 42 sudo commands, 28 of whuch were =cat=ing
+files from /var.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7a50834" class="outline-3">
+<h3 id="output-for-spreadsheets"><span class="section-number-3">3.6</span> Output for Spreadsheets</h3>
+<div class="outline-text-3" id="text-output-for-spreadsheets">
+<p>
+Inevitably you will need to output reports from frangipanni into a
+spreadsheet. You can use the <code>-spacer</code> option to specify the
+character(s) to use for indentation and before the counts. So with the
+file list example from above and this command
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo find /etc -maxdepth 3 | tail -9 | frangipanni -no-fold -counts -indent 1 -spacer $'\t'
+</pre>
+</div>
+
+<p>
+You will have a tab-separated output which can be imported to your
+spreadsheet.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">etc</td>
+<td class="org-left">9</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">bluetooth</td>
+<td class="org-left">6</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">rfcomm.conf.dpkg-remove</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">serial.conf.dpkg-remove</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">input.conf</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">audio.conf.dpkg-remove</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">network.conf</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">main.conf</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-left">fish/completions/task.fish</td>
+<td class="org-left">3</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgda70a14" class="outline-3">
+<h3 id="output-for-markdown"><span class="section-number-3">3.7</span> Output for Markdown</h3>
+<div class="outline-text-3" id="text-output-for-markdown">
+<p>
+To use the output with markdown or other text-based tools, sepecify the
+<code>-separator</code> option. This can be used by tools like <code>sed</code> to convert the
+leading separator into the markup required. example to get a leading
+minus sign for an un-numbered Markdown list, use <code>sed</code> to
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo find /etc -maxdepth 3 | tail -9 | frangipanni -separators | sed 's;/; - ;'
+</pre>
+</div>
+
+<p>
+Which results in an indented bullet list:
+</p>
+
+<blockquote>
+<p>
+
+</p>
+
+<ul class="org-ul">
+<li>etc
+
+<ul class="org-ul">
+<li>bluetooth
+
+<ul class="org-ul">
+<li>rfcomm.conf.dpkg-remove</li>
+<li>serial.conf.dpkg-remove</li>
+<li>input.conf</li>
+<li>audio.conf.dpkg-remove</li>
+<li>network.conf</li>
+<li>main.conf</li>
+</ul></li>
+
+<li>fish/completions/task.fish</li>
+</ul></li>
+</ul>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-org32e4085" class="outline-3">
+<h3 id="lua-examples"><span class="section-number-3">3.8</span> Lua Examples</h3>
+<div class="outline-text-3" id="text-lua-examples">
+</div>
+
+<div id="outline-container-orgd2aa3d9" class="outline-4">
+<h4 id="json-again"><span class="section-number-4">3.8.1</span> JSON (again)</h4>
+<div class="outline-text-4" id="text-json-again">
+<p>
+First, we are going tell frangipanni to output via a Lua program called
+'json.lua', and we will format the json with the 'jp' program.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ &lt;test/fixtures/simplechars.txt frangipanni -lua json.lua | jp @
+</pre>
+</div>
+
+<p>
+The Lua script uses the <code>github.com/layeh/gopher-json</code> module which is
+imported in the Lua. The data is made available in the variable
+<code>frangipanni</code> which has a table for each node, with fields
+</p>
+
+<ul class="org-ul">
+<li>depth - in the tree starting from 0</li>
+<li>lineNumber - the token was first detected</li>
+<li>numMatched - the number of times the token was seen</li>
+<li>sep - separation characters preceding the token</li>
+<li>text - the token itself</li>
+<li>children - a table containing the child nodes</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-lua">local json = require("json")
+
+print(json.encode(frangipanni))
+</pre>
+</div>
+
+<p>
+The output shows that all the fields of the parsed nodes are passed to
+Lua in a Table. The root node is empty except for it's children. The Lua
+script is therefore able to use the fields intelligently.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-javascript">{
+  "depth": 0,
+  "lineNumber": -1,
+  "numMatched": 1,
+  "sep": "",
+  "text": "",
+  "children": {
+    "1.2": {
+      "children": [],
+      "depth": 1,
+      "lineNumber": 8,
+      "numMatched": 1,
+      "sep": "",
+      "text": "1.2"
+    },
+    "A": {
+      "children": [],
+      "depth": 1,
+      "lineNumber": 1,
+      "numMatched": 1,
+      "sep": "",
+      "text": "A"
+    },
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd00a4f7" class="outline-4">
+<h4 id="markdown"><span class="section-number-4">3.8.2</span> Markdown</h4>
+<div class="outline-text-4" id="text-markdown">
+<pre class="example">
+function indent(n)
+    for i=1, n do
+        io.write("   ")
+    end
+end
+
+function markdown(node)
+    indent(node.depth)
+    io.write("* ")
+    print(node.text)
+    for k, v in pairs(node.children) do
+        markdown(v)
+    end
+end
+
+markdown(frangipanni)
+</pre>
+
+<p>
+The output can look like this:
+</p>
+
+<pre class="example">
+* 
+   * A
+   * C
+      * 2
+      * D
+   * x.a
+      * 2
+      * 1
+   * Z
+   * 1.2
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgf35a06f" class="outline-4">
+<h4 id="xml"><span class="section-number-4">3.8.3</span> XML</h4>
+<div class="outline-text-4" id="text-xml">
+<p>
+The xml.lua script provided in the release outputs very basic XML format
+which might suit simple inputs.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-xml">&lt;root count="1" sep=""&gt;
+   &lt;C count="2" sep=""&gt;
+      &lt;2 count="1" sep="."/&gt;
+      &lt;D count="1" sep="."/&gt;
+   &lt;/C&gt;
+   &lt;x.a count="3" sep=""&gt;
+      &lt;1 count="1" sep="."/&gt;
+      &lt;2 count="1" sep="."/&gt;
+   &lt;/x.a&gt;
+   &lt;Z count="1" sep=""/&gt;
+   &lt;1.2 count="1" sep=""/&gt;
+   &lt;A count="1" sep=""/&gt;
+&lt;/root&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2021-12-05</p>
+<p class="author">Author: Peter Birch</p>
+<p class="date">Created: 2021-12-05 Sun 13:57</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

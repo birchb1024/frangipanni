@@ -1,0 +1,584 @@
+#+title:  Frangipanni
+#+author: Peter Birch
+#+date:   2021-12-05
+* frangipanni
+  :PROPERTIES:
+  :CUSTOM_ID: frangipanni
+  :END:
+
+Program to convert lines of text into beautiful tree structures.
+
+The program reads each line on the standard input in turn. It breaks
+each line into tokens, then adds the sequence of tokens into a tree
+structure. Lines with the same leading tokens are placed in the same
+branch of the tree. The tree is printed as indented lines or JSON
+format. Alternatively the tree can be passed to a user-provided Lua
+script which can produce any output format.
+
+Options control where the line is broken into tokens, and how it is
+analysed and output.
+
+** Basic Operation
+   :PROPERTIES:
+   :CUSTOM_ID: basic-operation
+   :END:
+
+Here is a simple example. Given this command
+=sudo find /etc -maxdepth 3 | tail -9=,
+
+We get this data:
+
+#+BEGIN_EXAMPLE
+  /etc/bluetooth/rfcomm.conf.dpkg-remove
+  /etc/bluetooth/serial.conf.dpkg-remove
+  /etc/bluetooth/input.conf
+  /etc/bluetooth/audio.conf.dpkg-remove
+  /etc/bluetooth/network.conf
+  /etc/bluetooth/main.conf
+  /etc/fish
+  /etc/fish/completions
+  /etc/fish/completions/task.fish
+#+END_EXAMPLE
+
+When we pipe this into the =frangipanni= program :
+
+#+BEGIN_EXAMPLE
+  sudo find /etc -maxdepth 3 | tail -9 | frangipanni
+#+END_EXAMPLE
+
+we see this output:
+
+#+BEGIN_EXAMPLE
+  etc
+      bluetooth
+          rfcomm.conf.dpkg-remove
+          serial.conf.dpkg-remove
+          input.conf
+          audio.conf.dpkg-remove
+          network.conf
+          main.conf
+      fish/completions/task.fish
+#+END_EXAMPLE
+
+By default, it reads each line and splits them into tokens when it finds
+a non-alphanumeric character.
+
+In this next example we're processing a list of files produced by =find=
+so we only want to break on directories. So we can specify =-breaks /=.
+
+The default behaviour is to /fold/ tree branches with no sub-branches
+into a single line of output. e.g. =fish/completions/task.fish= We turn
+off folding by specifying the =-no-fold= option. With the refined
+command
+
+#+BEGIN_EXAMPLE
+  frangipanni -breaks / -no-fold
+#+END_EXAMPLE
+
+We see this output
+
+#+BEGIN_EXAMPLE
+  etc
+      bluetooth
+          rfcomm.conf.dpkg-remove
+          serial.conf.dpkg-remove
+          input.conf
+          audio.conf.dpkg-remove
+          network.conf
+          main.conf
+      fish
+          completions
+              task.fish
+#+END_EXAMPLE
+
+Having restructured the data into a tree format we can output in other
+formats. We can ask for JSON by adding the =-format json= option. We get
+this output:
+
+#+BEGIN_EXAMPLE
+  {"etc" : 
+      {"bluetooth" : 
+          ["rfcomm.conf.dpkg-remove",
+          "serial.conf.dpkg-remove",
+          "input.conf",
+          "audio.conf.dpkg-remove",
+          "network.conf",
+          "main.conf"],
+      "fish" : 
+          {"completions" : "task.fish"}}}
+#+END_EXAMPLE
+
+* Usage
+  :PROPERTIES:
+  :CUSTOM_ID: usage
+  :END:
+
+The command is a simple filter taking standard input, and output on
+stdout.
+
+#+BEGIN_SRC sh
+  cat <input> | frangipanni [options]
+#+END_SRC
+
+** Options
+   :PROPERTIES:
+   :CUSTOM_ID: options
+   :END:
+
+#+BEGIN_EXAMPLE
+    -breaks string
+          Characters to slice lines with.
+    -chars
+          Slice line after every character.
+    -counts
+          Print number of matches at the end of the line.
+    -depth int
+          Maximum tree depth to print. (default 2147483647)
+    -format string
+          Format of output: indent|json (default "indent")
+    -indent int
+          Number of spaces to indent per level. (default 4)
+    -level int
+          Analyse down to this level (positive integer). (default 2147483647)
+    -lua string
+          Lua Script to run
+    -no-fold
+          Don't fold into one line.
+    -order string
+          Sort order input|alpha. Sort the childs either in input order or via character ordering (default "input")
+    -separators
+          Print leading separators.
+    -skip int
+          Number of leading fields to skip.
+    -spacer string
+          Characters to indent lines with. (default " ")
+#+END_EXAMPLE
+
+# '
+
+* Examples
+  :PROPERTIES:
+  :CUSTOM_ID: examples
+  :END:
+
+** Log files
+   :PROPERTIES:
+   :CUSTOM_ID: log-files
+   :END:
+
+Given input from a log file:
+
+#+BEGIN_EXAMPLE
+  May 10 03:17:06 localhost systemd: Removed slice User Slice of root.
+  May 10 03:17:06 localhost systemd: Stopping User Slice of root.
+  May 10 04:00:00 localhost systemd: Starting Docker Cleanup...
+  May 10 04:00:00 localhost systemd: Started Docker Cleanup.
+  May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.629849861+10:00" level=debug msg="Calling GET /_ping"
+  May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.629948000+10:00" level=debug msg="Unable to determine container for /"
+  May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630103455+10:00" level=debug msg="{Action=_ping, LoginUID=12345678, PID=21075}"
+  May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D"
+  May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630704513+10:00" level=debug msg="Unable to determine container for containers"
+  May 10 04:00:00 localhost dockerd-current: time="2020-05-10T04:00:00.630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075}"
+#+END_EXAMPLE
+
+default output is:
+
+#+BEGIN_EXAMPLE
+  May 10
+   03:17:06 localhost systemd
+    : Removed slice User Slice of root
+    : Stopping User Slice of root
+   04:00:00 localhost
+     dockerd-current: time="2020-05-10T04:00:00
+      .629849861+10:00" level=debug msg="Calling GET /_ping
+      .629948000+10:00" level=debug msg="Unable to determine container for
+      .630103455+10:00" level=debug msg="{Action=_ping, LoginUID=12345678, PID=21075
+      .630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D
+      .630704513+10:00" level=debug msg="Unable to determine container for containers
+      .630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075
+     systemd
+      : Started Docker Cleanup
+      : Starting Docker Cleanup
+#+END_EXAMPLE
+# "
+
+with the =-skip 5= option we can ignore the date and time at the
+beginning of each line. The output is
+
+#+BEGIN_EXAMPLE
+  localhost
+      systemd
+          Removed slice User Slice of root
+          Stopping User Slice of root
+          Starting Docker Cleanup
+          Started Docker Cleanup
+      dockerd-current: time="2020-05-10T04:00:00
+          629849861+10:00" level=debug msg="Calling GET /_ping
+          629948000+10:00" level=debug msg="Unable to determine container for
+          630103455+10:00" level=debug msg="{Action=_ping, LoginUID=12345678, PID=21075
+          630684502+10:00" level=debug msg="Calling GET /v1.26/containers/json?all=1&filters=%7B%22status%22%3A%7B%22dead%22%3Atrue%7D%7D
+          630704513+10:00" level=debug msg="Unable to determine container for containers
+          630735545+10:00" level=debug msg="{Action=json, LoginUID=12345678, PID=21075
+#+END_EXAMPLE
+# "
+
+** Data from environment variables
+   :PROPERTIES:
+   :CUSTOM_ID: data-from-environment-variables
+   :END:
+
+Give this input, from ~env | egrep '^XDG'~ :
+
+#+BEGIN_EXAMPLE
+  XDG_VTNR=2
+  XDG_SESSION_ID=5
+  XDG_SESSION_TYPE=x11
+  XDG_DATA_DIRS=/usr/share:/usr/share:/usr/local/share
+  XDG_SESSION_DESKTOP=plasma
+  XDG_CURRENT_DESKTOP=KDE
+  XDG_SEAT=seat0
+  XDG_RUNTIME_DIR=/run/user/1000
+  XDG_SESSION_COOKIE=fe37f2ef4-158904.727668-469753
+#+END_EXAMPLE
+
+And run with
+
+#+BEGIN_EXAMPLE
+  $ env | egrep '^XDG' | ./frangipanni -breaks '=_' -no-fold -format json
+#+END_EXAMPLE
+
+we get
+
+#+BEGIN_EXAMPLE
+  {"XDG" : 
+      {"VTNR" : 2,
+      "SESSION" : 
+          {"ID" : 5,
+          "TYPE" : "x11",
+          "DESKTOP" : "plasma",
+          "COOKIE" : "fe37f2ef4-158904.727668-469753"},
+      "DATA" : 
+          {"DIRS" : "/usr/share:/usr/share:/usr/local/share"},
+      "CURRENT" : 
+          {"DESKTOP" : "KDE"},
+      "SEAT" : "seat0",
+      "RUNTIME" : 
+          {"DIR" : "/run/user/1000"}}}
+#+END_EXAMPLE
+
+** Split the PATH
+   :PROPERTIES:
+   :CUSTOM_ID: split-the-path
+   :END:
+
+#+BEGIN_EXAMPLE
+  $ echo $PATH | tr ':' '\n' | ./frangipanni -separators
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE
+  /home/alice
+      /work/gopath/src/github.com/birchb1024/frangipanni
+      /apps
+          /textadept_10.8.x86_64
+          /shellcheck-v0.7.1
+          /Digital/Digital
+          /gradle-4.9/bin
+          /idea-IC-172.4343.14/bin
+          /GoLand-173.3531.21/bin
+          /arduino-1.6.7
+      /yed
+      /bin
+  /usr
+      /lib/jvm/java-8-openjdk-amd64/bin
+      /local
+          /bin
+          /games
+          /go/bin
+      /bin
+      /games
+  /bin
+#+END_EXAMPLE
+
+** Query a CSV triplestore -> JSON
+   :PROPERTIES:
+   :CUSTOM_ID: query-a-csv-triplestore---json
+   :END:
+
+A CSV tiplestore is a simple way of recording a database of facts about
+objects. Each line has a Subject, Object, Predicate structure.
+
+#+BEGIN_SRC csv
+  john1@jupiter,rdf:type,UnixAccount
+  joanna,hasAccount,alice1@jupiter
+  jupiter,defaultAccount,alice1
+  alice2,hasAccount,evan1@jupiter
+  felicity,hasAccount,john1@jupiter
+  alice1@jupiter,rdf:type,UnixAccount
+  kalpana,hasAccount,alice1@jupiter
+  john1@jupiter,hasPassword,felicity-pw-8
+  Production,was_hostname,jupiter
+  alice1@jupiter,rdf:type,UnixAccount
+  alice1@jupiter,hasPassword,alice-pw-2
+#+END_SRC
+
+In this example we want the data about the =jupiter= machine. We permute
+the input records with awk and filter the JSON output with =jq=.
+
+#+BEGIN_SRC sg
+  $ cat test/fixtures/triples.csv | \
+    awk -F, '{print $2,$1,$3; print $1, $2, $3; print $3, $2, $1}' | \
+    ./frangipanni  -breaks ' ' -order alpha -format json -no-fold | \
+    jq '."jupiter"'
+#+END_SRC
+
+#+BEGIN_SRC javascript
+  {
+    "defaultAccount": "alice1",
+    "hasUser": [
+      "alice1",
+      "birchb1",
+      "john1"
+    ],
+    "rdf:type": [
+      "UnixMachine",
+      "WasDmgr"
+    ],
+    "was_hostname": "Production"
+  }
+#+END_SRC
+
+** Security Analysis of sudo use in Auth Log File
+   :PROPERTIES:
+   :CUSTOM_ID: security-analysis-of-sudo-use-in-auth-log-file
+   :END:
+
+The Linux /var/log/auth.log file has timed records about =sudo= which
+look like this:
+
+#+BEGIN_EXAMPLE
+  May 17 00:36:15 localhost sudo:   alice : TTY=pts/2 ; PWD=/home/alice ; USER=root ; COMMAND=/usr/bin/jmtpfs -o allow_other /tmp/s
+  May 17 00:36:15 localhost sudo: pam_unix(sudo:session): session opened for user root by (uid=0)
+  May 17 00:36:15 localhost sudo: pam_unix(sudo:session): session closed for user root
+#+END_EXAMPLE
+
+By skipping the date/time component of the lines, and specifying
+=-counts= we can see a breakdown of the =sudo= commands used and how
+many occurred. By placing the date/time data at the end of the input
+lines we alse get a breakdown of the commands by hour of day.
+
+#+BEGIN_SRC sh
+  $ sudo cat /var/log/auth.log | grep sudo | \
+      awk '{print substr($0,16),substr($0,1,15)}' | \
+      ./frangipanni -breaks ' ;:'  -depth 5 -counts -separators
+#+END_SRC
+
+Produces
+
+#+BEGIN_EXAMPLE
+   localhost sudo: 125
+      :   alice: 42
+           : TTY=pts/2: 14
+               ; PWD=/home/alice ; USER=root ; COMMAND=/usr/bin/jmtpfs: 5
+               ; PWD=/home/alice/workspace/gopath/src/github.com/akice/frangipanni ; USER=root ; COMMAND=/usr/bin/find /etc -maxdepth 3 May 17 13: 9
+           : TTY=pts/1 ; PWD=/home/alice/workspace/gopath/src/github.com/akice/frangipanni ; USER=root ; COMMAND=/bin/cat: 28
+               /var/log/messages May 17 13:53:34: 1
+               /var/log/auth.log May 17: 27
+      : pam_unix(sudo:session): session: 83
+           opened for user root by (uid=0) May 17: 42
+               00: 5
+               13: 28
+               14: 9
+           closed for user root May 17: 41
+               00: 5
+               13: 28
+               14: 8
+#+END_EXAMPLE
+
+We can see alice has run 42 sudo commands, 28 of whuch were =cat=ing
+files from /var.
+
+** Output for Spreadsheets
+   :PROPERTIES:
+   :CUSTOM_ID: output-for-spreadsheets
+   :END:
+
+Inevitably you will need to output reports from frangipanni into a
+spreadsheet. You can use the =-spacer= option to specify the
+character(s) to use for indentation and before the counts. So with the
+file list example from above and this command
+
+#+BEGIN_SRC sh
+  sudo find /etc -maxdepth 3 | tail -9 | frangipanni -no-fold -counts -indent 1 -spacer $'\t'
+#+END_SRC
+
+You will have a tab-separated output which can be imported to your
+spreadsheet.
+
+| etc                        | 9                       |   |
+| bluetooth                  | 6                       |   |
+|                            | rfcomm.conf.dpkg-remove | 1 |
+|                            | serial.conf.dpkg-remove | 1 |
+|                            | input.conf              | 1 |
+|                            | audio.conf.dpkg-remove  | 1 |
+|                            | network.conf            | 1 |
+|                            | main.conf               | 1 |
+| fish/completions/task.fish | 3                       |   |
+
+** Output for Markdown
+   :PROPERTIES:
+   :CUSTOM_ID: output-for-markdown
+   :END:
+
+To use the output with markdown or other text-based tools, sepecify the
+=-separator= option. This can be used by tools like =sed= to convert the
+leading separator into the markup required. example to get a leading
+minus sign for an un-numbered Markdown list, use =sed= to
+
+#+BEGIN_SRC sh
+  sudo find /etc -maxdepth 3 | tail -9 | frangipanni -separators | sed 's;/; - ;'
+#+END_SRC
+
+Which results in an indented bullet list:
+
+#+BEGIN_QUOTE
+
+  - etc
+
+    - bluetooth
+
+      - rfcomm.conf.dpkg-remove
+      - serial.conf.dpkg-remove
+      - input.conf
+      - audio.conf.dpkg-remove
+      - network.conf
+      - main.conf
+
+    - fish/completions/task.fish
+#+END_QUOTE
+
+** Lua Examples
+   :PROPERTIES:
+   :CUSTOM_ID: lua-examples
+   :END:
+
+*** JSON (again)
+    :PROPERTIES:
+    :CUSTOM_ID: json-again
+    :END:
+
+First, we are going tell frangipanni to output via a Lua program called
+'json.lua', and we will format the json with the 'jp' program.
+
+#+BEGIN_SRC sh
+  $ <test/fixtures/simplechars.txt frangipanni -lua json.lua | jp @
+#+END_SRC
+
+The Lua script uses the =github.com/layeh/gopher-json= module which is
+imported in the Lua. The data is made available in the variable
+=frangipanni= which has a table for each node, with fields
+
+- depth - in the tree starting from 0
+- lineNumber - the token was first detected
+- numMatched - the number of times the token was seen
+- sep - separation characters preceding the token
+- text - the token itself
+- children - a table containing the child nodes
+
+#+BEGIN_SRC lua
+  local json = require("json")
+
+  print(json.encode(frangipanni))
+#+END_SRC
+
+The output shows that all the fields of the parsed nodes are passed to
+Lua in a Table. The root node is empty except for it's children. The Lua
+script is therefore able to use the fields intelligently.
+
+#+BEGIN_SRC javascript
+  {
+    "depth": 0,
+    "lineNumber": -1,
+    "numMatched": 1,
+    "sep": "",
+    "text": "",
+    "children": {
+      "1.2": {
+        "children": [],
+        "depth": 1,
+        "lineNumber": 8,
+        "numMatched": 1,
+        "sep": "",
+        "text": "1.2"
+      },
+      "A": {
+        "children": [],
+        "depth": 1,
+        "lineNumber": 1,
+        "numMatched": 1,
+        "sep": "",
+        "text": "A"
+      },
+#+END_SRC
+
+*** Markdown
+    :PROPERTIES:
+    :CUSTOM_ID: markdown
+    :END:
+
+#+BEGIN_EXAMPLE
+  function indent(n)
+      for i=1, n do
+          io.write("   ")
+      end
+  end
+
+  function markdown(node)
+      indent(node.depth)
+      io.write("* ")
+      print(node.text)
+      for k, v in pairs(node.children) do
+          markdown(v)
+      end
+  end
+
+  markdown(frangipanni)
+#+END_EXAMPLE
+
+The output can look like this:
+
+#+BEGIN_EXAMPLE
+  * 
+     * A
+     * C
+        * 2
+        * D
+     * x.a
+        * 2
+        * 1
+     * Z
+     * 1.2
+#+END_EXAMPLE
+
+*** XML
+    :PROPERTIES:
+    :CUSTOM_ID: xml
+    :END:
+
+The xml.lua script provided in the release outputs very basic XML format
+which might suit simple inputs.
+
+#+BEGIN_SRC xml
+  <root count="1" sep="">
+     <C count="2" sep="">
+        <2 count="1" sep="."/>
+        <D count="1" sep="."/>
+     </C>
+     <x.a count="3" sep="">
+        <1 count="1" sep="."/>
+        <2 count="1" sep="."/>
+     </x.a>
+     <Z count="1" sep=""/>
+     <1.2 count="1" sep=""/>
+     <A count="1" sep=""/>
+  </root>
+#+END_SRC
