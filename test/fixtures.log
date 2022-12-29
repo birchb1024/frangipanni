@@ -7,6 +7,7 @@
   "breaks": "/",
   "chars": "false",
   "counts": "true",
+  "csv": "false",
   "depth": "3",
   "down": "false",
   "format": "indent",

@@ -5,6 +5,7 @@ package main
 //
 import (
 	"bufio"
+	"encoding/csv"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -105,7 +106,7 @@ func add(lineNumber int, n *node, tok []string, sep []string) {
 	add(lineNumber, &x, tok[1:], restSeps)
 }
 
-func fprintchildslice(out io.Writer, childs []*node, parent *node) {
+func fprintchildslice(out io.Writer, childs []*node) {
 
 	for _, kc := range childs {
 		fprintTree(out, kc) // print the children in order
@@ -163,7 +164,7 @@ func fprintTree(out io.Writer, x *node) {
 		return
 	}
 
-	if x.depth != 0 { // Special case for the empty root node - dont print it
+	if x.depth != 0 { // Special case for the empty root node - do not print it
 		indent(out, x.depth)
 
 		count := ""
@@ -181,13 +182,13 @@ func fprintTree(out io.Writer, x *node) {
 		}
 	}
 	childs := nodeGetChildrenSliceSorted(x)
-	fprintchildslice(out, childs, x)
+	fprintchildslice(out, childs)
 }
 
 func escapeJSON(s string) string {
 	b, err := json.Marshal(s)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	return string(b)
 }
@@ -230,7 +231,7 @@ func fprintNodeChildrenListJSON(out io.Writer, childs []*node, depth int) {
 
 }
 
-func fprintNodeChildrenMapJSON(out io.Writer, childs []*node, depth int, parent *node) {
+func fprintNodeChildrenMapJSON(out io.Writer, childs []*node, depth int) {
 
 	if depth+1 > printDepth {
 		fmt.Fprint(out, "null")
@@ -279,7 +280,7 @@ func fprintNodeChildrenJSON(out io.Writer, n *node) {
 		fprintNodeChildrenListJSON(out, childs, n.depth)
 		return
 	}
-	fprintNodeChildrenMapJSON(out, childs, n.depth, n)
+	fprintNodeChildrenMapJSON(out, childs, n.depth)
 }
 
 func fprintNodeJSON(out io.Writer, n *node) {
@@ -361,14 +362,14 @@ func makeLuaTableFromFlags(L *lua.LState) *lua.LTable {
 	return tb
 }
 
-func luaRun(out io.Writer, root *node) {
+func luaRun(root *node) {
 	L := lua.NewState()
 	luajson.Preload(L)
 	L.SetGlobal("frangipanni_args", makeLuaTableFromFlags(L))
 	L.SetGlobal("frangipanni", makeLuaTableFromNode(L, root))
 	defer L.Close()
 	if err := L.DoFile(luaFile); err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 }
 
@@ -388,6 +389,7 @@ var luaFile string
 var skipLevel int
 var sortDescending bool
 var printVersion bool
+var csvInput bool
 
 func main() {
 
@@ -411,6 +413,7 @@ func main() {
 	flag.IntVar(&skipLevel, "skip", 0, "Number of leading fields to skip.")
 	flag.BoolVar(&sortDescending, "down", false, "Sort branches in descending order. (default ascending)")
 	flag.BoolVar(&printVersion, "version", false, "Print frangipanni's version number and exit.")
+	flag.BoolVar(&csvInput, "csv", false, "Input is CSV format.")
 
 	flag.Parse()
 	if printVersion {
@@ -444,12 +447,54 @@ func main() {
 	}
 
 	root := node{-1, "", "", map[string]*node{}, 1, 0}
-	scanner := bufio.NewScanner(file)
+	var err error
+	if csvInput {
+		err = scanCSV(file, root)
+	} else {
+		err = scanText(file, isSep, isNotSep, root)
+	}
+	if err != nil {
+		log.Fatal(err)
+	}
+	// calculate root nodse count
+	root.numMatched = 0
+	for _, c := range root.children {
+		root.numMatched += c.numMatched
+	}
+	// fold the root node
+	froot := &root
+	if !noFold {
+		froot = fold(&root)
+	}
+
+	if luaFile != "" {
+		luaRun(&root)
+		os.Exit(0)
+	}
+
+	switch format {
+	case "indent":
+		fprintTree(stdoutBuffered, froot)
+
+	case "json":
+		if printCounts {
+			fakeCounts(froot)
+		}
+		fprintNodeChildrenJSON(stdoutBuffered, froot)
+		fmt.Fprintln(stdoutBuffered)
+
+	default:
+		log.Fatalf("Error: unknown format option '%v'", format)
+	}
+}
+
+func scanText(file *os.File, isSep func(c rune) bool, isNotSep func(c rune) bool, root node) error {
+	s := bufio.NewScanner(file)
 	nr := 0
 	t := make([]string, 1024)
 	seps := make([]string, 1024)
-	for scanner.Scan() {
-		line := scanner.Text()
+	for s.Scan() {
+		line := s.Text()
 		nr++
 		if len(line) == 0 {
 			continue // skip empty lines
@@ -493,37 +538,55 @@ func main() {
 			add(nr, &root, childs, separators)
 		}
 	}
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
+	return s.Err()
+}
+func scanCSV(file *os.File, root node) error {
+	r := csv.NewReader(file)
+	if fieldSeparators != "" {
+		r.Comma = rune(fieldSeparators[0])
 	}
-	// calculate root node count
-	root.numMatched = 0
-	for _, c := range root.children {
-		root.numMatched += c.numMatched
-	}
-	// fold the root node
-	froot := &root
-	if !noFold {
-		froot = fold(&root)
-	}
-
-	if luaFile != "" {
-		luaRun(stdoutBuffered, &root)
-		os.Exit(0)
-	}
-
-	switch format {
-	case "indent":
-		fprintTree(stdoutBuffered, froot)
-
-	case "json":
-		if printCounts {
-			fakeCounts(froot)
+	r.LazyQuotes = true
+	r.TrimLeadingSpace = true
+	r.FieldsPerRecord = -1
+	nr := 0
+	t := make([]string, 1024)
+	for {
+		record, err := r.Read()
+		seps := make([]string, len(record))
+		for i:=0;i<len(record);i++ {
+			seps[i] = ","
 		}
-		fprintNodeChildrenJSON(stdoutBuffered, froot)
-		fmt.Fprintln(stdoutBuffered)
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			return err
+		}
+		if len(record) == 0 {
+			continue // empty line
+		}
 
-	default:
-		log.Fatalf("Error: unknown format option '%v'", format)
+		nr++
+		t = record
+
+		// Skip leading fields if required
+		for s := skipLevel; s > 0 && len(t) > 1 ; s-- {
+			t = t[1:]
+		}
+
+		if len(t) <= maxLevel {
+			add(nr, &root, t, seps)
+		} else {
+			// Don't use the tokens beyond maxLevel - concatenate the remainder into one
+			childs := make([]string, maxLevel+1)
+			for i := 0; i < maxLevel && i < len(t); i++ {
+				childs[i] = t[i]
+			}
+			for i := maxLevel; i < len(t) ; i++ {
+				childs[maxLevel] = childs[maxLevel] + "," + t[i]
+			}
+			add(nr, &root, childs, seps)
+		}
 	}
+	return nil
 }
