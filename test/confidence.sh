@@ -1,9 +1,11 @@
 #!/bin/bash
 # shellcheck disable=SC2129
 set -euo pipefail
-#set -x
+set -x
+
+export GOCOVERDIR=cov
 scriptdir="$(readlink -f "$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )")"
-(cd "$scriptdir"/.. ; go build -ldflags="-X 'main.Version=$(git describe)'")
+(cd "$scriptdir"/.. ; go build -cover -ldflags="-X 'main.Version=$(git describe)'")
 cd "$scriptdir"   # So all paths are relative to here in test data file
 V="$(../frangipanni -version)"
 if [[ "$V" != "$(git describe)" ]]
@@ -54,3 +56,5 @@ else
   echo "FAIL"
   echo "maybe - meld $tempfile $scriptdir/fixtures.log"
 fi
+
+go tool covdata percent -i=./cov >../coverage-percentage.txt
